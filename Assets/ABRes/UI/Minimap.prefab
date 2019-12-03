@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 65dd087dac85b4f0092d0219f135709a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -115,7 +115,7 @@ RectTransform:
   m_GameObject: {fileID: 4793308758726853184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4793308759363724336}
   - {fileID: 4793308758678785387}
@@ -161,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4793308759363724339}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -400, y: -220.67767, z: 0}
+  m_LocalPosition: {x: -400, y: -247, z: 0}
   m_LocalScale: {x: 0.59970015, y: 0.59970045, z: 0.59970045}
   m_Children: []
   m_Father: {fileID: 4793308758726853191}
@@ -191,14 +191,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 20
+  far clip plane: 100
   field of view: 60
   orthographic: 1
   orthographic size: 7
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 2048
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: c260b8107131e4daf9cb2971228e1106, type: 2}
   m_TargetDisplay: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  height: 5
+  height: 20
 --- !u!1 &4793308760144978910
 GameObject:
   m_ObjectHideFlags: 0
