@@ -1,0 +1,6 @@
+require("game/defination/pkgAnimatorDefination")
+require("game/defination/pkgConfigFieldDefination")
+require("game/defination/pkgEffectDefination")
+require("game/defination/pkgEventDefination")
+require("game/defination/pkgPoolDefination")
+require("game/defination/pkgStateDefination")

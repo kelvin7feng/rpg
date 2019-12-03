@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 576126617
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b9c4e6d13d369dd00eae67ad1ee36556
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: dd9f822f007d74c467d5d2447734b9d3
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/ABRes/BehaviorTree/Idle.asset
+- Assets/ABRes/BehaviorTree/MeleeFighter.asset
+Dependencies: []
