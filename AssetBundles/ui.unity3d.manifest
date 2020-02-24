@@ -1,15 +1,19 @@
 ManifestFileVersion: 0
-CRC: 3426991161
+CRC: 3488099089
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2771bd3138198801f8e774c779831abc
+    Hash: b9a816cfbb70b3904715e7ef9562e3da
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 74211545bcc50e3fd373ea3e0b8e2eff
+    Hash: 0a2b6d54ee36d0cc8c658976b8618aac
 HashAppended: 0
 ClassTypes:
 - Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
@@ -17,14 +21,22 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 84
+  Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 - Class: 114
   Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 - Class: 114
+  Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
   Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 - Class: 114
   Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fb48e2bba71884378b7aaeb7e394d066, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -39,6 +51,7 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/ABRes/UI/VirtualController.prefab
+- Assets/ABRes/UI/Minimap.prefab
 - Assets/ABRes/UI/MainUI.prefab
 - Assets/ABRes/UI/FixedDebug.prefab
 Dependencies: []

@@ -33,6 +33,7 @@ end
 
 local function init()
 	-- initDebug()
+	print("init======================================0")
 	pkgTimer.Init()
 	pkgGlobalGoMgr.Init()
 	pkgPoolManager.Init()
@@ -41,15 +42,13 @@ local function init()
 	pkgGameController.Init()
 	pkgTriggerManager.Init()
 	pkgProtocolManager.InitProtocol()
-	
+	print("init======================================1")
 	pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
+	print("init======================================2")
 end
 
 local function start()
-	local function onLoadComplete(prefab)
-		init()
-	end
-	
+	print("start======================================1")
 	init()
 end
 

@@ -25,7 +25,7 @@ function Register(strEventType, funcCallback, objCall)
 end
 
 -- 触发事件
-function PostEvent(strEventName, tbParam)
+function PostEvent(strEventName, ...)
 
 	local tbEvent = m_tbRegisterEvent[strEventName];
 	if not tbEvent then
@@ -37,9 +37,9 @@ function PostEvent(strEventName, tbParam)
 	local callback = tbEvent.callback;
 
 	if obj then
-		return callback(obj, tbParam);
+		return callback(obj, ...);
 	else
-		return callback(tbParam);
+		return callback(...);
 	end
 end
 
