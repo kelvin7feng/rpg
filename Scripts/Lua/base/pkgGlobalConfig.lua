@@ -47,3 +47,5 @@ VungleAppId = {
     IOS      = "5cea2cdc2b028300186702a1",
 }
 
+GATEWAT_IP = "122.51.240.92"
+GATEWAY_PORT = 7000

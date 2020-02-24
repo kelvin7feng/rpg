@@ -33,12 +33,15 @@ function ReceiveMsg()
     if not socket then
         return
     end
-    local tcprev = socket:receive(4)
-    if tcprev then
-        print("receive:", string.unpack(tcprev,">I>I>I>I>I"))
-    else
-        --print('tcp rec err')
-        
+    local header = socket:receive(20)
+    if header then
+        local _, dTotolPacketSize, dServerId, dHandler, _reserver1, _reserver2, str = string.unpack(header,"<I<I<I<I<I")
+        local dBodySize = dTotolPacketSize - 20
+        local body = socket:receive(dBodySize)
+        if body then
+            local tb = json.decode(body)
+            pkgEventManager.PostEvent(unpack(tb))
+        end
     end
 end
 
@@ -66,7 +69,7 @@ function Reconnect()
     if socket then
         Disconnect()
     end
-    return ConnectToServer("127.0.0.1", 7000)
+    return ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
 end
 
 function Send(strData)

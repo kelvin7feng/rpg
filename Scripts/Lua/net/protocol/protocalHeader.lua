@@ -1,0 +1,1 @@
+require("net/protocol/pkgProtocolManager")

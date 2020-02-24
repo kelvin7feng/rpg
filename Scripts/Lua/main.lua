@@ -8,6 +8,7 @@ require("tool/toolHeader")
 require("base/baseHeader")
 require("share/shareHeader")
 require("net/socket/socketHeader")
+require("net/protocol/protocalHeader")
 
 require("game/ai/aiHeader")
 require("game/defination/definationHeader")
@@ -39,8 +40,9 @@ local function init()
 	pkgCanvasMgr.Init()
 	pkgGameController.Init()
 	pkgTriggerManager.Init()
-
-	pkgSocket.ConnectToServer("127.0.0.1", 7000)
+	pkgProtocolManager.InitProtocol()
+	
+	pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
 end
 
 local function start()
