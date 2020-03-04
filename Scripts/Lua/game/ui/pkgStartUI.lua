@@ -21,7 +21,7 @@ function Init()
         rectTransform.localScale = UnityEngine.Vector3(1,1,1)
 
         pkgButtonMgr.AddListener(startUI, "BtnEnter", onClickEnter)
-
+        
         pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
     end
     

@@ -8,7 +8,6 @@ function PlayerAttackState:OnEnter(...)
     local tbParamters = {...}
     local currentAttackSkill = tbParamters[1]
     pkgSysSkill.Attack(self.fsm.owner, currentAttackSkill)
-    print("===================================================")
 end
 
 function PlayerAttackState:OnUpdate()
