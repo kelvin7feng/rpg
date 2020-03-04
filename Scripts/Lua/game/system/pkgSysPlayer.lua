@@ -43,6 +43,9 @@ function Die(player)
     end
 
     pkgSysAI.RemoveDeadPlayer(player)
+
+    -- 移除nav agent
+    player:SetNavMeshEnable(false)
 end
 
 function Stay(player)

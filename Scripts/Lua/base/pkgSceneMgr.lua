@@ -17,7 +17,7 @@ function RestartScene(callback)
     KG.SceneHelper.Instance:LoadSceneAsync(pkgGlobalConfig.SceneName.GAME, UnityEngine.SceneManagement.LoadSceneMode.Single, onLoadComplete);
 end
 
-function SwitchScene(strSceneName, callback)
+function SwitchScene(strSceneName, dLoadSceneMode, callback)
     if not strSceneName then
         print("SwitchScene strSceneName is nil:")
         return
@@ -32,5 +32,6 @@ function SwitchScene(strSceneName, callback)
         callback()
         bIsLoading = false
     end
-    pkgLoadingUI.SwitchToLoadingScene(strSceneName, onLoadComplete)
+    --pkgLoadingUI.SwitchToLoadingScene(strSceneName, onLoadComplete)
+    KG.SceneHelper.Instance:LoadSceneAsync(strSceneName, dLoadSceneMode, onLoadComplete);
 end

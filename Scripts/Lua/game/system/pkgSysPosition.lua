@@ -34,3 +34,14 @@ function FaceToDirSmoothly(player, targetPos)
     local quaternion = UnityEngine.Quaternion.LookRotation(dir)
     UnityEngine.Quaternion.Slerp(rotation, quaternion, UnityEngine.Time.deltaTime)
 end
+
+function GetTopHeaderPos(player)
+    local playerPos = GetCurrentPos(player)
+    local topHeaderPos = UnityEngine.Vector3(playerPos.x, playerPos.y + GetHeight(player), playerPos.z)
+    return topHeaderPos
+end
+
+-- to do
+function GetHeight(player)
+    return 2
+end

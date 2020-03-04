@@ -65,3 +65,13 @@ function AddAttackerToHateList(player, attacker)
 
     pkgSysHate.AddHate(player, attacker:GetId(), 1)
 end
+
+function SetPause(player, bIsPause)
+    if player and player.aiData then
+        player.aiData:SetPause(bIsPause)
+    end
+end
+
+function GetPause(player)
+    return player.aiData.bIsPause
+end

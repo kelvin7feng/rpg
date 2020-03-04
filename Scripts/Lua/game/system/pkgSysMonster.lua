@@ -71,6 +71,16 @@ function CreateMonster(dMonsterId, spawnPosition, spawnRotate)
     pkgAssetBundleMgr.LoadAssetBundle(strBundldName, strPrefabName, onLoadComplete)
 end
 
+function GetForwardPos(monster)
+
+    local spawnForward = UnityEngine.Vector3(1,0,0)
+    local currentPosition = pkgSysPosition.GetCurrentPos(monster)
+    local forwardPosition = currentPosition + spawnForward * 20
+    forwardPosition = pkgPositionTool.GetPosOnGround(forwardPosition)
+    
+    return forwardPosition
+end
+
 function GetRandomMovePos(monster)
     local randomPosition = monster:GetSpawnPosition()
     local randomX = math.random(1,2)

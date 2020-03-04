@@ -37,6 +37,9 @@ function Push(key, obj)
         m_tbPool[key] = {}
     end
 
+    local objPoolManager = pkgGlobalGoMgr.GetPoolManager()
+    obj.transform:SetParent(objPoolManager.transform)
+
     obj:SetActive(false)
     table.insert(m_tbPool[key], obj)
 end

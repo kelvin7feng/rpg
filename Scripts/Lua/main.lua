@@ -38,18 +38,15 @@ local function init()
 	pkgPoolManager.Init()
 	pkgLuaManager.Init()
 	pkgCanvasMgr.Init()
-	pkgGameController.Init()
+	--pkgGameController.Init()
 	pkgTriggerManager.Init()
 	pkgProtocolManager.InitProtocol()
-	
-	pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
+
+	-- init ui
+	pkgStartUI.Init()
 end
 
 local function start()
-	local function onLoadComplete(prefab)
-		init()
-	end
-	
 	init()
 end
 

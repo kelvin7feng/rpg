@@ -4,8 +4,8 @@ m_bInputDir = false
 
 function Update()
     UpdatePlayerInput()
-    UpdateVirtualController()
-    UpdateKeyBoradController()
+    -- UpdateVirtualController()
+    -- UpdateKeyBoradController()
 end
 
 function UpdateKeyBoradController()

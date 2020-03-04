@@ -13,6 +13,16 @@ function SetPlayerHpProgress(dRatio)
     end
 end
 
+local function onClickBattle()
+    local player = pkgActorManager.GetMainPlayer()
+    pkgSysAI.SetPause(player, not pkgSysAI.GetPause(player))
+end
+
+local function onClickChat()
+    local player = pkgActorManager.GetMainPlayer()
+    pkgFlyWordUI.PlayFlyWord(player, 1, math.random(10,100))
+end
+
 function Init()
     local function onLoadComplete(prefab)
         mainUI = UnityEngine.GameObject.Instantiate(prefab)
@@ -26,8 +36,13 @@ function Init()
         local objHpSlider = mainUI.transform:Find("HpProgress/Slider")
         playerHpSlider = objHpSlider:GetComponent(UnityEngine.UI.Slider)
         SetPlayerHpProgress(pkgSysStat.GetRadioHealth(pkgActorManager.GetMainPlayer()))
+
+        local bottomPanel = mainUI.transform:Find("BottomPanel")
+        pkgButtonMgr.AddListener(bottomPanel, "BtnBattle", onClickBattle)
+        pkgButtonMgr.AddListener(bottomPanel, "BtnChat", onClickChat)
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("ui", "MainUI", onLoadComplete)
     pkgMinimap.Init()
+    pkgFlyWordUI.Init()
 end

@@ -1,5 +1,42 @@
 doNameSpace("pkgUITool")
 
+local Text = UnityEngine.UI.Text
+
+function isNull(gameObject)
+    if not gameObject or Slua.IsNull(gameObject) then
+        return true
+    end
+end
+
+function SetStringByName(gameObject, name, strText)
+    if isNull(gameObject) then
+        LOG_WARN("setStringByName gameObject is null, name is "..name)
+        return
+    end
+    local go = gameObject.transform:Find(name)
+    if isNull(go) then
+        LOG_WARN(name .. " is null")
+        return
+    end
+    go.gameObject:SetActive(true)
+    local textCom = go:GetComponent(Text)
+    if not textCom then return end
+    textCom.text = strText
+end
+
+function SetActiveByName(gameObject, strName, bActive)
+    if isNull(gameObject) then
+        LOG_WARN("setActiveByName gameObject is null")
+        return
+    end
+    local go = gameObject.transform:Find(strName)
+    if isNull(go) then
+        LOG_WARN("setActiveByName "..strName.." is null")
+        return
+    end
+    go.gameObject:SetActive(bActive)
+end
+
 function GetCenterPoint()
     return UnityEngine.Vector3(UnityEngine.Screen.width/2,UnityEngine.Screen.height/2,0)
 end

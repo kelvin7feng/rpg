@@ -12,7 +12,7 @@ local function Destory(effectNode)
         particle:Stop()
     end
 
-    pkgPoolManager.ReturnToPool(effectNode.dEffectId, obj)
+    pkgPoolManager.ReturnToPool(pkgPoolDefination.PoolType.PARTICAL_EXPLODE, obj)
 end
 
 function PlayEffect(dEffectId, parentTransform, position, dDuration)
@@ -29,7 +29,7 @@ function PlayEffect(dEffectId, parentTransform, position, dDuration)
         bIsLoop = true
     end
     
-    local obj = pkgPoolManager.GetFromPool(dEffectId)
+    local obj = pkgPoolManager.GetFromPool(pkgPoolDefination.PoolType.PARTICAL_EXPLODE)
     if parentTransform then
         obj.transform:SetParent(parentTransform)
     end

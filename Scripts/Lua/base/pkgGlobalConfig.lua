@@ -24,7 +24,7 @@ AssetBundleName = {
 
 SceneName = {
     MAIN = "main",
-    GAME = "game",
+    GAME = "Demo",
     LOADING = "loading"
 }
 
@@ -48,4 +48,5 @@ VungleAppId = {
 }
 
 GATEWAT_IP = "122.51.240.92"
+GATEWAT_IP = "127.0.0.1"
 GATEWAY_PORT = 7000

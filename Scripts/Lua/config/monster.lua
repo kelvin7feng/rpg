@@ -1,7 +1,7 @@
 _cfg.monster = {
   [1] = {
    id = 1,
-   name = '近身攻击怪',
+   name = '主角',
    modelBundleName = 'model',
    modelName = 'Melee',
    aiAssetBundleName = 'ai',
@@ -10,6 +10,19 @@ _cfg.monster = {
    angleOfFOV = 140,
    distanceOfAttack = 2,
    speedOfWalk = 2.5,
-   speedOfRun = 4,
+   speedOfRun = 3,
   },
+  [2] = {
+    id = 2,
+    name = '近身攻击怪',
+    modelBundleName = 'model',
+    modelName = 'Melee',
+    aiAssetBundleName = 'ai',
+    aiAssetName = 'MeleeFighter',
+    distanceOfFOV = 0,
+    angleOfFOV = 0,
+    distanceOfAttack = 2,
+    speedOfWalk = 2.5,
+    speedOfRun = 4,
+   },
 }

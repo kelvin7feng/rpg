@@ -1,4 +1,6 @@
 require("game/ui/pkgFixedDebug")
+require("game/ui/pkgFlyWordUI")
 require("game/ui/pkgMainUI")
 require("game/ui/pkgMinimap")
+require("game/ui/pkgStartUI")
 require("game/ui/pkgVirtualController")

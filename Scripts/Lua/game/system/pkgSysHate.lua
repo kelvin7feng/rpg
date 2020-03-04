@@ -42,7 +42,7 @@ function AddHate(agent, dId, dHate)
 
 	UpdateTargetEnemy(agent)
 
-	PrintHateList(agent)
+	-- PrintHateList(agent)
 end
 
 function SortHateRank(agent, dId)

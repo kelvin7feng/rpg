@@ -6,6 +6,6 @@ function Init()
         pkgFixedDebug.Init()
     end
 
-    pkgVirtualController.Init()
+    -- pkgVirtualController.Init()
     pkgActorManager.CreatePlayer(pkgSysPlayer.GetSpawnPosition(), pkgSysPlayer.GetSpawnRotate())
 end

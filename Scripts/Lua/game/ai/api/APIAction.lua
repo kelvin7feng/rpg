@@ -12,6 +12,16 @@ function ResetHurt(agent)
     end
 end
 
+function MoveForward(agent)
+    local pos = pkgSysMonster.GetForwardPos(agent)
+    pkgSysPlayer.SetMoveSpeed(agent, agent.aiData:GetFieldConfig(pkgConfigFieldDefination.Monster.SPEED_OF_RUN))
+    pkgSysPlayer.SetDestination(agent, pos)
+
+    pkgSysPlayer.SetAnimationMoveSpeed(agent, 0.8)
+
+    return true
+end
+
 function MoveRandomly(agent)
     local pos = pkgSysMonster.GetRandomMovePos(agent)
     pkgSysPlayer.SetMoveSpeed(agent, agent.aiData:GetFieldConfig(pkgConfigFieldDefination.Monster.SPEED_OF_WALK))
