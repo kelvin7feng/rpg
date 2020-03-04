@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 149078185
+CRC: 2428814535
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b3c2984318d5f1b6a8a8d37d3878b382
+    Hash: 82b6d5ac53083f9cd13927a7ae9d59f9
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2369d8efedacc88623bfa6d99da3fbb6
+    Hash: 9a1f97a6aeadc3fea1fd4a3867f34eae
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -59,9 +59,13 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 195
   Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 Assets:
 - Assets/ABRes/Character/Melee.prefab
 - Assets/ABRes/Character/Hero.prefab
 - Assets/ABRes/Character/Player.prefab
 Dependencies:
-- /Users/Kelvin/workspace/rpg/AssetBundles/ai.unity3d
+- /Users/Kelvin/workspace/rpg_git/AssetBundles/ai.unity3d

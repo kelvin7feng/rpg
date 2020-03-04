@@ -40,9 +40,17 @@ function UpdatePlayerInput()
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.I) then
         
-        local tb = {100}
+        local tb = {10001,{100}}
         local strJson = json.encode(tb)
-        KG.NetWorkMgr.SendToServer(pkgGlobalConfig.ServerType.LOGIC, 10001, strJson)
+        --KG.NetWorkMgr.SendToServer(pkgGlobalConfig.ServerType.LOGIC, 10001, strJson)
+
+        local strBody = string.pack("<P", strJson)
+        print(hex(strBody), #strBody)
+
+        local strFixHeader = string.pack("<I<I<I<I<I", 20 + #strBody, pkgGlobalConfig.ServerType.LOGIC, 0, 0, 0)
+        print(hex(strFixHeader), #strFixHeader)
+
+        pkgSocket.Send(strFixHeader .. strBody)
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.K) then
@@ -59,6 +67,19 @@ function UpdatePlayerInput()
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.P) then
         pkgSysEffect.PlayEffect(1)
     end
+
+    if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.L) then
+        pkgSocket.Disconnect()
+    end
+
+    if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.U) then
+        pkgSocket.ReceiveMsg()
+    end
+
+    if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.R) then
+        pkgSocket.Reconnect()
+    end
+    
 end
 
 function UpdateVirtualController()

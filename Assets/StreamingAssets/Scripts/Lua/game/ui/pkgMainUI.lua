@@ -29,4 +29,5 @@ function Init()
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("ui", "MainUI", onLoadComplete)
+    pkgMinimap.Init()
 end

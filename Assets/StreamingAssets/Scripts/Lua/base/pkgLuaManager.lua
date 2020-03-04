@@ -19,6 +19,7 @@ function Update()
 	pkgFSMManger.UpdateFSM()
 	pkgAIManager.UpdateAction()
 	pkgSysAI.UpdateCheckFOV()
+	pkgSocket.ReceiveMsg()
 end
 
 --[[function FixedUpdate()

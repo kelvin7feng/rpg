@@ -1,10 +1,14 @@
 import "UnityEngine"
 
+require "luapack"
+
 require("config/configHeader")
 
 require("tool/toolHeader")
 require("base/baseHeader")
 require("share/shareHeader")
+require("net/socket/socketHeader")
+require("net/protocol/protocalHeader")
 
 require("game/ai/aiHeader")
 require("game/defination/definationHeader")
@@ -22,8 +26,14 @@ local function initDebug()
 	end)
 end
 
+function hex(s)
+	s=string.gsub(s,"(.)",function (x) return string.format("%02X",string.byte(x)) end)
+	return s
+end
+
 local function init()
 	-- initDebug()
+	print("init======================================0")
 	pkgTimer.Init()
 	pkgGlobalGoMgr.Init()
 	pkgPoolManager.Init()
@@ -31,13 +41,14 @@ local function init()
 	pkgCanvasMgr.Init()
 	pkgGameController.Init()
 	pkgTriggerManager.Init()
+	pkgProtocolManager.InitProtocol()
+	print("init======================================1")
+	pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
+	print("init======================================2")
 end
 
 local function start()
-	local function onLoadComplete(prefab)
-		init()
-	end
-	
+	print("start======================================1")
 	init()
 end
 

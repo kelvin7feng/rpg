@@ -8,6 +8,7 @@ function PlayerAttackState:OnEnter(...)
     local tbParamters = {...}
     local currentAttackSkill = tbParamters[1]
     pkgSysSkill.Attack(self.fsm.owner, currentAttackSkill)
+    pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
 end
 
 function PlayerAttackState:OnUpdate()
