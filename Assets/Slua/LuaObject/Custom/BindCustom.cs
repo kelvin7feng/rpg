@@ -5,6 +5,7 @@ namespace SLua {
 	public class BindCustom {
 		public static Action<IntPtr>[] GetBindList() {
 			Action<IntPtr>[] list= {
+				Lua_iTween.reg,
 				Lua_NodeCanvas_Framework_GraphOwner.reg,
 				Lua_KG_LuaBaseCondition.reg,
 				Lua_KG_LuaCondition.reg,

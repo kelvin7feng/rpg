@@ -22,6 +22,11 @@ function Init()
 
         pkgButtonMgr.AddListener(startUI, "BtnEnter", onClickEnter)
         
+        local fieldId = startUI.transform:Find("FieldId")
+        local hash = iTween.Hash("y", fieldId.transform.position.y + 50, "speed", 25, 
+                "loopType", "pingpong", "easeType", "linear")
+        iTween.MoveTo(fieldId.gameObject, hash)
+
         pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
     end
     
