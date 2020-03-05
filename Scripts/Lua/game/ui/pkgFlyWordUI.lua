@@ -7,6 +7,10 @@ FlyWordType = {
     NORMAL          = 1,
 }
 
+FuncAnimation = {
+    [FlyWordType.NORMAL] = "PlayNormal",
+}
+
 function Init()
     local function onLoadComplete(prefab)
         flyWordUI = UnityEngine.GameObject.Instantiate(prefab)
@@ -41,8 +45,27 @@ function PlayFlyWord(player, dType, dVal)
     pkgUITool.SetActiveByName(obj, FlyWordType[dType], true)
     pkgUITool.SetStringByName(obj, FlyWordType[dType], tostring(dVal))
     
-    pkgTimer.AddOnceTimer("PlayFlyWord", 0.5, 
-        function()
-            pkgPoolManager.ReturnToPool(pkgPoolDefination.PoolType.FLY_WORD, obj)
-        end)
+    PlayAnimation(obj, dType)
+end
+
+function onPlayComplete(obj, param)
+    pkgPoolManager.ReturnToPool(pkgPoolDefination.PoolType.FLY_WORD, obj)
+end
+
+function PlayNormal(obj)
+    local dTotalTime = 0.8
+    local dFadeOutDelay = 0.3
+    iTween.ColorFrom(obj, iTween.Hash("a", 1))
+    iTween.ColorTo(obj, iTween.Hash("a", 0, "delay", dFadeOutDelay, "time", math.max(0, dTotalTime - 0.3)))
+    iTween.MoveTo(obj, iTween.Hash("time", dTotalTime, "y", obj.transform.position.y + 100, "easetype", "easeOutCirc",
+                  "onluacomplete", pkgFlyWordUI.onPlayComplete))
+end
+
+function PlayAnimation(obj, dType)
+    if not FuncAnimation[dType] then
+        LOG_WARN("Fly word animation didn't register: " .. dType)
+        return
+    end
+    
+    pkgFlyWordUI[FuncAnimation[dType]](obj)    
 end

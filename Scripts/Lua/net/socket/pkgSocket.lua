@@ -5,6 +5,7 @@ strIp = nil
 dPort = 0
 socket = nil
 dReceiveTimer = nil
+dHeaderLength = 20
 
 local function connect(address, port)
     local sock, err = socketCore.tcp()
@@ -72,7 +73,14 @@ function Reconnect()
     return ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
 end
 
-function Send(strData)
+function SendToLogic(dProtocolId, ...)
+    local tb = {dProtocolId,{...}}
+    local strJson = json.encode(tb)
+
+    pkgSocket.Send(pkgGlobalConfig.ServerType.LOGIC, strJson)
+end
+
+function Send(dServerType, strData)
     if not IsConnected() then
         local bRet = Reconnect()
         if not Reconnect() then
@@ -80,7 +88,11 @@ function Send(strData)
             return false
         end
     end
-    local sendResult = socket:send(strData)
+    
+    local strBody = string.pack("<P", strData)
+    local strFixHeader = string.pack("<I<I<I<I<I", dHeaderLength + #strBody, dServerType, 0, 0, 0)
+
+    local sendResult = socket:send(strFixHeader .. strBody)
     if sendResult then
         print("send ok:", sendResult)
     end

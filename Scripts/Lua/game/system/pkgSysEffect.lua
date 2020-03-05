@@ -12,7 +12,7 @@ local function Destory(effectNode)
         particle:Stop()
     end
 
-    pkgPoolManager.ReturnToPool(pkgPoolDefination.PoolType.PARTICAL_EXPLODE, obj)
+    pkgPoolManager.ReturnToPool(pkgPoolDefination.PoolType.SWORD_HIT_EFFECT, obj)
 end
 
 function PlayEffect(dEffectId, parentTransform, position, dDuration)
@@ -29,7 +29,7 @@ function PlayEffect(dEffectId, parentTransform, position, dDuration)
         bIsLoop = true
     end
     
-    local obj = pkgPoolManager.GetFromPool(pkgPoolDefination.PoolType.PARTICAL_EXPLODE)
+    local obj = pkgPoolManager.GetFromPool(pkgPoolDefination.PoolType.SWORD_HIT_EFFECT)
     if parentTransform then
         obj.transform:SetParent(parentTransform)
     end

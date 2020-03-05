@@ -2,12 +2,36 @@ doNameSpace("pkgStartUI")
 
 startUI = startUI or nil
 
-local function onSwitch()
-    pkgGameController.Init()
+local function onClickEnter()
+    pkgSysUser.Login(GetInputField())
 end
 
-local function onClickEnter()
-    pkgSceneMgr.SwitchScene(pkgGlobalConfig.SceneName.GAME, UnityEngine.SceneManagement.LoadSceneMode.Single, onSwitch)
+function GetInputField()
+    local objInputField = startUI.transform:Find("FieldId")
+    local inputFieldComponet = objInputField:GetComponent(UnityEngine.UI.InputField)
+    local strInput = inputFieldComponet.text
+    local dUserId = 10001
+    if strInput and strInput ~= "" then
+        dUserId = tonumber(strInput)
+    end
+
+    SetLastEnterUserId(dUserId)
+
+    return dUserId
+end
+
+function GetLastEnterUserId()
+    local strField = nil
+    if UnityEngine.PlayerPrefs.HasKey("userId") then
+        strField = UnityEngine.PlayerPrefs.GetString("userId")
+    end
+
+    return strField
+end
+
+function SetLastEnterUserId(dUserId)
+    UnityEngine.PlayerPrefs.SetString("userId", dUserId)
+    UnityEngine.PlayerPrefs.Save()
 end
 
 function Init()
@@ -20,12 +44,11 @@ function Init()
         rectTransform.offsetMax = UnityEngine.Vector2(0, 0);
         rectTransform.localScale = UnityEngine.Vector3(1,1,1)
 
+        local objInputField = startUI.transform:Find("FieldId")
+        local inputFieldComponet = objInputField:GetComponent(UnityEngine.UI.InputField)
+        inputFieldComponet.text = GetLastEnterUserId() or ""
+
         pkgButtonMgr.AddListener(startUI, "BtnEnter", onClickEnter)
-        
-        local fieldId = startUI.transform:Find("FieldId")
-        local hash = iTween.Hash("y", fieldId.transform.position.y + 50, "speed", 25, 
-                "loopType", "pingpong", "easeType", "linear")
-        iTween.MoveTo(fieldId.gameObject, hash)
 
         pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
     end

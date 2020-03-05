@@ -557,6 +557,8 @@ public class iTween : MonoBehaviour
             tempColor = fromColor = target.GetComponent<Image>().material.color;
         } else if (target.GetComponent<RawImage>()) {
             tempColor = fromColor = target.GetComponent<RawImage>().color;
+        } else if (target.GetComponent<Text>()){
+            tempColor = fromColor = target.GetComponent<Text>().color;
         }
 
         //set augmented fromColor:
@@ -596,10 +598,12 @@ public class iTween : MonoBehaviour
             target.GetComponent<Image>().material.color = fromColor;
         } else if (target.GetComponent<RawImage>()) {
             target.GetComponent<RawImage>().color = fromColor;
+        } else if (target.GetComponent<Text>()) {
+            target.GetComponent<Text>().color = fromColor;
         }
 
-        //set new color arg:
-        args["color"] = tempColor;
+//set new color arg:
+args["color"] = tempColor;
 
         //establish iTween:
         args["type"] = "color";
@@ -3192,8 +3196,12 @@ public class iTween : MonoBehaviour
             colors[0, 0] = colors[0, 1] = GetComponent<Image>().color;
         } else if(GetComponent<RawImage>()){
 			colors = new Color[1, 3];
-			colors[0, 0] = colors[0, 1] = GetComponent<RawImage>().color;	
-        }else{
+            colors[0, 0] = colors[0, 1] = GetComponent<RawImage>().color;
+        } else if (GetComponent<Text>()){
+            colors = new Color[1, 3];
+            colors[0, 0] = colors[0, 1] = GetComponent<Text>().color;
+        }
+        else{
 			colors = new Color[1,3]; //empty placeholder incase the GO is perhaps an empty holder or something similar
 		}
 		
@@ -3967,6 +3975,9 @@ public class iTween : MonoBehaviour
         } else if (GetComponent<RawImage>()){
             //light.color=colors[2];	
             GetComponent<RawImage>().color = colors[0, 2];
+        } else if (GetComponent<Text>()){
+            //light.color=colors[2];	
+            GetComponent<Text>().color = colors[0, 2];
         }
 
         //dial in:
@@ -3989,6 +4000,11 @@ public class iTween : MonoBehaviour
             {
                 //light.color=colors[1];	
                 GetComponent<RawImage>().color = colors[0, 1];
+            }
+            else if (GetComponent<Text>())
+            {
+                //light.color=colors[1];	
+                GetComponent<Text>().color = colors[0, 1];
             }
         }
 	}	
@@ -4452,8 +4468,9 @@ public class iTween : MonoBehaviour
 	
 	void TweenStart(){		
 		CallBack("onstart");
-		
-		if(!loop){//only if this is not a loop
+        CallBack("onluastart");
+
+        if (!loop){//only if this is not a loop
 			ConflictCheck();
 			GenerateTargets();
 		}
@@ -4483,7 +4500,8 @@ public class iTween : MonoBehaviour
 	void TweenUpdate(){
 		apply();
 		CallBack("onupdate");
-		UpdatePercentage();		
+        CallBack("onluaupdate");
+        UpdatePercentage();		
 	}
 			
 	void TweenComplete(){
@@ -4500,7 +4518,8 @@ public class iTween : MonoBehaviour
 		apply();
 		if(type == "value"){
 			CallBack("onupdate"); //CallBack run for ValueTo since it only calculates and applies in the update callback
-		}
+            CallBack("onluaupdate");
+        }
 		
 		//loop or dispose?
 		if(loopType==LoopType.none){
@@ -4510,7 +4529,8 @@ public class iTween : MonoBehaviour
 		}
 		
 		CallBack("oncomplete");
-	}
+        CallBack("onluacomplete");
+    }
 	
 	void TweenLoop(){
 		DisableKinematic(); //give physics control again
@@ -4711,6 +4731,8 @@ public class iTween : MonoBehaviour
             colors[0] = colors[1] = target.GetComponent<Image>().color;
         }else if (target.GetComponent<RawImage>()){
             colors[0] = colors[1] = target.GetComponent<RawImage>().color;
+        }else if (target.GetComponent<Text>()){
+            colors[0] = colors[1] = target.GetComponent<Text>().color;
         }
 
         //to values:
@@ -4750,6 +4772,10 @@ public class iTween : MonoBehaviour
         else if (target.GetComponent<RawImage>())
         {
             target.GetComponent<RawImage>().color = colors[3];
+        }
+        else if (target.GetComponent<Text>())
+        {
+            target.GetComponent<Text>().color = colors[3];
         }
     }	
 	
@@ -6788,23 +6814,38 @@ public class iTween : MonoBehaviour
 	}
 	
 	void CallBack(string callbackType){
-		if (tweenArguments.Contains(callbackType) && !tweenArguments.Contains("ischild")) {
-			//establish target:
-			GameObject target;
-			if (tweenArguments.Contains(callbackType+"target")) {
-				target=(GameObject)tweenArguments[callbackType+"target"];
-			}else{
-				target=gameObject;	
-			}
-			
-			//throw an error if a string wasn't passed for callback:
-			if (tweenArguments[callbackType].GetType() == typeof(System.String)) {
-				target.SendMessage((string)tweenArguments[callbackType],(object)tweenArguments[callbackType+"params"],SendMessageOptions.DontRequireReceiver);
-			}else{
-				Debug.LogError("iTween Error: Callback method references must be passed as a String!");
-				Destroy (this);
-			}
-		}
+        if (tweenArguments.Contains(callbackType) && !tweenArguments.Contains("ischild"))
+        {
+            //establish target:
+            GameObject target;
+            if (tweenArguments.Contains(callbackType + "target"))
+            {
+                target = (GameObject)tweenArguments[callbackType + "target"];
+            }
+            else
+            {
+                target = gameObject;
+            }
+
+            //throw an error if a string wasn't passed for callback:
+            if (tweenArguments[callbackType].GetType() == typeof(System.String))
+            {
+                target.SendMessage((string)tweenArguments[callbackType], (object)tweenArguments[callbackType + "params"], SendMessageOptions.DontRequireReceiver);
+            }
+            else
+            {
+                if (callbackType.Substring(0, 5).Equals("onlua"))
+                {
+                    LuaFunction luaCallBack = tweenArguments[callbackType] as LuaFunction;
+                    luaCallBack.call(target, (object)tweenArguments[callbackType + "params"]);
+                }
+                else
+                {
+                    Debug.LogError("iTween Error: Callback method references must be passed as a String!");
+                    Destroy(this);
+                }
+            }
+        }
 	}
 	
 	void Dispose(){

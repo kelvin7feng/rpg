@@ -39,18 +39,7 @@ function UpdatePlayerInput()
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.I) then
-        
-        local tb = {10001,{100}}
-        local strJson = json.encode(tb)
-        --KG.NetWorkMgr.SendToServer(pkgGlobalConfig.ServerType.LOGIC, 10001, strJson)
-
-        local strBody = string.pack("<P", strJson)
-        print(hex(strBody), #strBody)
-
-        local strFixHeader = string.pack("<I<I<I<I<I", 20 + #strBody, pkgGlobalConfig.ServerType.LOGIC, 0, 0, 0)
-        print(hex(strFixHeader), #strFixHeader)
-
-        pkgSocket.Send(strFixHeader .. strBody)
+        pkgSocket.SendToLogic(pkgProtocolDefination.CLIENT_LOGIN.LOGIN,100)
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.K) then
@@ -65,7 +54,8 @@ function UpdatePlayerInput()
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.P) then
-        pkgSysEffect.PlayEffect(1)
+        -- pkgSysEffect.PlayEffect(1)
+        pkgFlyWordUI.PlayFlyWord(pkgActorManager.GetMainPlayer(), 1, 5)
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.L) then
