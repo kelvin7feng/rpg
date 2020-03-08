@@ -71,11 +71,11 @@ function CreateMonster(dMonsterId, spawnPosition, spawnRotate)
     pkgAssetBundleMgr.LoadAssetBundle(strBundldName, strPrefabName, onLoadComplete)
 end
 
-function GetForwardPos(monster)
+function GetForwardPos(monster, dDistance)
 
     local spawnForward = UnityEngine.Vector3(1,0,0)
     local currentPosition = pkgSysPosition.GetCurrentPos(monster)
-    local forwardPosition = currentPosition + spawnForward * 20
+    local forwardPosition = currentPosition + spawnForward * dDistance
     forwardPosition = pkgPositionTool.GetPosOnGround(forwardPosition)
     
     return forwardPosition

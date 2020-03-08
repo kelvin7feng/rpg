@@ -24,7 +24,7 @@ AssetBundleName = {
 
 SceneName = {
     MAIN = "main",
-    GAME = "Demo",
+    GAME = "Game",
     LOADING = "loading"
 }
 

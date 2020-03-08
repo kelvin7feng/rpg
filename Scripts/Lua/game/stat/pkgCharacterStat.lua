@@ -23,5 +23,9 @@ function CharacterStat:TakeDamage(dDamage)
     if self.dCurrentHealth <= 0 then
         print("die")
         self.owner:SetDie(true)
+
+        if pkgActorManager.IsMonster(self.owner) then
+            pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.KILL_MONSTER, pkgSysBattle.GetCurrentLevel())
+        end
     end
 end

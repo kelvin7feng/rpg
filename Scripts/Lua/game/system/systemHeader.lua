@@ -1,4 +1,5 @@
 require("game/system/pkgSysAI")
+require("game/system/pkgSysBattle")
 require("game/system/pkgSysEffect")
 require("game/system/pkgSysHate")
 require("game/system/pkgSysMonster")

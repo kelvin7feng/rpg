@@ -1,2 +1,6 @@
 require("share/pkgEventManager")
-require("share/pkgProtocolDefination")
+require("share/class")
+require("share/event_def")
+require("share/database_def")
+require("share/error_code_def")
+require("share/user")

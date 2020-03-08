@@ -18,6 +18,8 @@ end
 function AMoveForward:OnUpdate()
     if APICondition.EndMove(self.owner) then
         self:EndAction(true)
+    else
+        APIAction.MoveForward(self.owner)
     end
 end
 

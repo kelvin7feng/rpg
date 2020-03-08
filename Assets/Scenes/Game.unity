@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5984607, g: 0.6137746, b: 0.7845557, a: 1}
+  m_IndirectSpecularColor: {r: 0.5984577, g: 0.613772, b: 0.7845563, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2943,7 +2943,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 6a40c3b4e38be6440a3b3918dfdcad16, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d05bd5b27dbe55548ae4a83b719f4a28, type: 2}
 --- !u!4 &811963797
 Transform:
   m_ObjectHideFlags: 0
@@ -8040,6 +8040,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MonsterTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301354909834666757, guid: b06f4878efcb7744d9bc3ed1e92b1b0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5301354909834666760, guid: b06f4878efcb7744d9bc3ed1e92b1b0a,
         type: 3}

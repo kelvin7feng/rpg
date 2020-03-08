@@ -13,7 +13,7 @@ function ResetHurt(agent)
 end
 
 function MoveForward(agent)
-    local pos = pkgSysMonster.GetForwardPos(agent)
+    local pos = pkgSysMonster.GetForwardPos(agent, 5)
     pkgSysPlayer.SetMoveSpeed(agent, agent.aiData:GetFieldConfig(pkgConfigFieldDefination.Monster.SPEED_OF_RUN))
     pkgSysPlayer.SetDestination(agent, pos)
 

@@ -39,7 +39,7 @@ function UpdatePlayerInput()
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.I) then
-        pkgSocket.SendToLogic(pkgProtocolDefination.CLIENT_LOGIN.LOGIN,100)
+        pkgSocket.SendToLogic(EVENT_ID.CLIENT_LOGIN.LOGIN,100)
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.K) then
@@ -70,6 +70,9 @@ function UpdatePlayerInput()
         pkgSocket.Reconnect()
     end
     
+    if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.B) then
+        pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
+    end
 end
 
 function UpdateVirtualController()

@@ -11,6 +11,7 @@ function CreatePlayer(spawnPosition, spawnRotate)
         AddActor(mainPlayer)
         m_mainPlayer = mainPlayer
         pkgMainUI.Init()
+        pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("model", "Hero", onLoadComplete)
@@ -37,6 +38,14 @@ end
 
 function IsAIPlayer(player)
     return player.aiData and true or false
+end
+
+function IsMonster(player)
+    if player.aiData and player ~= m_mainPlayer then
+        return true
+    end
+
+    return false
 end
 
 function GetAllEnemy(player)
