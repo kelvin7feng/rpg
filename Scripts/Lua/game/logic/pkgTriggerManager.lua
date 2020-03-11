@@ -2,7 +2,8 @@
 doNameSpace("pkgTriggerManager")
 
 function Init()
-	pkgEventManager.Register(pkgEventDefination.TriggerEvent.MONSTER_TRIGGER_ENTER, pkgSysMonster.OnTriggerMonster)
+    pkgEventManager.Register(pkgEventDefination.TriggerEvent.MONSTER_TRIGGER_ENTER, pkgSysMonster.OnTriggerMonster)
+    pkgEventManager.Register(pkgEventDefination.TriggerEvent.TERRIAN_TRIGGER_ENTER, pkgTerrianManager.OnTerrianTriggerEnter)
 end
 
 function OnTriggerEnter(otherCollider, trigger, triggerName)

@@ -11,6 +11,12 @@ function CreatePlayer(spawnPosition, spawnRotate)
         AddActor(mainPlayer)
         m_mainPlayer = mainPlayer
         pkgMainUI.Init()
+
+        local areaBaker = mainPlayer.gameObject:AddComponent(KG.AgentAreaBaker)
+        areaBaker:SetVoxelSize(pkgGlobalConfig.NavMeshSurface.VOXEL_SIZE)
+        areaBaker:SetDistanceThreshold(pkgGlobalConfig.NavMeshSurface.DISTANCE_THRESHOLD)
+        areaBaker:SetVolumn(pkgGlobalConfig.NavMeshSurface.VOLUME_X,pkgGlobalConfig.NavMeshSurface.VOLUME_Y,pkgGlobalConfig.NavMeshSurface.VOLUME_Z)
+
         pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
     end
     
