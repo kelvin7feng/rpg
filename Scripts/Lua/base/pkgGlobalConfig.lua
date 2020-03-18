@@ -51,7 +51,7 @@ NavMeshSurface = {
     VOLUME_X              = 30,
     VOLUME_Y              = 30,
     VOLUME_Z              = 30,
-    VOXEL_SIZE            = 0.1,    --该参数最大为.024,再大会影响导航
+    VOXEL_SIZE            = 0.24,    --该参数最大为.024,再大会影响导航
     DISTANCE_THRESHOLD    = 10,     --应该比VOLUME_X,VOLUME_Y,VOLUME_Z的一半要小
 }
 

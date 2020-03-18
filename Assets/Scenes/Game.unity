@@ -458,15 +458,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  pitchSpeed: 10
+  pitchSpeed: 9.73
   pitchInput: 0
-  yawSpeed: 5
-  yawInput: 0
-  currentX: -1.7349077
-  currentY: 29.135632
-  distance: 4.5
-  focusUpDelta: 1.95
-  focusForwardDelta: 1
+  yawSpeed: 4.48
+  yawInput: 4.57
+  currentX: -2.99
+  currentY: 0
+  distance: 16.32
+  focusUpDelta: 4.8
+  focusForwardDelta: 1.28
 --- !u!81 &1480377165
 AudioListener:
   m_ObjectHideFlags: 0

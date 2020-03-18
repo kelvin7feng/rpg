@@ -1,11 +1,11 @@
 doNameSpace("pkgCamera")
 
 function InitCameraParamters(cameraFollow)
-    cameraFollow.currentX = 12
-    cameraFollow.currentY = 15
-    cameraFollow.distance = 10
-    cameraFollow.focusUpDelta = 1.95
-    cameraFollow.focusForwardDelta = 1
+    cameraFollow.currentX = 3
+    cameraFollow.currentY = 0
+    cameraFollow.distance = 16.25
+    cameraFollow.focusUpDelta = 4.8
+    cameraFollow.focusForwardDelta = 0.88
 end
 
 function SetFollowTarget(target)

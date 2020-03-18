@@ -19,5 +19,6 @@ EVENT_ID =  {
 		START					=   20002,
 		SPAWN_MONSTER			=   20003,
 		KILL_MONSTER			=   20004,
+		CHALLENGE_BOSS			=   20005,
 	}
 }

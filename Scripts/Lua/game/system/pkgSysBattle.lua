@@ -11,9 +11,9 @@ function OnStart(dErrorCode)
     pkgSysAI.SetPause(player, false)
 end
 
-function OnSpawnMonster(dCurLevel)
+function OnSpawnMonster(dCurChalleangeType, dCurLevel)
 
-    LOG_INFO("OnSpawnMonster ======================== ")
+    LOG_INFO("OnSpawnMonster ======================== ", dCurChalleangeType, dCurLevel)
     if not dCurLevel or dCurLevel <= 0 then
         return false
     end

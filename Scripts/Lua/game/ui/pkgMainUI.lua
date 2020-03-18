@@ -14,13 +14,17 @@ function SetPlayerHpProgress(dRatio)
 end
 
 local function onClickBattle()
-    local player = pkgActorManager.GetMainPlayer()
-    pkgSysAI.SetPause(player, not pkgSysAI.GetPause(player))
+    print("onClickBattle =============== ")
 end
 
 local function onClickChat()
     local player = pkgActorManager.GetMainPlayer()
     pkgFlyWordUI.PlayFlyWord(player, 1, math.random(10,100))
+end
+
+local function onClickChallengeBoss()
+    -- to do: check
+    pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.CHALLENGE_BOSS)
 end
 
 function Init()
@@ -40,6 +44,9 @@ function Init()
         local bottomPanel = mainUI.transform:Find("BottomPanel")
         pkgButtonMgr.AddListener(bottomPanel, "BtnBattle", onClickBattle)
         pkgButtonMgr.AddListener(bottomPanel, "BtnChat", onClickChat)
+
+        local secondBottomPanel = mainUI.transform:Find("SecondBottomPanel")
+        pkgButtonMgr.AddListener(secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("ui", "MainUI", onLoadComplete)
