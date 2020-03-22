@@ -4,7 +4,9 @@ require("share/config/effect")
 require("share/config/goods")
 require("share/config/language")
 require("share/config/monster")
+require("share/config/monsterLib")
 require("share/config/test")
+require("share/config/level")
 
 require("share/common/json")
 require("share/common/log")
@@ -17,10 +19,15 @@ require("share/common/random")
 
 require("share/object/user")
 
+require("share/def/database_def")
+require("share/def/error_code_def")
+require("share/def/event_def")
+require("share/def/goods_def")
+
 require("share/tool/nameSpace")
 require("share/tool/pkgEventManager")
 require("share/tool/pkgTimer")
 
-require("share/def/database_def")
-require("share/def/error_code_def")
-require("share/def/event_def")
+require("share/const/pkgAFKCfgMgr")
+require("share/const/pkgGoodsCfgMgr")
+require("share/const/pkgLevelCfgMgr")

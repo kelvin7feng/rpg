@@ -26,6 +26,7 @@ GAME_DATA_TABLE_NAME =
 	USER_INFO							= "UserInfo",
 	BASE_INFO							= "BaseInfo",
 	BATTLE_INFO							= "BattleInfo",
+	BAG_INFO							= "BagInfo",
 }
 
 -- 数据字段表
@@ -60,6 +61,14 @@ GAME_DATA_FIELD_NAME.BattleInfo =
 	NORMAL_TYPE									= "NormalType",
 	BOSS_TYPE									= "BossType",
 	CUR_LEVEL									= "CurLevel",
+	CUR_MONSTER_ID								= "CurMonsterId",
+	LAST_COLLECT_TIME   						= "LastCollectTime",
+}
+
+-- 背包数据
+GAME_DATA_FIELD_NAME.BagInfo = 
+{
+
 }
 
 -- 战斗类型
@@ -91,19 +100,20 @@ DATABASE_TABLE_FIELD =
 		[GAME_DATA_FIELD_NAME.BaseInfo.GOLD]				     = 5000,	-- 金币
 		[GAME_DATA_FIELD_NAME.BaseInfo.LEVEL]				     = 1,		-- 等级
 		[GAME_DATA_FIELD_NAME.BaseInfo.LAST_LOGIN_TIME]		     = 0,	    -- 上次登录时间
+		[GAME_DATA_FIELD_NAME.BaseInfo.LAST_LOGIN_TIME]		     = 0,	    -- 上次登录时间
 	},
 
 	[GAME_DATA_TABLE_NAME.BATTLE_INFO]	= 
 	{
-		[GAME_DATA_FIELD_NAME.BattleInfo.CUR_CHALLENGE_TYPE] 	 = 1,		-- 当前挑战类型
+		[GAME_DATA_FIELD_NAME.BattleInfo.CUR_LEVEL]	 			 = 1,		-- 当前关卡
+		[GAME_DATA_FIELD_NAME.BattleInfo.CUR_MONSTER_ID]	 	 = 1,		-- 当前怪物Id
 		[GAME_DATA_FIELD_NAME.BattleInfo.NEXT_CHALLENGE_TYPE] 	 = 1,		-- 即将挑战类型
-		[GAME_DATA_FIELD_NAME.BattleInfo.NORMAL_TYPE] 	 		 =          -- 无限小怪类型
-		{
-			[GAME_DATA_FIELD_NAME.BattleInfo.CUR_LEVEL]		 = 1,
-		},		
-		[GAME_DATA_FIELD_NAME.BattleInfo.BOSS_TYPE] 	 		 = 			-- boss类型
-		{
-			[GAME_DATA_FIELD_NAME.BattleInfo.CUR_LEVEL]		 = 1,
-		},
-	}
+		[GAME_DATA_FIELD_NAME.BattleInfo.CUR_CHALLENGE_TYPE] 	 = 1,		-- 当前挑战类型
+		[GAME_DATA_FIELD_NAME.BattleInfo.LAST_COLLECT_TIME]	     = 0,		-- 挂机时间
+	},
+
+	[GAME_DATA_TABLE_NAME.BAG_INFO]	= 
+	{
+
+	},
 }
