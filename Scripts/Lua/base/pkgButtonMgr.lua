@@ -19,6 +19,7 @@ function AddListener(gameobject, strButtonName, fnCallback, paramters)
 
     local btnGo = gameobject.transform:Find(strButtonName)
     if not btnGo then
+        print("AddListener can not find ".. strButtonName)
         return
     end
     

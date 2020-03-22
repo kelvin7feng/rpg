@@ -9,7 +9,7 @@ end
 function CharacterStat:TakeDamage(dDamage)
 
     if self.dCurrentHealth <= 0 then
-        print("I am died")
+        LOG_DEBUG("I am died")
         return
     end
 
@@ -19,13 +19,13 @@ function CharacterStat:TakeDamage(dDamage)
     end
 
     self.dCurrentHealth = self.dCurrentHealth - dDamage
-    print("take damage:", dDamage)
+    LOG_DEBUG("take damage:", dDamage)
     if self.dCurrentHealth <= 0 then
-        print("die")
+        LOG_DEBUG("die")
         self.owner:SetDie(true)
 
         if pkgActorManager.IsMonster(self.owner) then
-            pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.KILL_MONSTER, pkgSysBattle.GetCurrentLevel())
+            pkgEventManager.PostEvent(CLIENT_EVENT.MONSTER_DEAD, self.owner)
         end
     end
 end

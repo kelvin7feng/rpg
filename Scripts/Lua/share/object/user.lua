@@ -22,6 +22,22 @@ function UserData:GetGameData()
 	return self.m_tbGameData;
 end
 
+-- 设置玩家表数据
+function UserData:SetGameTable(strTableName, val)
+	if not IsString(strTableName) then
+		LOG_ERROR("strTableName is nil!")
+		return nil
+	end
+
+	local tbGameData = self:GetGameData()
+	if not tbGameData then
+		LOG_ERROR("tbGameData is nil!")
+		return nil;
+	end
+
+	tbGameData[strTableName] = val
+end
+
 -- 获取玩家表数据
 function UserData:GetGameTable(strTableName)
 	if not IsString(strTableName) then

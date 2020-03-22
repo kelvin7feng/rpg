@@ -1,17 +1,17 @@
 ManifestFileVersion: 0
-CRC: 1653984316
+CRC: 1514131152
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: ai.unity3d
       Dependencies: {}
     Info_1:
-      Name: particle.unity3d
-      Dependencies: {}
-    Info_2:
       Name: ui.unity3d
       Dependencies: {}
-    Info_3:
+    Info_2:
       Name: model.unity3d
       Dependencies:
         Dependency_0: ai.unity3d
+    Info_3:
+      Name: particle.unity3d
+      Dependencies: {}

@@ -1,24 +1,5 @@
-import "UnityEngine"
 
-require "luapack"
-
-require("config/configHeader")
-
-require("tool/toolHeader")
-require("base/baseHeader")
-require("share/shareHeader")
-require("net/socket/socketHeader")
-require("net/protocol/protocalHeader")
-
-require("game/ai/aiHeader")
-require("game/defination/definationHeader")
-require("game/logic/logicHeader")
-require("game/scene/sceneHeader")
-require("game/system/systemHeader")
-require("game/ui/uiHeader")
-require("game/entity/entityHeader")
-require("game/fsm/fsmHeader")
-require("game/stat/statHeader")
+require("load")
 
 local function initDebug()
 	local breakSocketHandle,debugXpCall = require("LuaDebugjit")("localhost",7003)
@@ -41,7 +22,8 @@ local function init()
 	pkgCanvasMgr.Init()
 	--pkgGameController.Init()
 	pkgTriggerManager.Init()
-	pkgProtocolManager.InitProtocol()
+	pkgProtocolManager.Init()
+	pkgSysBattle.Init()
 
 	-- init ui
 	pkgStartUI.Init()

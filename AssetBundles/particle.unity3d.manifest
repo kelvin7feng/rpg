@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1534301942
+CRC: 931306602
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 94459dc3ad88b40287a24091297c496e
+    Hash: a8f141365adc491b34491d051bcd856d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 22baf43107f67da5ef3c32a4355ebdb4
+    Hash: dcf10228893bf64d0c27914affae0f4a
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -19,10 +19,13 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
 - Class: 198
   Script: {instanceID: 0}
 - Class: 199
   Script: {instanceID: 0}
 Assets:
+- Assets/ABRes/RPGEffects/prefab/SwordHitEffect.prefab
 - Assets/ABRes/RPGEffects/prefab/explode.prefab
 Dependencies: []

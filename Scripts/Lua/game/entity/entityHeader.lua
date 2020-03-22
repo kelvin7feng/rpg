@@ -1,5 +1,0 @@
-require("game/entity/pkgAIData")
-require("game/entity/pkgCharacter")
-require("game/entity/pkgEffectNode")
-require("game/entity/pkgMonster")
-require("game/entity/pkgPlayer")

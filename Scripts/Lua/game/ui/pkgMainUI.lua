@@ -43,7 +43,7 @@ function Init()
 
         local bottomPanel = mainUI.transform:Find("BottomPanel")
         pkgButtonMgr.AddListener(bottomPanel, "BtnBattle", onClickBattle)
-        pkgButtonMgr.AddListener(bottomPanel, "BtnChat", onClickChat)
+        pkgButtonMgr.AddListener(bottomPanel, "BtnPet", onClickChat)
 
         local secondBottomPanel = mainUI.transform:Find("SecondBottomPanel")
         pkgButtonMgr.AddListener(secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)

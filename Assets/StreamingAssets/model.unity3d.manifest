@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2428814535
+CRC: 753771149
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 82b6d5ac53083f9cd13927a7ae9d59f9
+    Hash: 2374ecad6f81890cc536d14be32836d9
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9a1f97a6aeadc3fea1fd4a3867f34eae
@@ -68,4 +68,4 @@ Assets:
 - Assets/ABRes/Character/Hero.prefab
 - Assets/ABRes/Character/Player.prefab
 Dependencies:
-- /Users/Kelvin/workspace/rpg_git/AssetBundles/ai.unity3d
+- D:/unity_project/rpg/AssetBundles/ai.unity3d

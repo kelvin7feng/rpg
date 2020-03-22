@@ -24,6 +24,11 @@ function Character:ctor(paramters)
     local spawnPosition = paramters.spawnPosition
     local spawnRotate = paramters.spawnRotate
 
+    local bFind, tbhit = UnityEngine.AI.NavMesh.SamplePosition(spawnPosition, Slua.out, 5, -1)
+    if bFind then
+        spawnPosition = tbhit.position
+    end
+
     local player = UnityEngine.GameObject.Instantiate(prefab)
     player.transform.position = spawnPosition
     

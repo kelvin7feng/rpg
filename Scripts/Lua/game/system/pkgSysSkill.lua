@@ -55,13 +55,13 @@ function AttackBegin(player)
             local dir = targetPos - playerPos
             if UnityEngine.Vector3.Angle(dir, player.transform.forward) < 70 then
                 if UnityEngine.Vector3.Distance(targetPos, playerPos) < 3 then
-                    print("I hit you now!")
+                    LOG_DEBUG("I hit you now!")
                     pkgSysStat.DoDamage(objEnemy, player, math.random(3,5))
                 end
             end
         end
     else
-        print("there are not enemy")
+        LOG_DEBUG("there are not enemy")
     end
 end
 

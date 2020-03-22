@@ -4,7 +4,7 @@ function PlayerAttackState:ctor(stateName)
 end
 
 function PlayerAttackState:OnEnter(...)
-    --print("PlayerAttackState:OnEnter()")
+    LOG_DEBUG("PlayerAttackState:OnEnter()")
     local tbParamters = {...}
     local currentAttackSkill = tbParamters[1]
     pkgSysSkill.Attack(self.fsm.owner, currentAttackSkill)
@@ -22,14 +22,14 @@ function PlayerAttackState:OnUpdate()
     end
 
     if self.fsm.owner.bHurt then
-        --LOG_DEBUG(self.fsm.owner:GetId() .. ", Attack --------> Hurt")
+        LOG_DEBUG(self.fsm.owner:GetId() .. ", Attack --------> Hurt")
         self.fsm:Switch(pkgStateDefination.State.HURT)
         return
     end
 end
 
 function PlayerAttackState:OnLeave()
-    --print("PlayerAttackState:OnLeave()")
+    LOG_DEBUG("PlayerAttackState:OnLeave()")
     self.fsm.owner.attackSkill = nil
     pkgSysSkill.SetAttackSkill(self.fsm.owner, nil)
 end

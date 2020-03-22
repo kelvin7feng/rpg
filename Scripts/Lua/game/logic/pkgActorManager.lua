@@ -10,7 +10,6 @@ function CreatePlayer(spawnPosition, spawnRotate)
         pkgCamera.SetFollowTarget(mainPlayer)
         AddActor(mainPlayer)
         m_mainPlayer = mainPlayer
-        pkgMainUI.Init()
 
         local areaBaker = mainPlayer.gameObject:AddComponent(KG.AgentAreaBaker)
         areaBaker:SetVoxelSize(pkgGlobalConfig.NavMeshSurface.VOXEL_SIZE)
@@ -18,6 +17,8 @@ function CreatePlayer(spawnPosition, spawnRotate)
         areaBaker:SetVolumn(pkgGlobalConfig.NavMeshSurface.VOLUME_X,pkgGlobalConfig.NavMeshSurface.VOLUME_Y,pkgGlobalConfig.NavMeshSurface.VOLUME_Z)
 
         pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
+
+        pkgUIBaseViewMgr.showByViewPath("game/battle/pkgUIMain")
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("model", "Hero", onLoadComplete)
@@ -40,6 +41,10 @@ function GetActor(dId)
     end
 
     return m_tbActor[dId]
+end
+
+function IsMainPlayer(player)
+    return player == m_mainPlayer and true or false
 end
 
 function IsAIPlayer(player)

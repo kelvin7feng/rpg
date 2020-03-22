@@ -20,5 +20,15 @@ EVENT_ID =  {
 		SPAWN_MONSTER			=   20003,
 		KILL_MONSTER			=   20004,
 		CHALLENGE_BOSS			=   20005,
+	},
+	
+	GOODS = {
+		SHOW_REWARD			    =   30001,
 	}
+}
+
+CLIENT_EVENT = {
+	MONSTER_DEAD				= "monster_dead",
+	PLAYER_HURT					= "player_hurt",
+	UPDATE_LEVEL				= "update_level",
 }

@@ -47,7 +47,7 @@ function ChaseTarget(agent)
         dAttackDistance = 1
     end
 
-    pkgSysPlayer.SetAnimationMoveSpeed(agent, 1)
+    pkgSysPlayer.SetAnimationMoveSpeed(agent, 0.8)
     pkgSysPlayer.SetStoppingDistance(agent, dAttackDistance + 0.1)
 
     return true

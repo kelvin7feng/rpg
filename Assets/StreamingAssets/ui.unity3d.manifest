@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3488099089
+CRC: 2898674533
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b9a816cfbb70b3904715e7ef9562e3da
+    Hash: 3da1ba484f4e87776c9d451ce8470af1
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 0a2b6d54ee36d0cc8c658976b8618aac
+    Hash: e0fd06ae8249fd23ca4c0dfc9c074dfa
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -26,7 +26,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 - Class: 114
+  Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
   Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 575553740, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 - Class: 114
   Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 - Class: 114
@@ -50,8 +56,11 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 Assets:
+- Assets/ABRes/UI/MainUI.prefab
+- Assets/ABRes/UI/StartUI.prefab
 - Assets/ABRes/UI/VirtualController.prefab
 - Assets/ABRes/UI/Minimap.prefab
-- Assets/ABRes/UI/MainUI.prefab
+- Assets/ABRes/UI/FlyWord.prefab
 - Assets/ABRes/UI/FixedDebug.prefab
+- Assets/ABRes/UI/FlyWordUI.prefab
 Dependencies: []

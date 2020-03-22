@@ -7,7 +7,7 @@ end
 function PlayerMoveState:OnEnter(...)
     local tbParamters = {...}
     self.m_destination = tbParamters[1]
-    print(self.fsm.owner:GetId() .. ", PlayerMoveState:OnEnter()")
+    LOG_DEBUG(self.fsm.owner:GetId() .. ", PlayerMoveState:OnEnter()")
 end
 
 function PlayerMoveState:OnUpdate()
@@ -21,14 +21,14 @@ function PlayerMoveState:OnUpdate()
     end
     
     if self.fsm.owner.attackSkill then
-        print("Move --------> Attack")
+        LOG_DEBUG("Move --------> Attack")
         pkgSysPlayer.Stop(self.fsm.owner)
         self.fsm:Switch(pkgStateDefination.State.ATTACK, self.fsm.owner.attackSkill)
         return
     end
 
     if self.fsm.owner.bDie then
-        print(self.fsm.owner:GetId() .. ", Move --------> Die")
+        LOG_DEBUG(self.fsm.owner:GetId() .. ", Move --------> Die")
         pkgSysPlayer.Stop(self.fsm.owner)
         self.fsm:Switch(pkgStateDefination.State.DIE)
         return
@@ -43,6 +43,6 @@ function PlayerMoveState:OnUpdate()
 end
 
 function PlayerMoveState:OnLeave()
-    print(self.fsm.owner:GetId() .. ", PlayerMoveState:OnLeave()")
+    LOG_DEBUG(self.fsm.owner:GetId() .. ", PlayerMoveState:OnLeave()")
     self.fsm.owner.inputDestination = nil
 end
