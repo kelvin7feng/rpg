@@ -30,3 +30,18 @@ function AddListener(gameobject, strButtonName, fnCallback, paramters)
         end
     )
 end
+
+
+function RemoveListeners(gameObject, strBtnName)
+    if not gameObject or not strBtnName then
+        return
+    end
+
+    local btntransform = gameObject.transform:Find(strBtnName)
+    if not btntransform then
+        return
+    end
+
+    local btnComponent = btntransform.gameObject:GetComponent(ue.UI.Button)
+    btnComponent.onClick:RemoveAllListeners()
+end

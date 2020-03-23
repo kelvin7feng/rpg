@@ -54,7 +54,8 @@ end
 
 function UpdateLevelName(dLevelId)
     local txtComponent = m_levelName.gameObject:GetComponent(UnityEngine.UI.Text)
-    txtComponent.text = "关卡" .. dLevelId
+    local tbCfg = pkgLevelCfgMgr.GetLevelCfg(dLevelId)
+    txtComponent.text = tbCfg.name
 end
 
 function UpdatePlayerHp(player)

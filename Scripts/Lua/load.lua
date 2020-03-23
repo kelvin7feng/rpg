@@ -2,7 +2,6 @@ import "UnityEngine"
 
 require "luapack"
 
-require("config/configHeader")
 require("share/load")
 
 require("tool/pkgMathTool")
