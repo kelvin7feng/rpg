@@ -184,6 +184,10 @@ function UpdateTargetEnemy(agent)
 	end
 end
 
+function ClearHateList(agent)
+	agent.aiData.tbHateList = {}
+end
+
 function PrintHateList(agent)
 	if agent.aiData then
 		LOG_TABLE(agent.aiData.tbHateList)

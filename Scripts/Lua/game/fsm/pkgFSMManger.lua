@@ -30,6 +30,12 @@ function AddFSM(fsm)
     m_tbFSM[fsm] = fsm
 end
 
+function RemoveFSM(fsm)
+    if m_tbFSM[fsm] then
+        m_tbFSM[fsm] = nil
+    end
+end
+
 function UpdateFSM()
     for _,fsm in pairs(m_tbFSM) do
         fsm.curState:OnUpdate()

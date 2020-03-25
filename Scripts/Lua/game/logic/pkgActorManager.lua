@@ -85,3 +85,10 @@ end
 function IsEnemy(player1, player2)
     return player1:GetSide() ~= player2:GetSide() and true or false
 end
+
+function Remove(player)
+    local dId = player:GetId()
+    if m_tbActor[dId] then
+        m_tbActor[dId] = nil
+    end
+end

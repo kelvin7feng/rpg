@@ -74,3 +74,12 @@ end
 function HurtEnd(player)
     player:SetHurt(false)
 end
+
+function DeadEnd(player)
+
+    if pkgActorManager.IsMainPlayer(player) then
+        -- 重生
+    else
+        pkgSysPlayer.Destory(player)
+    end
+end

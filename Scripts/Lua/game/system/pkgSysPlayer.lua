@@ -163,3 +163,20 @@ function OnHitPlayer(dPlayerId, objWeapon)
         pkgSysEffect.PlayWeaponEffect(objWeapon)
     end
 end
+
+function OnPlayerDie(dPlayerId, objWeapon)
+    local player = pkgActorManager.GetActor(dPlayerId)
+    if not player then
+        return false
+    end
+
+    Destory(player)
+end
+
+function Destory(player)
+    pkgActorManager.Remove(player)
+    pkgSysMonster.StopBehaviour(player)
+    pkgFSMManger.RemoveFSM(player.fsm)
+    pkgSysHate.ClearHateList(player)
+    UnityEngine.Object.Destroy(player.gameObject)
+end
