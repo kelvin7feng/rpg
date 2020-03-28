@@ -12,7 +12,7 @@ namespace KG
         protected override void Start()
         {
             base.Start();
-            SetTriggerCount(100);
+            SetTriggerCount(0);
             SetTriggerName("terrian_trigger");
         }      
     }

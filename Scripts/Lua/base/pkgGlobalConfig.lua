@@ -7,6 +7,8 @@ FixWidth = 7.5
 DefaultVolume = 0.5
 PrintDebug = false
 
+GodMode = false
+
 ServerType = {
     LOGIC        = 2,
 }

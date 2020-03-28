@@ -10,3 +10,19 @@ function GetLevel()
     LOG_TABLE(m_UserData)
     return m_UserData.BattleInfo.CurLevel
 end
+
+function GetName()
+    return m_UserData.BaseInfo.Name
+end
+
+function GetBagVal(dType)
+    return m_UserData.BagInfo[tostring(dType)] or 0
+end
+
+function GetGold()
+    return GetBagVal(GOODS_DEF.GOLD)
+end
+
+function GetDiamond()
+    return GetBagVal(GOODS_DEF.DIAMOND)
+end

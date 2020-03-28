@@ -21,6 +21,10 @@ end
 
 function DoDamage(player, attacker, dDamage)
 
+    if pkgGlobalConfig.GodMode and pkgActorManager.IsMainPlayer(player) then
+        return
+    end
+    
     player.stat:TakeDamage(dDamage)
 
     -- 优化: 连续受击的情况需要处理

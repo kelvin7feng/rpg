@@ -31,6 +31,25 @@ function AddListener(gameobject, strButtonName, fnCallback, paramters)
     )
 end
 
+function AddBtnListener(btnGo, fnCallback, paramters)
+    
+    if not btnGo then
+        print("AddListener gameobject is nil")
+        return
+    end
+       
+    if not fnCallback then
+        print("AddListener fnCallback is nil")
+        return
+    end
+    
+    local btnComponent = btnGo.gameObject:GetComponent(UnityEngine.UI.Button)
+    btnComponent.onClick:AddListener(
+        function()
+            fnCallback(btnGo, paramters)
+        end
+    )
+end
 
 function RemoveListeners(gameObject, strBtnName)
     if not gameObject or not strBtnName then

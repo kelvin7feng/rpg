@@ -25,11 +25,11 @@ function IsHurt(agent)
 end
 
 function IsDead(agent)
-    return pkgFSMManger.IsInState(agent, pkgStateDefination.State.DIE)
+    return agent.stat:GetHp() <= 0
 end
 
 function CanInterrupt(agent)
-    if pkgFSMManger.IsInState(agent, pkgStateDefination.State.DIE)
+    if IsDead(agent)
         --or IsHurt(agent)
         or agent.aiData.bInterruptByHate then
         return true

@@ -8,54 +8,121 @@ event_listener = {
     {CLIENT_EVENT.UPDATE_LEVEL, "UpdateLevelName"},
 }
 
+-- player info
 m_objHpSlider = m_objHpSlider or nil
 m_playerHpSlider = m_playerHpSlider or nil
+m_txtPlayerName = m_txtPlayerName or nil
+m_txtDiamond = m_txtDiamond or nil
+m_txtGold = m_txtGold or nil
+
+-- function
 m_bottomPanel = m_bottomPanel or nil
 m_secondBottomPanel = secondBottomPanel or nil
 m_levelName = m_levelName or nil
 
-function destroyUI()
-
-end
-
-local function onClickBattle()
-
-end
+m_tbBtn = {}
+m_dBtnCount = 5
+m_dCurBtnIndex = 3
 
 local function onClickChallengeBoss()
     pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.CHALLENGE_BOSS)
 end
 
-local function onClickPet()
+local function onClickHome()
+    print("onClickHome ================= ")
+end
 
+local function onClickField()
+    print("onClickField ================= ")
+end
+
+local function onClickBattle()
+    print("onClickBattle ================= ")
+end
+
+local function onClickRole()
+    print("onClickRole ================= ")
+end
+
+local function onClickPet()
+    print("onClickPet ================= ")
+end
+
+m_tbClickFunc = {
+    onClickHome, onClickField, onClickBattle, onClickRole, onClickPet
+}
+
+local function onClickBottomBtn(btnGo, i)
+    m_dCurBtnIndex = i
+    
+    updateBtn()
+
+    m_tbClickFunc[i]()
+end
+
+function updateBtn()
+    for i=1, m_dBtnCount do
+        local objBtn = m_tbBtn[i]
+        local imgSelect = objBtn.transform:Find("Select")
+        if i == m_dCurBtnIndex then
+            imgSelect.gameObject:SetActive(true)
+        else
+            imgSelect.gameObject:SetActive(false)
+        end
+    end
 end
 
 function init()
 
-    pkgMinimap.Init()
     pkgFlyWordUI.Init()
 
-    m_objHpSlider = gameObject.transform:Find("Panel/PlayerInfo/HpProgress/Slider")
+    m_txtPlayerName = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/PlayerName")
+    m_txtDiamond = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ValuePanel/Diamond/Bg/Text")
+    m_txtGold = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ValuePanel/Gold/Bg/Text")
+
+    m_objHpSlider = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/HpProgress/Slider")
     m_playerHpSlider = m_objHpSlider:GetComponent(UnityEngine.UI.Slider)
-    m_levelName = gameObject.transform:Find("Panel/LevelInfo/LevelName")
+    m_levelName = gameObject.transform:Find("Panel/FloatPanel/LevelInfo/LevelName")
     m_bottomPanel = gameObject.transform:Find("Panel/BottomPanel")
     m_secondBottomPanel = gameObject.transform:Find("Panel/SecondBottomPanel")
+	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
 
-    pkgButtonMgr.AddListener(m_bottomPanel, "BtnBattle", onClickBattle)
-    pkgButtonMgr.AddListener(m_bottomPanel, "BtnPet", onClickPet)
-    pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
+    for i=1, m_dBtnCount do
+        local objBtn = m_bottomPanel.transform:Find("Btn"..i)
+        m_tbBtn[i] = objBtn
+        pkgButtonMgr.AddBtnListener(objBtn, onClickBottomBtn, i)
+    end
+
+    updateBtn()
 end
 
 function show()
     print("pkgUIMain show")
-    SetPlayerHpProgress(pkgSysStat.GetRadioHealth(pkgActorManager.GetMainPlayer()))
-    UpdateLevelName(pkgUserDataManager.GetLevel())
+    UpdatePlayerInfo()
+
+    local dLevelId = pkgUserDataManager.GetLevel()
+    UpdateLevelName(dLevelId)
 end
 
 function UpdateLevelName(dLevelId)
     local txtComponent = m_levelName.gameObject:GetComponent(UnityEngine.UI.Text)
     local tbCfg = pkgLevelCfgMgr.GetLevelCfg(dLevelId)
     txtComponent.text = tbCfg.name
+end
+
+function UpdatePlayerInfo()
+
+    local mainPlayer = pkgActorManager.GetMainPlayer()
+    local txtNameComponent = m_txtPlayerName.gameObject:GetComponent(UnityEngine.UI.Text)
+    txtNameComponent.text = pkgUserDataManager.GetName()
+
+    local txtDiamondComponent = m_txtDiamond.gameObject:GetComponent(UnityEngine.UI.Text)
+    txtDiamondComponent.text = pkgUserDataManager.GetDiamond()
+    
+    local txtGoldComponent = m_txtGold.gameObject:GetComponent(UnityEngine.UI.Text)
+    txtGoldComponent.text = pkgUserDataManager.GetGold()
+
+    SetPlayerHpProgress(pkgSysStat.GetRadioHealth(mainPlayer))
 end
 
 function UpdatePlayerHp(player)
@@ -69,4 +136,8 @@ function SetPlayerHpProgress(dRatio)
     if m_playerHpSlider then
         m_playerHpSlider.value = dRatio
     end
+end
+
+function destroyUI()
+
 end

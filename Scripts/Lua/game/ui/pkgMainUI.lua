@@ -50,6 +50,7 @@ function Init()
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("ui", "MainUI", onLoadComplete)
-    pkgMinimap.Init()
+    
+    --pkgMinimap.Init()
     pkgFlyWordUI.Init()
 end

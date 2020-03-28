@@ -6,6 +6,10 @@ function CharacterStat:ctor(owner)
     self.dCurrentHealth = 0
 end
 
+function CharacterStat:GetHp()
+    return self.dCurrentHealth
+end
+
 function CharacterStat:TakeDamage(dDamage)
 
     if self.dCurrentHealth <= 0 then
