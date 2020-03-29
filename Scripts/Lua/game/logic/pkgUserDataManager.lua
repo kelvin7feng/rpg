@@ -15,6 +15,10 @@ function GetName()
     return m_UserData.BaseInfo.Name
 end
 
+function SetBagVal(dType, dCount)
+    m_UserData.BagInfo[tostring(dType)] = dCount
+end
+
 function GetBagVal(dType)
     return m_UserData.BagInfo[tostring(dType)] or 0
 end

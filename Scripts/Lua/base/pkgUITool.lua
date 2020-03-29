@@ -97,3 +97,59 @@ function UpdateText(gameObject, strChildName, dLanguageStringId, ...)
 
     txtComponent.text = string.format(pkgLanguageMgr.GetStringById(dLanguageStringId),unpack({...}))
 end
+
+function UpdateGameObjectText(gameObject, dLanguageStringId, ...)
+
+    if not gameObject then
+        print("UpdateText gameobject is nil")
+        return
+    end
+
+    local txtComponent = gameObject.gameObject:GetComponent(UnityEngine.UI.Text)
+    if not txtComponent then
+        print("can't find UI.Text Component")
+        return
+    end
+
+    txtComponent.text = string.format(pkgLanguageMgr.GetStringById(dLanguageStringId),unpack({...}))
+end
+
+le_resetImageGo2Func = {}
+
+function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams, onError)
+    if not gameObject then
+        return
+    end
+    tbParams = tbParams or  {}
+    
+	local function onComplete( prefab )
+        --[[if le_resetImageGo2Func[gameObject:GetInstanceID()] ~= tostring(onComplete) then
+            return
+        end
+
+        le_resetImageGo2Func[gameObject:GetInstanceID()] = nil--]]
+        if not prefab then return end
+        if Slua.isNull(gameObject) then
+            return
+        end
+        local sprite = UnityEngine.Object.Instantiate(prefab)
+
+        local image = gameObject:GetComponent(ue.UI.Image)
+        if not image then
+            image = gameObject:AddComponent(ue.UI.Image)
+        end
+
+        image.sprite = sprite
+        if tbParams.bSetNative then
+            image:SetNativeSize()
+        end
+        gameObject.gameObject:SetActive(true)
+        if callback then
+            callback(gameObject)
+        end
+    end
+
+    print_e("tbData.strAss, tbData.strImg ", gameObject, assetBundleName, imageName)
+    -- le_resetImageGo2Func[gameObject:GetInstanceID()] = tostring(onComplete)
+    pkgAssetBundleMgr.LoadAssetBundle(assetBundleName, imageName, onLoadComplete)
+end

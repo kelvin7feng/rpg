@@ -23,7 +23,8 @@ EVENT_ID =  {
 	},
 	
 	GOODS = {
-		SHOW_REWARD			    =   30001,
+		UPDATE_DATA			    =   30001,
+		SHOW_REWARD			    =   30002,
 	}
 }
 
@@ -31,4 +32,5 @@ CLIENT_EVENT = {
 	MONSTER_DEAD				= "monster_dead",
 	PLAYER_HURT					= "player_hurt",
 	UPDATE_LEVEL				= "update_level",
+	UPDATE_GOODS				= "update_goods",
 }

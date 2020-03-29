@@ -5,7 +5,8 @@ prefabFile = "Main"
 
 event_listener = {
     {CLIENT_EVENT.PLAYER_HURT, "UpdatePlayerHp"},
-    {CLIENT_EVENT.UPDATE_LEVEL, "UpdateLevelName"},
+    {CLIENT_EVENT.UPDATE_LEVEL, "UpdateLevelInfo"},
+    {CLIENT_EVENT.UPDATE_GOODS, "UpdatePlayerInfo"},  
 }
 
 -- player info
@@ -15,10 +16,14 @@ m_txtPlayerName = m_txtPlayerName or nil
 m_txtDiamond = m_txtDiamond or nil
 m_txtGold = m_txtGold or nil
 
+-- level info
+m_txtAfkExp = m_txtAfkExp or nil
+m_txtAfkGold = m_txtAfkGold or nil
+m_txtLevelName = m_txtLevelName or nil
+
 -- function
 m_bottomPanel = m_bottomPanel or nil
 m_secondBottomPanel = secondBottomPanel or nil
-m_levelName = m_levelName or nil
 
 m_tbBtn = {}
 m_dBtnCount = 5
@@ -82,11 +87,14 @@ function init()
 
     m_objHpSlider = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/HpProgress/Slider")
     m_playerHpSlider = m_objHpSlider:GetComponent(UnityEngine.UI.Slider)
-    m_levelName = gameObject.transform:Find("Panel/FloatPanel/LevelInfo/LevelName")
     m_bottomPanel = gameObject.transform:Find("Panel/BottomPanel")
     m_secondBottomPanel = gameObject.transform:Find("Panel/SecondBottomPanel")
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
 
+    m_txtLevelName = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/LevelName")
+    m_txtAfkExp = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Exp/Text")
+    m_txtAfkGold = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Gold/Text")
+    
     for i=1, m_dBtnCount do
         local objBtn = m_bottomPanel.transform:Find("Btn"..i)
         m_tbBtn[i] = objBtn
@@ -97,15 +105,36 @@ function init()
 end
 
 function show()
-    print("pkgUIMain show")
+
     UpdatePlayerInfo()
 
-    local dLevelId = pkgUserDataManager.GetLevel()
+    UpdateLevelInfo()
+end
+
+function UpdateLevelInfo(dLevelId)
+    
+    if not dLevelId then
+        dLevelId = pkgUserDataManager.GetLevel()
+    end
+
     UpdateLevelName(dLevelId)
+    
+    local tbCfg = pkgAFKCfgMgr.GetAFKCfg(dLevelId)
+    if not tbCfg then
+        LOG_ERROR("GetAFKCfg can not find level id:", dLevelId)
+        return
+    end
+
+    local dExp = tbCfg.exp
+    local dGold = tbCfg.gold
+    
+    pkgUITool.UpdateGameObjectText(m_txtAfkExp, 1, dExp)
+    pkgUITool.UpdateGameObjectText(m_txtAfkGold, 2, dGold)
+
 end
 
 function UpdateLevelName(dLevelId)
-    local txtComponent = m_levelName.gameObject:GetComponent(UnityEngine.UI.Text)
+    local txtComponent = m_txtLevelName.gameObject:GetComponent(UnityEngine.UI.Text)
     local tbCfg = pkgLevelCfgMgr.GetLevelCfg(dLevelId)
     txtComponent.text = tbCfg.name
 end

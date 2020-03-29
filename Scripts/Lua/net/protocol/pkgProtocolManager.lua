@@ -9,5 +9,6 @@ function Init()
     pkgEventManager.Register(EVENT_ID.CLIENT_BATTLE.SPAWN_MONSTER, pkgSysBattle.OnSpawnMonster)
 
     -- 背包
+    pkgEventManager.Register(EVENT_ID.GOODS.UPDATE_DATA, pkgGoodsMgr.OnUpdateData)
     pkgEventManager.Register(EVENT_ID.GOODS.SHOW_REWARD, pkgGoodsMgr.OnShowReward)
 end
