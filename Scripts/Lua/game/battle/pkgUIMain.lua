@@ -24,6 +24,7 @@ m_txtLevelName = m_txtLevelName or nil
 -- function
 m_bottomPanel = m_bottomPanel or nil
 m_secondBottomPanel = secondBottomPanel or nil
+m_btnBag = m_btnBag or nil
 
 m_tbBtn = {}
 m_dBtnCount = 5
@@ -51,6 +52,10 @@ end
 
 local function onClickPet()
     print("onClickPet ================= ")
+end
+
+local function onClickBag()
+    pkgUIBaseViewMgr.showByViewPath("game/goods/pkgUIGoodsMain")
 end
 
 m_tbClickFunc = {
@@ -95,6 +100,8 @@ function init()
     m_txtAfkExp = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Exp/Text")
     m_txtAfkGold = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Gold/Text")
     
+    pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Bag", onClickBag)
+
     for i=1, m_dBtnCount do
         local objBtn = m_bottomPanel.transform:Find("Btn"..i)
         m_tbBtn[i] = objBtn

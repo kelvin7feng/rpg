@@ -14,73 +14,73 @@ _cfg.goods = {
    goodsType = 3,
    isBag = -1,
   },
-  [4] = {
-   id = 4,
+  [100] = {
+   id = 100,
    goodsType = 100,
    isBag = 1,
   },
-  [5] = {
-   id = 5,
+  [101] = {
+   id = 101,
    goodsType = 100,
    isBag = 1,
   },
-  [6] = {
-   id = 6,
+  [102] = {
+   id = 102,
    goodsType = 100,
    isBag = 1,
   },
-  [7] = {
-   id = 7,
+  [103] = {
+   id = 103,
    goodsType = 100,
    isBag = 1,
   },
-  [8] = {
-   id = 8,
+  [104] = {
+   id = 104,
    goodsType = 100,
    isBag = 1,
   },
-  [9] = {
-   id = 9,
+  [105] = {
+   id = 105,
    goodsType = 100,
    isBag = 1,
   },
-  [10] = {
-   id = 10,
+  [106] = {
+   id = 106,
    goodsType = 100,
    isBag = 1,
   },
-  [11] = {
-   id = 11,
+  [107] = {
+   id = 107,
    goodsType = 101,
    isBag = 1,
   },
-  [12] = {
-   id = 12,
+  [108] = {
+   id = 108,
    goodsType = 101,
    isBag = 1,
   },
-  [13] = {
-   id = 13,
+  [109] = {
+   id = 109,
    goodsType = 101,
    isBag = 1,
   },
-  [14] = {
-   id = 14,
+  [110] = {
+   id = 110,
    goodsType = 101,
    isBag = 1,
   },
-  [15] = {
-   id = 15,
+  [111] = {
+   id = 111,
    goodsType = 101,
    isBag = 1,
   },
-  [16] = {
-   id = 16,
+  [112] = {
+   id = 112,
    goodsType = 101,
    isBag = 1,
   },
-  [17] = {
-   id = 17,
+  [113] = {
+   id = 113,
    goodsType = 101,
    isBag = 1,
   },

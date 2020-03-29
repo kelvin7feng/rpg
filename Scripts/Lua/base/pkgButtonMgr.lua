@@ -1,7 +1,7 @@
 doNameSpace("pkgButtonMgr")
 
 function AddListener(gameobject, strButtonName, fnCallback, paramters)
-    
+    print("AddListener ", gameobject.name, strButtonName)
     if not gameobject then
         print("AddListener gameobject is nil")
         return
@@ -61,6 +61,24 @@ function RemoveListeners(gameObject, strBtnName)
         return
     end
 
-    local btnComponent = btntransform.gameObject:GetComponent(ue.UI.Button)
+    local btnComponent = btntransform.gameObject:GetComponent(UnityEngine.UI.Button)
     btnComponent.onClick:RemoveAllListeners()
+end
+
+function RemoveGameObjectListeners(gameObject)
+    if not gameObject then
+        return
+    end
+
+    local btnComponent = gameObject.gameObject:GetComponent(UnityEngine.UI.Button)
+    if btnComponent then
+        btnComponent.onClick:RemoveAllListeners()
+    end
+end
+
+function RemoveGameObjectAllListeners(gameObject)
+    for i=0, gameObject.transform.childCount - 1 do
+        local goChild = gameObject.transform:GetChild(i).gameObject
+        RemoveGameObjectListeners(goChild)
+    end
 end

@@ -29,9 +29,10 @@ end
 
 function CreateCanvas(canvasGo, strCanvasName, dOrder, dontDestroyOnLoad, dRenderMode, dUIScaleMode)
 
-    if GetCanvasObject(strCanvasName) then
+    -- to do: 废弃
+    --[[if GetCanvasObject(strCanvasName) then
         return le_tbCanvasObj[strCanvasName]
-    end
+    end--]]
 
     if not canvasGo then
         canvasGo = UnityEngine.GameObject()

@@ -15,7 +15,25 @@ function GetName()
     return m_UserData.BaseInfo.Name
 end
 
+function GetBag()
+    local tbShowBag = {}
+    local tbBagInfo = m_UserData.BagInfo
+    local tbCfg = nil
+    for strType, dCount in pairs(tbBagInfo) do
+        tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(strType)
+        if tbCfg and tbCfg.isBag == 1 then
+            table.insert(tbShowBag, {id = strType, count = dCount})
+        end
+    end
+
+    return tbShowBag
+end
+
 function SetBagVal(dType, dCount)
+    if dCount == 0 then
+        m_UserData.BagInfo[tostring(dType)] = nil
+        return
+    end
     m_UserData.BagInfo[tostring(dType)] = dCount
 end
 

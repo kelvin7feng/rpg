@@ -19,19 +19,19 @@ le_tbCurrentPanelsListener = le_tbCurrentPanelsListener or {}
 
 le_dSortOrder = 100
 
-function getOrder(view)
+function getOrder()
     le_dSortOrder = le_dSortOrder + 2
     return le_dSortOrder
 end
 
-function subOrder(view)
+function subOrder()
     le_dSortOrder = le_dSortOrder - 2
 end
 
 local function closeImplenment(view)
 
    if view.close ~= nil then
-        --view.close()
+        view.close()
     end
     
     destroyUI(view)
@@ -68,7 +68,7 @@ local function initCloseEvent(view)
         closeImplenment(view)
     end
 
-    -- pkgButtonMgr.AddListener(view.gameObject, "btnDefaultClose", doClose)
+    pkgButtonMgr.AddListener(view.gameObject, "BtnDefaultClose", doClose)
 end
 
 -- 注册事件监听
@@ -218,7 +218,7 @@ function show(view, callback, ...)
         local canvasObj = pkgCanvasMgr.CreateCanvasUI(gameObject, 'UI_'..view.prefabFile, dOrder)
         view.gameObject = canvasObj.gameObject
 
-        -- initCloseEvent(view)
+        initCloseEvent(view)
 		initEventListener(view)
 
         view.init()
@@ -271,7 +271,8 @@ function setVisible(view, visible)
 end
 
 -- 移除掉View的全部事件监听 一般只用到销毁UI的时候
-function removeViewAllListeners( view )
+function removeViewAllListeners(view)
+
     if not view then
         return
     end
@@ -281,8 +282,8 @@ function removeViewAllListeners( view )
     if Slua.IsNull(gameObject) then
         return
     end
-
-    -- pkgUtilMgr.removeGameObjectAllListeners(gameObject)
+    
+    pkgButtonMgr.RemoveGameObjectAllListeners(gameObject)
 end
 
 
@@ -303,7 +304,7 @@ function destroyUI(view)
         view.destroyUI()
     end
 
-    -- removeViewAllListeners(view)
+    removeViewAllListeners(view)
 
     if view.gameObject then
         if not Slua.IsNull(view.gameObject) then
@@ -312,5 +313,6 @@ function destroyUI(view)
     end
     view.gameObject = nil
 
+    subOrder(view)
     -- pkgEventMgr.dispatch(pkgEventType.PANEL_CLOSE, view)
 end

@@ -122,23 +122,23 @@ function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams, 
     end
     tbParams = tbParams or  {}
     
-	local function onComplete( prefab )
+	local function onLoadComplete( prefab )
         --[[if le_resetImageGo2Func[gameObject:GetInstanceID()] ~= tostring(onComplete) then
             return
         end
-
+        
         le_resetImageGo2Func[gameObject:GetInstanceID()] = nil--]]
         if not prefab then return end
-        if Slua.isNull(gameObject) then
+        if Slua.IsNull(gameObject) then
             return
         end
+
         local sprite = UnityEngine.Object.Instantiate(prefab)
-
-        local image = gameObject:GetComponent(ue.UI.Image)
+        local image = gameObject:GetComponent(UnityEngine.UI.Image)
         if not image then
-            image = gameObject:AddComponent(ue.UI.Image)
+            image = gameObject:AddComponent(UnityEngine.UI.Image)
         end
-
+        
         image.sprite = sprite
         if tbParams.bSetNative then
             image:SetNativeSize()
@@ -149,7 +149,7 @@ function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams, 
         end
     end
 
-    print_e("tbData.strAss, tbData.strImg ", gameObject, assetBundleName, imageName)
+    print("tbData.strAss, tbData.strImg ", gameObject, assetBundleName, imageName)
     -- le_resetImageGo2Func[gameObject:GetInstanceID()] = tostring(onComplete)
     pkgAssetBundleMgr.LoadAssetBundle(assetBundleName, imageName, onLoadComplete)
 end

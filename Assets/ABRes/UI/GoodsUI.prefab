@@ -54,11 +54,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 300, y: 300}
-  m_Spacing: {x: 8, y: 2}
+  m_Spacing: {x: 17, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &586619395636164062
@@ -274,7 +274,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: No any goods
+  m_Text: "\u80CC\u5305\u6CA1\u6709\u4E1C\u897F\u5566~"
 --- !u!1 &1119472604630189570
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 499572136830892494}
   - component: {fileID: 2795982675216830870}
   m_Layer: 5
-  m_Name: btnDefaultClose
+  m_Name: BtnDefaultClose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
