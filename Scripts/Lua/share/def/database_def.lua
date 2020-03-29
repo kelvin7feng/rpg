@@ -114,6 +114,7 @@ DATABASE_TABLE_FIELD =
 
 	[GAME_DATA_TABLE_NAME.BAG_INFO]	= 
 	{
-
+		["1"]													 = 5000,
+		["2"]													 = 100,
 	},
 }
