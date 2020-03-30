@@ -66,19 +66,121 @@ function RemoveListeners(gameObject, strBtnName)
 end
 
 function RemoveGameObjectListeners(gameObject)
-    if not gameObject then
+
+    if not pkgUITool.isNull(gameObject) then
         return
     end
 
-    local btnComponent = gameObject.gameObject:GetComponent(UnityEngine.UI.Button)
-    if btnComponent then
-        btnComponent.onClick:RemoveAllListeners()
+    local components = gameObject:GetComponentsInChildren(UnityEngine.UI.Button, true)
+
+    if components then
+        for v in Slua.iter(components) do
+            if not pkgUITool.isNull(v) and v.onClick ~= nil then
+                v.onClick:RemoveAllListeners()
+                v.onClick = UnityEngine.UI.Button.ButtonClickedEvent()
+            end
+        end
     end
+
+    components = nil
+end
+
+function RemoveGameObjectInputFieldListeners(gameObject)
+
+    if pkgUITool.isNull(gameObject) then
+        return
+    end
+
+    local components = gameObject:GetComponentsInChildren(UnityEngine.UI.InputField, true)
+
+    if components then
+        for v in Slua.iter(components) do
+            if not pkgUITool.isNull(v) then
+                if v.onValueChanged ~= nil then
+                    v.onValueChanged:RemoveAllListeners()
+                end
+            end
+        end
+    end
+
+    components = nil
+end
+
+function RemoveGameObjectSliderListeners(gameObject)
+
+    if pkgUITool.isNull(gameObject) then
+        return
+    end
+
+    local components = gameObject:GetComponentsInChildren(UnityEngine.UI.Toggle, true)
+
+    if components then
+        for v in Slua.iter(components) do
+            if not pkgUITool.isNull(v) and v.onValueChanged ~= nil then
+                v.onValueChanged:RemoveAllListeners()
+            end
+        end
+    end
+
+    components = nil
+end
+
+function RemoveGameObjectToggleListeners(gameObject)
+
+    if pkgUITool.isNull(gameObject) then
+        return
+    end
+
+    local components = gameObject:GetComponentsInChildren(UnityEngine.UI.Slider, true)
+
+    if components then
+        for v in Slua.iter(components) do
+            if not pkgUITool.isNull(v) and v.onValueChanged ~= nil then
+                v.onValueChanged:RemoveAllListeners()
+            end
+        end
+    end
+
+    components = nil
+end
+
+function RemoveGameObjectEventTriggerListeners(gameObject)
+    if pkgUITool.isNull(gameObject) then
+        return
+    end
+
+    if not UnityEngine.EventSystems or not UnityEngine.EventSystems.EventTrigger then
+        return
+    end
+
+    local components = gameObject:GetComponentsInChildren(UnityEngine.EventSystems.EventTrigger, true)
+
+    if components then
+        for v in Slua.iter(components) do
+            if not pkgUITool.isNull(v) and v.triggers ~= nil then
+                for v2 in Slua.iter(v.triggers) do
+                    if not pkgUITool.isNull(v2) and v2.callback ~= nil then
+                        v2.callback:RemoveAllListeners()
+                    end
+                end
+        
+                v.triggers:Clear()
+            end
+        end
+    end
+
+    components = nil
 end
 
 function RemoveGameObjectAllListeners(gameObject)
-    for i=0, gameObject.transform.childCount - 1 do
-        local goChild = gameObject.transform:GetChild(i).gameObject
-        RemoveGameObjectListeners(goChild)
+
+    if pkgUITool.isNull(gameObject) then
+        return
     end
+
+    RemoveGameObjectListeners(gameObject)
+    RemoveGameObjectInputFieldListeners(gameObject)
+    RemoveGameObjectSliderListeners(gameObject)
+    RemoveGameObjectToggleListeners(gameObject)
+    RemoveGameObjectEventTriggerListeners(gameObject)
 end

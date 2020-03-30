@@ -114,7 +114,7 @@ function UpdateGameObjectText(gameObject, dLanguageStringId, ...)
     txtComponent.text = string.format(pkgLanguageMgr.GetStringById(dLanguageStringId),unpack({...}))
 end
 
-le_resetImageGo2Func = {}
+m_resetImageGo2Func = {}
 
 function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams, onError)
     if not gameObject then
@@ -123,17 +123,25 @@ function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams, 
     tbParams = tbParams or  {}
     
 	local function onLoadComplete( prefab )
-        --[[if le_resetImageGo2Func[gameObject:GetInstanceID()] ~= tostring(onComplete) then
+        if m_resetImageGo2Func[gameObject:GetInstanceID()] ~= tostring(onComplete) then
             return
         end
         
-        le_resetImageGo2Func[gameObject:GetInstanceID()] = nil--]]
+        m_resetImageGo2Func[gameObject:GetInstanceID()] = nil
         if not prefab then return end
         if Slua.IsNull(gameObject) then
             return
         end
 
-        local sprite = UnityEngine.Object.Instantiate(prefab)
+        local sprite = nil
+        if prefab:GetType().Name == "Texture2D" then
+            local rect = UnityEngine.Rect(0, 0, prefab.width, prefab.height)
+            local border = tbParams.border or UnityEngine.Vector4.zero
+            sprite = UnityEngine.Sprite.Create(prefab, rect, UnityEngine.Vector2(0.5, 0.5), 100, 0, UnityEngine.SpriteMeshType.Tight, border)
+        else
+            sprite = UnityEngine.Object.Instantiate(prefab)
+        end
+        
         local image = gameObject:GetComponent(UnityEngine.UI.Image)
         if not image then
             image = gameObject:AddComponent(UnityEngine.UI.Image)
@@ -150,6 +158,6 @@ function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams, 
     end
 
     print("tbData.strAss, tbData.strImg ", gameObject, assetBundleName, imageName)
-    -- le_resetImageGo2Func[gameObject:GetInstanceID()] = tostring(onComplete)
+    m_resetImageGo2Func[gameObject:GetInstanceID()] = tostring(onComplete)
     pkgAssetBundleMgr.LoadAssetBundle(assetBundleName, imageName, onLoadComplete)
 end
