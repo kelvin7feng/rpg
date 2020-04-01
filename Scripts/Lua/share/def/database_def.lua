@@ -27,6 +27,7 @@ GAME_DATA_TABLE_NAME =
 	BASE_INFO							= "BaseInfo",
 	BATTLE_INFO							= "BattleInfo",
 	BAG_INFO							= "BagInfo",
+	EQUIP_INFO							= "EquipInfo",
 }
 
 -- 数据字段表
@@ -116,5 +117,13 @@ DATABASE_TABLE_FIELD =
 	{
 		["1"]													 = 5000,
 		["2"]													 = 100,
+		["100"]													 = 1,
 	},
+
+	[GAME_DATA_TABLE_NAME.EQUIP_INFO]	= 
+	{
+		tbSlot													 = {0,0,0,0,0,0},
+		tbEquipList											     = {}, -- {id, cfgId, level}
+	},
+	
 }

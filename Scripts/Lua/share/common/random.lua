@@ -1,3 +1,4 @@
+local random = math.random
 
 -- 随机库
 -- eg:tbCfgLib = {"prob1" = 10,"prob2" = 10,"prob3" = 10,"prob4" = 10}, strProb = "prob"
@@ -46,4 +47,12 @@ function randomKey(tbCfgLib, strProb)
     end
     assert(dKey)
     return dKey
+end
+
+function uuid()
+    local template ='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    return string.gsub(template, '[xy]', function (c)
+        local v = (c == 'x') and random(0, 0xf) or random(8, 0xb)
+        return string.format('%x', v)
+    end)
 end

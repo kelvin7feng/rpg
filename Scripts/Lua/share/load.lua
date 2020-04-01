@@ -1,6 +1,7 @@
 _cfg = {}
 require("share/config/afk")
 require("share/config/effect")
+require("share/config/equip")
 require("share/config/goods")
 require("share/config/goodsReward")
 require("share/config/language")
@@ -30,6 +31,7 @@ require("share/tool/pkgEventManager")
 require("share/tool/pkgTimer")
 
 require("share/const/pkgAFKCfgMgr")
+require("share/const/pkgEquipCfgMgr")
 require("share/const/pkgGoodsCfgMgr")
 require("share/const/pkgLevelCfgMgr")
 require("share/const/pkgRewardCfgMgr")

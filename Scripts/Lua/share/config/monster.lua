@@ -8,7 +8,7 @@ _cfg.monster = {
    aiAssetName = 'MeleeFighter',
    distanceOfFOV = 5,
    angleOfFOV = 140,
-   distanceOfAttack = 2.5,
+   distanceOfAttack = 2,
    speedOfWalk = 3.0,
    speedOfRun = 5.0,
   },
