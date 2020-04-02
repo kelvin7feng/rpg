@@ -11,4 +11,7 @@ function Init()
     -- 背包
     pkgEventManager.Register(EVENT_ID.GOODS.UPDATE_DATA, pkgGoodsMgr.OnUpdateData)
     pkgEventManager.Register(EVENT_ID.GOODS.SHOW_REWARD, pkgGoodsMgr.OnShowReward)
+
+    -- 装备
+    pkgEventManager.Register(EVENT_ID.EQUIP.UPDATE_DATA, pkgEquipMgr.OnUpdateData)
 end

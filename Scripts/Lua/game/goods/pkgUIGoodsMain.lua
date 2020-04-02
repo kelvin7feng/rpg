@@ -44,7 +44,7 @@ function show()
             pkgUITool.SetStringByName(goNow, "Count", tbGoodsInfo.count)
             local imgGoods = goNow.transform:Find("Image")
             if imgGoods then
-                pkgUITool.ResetImage("goods", tostring(tbGoodsInfo.id), imgGoods)
+                pkgUITool.ResetImage(tbGoodsInfo.assets, tostring(tbGoodsInfo.id), imgGoods)
             end
         end
     end

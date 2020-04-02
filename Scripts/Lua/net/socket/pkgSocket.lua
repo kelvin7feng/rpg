@@ -33,15 +33,15 @@ ERROR_CODE = {
 
 local function connect(address, port)
 
-    local ip = socketCore.dns.toip(address)
+    --[[local ip = socketCore.dns.toip(address)
     if ip == nil then
         print("Unkown Host: ", address)
         return nil, "unknown host"
-    end
+    end--]]
 
     local sock, err = socketCore.tcp()
     if not sock then return nil, err end
-    local res, err = sock:connect(ip, port)
+    local res, err = sock:connect(address, port)
     if not res then return nil, err end
     sock:settimeout(0)
     sock:setoption("keepalive", true)
@@ -66,7 +66,7 @@ local function shutdown()
     print("shut down")
     socket:shutdown()
     socket = nil
-    strReceiveData = nil
+    strReceiveData = ""
 end
 
 function ReceiveMsg()

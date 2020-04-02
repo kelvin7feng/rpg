@@ -22,7 +22,15 @@ function GetBag()
     for strType, dCount in pairs(tbBagInfo) do
         tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(strType)
         if tbCfg and tbCfg.isBag == 1 then
-            table.insert(tbShowBag, {id = strType, count = dCount})
+            table.insert(tbShowBag, {id = strType, count = dCount, assets = "goods"})
+        end
+    end
+
+    local tbEquipList = GetEquipList()
+    for _, tbEquip in pairs(tbEquipList) do
+        tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbEquip.cfgId)
+        if tbCfg and tbCfg.isBag == 1 then
+            table.insert(tbShowBag, {id = tbEquip.cfgId, count = 1, assets = "equip_icon"})
         end
     end
 
@@ -47,4 +55,16 @@ end
 
 function GetDiamond()
     return GetBagVal(GOODS_DEF.DIAMOND)
+end
+
+function GetEquipList()
+    local tbEquipList = m_UserData.EquipInfo.tbEquipList
+    return tbEquipList
+end
+
+function SetEquip(strId, tbEquip)
+    if not strId or not tbEquip then
+        return
+    end
+    m_UserData.EquipInfo.tbEquipList[strId] = tbEquip
 end

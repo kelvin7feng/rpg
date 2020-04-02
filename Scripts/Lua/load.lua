@@ -109,4 +109,6 @@ require("game/stat/pkgStat")
 
 require("game/goods/pkgGoodsMgr")
 
+require("game/equip/pkgEquipMgr")
+
 require("game/battle/pkgSysBattle")
