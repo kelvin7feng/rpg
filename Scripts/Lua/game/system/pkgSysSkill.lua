@@ -52,11 +52,13 @@ function AttackBegin(player)
     if #tbEnemy > 0 then
         for _, objEnemy in ipairs(tbEnemy) do
             local targetPos = pkgSysPosition.GetCurrentPos(objEnemy)
-            local dir = targetPos - playerPos
-            if UnityEngine.Vector3.Angle(dir, player.transform.forward) < 70 then
+            local dir = (targetPos - playerPos).normalized
+            if math.cos(70) < UnityEngine.Vector3.Dot(dir, player.transform.forward) then
                 if UnityEngine.Vector3.Distance(targetPos, playerPos) < 3 then
-                    LOG_DEBUG("I hit you now!")
+                    LOG_DEBUG(player:GetId(),"I hit you now!")
                     pkgSysStat.DoDamage(objEnemy, player, math.random(3,5))
+                else
+                    LOG_DEBUG(player:GetId(),"Distance is more than 3:", UnityEngine.Vector3.Distance(targetPos, playerPos))
                 end
             end
         end
