@@ -82,8 +82,8 @@ function GetEquipSlots()
 end
 
 function GetEquipSlot(i)
-    local tbSlot = m_UserData.EquipInfo.tbSlot[i]
-    return tbSlot
+    local strId = m_UserData.EquipInfo.tbSlot[i]
+    return strId
 end
 
 function SetEquipSlot(i, strId)
@@ -100,5 +100,19 @@ function GetEquipListBySlot(i)
         end
     end
 
+    return tb
+end
+
+function GetEquipListWithoutSlot(i)
+    local tb = {}
+    local strId = GetEquipSlot(i)
+    local tbEquipList = GetEquipList()
+    for _, tbEquip in pairs(tbEquipList) do
+        local tbCfg = pkgEquipCfgMgr.GetEquipCfg(tbEquip.cfgId)
+        if tbCfg and tbCfg.slot == i and tbEquip.id ~= strId then
+            table.insert(tb, tbEquip)
+        end
+    end
+	
     return tb
 end

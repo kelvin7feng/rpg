@@ -5,7 +5,7 @@ prefabFile = "EquipSelect"
 
 event_listener = {
    {CLIENT_EVENT.UPDATE_WEAR_EQUIP, "onEquipChange"},
-   {CLIENT_EVENT.UPDATE_TAKE_OFF_EQUIP, "updateWearingEquip"},
+   {CLIENT_EVENT.UPDATE_TAKE_OFF_EQUIP, "onEquipChange"},
 }
 
 m_scrollView = m_scrollView or nil
@@ -22,13 +22,6 @@ function init()
     m_panelNoSelectedEquip.gameObject:SetActive(false)
     m_panelEquipingPanel = gameObject.transform:Find("Panel/EquipingPanel")
     m_panelEquipingPanel.gameObject:SetActive(false)
-end
-
-function resetScrollViewItem()
-    for i=0, m_scrollView.transform.childCount - 1 do
-        local goChild = goParent.transform:GetChild(i).gameObject
-        goChild.gameObject:SetActive(false)
-    end
 end
 
 local function onClickTakeOff(btnGo, strEquipId)
@@ -84,16 +77,19 @@ local function onClickWear(btnGo, strEquipId)
     pkgEquipMgr.WearEquip(m_dCurrentSlot, strEquipId)
 end
 
-function show(dSlotId)
+function resetScrollViewItem()
+    for i=0, m_scrollView.transform.childCount - 1 do
+        local goChild = m_scrollView.transform:GetChild(i).gameObject
+        goChild.gameObject:SetActive(false)
+    end
+end
 
-    m_dCurrentSlot = dSlotId
-    updateWearingEquip(dSlotId)
-
-    local tbEquipList = pkgUserDataManager.GetEquipListBySlot(dSlotId)
-    LOG_TABLE(tbEquipList)
+function updateFreeEquip(dSlotId)
+    local tbEquipList = pkgUserDataManager.GetEquipListWithoutSlot(dSlotId)
     if #tbEquipList <= 0 then
         m_panelNoEquip.gameObject:SetActive(true)
     else
+        resetScrollViewItem()
         local function onLoadCompelte(prefab)
             for i, tbEquipInfo in ipairs(tbEquipList) do
                 local strKey = "equipSelector" .. i
@@ -124,6 +120,14 @@ function show(dSlotId)
     
         pkgAssetBundleMgr.LoadAssetBundle("ui", "EquipSelector", onLoadCompelte)
     end
+end
+
+function show(dSlotId)
+
+    m_dCurrentSlot = dSlotId
+    updateWearingEquip(dSlotId)
+    updateFreeEquip(dSlotId)
+    
 end
 
 function destroyUI()
