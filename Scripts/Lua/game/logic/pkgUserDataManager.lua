@@ -62,9 +62,43 @@ function GetEquipList()
     return tbEquipList
 end
 
+function GetEquip(strId)
+    if not strId then
+        return
+    end
+    return m_UserData.EquipInfo.tbEquipList[strId]
+end
+
 function SetEquip(strId, tbEquip)
     if not strId or not tbEquip then
         return
     end
     m_UserData.EquipInfo.tbEquipList[strId] = tbEquip
+end
+
+function GetEquipSlots()
+    local tbSlot = m_UserData.EquipInfo.tbSlot
+    return tbSlot
+end
+
+function GetEquipSlot(i)
+    local tbSlot = m_UserData.EquipInfo.tbSlot[i]
+    return tbSlot
+end
+
+function SetEquipSlot(i, strId)
+    m_UserData.EquipInfo.tbSlot[i] = strId
+end
+
+function GetEquipListBySlot(i)
+    local tb = {}
+    local tbEquipList = GetEquipList()
+    for _, tbEquip in pairs(tbEquipList) do
+        local tbCfg = pkgEquipCfgMgr.GetEquipCfg(tbEquip.cfgId)
+        if tbCfg and tbCfg.slot == i then
+            table.insert(tb, tbEquip)
+        end
+    end
+
+    return tb
 end

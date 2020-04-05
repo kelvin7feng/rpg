@@ -1,6 +1,7 @@
 _cfg.goods = {
   [1] = {
    id = 1,
+   assetBundle = 'goods',
    name = '金币',
    goodsType = 1,
    isBag = -1,
@@ -8,6 +9,7 @@ _cfg.goods = {
   },
   [2] = {
    id = 2,
+   assetBundle = 'goods',
    name = '钻石',
    goodsType = 2,
    isBag = -1,
@@ -15,6 +17,7 @@ _cfg.goods = {
   },
   [3] = {
    id = 3,
+   assetBundle = 'goods',
    name = '经验',
    goodsType = 3,
    isBag = -1,
@@ -22,6 +25,7 @@ _cfg.goods = {
   },
   [1004] = {
    id = 1004,
+   assetBundle = 'equip_icon',
    name = '裤子',
    goodsType = 1004,
    isBag = 1,
@@ -29,6 +33,7 @@ _cfg.goods = {
   },
   [1005] = {
    id = 1005,
+   assetBundle = 'equip_icon',
    name = '鞋子',
    goodsType = 1005,
    isBag = 1,
@@ -36,6 +41,7 @@ _cfg.goods = {
   },
   [1006] = {
    id = 1006,
+   assetBundle = 'equip_icon',
    name = '戒指',
    goodsType = 1006,
    isBag = 1,
@@ -43,6 +49,7 @@ _cfg.goods = {
   },
   [1003] = {
    id = 1003,
+   assetBundle = 'equip_icon',
    name = '衣服',
    goodsType = 1003,
    isBag = 1,
@@ -50,6 +57,7 @@ _cfg.goods = {
   },
   [100] = {
    id = 100,
+   assetBundle = 'goods',
    name = '红糖果',
    goodsType = 100,
    isBag = 1,
@@ -57,6 +65,7 @@ _cfg.goods = {
   },
   [101] = {
    id = 101,
+   assetBundle = 'goods',
    name = '橙糖果',
    goodsType = 100,
    isBag = 1,
@@ -64,6 +73,7 @@ _cfg.goods = {
   },
   [102] = {
    id = 102,
+   assetBundle = 'goods',
    name = '黄糖果',
    goodsType = 100,
    isBag = 1,
@@ -71,6 +81,7 @@ _cfg.goods = {
   },
   [103] = {
    id = 103,
+   assetBundle = 'goods',
    name = '绿糖果',
    goodsType = 100,
    isBag = 1,
@@ -78,6 +89,7 @@ _cfg.goods = {
   },
   [104] = {
    id = 104,
+   assetBundle = 'goods',
    name = '青糖果',
    goodsType = 100,
    isBag = 1,
@@ -85,6 +97,7 @@ _cfg.goods = {
   },
   [105] = {
    id = 105,
+   assetBundle = 'goods',
    name = '蓝糖果',
    goodsType = 100,
    isBag = 1,
@@ -92,6 +105,7 @@ _cfg.goods = {
   },
   [106] = {
    id = 106,
+   assetBundle = 'goods',
    name = '紫糖果',
    goodsType = 100,
    isBag = 1,
@@ -99,6 +113,7 @@ _cfg.goods = {
   },
   [107] = {
    id = 107,
+   assetBundle = 'goods',
    name = '红宝石',
    goodsType = 101,
    isBag = 1,
@@ -106,6 +121,7 @@ _cfg.goods = {
   },
   [108] = {
    id = 108,
+   assetBundle = 'goods',
    name = '橙宝石',
    goodsType = 101,
    isBag = 1,
@@ -113,6 +129,7 @@ _cfg.goods = {
   },
   [109] = {
    id = 109,
+   assetBundle = 'goods',
    name = '黄宝石',
    goodsType = 101,
    isBag = 1,
@@ -120,6 +137,7 @@ _cfg.goods = {
   },
   [110] = {
    id = 110,
+   assetBundle = 'goods',
    name = '绿宝石',
    goodsType = 101,
    isBag = 1,
@@ -127,6 +145,7 @@ _cfg.goods = {
   },
   [111] = {
    id = 111,
+   assetBundle = 'goods',
    name = '青宝石',
    goodsType = 101,
    isBag = 1,
@@ -134,6 +153,7 @@ _cfg.goods = {
   },
   [112] = {
    id = 112,
+   assetBundle = 'goods',
    name = '蓝宝石',
    goodsType = 101,
    isBag = 1,
@@ -141,6 +161,7 @@ _cfg.goods = {
   },
   [113] = {
    id = 113,
+   assetBundle = 'goods',
    name = '紫宝石',
    goodsType = 101,
    isBag = 1,
@@ -148,6 +169,7 @@ _cfg.goods = {
   },
   [1001] = {
    id = 1001,
+   assetBundle = 'equip_icon',
    name = '短剑',
    goodsType = 1001,
    isBag = 1,
@@ -155,6 +177,7 @@ _cfg.goods = {
   },
   [1002] = {
    id = 1002,
+   assetBundle = 'equip_icon',
    name = '头盔',
    goodsType = 1002,
    isBag = 1,

@@ -16,11 +16,23 @@ function Init()
     end
 end
 
+function CreateCanvasUI(canvasGo, strCanvasName, dOrder, dontDestroyOnLoad, dRenderMode, dUIScaleMode)
+    dontDestroyOnLoad = dontDestroyOnLoad or false
+    dRenderMode = dRenderMode or UnityEngine.RenderMode.ScreenSpaceOverlay
+    dUIScaleMode = dUIScaleMode or UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize
+
+    local canvasObj = CreateCanvas(canvasGo, strCanvasName, dOrder, dontDestroyOnLoad, dRenderMode, dUIScaleMode)
+    le_tbCanvasObj[strCanvasName] = canvasObj
+
+    return canvasObj
+end
+
 function CreateCanvas(canvasGo, strCanvasName, dOrder, dontDestroyOnLoad, dRenderMode, dUIScaleMode)
 
-    if GetCanvasObject(strCanvasName) then
+    -- to do: 废弃
+    --[[if GetCanvasObject(strCanvasName) then
         return le_tbCanvasObj[strCanvasName]
-    end
+    end--]]
 
     if not canvasGo then
         canvasGo = UnityEngine.GameObject()

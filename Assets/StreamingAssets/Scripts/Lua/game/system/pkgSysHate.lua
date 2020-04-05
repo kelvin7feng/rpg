@@ -42,7 +42,7 @@ function AddHate(agent, dId, dHate)
 
 	UpdateTargetEnemy(agent)
 
-	PrintHateList(agent)
+	-- PrintHateList(agent)
 end
 
 function SortHateRank(agent, dId)
@@ -182,6 +182,10 @@ function UpdateTargetEnemy(agent)
 			end
 		end
 	end
+end
+
+function ClearHateList(agent)
+	agent.aiData.tbHateList = {}
 end
 
 function PrintHateList(agent)

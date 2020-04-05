@@ -43,6 +43,9 @@ function Die(player)
     end
 
     pkgSysAI.RemoveDeadPlayer(player)
+
+    -- 移除nav agent
+    player:SetNavMeshEnable(false)
 end
 
 function Stay(player)
@@ -159,4 +162,21 @@ function OnHitPlayer(dPlayerId, objWeapon)
     if pkgFSMManger.IsInState(player, pkgStateDefination.State.ATTACK) then
         pkgSysEffect.PlayWeaponEffect(objWeapon)
     end
+end
+
+function OnPlayerDie(dPlayerId, objWeapon)
+    local player = pkgActorManager.GetActor(dPlayerId)
+    if not player then
+        return false
+    end
+
+    Destory(player)
+end
+
+function Destory(player)
+    pkgActorManager.Remove(player)
+    pkgSysMonster.StopBehaviour(player)
+    pkgFSMManger.RemoveFSM(player.fsm)
+    pkgSysHate.ClearHateList(player)
+    UnityEngine.Object.Destroy(player.gameObject)
 end

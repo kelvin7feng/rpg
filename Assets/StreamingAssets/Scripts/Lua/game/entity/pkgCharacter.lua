@@ -24,6 +24,11 @@ function Character:ctor(paramters)
     local spawnPosition = paramters.spawnPosition
     local spawnRotate = paramters.spawnRotate
 
+    local bFind, tbhit = UnityEngine.AI.NavMesh.SamplePosition(spawnPosition, Slua.out, 5, -1)
+    if bFind then
+        spawnPosition = tbhit.position
+    end
+
     local player = UnityEngine.GameObject.Instantiate(prefab)
     player.transform.position = spawnPosition
     
@@ -34,6 +39,7 @@ function Character:ctor(paramters)
     
     self.gameObject = player
     self.spawnPosition = spawnPosition
+    self.spawnForward = spawnRotate
     self.transform = player.transform
     self.inputDestination = nil
     self.animator = player:GetComponent(UnityEngine.Animator)
@@ -55,6 +61,10 @@ function Character:GetSpawnPosition()
     return UnityEngine.Vector3(self.spawnPosition.x,self.spawnPosition.y,self.spawnPosition.z)
 end
 
+function Character:GetSpawnForward()
+    return self.spawnForward
+end
+
 function Character:SetDie(bDie)
     self.bDie = bDie
 end
@@ -65,4 +75,8 @@ function Character:SetHurt(bHurt)
     end
 	
     self.bHurt = bHurt
+end
+
+function Character:SetNavMeshEnable(bEnable)
+    self.navMeshAgent.enabled = bEnable
 end

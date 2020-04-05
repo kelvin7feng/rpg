@@ -1,5 +1,9 @@
 doNameSpace("APICondition")
 
+function IsPause(agent)
+    return agent.aiData.bIsPause
+end
+
 function IsIdle(agent)
     return true
 end
@@ -21,12 +25,12 @@ function IsHurt(agent)
 end
 
 function IsDead(agent)
-    return pkgFSMManger.IsInState(agent, pkgStateDefination.State.DIE)
+    return agent.stat:GetHp() <= 0
 end
 
 function CanInterrupt(agent)
-    if pkgFSMManger.IsInState(agent, pkgStateDefination.State.DIE)
-        or IsHurt(agent)
+    if IsDead(agent)
+        --or IsHurt(agent)
         or agent.aiData.bInterruptByHate then
         return true
     end

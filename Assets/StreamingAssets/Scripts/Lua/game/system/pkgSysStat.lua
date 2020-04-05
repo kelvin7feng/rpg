@@ -21,13 +21,18 @@ end
 
 function DoDamage(player, attacker, dDamage)
 
+    if pkgGlobalConfig.GodMode and pkgActorManager.IsMainPlayer(player) then
+        return
+    end
+    
     player.stat:TakeDamage(dDamage)
 
     -- 优化: 连续受击的情况需要处理
     if not pkgFSMManger.IsInState(player, pkgStateDefination.State.HURT) then
-        player:SetHurt(true)
+        -- player:SetHurt(true)
     end
     
     pkgSysAI.AddAttackerToHateList(player, attacker)
-    pkgMainUI.UpdatePlayerHp()
+    pkgEventManager.PostEvent(CLIENT_EVENT.PLAYER_HURT, player)
+    pkgFlyWordUI.PlayFlyWord(player, 1, dDamage)
 end

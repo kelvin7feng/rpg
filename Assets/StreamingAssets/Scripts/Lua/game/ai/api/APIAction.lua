@@ -12,6 +12,16 @@ function ResetHurt(agent)
     end
 end
 
+function MoveForward(agent)
+    local pos = pkgSysMonster.GetForwardPos(agent, 5)
+    pkgSysPlayer.SetMoveSpeed(agent, agent.aiData:GetFieldConfig(pkgConfigFieldDefination.Monster.SPEED_OF_RUN))
+    pkgSysPlayer.SetDestination(agent, pos)
+
+    pkgSysPlayer.SetAnimationMoveSpeed(agent, 0.8)
+
+    return true
+end
+
 function MoveRandomly(agent)
     local pos = pkgSysMonster.GetRandomMovePos(agent)
     pkgSysPlayer.SetMoveSpeed(agent, agent.aiData:GetFieldConfig(pkgConfigFieldDefination.Monster.SPEED_OF_WALK))
@@ -37,7 +47,7 @@ function ChaseTarget(agent)
         dAttackDistance = 1
     end
 
-    pkgSysPlayer.SetAnimationMoveSpeed(agent, 1)
+    pkgSysPlayer.SetAnimationMoveSpeed(agent, 0.8)
     pkgSysPlayer.SetStoppingDistance(agent, dAttackDistance + 0.1)
 
     return true

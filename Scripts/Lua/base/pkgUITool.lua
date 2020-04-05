@@ -116,12 +116,12 @@ end
 
 m_resetImageGo2Func = {}
 
-function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams, onError)
+function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams)
     if not gameObject then
         return
     end
     tbParams = tbParams or  {}
-    
+
 	local function onLoadComplete( prefab )
         if m_resetImageGo2Func[gameObject:GetInstanceID()] ~= tostring(onComplete) then
             return
@@ -157,7 +157,64 @@ function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams, 
         end
     end
 
-    print("tbData.strAss, tbData.strImg ", gameObject, assetBundleName, imageName)
     m_resetImageGo2Func[gameObject:GetInstanceID()] = tostring(onComplete)
     pkgAssetBundleMgr.LoadAssetBundle(assetBundleName, imageName, onLoadComplete)
+end
+
+function CreateIcon(dGoodsId, parent, callback, tbParams)
+    
+    if not dGoodsId then
+        return
+    end
+    
+    local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(dGoodsId)
+    if not tbGoodsInfo then
+        return
+    end
+
+    tbParams = tbParams or  {}
+
+    -- to do:show goods info
+    local function onDefaultClick(go)
+        
+    end
+
+	local function onLoadComplete( prefab )
+
+        if not prefab then return end
+
+        local objIcon = UnityEngine.Object.Instantiate(prefab)
+        objIcon.name = "icon"
+        objIcon.gameObject:SetActive(true)
+
+        if parent then
+            objIcon.transform:SetParent(parent.transform, false)
+        end
+
+        local imgGoods = objIcon.transform:Find("Image")
+        if imgGoods then
+            pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.id), imgGoods)
+        end
+
+        if tbParams.count then
+            pkgUITool.SetActiveByName(objIcon, "Count", true)
+            pkgUITool.SetStringByName(objIcon, "Count", tbParams.count)
+        else
+            pkgUITool.SetActiveByName(objIcon, "Count", false)
+        end
+
+        if callback then
+            callback(objIcon)
+        end
+
+        if tbParams.onClick then
+            pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick)
+        else
+            pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick)
+        end
+    end
+
+    print("assetBundleName, fileName:", parent.name, tbGoodsInfo.assetBundle, tostring(dGoodsId))
+
+    pkgAssetBundleMgr.LoadAssetBundle("ui", "GoodsIcon", onLoadComplete)
 end

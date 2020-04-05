@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 1620100355
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bbe4c38d6222c4d1ee1b9e7d6cddcba2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: cb3f6df5cbc4a2990c44c2787bc9553a
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/ABRes/Equip/1006.PNG
+- Assets/ABRes/Equip/1002.png
+- Assets/ABRes/Equip/1001.png
+- Assets/ABRes/Equip/1003.png
+- Assets/ABRes/Equip/1004.png
+- Assets/ABRes/Equip/1005.png
+- Assets/ABRes/Equip/necklace.PNG
+Dependencies: []

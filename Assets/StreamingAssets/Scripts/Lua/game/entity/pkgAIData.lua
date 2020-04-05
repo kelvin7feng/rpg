@@ -4,9 +4,14 @@ AIData = class()
 function AIData:ctor(paramters)
     self.behaviourTreeOwner = nil
     self.bIsHurt = false
+    self.bIsPause = false
     self.tbHateList = {}
     self.targetEnemy = nil
     self.bInterruptByHate = false
+end
+
+function AIData:SetPause(bIsPause)
+    self.bIsPause = bIsPause
 end
 
 function AIData:GetHateListCount()

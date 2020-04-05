@@ -6,7 +6,9 @@ prefabFile = "Main"
 event_listener = {
     {CLIENT_EVENT.PLAYER_HURT, "UpdatePlayerHp"},
     {CLIENT_EVENT.UPDATE_LEVEL, "UpdateLevelInfo"},
-    {CLIENT_EVENT.UPDATE_GOODS, "UpdatePlayerInfo"},  
+    {CLIENT_EVENT.UPDATE_GOODS, "UpdatePlayerInfo"},
+    {CLIENT_EVENT.UPDATE_WEAR_EQUIP, "InitEquipList"},  
+    {CLIENT_EVENT.UPDATE_TAKE_OFF_EQUIP, "InitEquipList"},  
 }
 
 -- player info
@@ -29,6 +31,8 @@ m_btnBag = m_btnBag or nil
 m_tbBtn = {}
 m_dBtnCount = 5
 m_dCurBtnIndex = 3
+
+m_tbEquipSlot = {}
 
 local function onClickChallengeBoss()
     pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.CHALLENGE_BOSS)
@@ -59,15 +63,51 @@ local function onClickBag()
 end
 
 m_tbClickFunc = {
-    onClickHome, onClickField, onClickBattle, onClickRole, onClickPet
+    { 
+        callBack = onClickHome,
+        panelName = "Panel/HomePanel",
+        panel = nil,
+    },
+    { 
+        callBack = onClickField,
+        panelName = "Panel/FieldPanel",
+        panel = nil,
+    },
+    { 
+        callBack = onClickBattle,
+        panelName = "Panel/BattlePanel",
+        panel = nil,
+    },
+    { 
+        callBack = onClickRole,
+        panelName = "Panel/RolePanel",
+        panel = nil,
+    },
+    { 
+        callBack = onClickPet,
+        panelName = "Panel/PetPanel",
+        panel = nil,
+    },
 }
 
 local function onClickBottomBtn(btnGo, i)
     m_dCurBtnIndex = i
     
     updateBtn()
+    updatePanel()
 
-    m_tbClickFunc[i]()
+    m_tbClickFunc[i].callBack()
+end
+
+function updatePanel()
+    for i=1, m_dBtnCount do
+        local panel = m_tbClickFunc[i].panel
+        if i == m_dCurBtnIndex then
+            panel.gameObject:SetActive(true)
+        else
+            panel.gameObject:SetActive(false)
+        end
+    end
 end
 
 function updateBtn()
@@ -106,9 +146,13 @@ function init()
         local objBtn = m_bottomPanel.transform:Find("Btn"..i)
         m_tbBtn[i] = objBtn
         pkgButtonMgr.AddBtnListener(objBtn, onClickBottomBtn, i)
+
+        m_tbClickFunc[i].panel = gameObject.transform:Find(m_tbClickFunc[i].panelName)
     end
 
+    InitEquipList()
     updateBtn()
+    updatePanel()
 end
 
 function show()
@@ -171,6 +215,37 @@ end
 function SetPlayerHpProgress(dRatio)
     if m_playerHpSlider then
         m_playerHpSlider.value = dRatio
+    end
+end
+
+function InitEquipList()
+    local tbSlots = pkgUserDataManager.GetEquipSlots()
+    for i, strEquipId in ipairs(tbSlots) do
+        local btnSlot = gameObject.transform:Find("Panel/RolePanel/Panel/BtnPanel/BtnSlot"..i)
+        m_tbEquipSlot[i] = btnSlot
+
+        local function onClickEquipSlotBtn(btnGo)
+            pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUISelectEquip", nil, i) 
+        end
+
+        -- set icon
+        local tbEquip = pkgUserDataManager.GetEquip(strEquipId)
+        pkgButtonMgr.RemoveGameObjectListeners(btnSlot)
+
+        local icon = btnSlot.transform:Find("icon")
+        if tbEquip then
+            if not icon then
+                pkgUITool.CreateIcon(tbEquip.cfgId, btnSlot, nil, {onClick = onClickEquipSlotBtn})
+            else
+                icon.gameObject:SetActive(true)
+            end            
+        else
+            if icon then
+                icon.gameObject:SetActive(false)
+            end
+            pkgButtonMgr.AddBtnListener(btnSlot, onClickEquipSlotBtn)
+        end
+        
     end
 end
 

@@ -3,12 +3,12 @@ doNameSpace("pkgLanguageMgr")
 function GetStringById(dLanguageStringId)
     if not dLanguageStringId then
         print("dLanguageStringId is nil")
-        return 
+        return ""
     end
     local tbLanguageCfg = _cfg.language[dLanguageStringId]
     if not tbLanguageCfg then
         print("can't find the id:", dLanguageStringId)
-        return 
+        return dLanguageStringId
     end
     
     return tbLanguageCfg[pkgGlobalConfig.DefaulutLanguage]

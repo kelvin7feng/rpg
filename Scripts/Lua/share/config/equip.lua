@@ -1,6 +1,7 @@
 _cfg.equip = {
   [1001] = {
    id = 1001,
+   slot = 1,
    maxLevel = 3,
    quality = 1,
    a = -1,
@@ -17,6 +18,7 @@ _cfg.equip = {
   },
   [1002] = {
    id = 1002,
+   slot = 2,
    maxLevel = 3,
    quality = 1,
    a = -1,
@@ -33,6 +35,7 @@ _cfg.equip = {
   },
   [1003] = {
    id = 1003,
+   slot = 3,
    maxLevel = 3,
    quality = 1,
    a = -1,
@@ -49,6 +52,7 @@ _cfg.equip = {
   },
   [1004] = {
    id = 1004,
+   slot = 4,
    maxLevel = 3,
    quality = 1,
    a = -1,
@@ -65,6 +69,7 @@ _cfg.equip = {
   },
   [1005] = {
    id = 1005,
+   slot = 5,
    maxLevel = 3,
    quality = 1,
    a = -1,
@@ -81,6 +86,7 @@ _cfg.equip = {
   },
   [1006] = {
    id = 1006,
+   slot = 6,
    maxLevel = 3,
    quality = 1,
    a = -1,

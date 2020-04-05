@@ -13,6 +13,20 @@ function SetPlayerHpProgress(dRatio)
     end
 end
 
+local function onClickBattle()
+    print("onClickBattle =============== ")
+end
+
+local function onClickChat()
+    local player = pkgActorManager.GetMainPlayer()
+    pkgFlyWordUI.PlayFlyWord(player, 1, math.random(10,100))
+end
+
+local function onClickChallengeBoss()
+    -- to do: check
+    pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.CHALLENGE_BOSS)
+end
+
 function Init()
     local function onLoadComplete(prefab)
         mainUI = UnityEngine.GameObject.Instantiate(prefab)
@@ -26,8 +40,17 @@ function Init()
         local objHpSlider = mainUI.transform:Find("HpProgress/Slider")
         playerHpSlider = objHpSlider:GetComponent(UnityEngine.UI.Slider)
         SetPlayerHpProgress(pkgSysStat.GetRadioHealth(pkgActorManager.GetMainPlayer()))
+
+        local bottomPanel = mainUI.transform:Find("BottomPanel")
+        pkgButtonMgr.AddListener(bottomPanel, "BtnBattle", onClickBattle)
+        pkgButtonMgr.AddListener(bottomPanel, "BtnPet", onClickChat)
+
+        local secondBottomPanel = mainUI.transform:Find("SecondBottomPanel")
+        pkgButtonMgr.AddListener(secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("ui", "MainUI", onLoadComplete)
-    pkgMinimap.Init()
+    
+    --pkgMinimap.Init()
+    pkgFlyWordUI.Init()
 end

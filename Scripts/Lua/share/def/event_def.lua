@@ -29,6 +29,10 @@ EVENT_ID =  {
 
 	EQUIP = {
 		UPDATE_DATA			    =   40001,
+		WEAR_EQUIP			    =   40002,
+		ON_WEAR_EQUIP		    =   40003,
+		TAKE_OFF			    =   40004,
+		ON_TAKE_OFF			    =   40005,
 	}
 }
 
@@ -38,4 +42,6 @@ CLIENT_EVENT = {
 	UPDATE_LEVEL				= "update_level",
 	UPDATE_GOODS				= "update_goods",
 	UPDATE_EQUIP				= "update_equip",
+	UPDATE_WEAR_EQUIP   		= "update_wear_equip",
+	UPDATE_TAKE_OFF_EQUIP  		= "update_take_off_equip",
 }

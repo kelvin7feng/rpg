@@ -4,11 +4,10 @@ function PlayerAttackState:ctor(stateName)
 end
 
 function PlayerAttackState:OnEnter(...)
-    print("PlayerAttackState:OnEnter()")
+    LOG_DEBUG(self.fsm.owner:GetId() .. ",PlayerAttackState:OnEnter()")
     local tbParamters = {...}
     local currentAttackSkill = tbParamters[1]
     pkgSysSkill.Attack(self.fsm.owner, currentAttackSkill)
-    pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
 end
 
 function PlayerAttackState:OnUpdate()
@@ -30,7 +29,7 @@ function PlayerAttackState:OnUpdate()
 end
 
 function PlayerAttackState:OnLeave()
-    print("PlayerAttackState:OnLeave()")
+    LOG_DEBUG(self.fsm.owner:GetId() .. ",PlayerAttackState:OnLeave()")
     self.fsm.owner.attackSkill = nil
     pkgSysSkill.SetAttackSkill(self.fsm.owner, nil)
 end

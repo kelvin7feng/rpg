@@ -10,7 +10,15 @@ function CreatePlayer(spawnPosition, spawnRotate)
         pkgCamera.SetFollowTarget(mainPlayer)
         AddActor(mainPlayer)
         m_mainPlayer = mainPlayer
-        pkgMainUI.Init()
+
+        local areaBaker = mainPlayer.gameObject:AddComponent(KG.AgentAreaBaker)
+        areaBaker:SetVoxelSize(pkgGlobalConfig.NavMeshSurface.VOXEL_SIZE)
+        areaBaker:SetDistanceThreshold(pkgGlobalConfig.NavMeshSurface.DISTANCE_THRESHOLD)
+        areaBaker:SetVolumn(pkgGlobalConfig.NavMeshSurface.VOLUME_X,pkgGlobalConfig.NavMeshSurface.VOLUME_Y,pkgGlobalConfig.NavMeshSurface.VOLUME_Z)
+
+        pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
+
+        pkgUIBaseViewMgr.showByViewPath("game/battle/pkgUIMain")
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("model", "Hero", onLoadComplete)
@@ -35,8 +43,20 @@ function GetActor(dId)
     return m_tbActor[dId]
 end
 
+function IsMainPlayer(player)
+    return player == m_mainPlayer and true or false
+end
+
 function IsAIPlayer(player)
     return player.aiData and true or false
+end
+
+function IsMonster(player)
+    if player.aiData and player ~= m_mainPlayer then
+        return true
+    end
+
+    return false
 end
 
 function GetAllEnemy(player)
@@ -64,4 +84,11 @@ end
 
 function IsEnemy(player1, player2)
     return player1:GetSide() ~= player2:GetSide() and true or false
+end
+
+function Remove(player)
+    local dId = player:GetId()
+    if m_tbActor[dId] then
+        m_tbActor[dId] = nil
+    end
 end
