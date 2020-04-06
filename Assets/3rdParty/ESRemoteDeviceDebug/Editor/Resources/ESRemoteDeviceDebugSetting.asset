@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2108021532, guid: 5687098950d3a0b4897e5c60721136cc, type: 3}
+  m_Name: ESRemoteDeviceDebugSetting
+  m_EditorClassIdentifier: 
+  m_RefreshMaxCount: 10
+  m_RefreshFrequency: 1
+  m_AutoRefreshFrequency: 5
+  m_ShowInstanceId: 0
+  m_IsVerifyUnityVersion: 0
+  m_ComponentProperties: []
+  m_CustomComponentPropertyDefinePath: Assets/3rdParty/ESRemoteDeviceDebug\Runtime\Custom\CustomComponentPropertyDefine.cs
