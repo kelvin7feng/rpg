@@ -87,20 +87,20 @@ namespace KG
                 ab = GetLoadedAssetBundle(assetBundleName);
             }
 
-            Debug.Log("assetBundleName:" + assetBundleName + "," + assetName);
+            /*Debug.Log("assetBundleName:" + assetBundleName + "," + assetName);
             string[] names = ab.GetAllAssetNames();
             for (int i = 0; i < names.Length; i++)
             {
                 Debug.Log(names[i]);
-            }
+            }*/
 
             LoadDependenciedAssetBundle(assetBundleName);
             AssetBundleRequest abRequest = ab.LoadAssetAsync(assetName);
             yield return abRequest;
-            GameObject go = abRequest.asset as GameObject;
+            //GameObject go = abRequest.asset as GameObject;
             if (funcCallback != null)
             {
-                funcCallback.call(go);
+                funcCallback.call(abRequest.asset);
             }
         }
 
