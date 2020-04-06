@@ -174,8 +174,9 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
 
     tbParams = tbParams or  {}
 
+    -- to do:show goods info
     local function onDefaultClick(go)
-        print("onDefaultClick ================ ")
+        
     end
 
 	local function onLoadComplete( prefab )
@@ -183,8 +184,9 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
         if not prefab then return end
 
         local objIcon = UnityEngine.Object.Instantiate(prefab)
-        
+        objIcon.name = "icon"
         objIcon.gameObject:SetActive(true)
+
         if parent then
             objIcon.transform:SetParent(parent.transform, false)
         end

@@ -228,6 +228,10 @@ function InitEquipList()
             pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUISelectEquip", nil, i) 
         end
 
+        local function onClickDetail(btnGo)
+            pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, strEquipId)
+        end
+
         -- set icon
         local tbEquip = pkgUserDataManager.GetEquip(strEquipId)
         pkgButtonMgr.RemoveGameObjectListeners(btnSlot)
@@ -235,7 +239,7 @@ function InitEquipList()
         local icon = btnSlot.transform:Find("icon")
         if tbEquip then
             if not icon then
-                pkgUITool.CreateIcon(tbEquip.cfgId, btnSlot, nil, {onClick = onClickEquipSlotBtn})
+                pkgUITool.CreateIcon(tbEquip.cfgId, btnSlot, nil, {onClick = onClickDetail})
             else
                 icon.gameObject:SetActive(true)
             end            

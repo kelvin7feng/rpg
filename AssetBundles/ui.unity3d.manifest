@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1207583113
+CRC: 1066658089
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4f38f83effc7c73359c97e4a6280d78c
+    Hash: 286ce31962f0436013776ecc4f3d873f
   TypeTreeHash:
     serializedVersion: 2
     Hash: c0cd98478842b6949b941a408fc8db59
@@ -108,6 +108,7 @@ Assets:
 - Assets/ABRes/UI/VirtualController.prefab
 - Assets/ABRes/UI/Minimap.prefab
 - Assets/ABRes/UI/Main.prefab
+- Assets/ABRes/UI/EquipDetail.prefab
 - Assets/ABRes/UI/GoodsIcon.prefab
 - Assets/ABRes/UI/FlyWord.prefab
 - Assets/ABRes/UI/FixedDebug.prefab
