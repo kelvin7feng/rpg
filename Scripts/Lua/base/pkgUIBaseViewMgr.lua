@@ -69,6 +69,7 @@ local function initCloseEvent(view)
     end
 
     pkgButtonMgr.AddListener(view.gameObject, "BtnDefaultClose", doClose)
+    pkgButtonMgr.AddListener(view.gameObject, "Panel/BtnDefaultClose", doClose)
 end
 
 -- 注册事件监听

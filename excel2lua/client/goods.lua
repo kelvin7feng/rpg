@@ -5,7 +5,7 @@ _cfg.goods = {
    languageId = 10001,
    name = '金币',
    goodsType = 1,
-   isBag = -1,
+   isBag = 0,
    extraCfg = '',
   },
   [2] = {
@@ -14,7 +14,7 @@ _cfg.goods = {
    languageId = 10002,
    name = '钻石',
    goodsType = 2,
-   isBag = -1,
+   isBag = 0,
    extraCfg = '',
   },
   [3] = {
@@ -23,7 +23,7 @@ _cfg.goods = {
    languageId = 10003,
    name = '经验',
    goodsType = 3,
-   isBag = -1,
+   isBag = 0,
    extraCfg = '',
   },
   [1004] = {

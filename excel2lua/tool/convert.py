@@ -75,12 +75,12 @@ def excel2lua(src_excel_path, tgt_lua_path):
                     v = '\'%s\'' % (cell.value)
             elif cell_val_type == 'int':
                 if cell.ctype == 0:
-                    v = -1
+                    v = 0
                 else:
                     v = int(cell.value)
             elif cell_val_type == 'float':
                 if cell.ctype == 0:
-                    v = -1
+                    v = 0
                 else:
                     v = float(cell.value)
             elif cell_val_type == 'table':
