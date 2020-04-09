@@ -9,6 +9,7 @@ namespace KG
 	public class SceneHelper : MonoBehaviour {
 
         private static SceneHelper _Instance;
+        public static AsyncOperation operation;
 
         public static SceneHelper Instance
         {
@@ -45,7 +46,7 @@ namespace KG
 
         protected IEnumerator LoadAsynchronously(string sceneName, LoadSceneMode loadSceneMode, LuaFunction funcCallback)
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
+            operation = SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
 
             while (!operation.isDone)
             {
@@ -56,6 +57,7 @@ namespace KG
             if (funcCallback != null)
             {
                 funcCallback.call();
+                operation = null;
             }
         }
     }

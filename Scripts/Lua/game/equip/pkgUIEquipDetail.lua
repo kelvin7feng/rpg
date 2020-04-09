@@ -69,6 +69,7 @@ function show(strId)
     local function onClickReplace(btnGo)
         local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dEquipCfgId)
         pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUISelectEquip", nil, tbCfg.slot)
+        pkgUIBaseViewMgr.destroyUI(pkgUIEquipDetail)
     end
 
     pkgButtonMgr.AddBtnListener(m_btnLevelUp, onClickLevelUp)

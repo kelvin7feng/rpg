@@ -31,7 +31,8 @@ function SwitchScene(strSceneName, dLoadSceneMode, callback)
     local function onLoadComplete()
         callback()
         bIsLoading = false
+        --pkgUIBaseViewMgr.destroyUI(pkgUILoading)
     end
-    --pkgLoadingUI.SwitchToLoadingScene(strSceneName, onLoadComplete)
+    --pkgUIBaseViewMgr.showByViewPath("game/ui/pkgUILoading")
     KG.SceneHelper.Instance:LoadSceneAsync(strSceneName, dLoadSceneMode, onLoadComplete);
 end
