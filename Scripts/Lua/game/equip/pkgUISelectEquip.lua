@@ -86,10 +86,12 @@ end
 
 function updateFreeEquip(dSlotId)
     local tbEquipList = pkgUserDataManager.GetEquipListWithoutSlot(dSlotId)
+
+    resetScrollViewItem()
+    
     if #tbEquipList <= 0 then
         m_panelNoEquip.gameObject:SetActive(true)
     else
-        resetScrollViewItem()
         local function onLoadCompelte(prefab)
             for i, tbEquipInfo in ipairs(tbEquipList) do
                 local strKey = "equipSelector" .. i
