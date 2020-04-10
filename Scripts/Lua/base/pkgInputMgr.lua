@@ -73,6 +73,11 @@ function UpdatePlayerInput()
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.B) then
         pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
     end
+
+    if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.G) then
+        pkgGlobalConfig.GodMode = true
+    end
+    
 end
 
 function UpdateVirtualController()

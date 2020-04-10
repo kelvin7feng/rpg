@@ -42,7 +42,10 @@ function SetBagVal(dType, dCount)
         m_UserData.BagInfo[tostring(dType)] = nil
         return
     end
-    m_UserData.BagInfo[tostring(dType)] = dCount
+    local tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(dType)
+    if tbCfg then
+        m_UserData.BagInfo[tostring(dType)] = dCount
+    end
 end
 
 function GetBagVal(dType)
