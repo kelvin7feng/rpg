@@ -23,6 +23,7 @@ namespace KG
                 svr.start("main");
             });
             Application.targetFrameRate = 30;
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
 
         void Start()
