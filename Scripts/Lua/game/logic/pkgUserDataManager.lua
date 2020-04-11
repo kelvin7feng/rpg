@@ -2,6 +2,22 @@ doNameSpace("pkgUserDataManager")
 
 m_UserData = nil
 
+local function sortFromBestToNormal(a,b)
+    local tbCfg1 = pkgEquipCfgMgr.GetEquipCfg(a.cfgId)
+    local tbCfg2 = pkgEquipCfgMgr.GetEquipCfg(b.cfgId)
+    if tbCfg1.quality ~= tbCfg2.quality then
+        return tbCfg1.quality > tbCfg2.quality
+    elseif tbCfg1.slot ~= tbCfg2.slot then
+        return tbCfg1.slot < tbCfg2.slot
+    else
+        return tbCfg1.id > tbCfg2.id
+    end
+end
+
+local function sortGoodsByDefault(a,b)
+    return tbCfg1.id > tbCfg2.id
+end
+
 function InitUserData(objUserData)
     m_UserData = objUserData
 end
@@ -22,15 +38,18 @@ function GetBag()
     for strType, dCount in pairs(tbBagInfo) do
         tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(strType)
         if tbCfg and tbCfg.isBag == 1 then
-            table.insert(tbShowBag, {id = strType, count = dCount, assets = "goods"})
+            table.insert(tbShowBag, {id = strType, count = dCount, assets = tbCfg.assetBundle})
         end
+        table.sort(tbShowBag,sortGoodsByDefault)
     end
 
     local tbEquipList = GetEquipList()
-    for _, tbEquip in pairs(tbEquipList) do
-        tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbEquip.cfgId)
-        if tbCfg and tbCfg.isBag == 1 then
-            table.insert(tbShowBag, {id = tbEquip.cfgId, count = 1, assets = "equip_icon"})
+    if #tbEquipList > 0 then
+        for _, tbEquip in ipairs(tbEquipList) do
+            tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbEquip.cfgId)
+            if tbCfg and tbCfg.isBag == 1 then
+                table.insert(tbShowBag, {id = tbEquip.cfgId, count = 1, assets = tbCfg.assetBundle})
+            end
         end
     end
 
@@ -61,8 +80,16 @@ function GetDiamond()
 end
 
 function GetEquipList()
+    
+    local tb = {}
     local tbEquipList = m_UserData.EquipInfo.tbEquipList
-    return tbEquipList
+    for _, tbEquip in pairs(tbEquipList) do
+        table.insert(tb, tbEquip)
+    end
+
+    table.sort(tb, sortFromBestToNormal)
+
+    return tb
 end
 
 function GetEquip(strId)
@@ -116,6 +143,8 @@ function GetEquipListWithoutSlot(i)
             table.insert(tb, tbEquip)
         end
     end
+
+    table.sort(tb, sortFromBestToNormal)
 	
     return tb
 end

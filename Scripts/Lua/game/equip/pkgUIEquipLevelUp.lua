@@ -1,7 +1,7 @@
-doNameSpace("pkgUIEquipDetail")
+doNameSpace("pkgUIEquipLevelUp")
 
 assetbundleTag = "ui"
-prefabFile = "EquipDetail"
+prefabFile = "EquipLevelUp"
 
 event_listener = {
 
@@ -18,7 +18,7 @@ m_btnLevelUp = m_btnLevelUp or nil
 m_btnReplace = m_btnReplace or nil
 
 function init()
-    local goParent = gameObject.transform:Find("Panel/DetailPanel")
+    --[[local goParent = gameObject.transform:Find("Panel/DetailPanel")
     m_txtName = goParent.transform:Find("TxtName")
     m_txtQuality = goParent.transform:Find("TxtQuality")
     m_panelIcon = goParent.transform:Find("Icon")
@@ -27,7 +27,7 @@ function init()
     m_panelAttr = goParent.transform:Find("AttrPanel")
     m_txtEquipDesc = goParent.transform:Find("TxtEqupDesc")
     m_btnLevelUp = goParent.transform:Find("BtnPanel/BtnLevelUp")
-    m_btnReplace = goParent.transform:Find("BtnPanel/BtnReplace")
+    m_btnReplace = goParent.transform:Find("BtnPanel/BtnReplace")--]]
 end
 
 function resetAttrItem()
@@ -38,7 +38,7 @@ function resetAttrItem()
 end
 
 function show(strId)
-
+    do return end
     resetAttrItem()
     
     local tbEquipInfo = pkgUserDataManager.GetEquip(strId)
@@ -62,13 +62,13 @@ function show(strId)
         pkgUITool.SetActiveByName(m_panelAttr, "TxtAttr"..i, true)
     end
 
-    local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dEquipCfgId)
     local function onClickLevelUp(btnGo)
         pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipLevelUp", nil, tbCfg.slot)
         pkgUIBaseViewMgr.destroyUI(pkgUIEquipDetail)
     end
 
     local function onClickReplace(btnGo)
+        local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dEquipCfgId)
         pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUISelectEquip", nil, tbCfg.slot)
         pkgUIBaseViewMgr.destroyUI(pkgUIEquipDetail)
     end
