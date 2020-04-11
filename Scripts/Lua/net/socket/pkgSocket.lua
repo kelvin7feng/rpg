@@ -49,19 +49,6 @@ local function connect(address, port)
     return sock
 end
 
-local function receive_msg()
-    local recvt, sendt, status = socketCore.select({socket}, nil, 1)
-    if #recvt > 0 then
-        local response, receive_status = socket:receive()
-        if receive_status ~= "closed" then
-            if response then
-                print(response)
-                recvt, sendt, status = socketCore.select({socket}, nil, 1)
-            end
-        end
-    end
-end
-
 local function shutdown()
     print("shut down")
     socket:shutdown()
@@ -73,33 +60,43 @@ function ReceiveMsg()
     if not socket then
         return
     end
-
-    local data, status, partial = socket:receive("*a")
-    if ERROR_CODE[status] ~= 5 then
-        print("receive error:", ERROR_TIPS[ERROR_CODE[status]])
-        shutdown()
-        return
-    end
     
-    local strAppend = (data or partial)
-    strReceiveData = strReceiveData .. strAppend
-    dReceiveLength = dReceiveLength + #strAppend
-    
-    if dReceiveLength >= dHeaderLength then
-        local dStartSize, dTotolPacketSize, _, _, _, _ = string.unpack(strReceiveData,"<I<I<I<I<I")
-        dReceiveLength = dReceiveLength - dHeaderLength
+    local bRet = xpcall(
+        function()
+            local data, status, partial = socket:receive("*a")
+            if status == "closed" then
+                print("receive error:", ERROR_TIPS[ERROR_CODE[status]])
+                shutdown()
+                return
+            end
 
-        local dBodySize = dTotolPacketSize - dHeaderLength
-        if dReceiveLength >= dBodySize then
-            -- 如果是一个完整包,就处理
-            local strBody = string.sub(strReceiveData, dStartSize, dStartSize + dBodySize)
-            dReceiveLength = dReceiveLength - dBodySize
-            local tb = json.decode(strBody)
-            LOG_TABLE(tb)
-            pkgEventManager.PostEvent(unpack(tb))
-            -- delete current pack
-            strReceiveData = string.sub(strReceiveData, dTotolPacketSize + 1)
-        end
+            local strAppend = (data or partial)
+            if strAppend then
+                strReceiveData = strReceiveData .. strAppend
+                dReceiveLength = dReceiveLength + #strAppend
+            end
+
+            if dReceiveLength >= dHeaderLength then
+                print("dReceiveLength >= dHeaderLength:", dReceiveLength , dHeaderLength)
+                local dStartSize, dTotolPacketSize = string.unpack(strReceiveData,"<I")
+                if dReceiveLength >= dTotolPacketSize then
+                    -- 如果是一个完整包,就处理
+                    print("dReceiveLength >= dBodySize:", dReceiveLength, dTotolPacketSize)
+                    local strBody = string.sub(strReceiveData, dHeaderLength+1, dTotolPacketSize)
+                    local tb = json.decode(strBody)
+                    LOG_INFO("receive:"..string.len(strBody).."|"..strBody.."|")
+                    LOG_TABLE(tb)
+
+                    pkgEventManager.PostEvent(unpack(tb))
+                    -- delete current pack
+                    strReceiveData = string.sub(strReceiveData, dTotolPacketSize + 1)
+                    dReceiveLength = #strReceiveData
+                end
+            end
+        end, __TRACKBACK__)
+
+	if not bRet then
+		LOG_ERROR("ReceiveMsg error:", bRet)
     end
 end
 
@@ -151,7 +148,7 @@ function Send(dServerType, strData)
 
     local sendResult = socket:send(strFixHeader .. strBody)
     if sendResult then
-        print("send ok:", sendResult)
+        print("send to server:"..string.len(strData).."|"..strData.."|".."total:"..sendResult)
     end
 end
 

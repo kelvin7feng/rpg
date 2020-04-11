@@ -27,7 +27,7 @@ end
 
 function OnSpawnMonster(dCurLevel, dCurType, dMonsterId)
 
-    LOG_DEBUG("OnSpawnMonster ======================== ", dCurType, dCurLevel, dMonsterId)
+    LOG_DEBUG("OnSpawnMonster:", dCurType, dCurLevel, dMonsterId)
     if not dCurLevel or dCurLevel <= 0 or not dMonsterId or dMonsterId <= 0 then
         return false
     end

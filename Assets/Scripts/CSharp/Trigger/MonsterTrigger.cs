@@ -28,9 +28,9 @@ namespace KG
             SetTriggerName("monster_trigger");
         }
 
+#if UNITY_EDITOR
         public void OnDrawGizmos()
         {
-#if UNITY_EDITOR
             foreach (MonsterObject monsterObject in monsters)
             {
                 if (monsterObject != null)
@@ -43,8 +43,8 @@ namespace KG
                     }
                 }
             }
-#endif
         }
+
 
         public static void ForGizmo(Vector3 pos, Vector3 direction, Color color, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
         {
@@ -62,4 +62,5 @@ namespace KG
             Gizmos.DrawRay(pos + direction, left * arrowHeadLength);
         }
     }
+#endif
 }
