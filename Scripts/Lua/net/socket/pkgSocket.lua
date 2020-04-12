@@ -83,7 +83,7 @@ function ReceiveMsg()
                     -- 如果是一个完整包,就处理
                     print("dReceiveLength >= dBodySize:", dReceiveLength, dTotolPacketSize)
                     local strBody = string.sub(strReceiveData, dHeaderLength+1, dTotolPacketSize)
-                    local tb = json.decode(strBody)
+                    local tb = cjson.decode(strBody)
                     LOG_INFO("receive:"..string.len(strBody).."|"..strBody.."|")
                     LOG_TABLE(tb)
 
@@ -129,7 +129,7 @@ end
 
 function SendToLogic(dProtocolId, ...)
     local tb = {dProtocolId,{...}}
-    local strJson = json.encode(tb)
+    local strJson = cjson.encode(tb)
 
     pkgSocket.Send(pkgGlobalConfig.ServerType.LOGIC, strJson)
 end

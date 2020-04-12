@@ -61,6 +61,6 @@ namespace KG
             Gizmos.DrawRay(pos + direction, right * arrowHeadLength);
             Gizmos.DrawRay(pos + direction, left * arrowHeadLength);
         }
-    }
 #endif
+    }
 }

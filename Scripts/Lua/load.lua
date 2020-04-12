@@ -1,6 +1,7 @@
 import "UnityEngine"
 
 require "luapack"
+cjson = require "cjson"
 
 require("share/load")
 
