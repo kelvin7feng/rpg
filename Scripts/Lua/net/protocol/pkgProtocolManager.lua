@@ -14,6 +14,8 @@ function Init()
 
     -- 装备
     pkgEventManager.Register(EVENT_ID.EQUIP.UPDATE_DATA, pkgEquipMgr.OnUpdateData)
+    pkgEventManager.Register(EVENT_ID.EQUIP.DELETE_EQUIP, pkgEquipMgr.OnDeleteEquip)
     pkgEventManager.Register(EVENT_ID.EQUIP.ON_WEAR_EQUIP, pkgEquipMgr.OnWearEquip)
     pkgEventManager.Register(EVENT_ID.EQUIP.ON_TAKE_OFF, pkgEquipMgr.OnTakeOff)
+    pkgEventManager.Register(EVENT_ID.EQUIP.ON_LEVEL_UP, pkgEquipMgr.OnLevelUp)
 end

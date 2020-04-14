@@ -100,7 +100,7 @@ function GetEquip(strId)
 end
 
 function SetEquip(strId, tbEquip)
-    if not strId or not tbEquip then
+    if not strId then
         return
     end
     m_UserData.EquipInfo.tbEquipList[strId] = tbEquip

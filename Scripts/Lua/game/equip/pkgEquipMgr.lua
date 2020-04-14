@@ -13,6 +13,19 @@ function OnUpdateData(tbEquipList)
     pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_EQUIP)
 end
 
+function OnDeleteEquip(tbEquipList)
+	
+    if not tbEquipList then
+        return
+    end
+
+    for _, strId in pairs(tbEquipList) do
+        pkgUserDataManager.SetEquip(strId, nil)
+    end
+
+    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_EQUIP)
+end
+
 function OnWearEquip(dSlotId, strId)
     pkgUserDataManager.SetEquipSlot(dSlotId, strId)
     pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_WEAR_EQUIP, dSlotId)
@@ -29,4 +42,15 @@ end
 
 function TakeOff(dSlotId, strId)
     pkgSocket.SendToLogic(EVENT_ID.EQUIP.TAKE_OFF, dSlotId, strId)
+end
+
+function LevelUp(strId, tbConsumeEquip)
+    pkgSocket.SendToLogic(EVENT_ID.EQUIP.LEVEL_UP, strId, tbConsumeEquip)
+end
+
+function OnLevelUp(strId, dLevel, dLevelUpExp)
+    local tbEquip = pkgUserDataManager.GetEquip(strId)
+    tbEquip.dLevel = dLevel
+    tbEquip.dLevelUpExp = dLevelUpExp
+    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_LEVEL_UP_EQUIP, strId)
 end
