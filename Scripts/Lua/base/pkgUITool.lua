@@ -184,7 +184,7 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
         if not prefab then return end
 
         local objIcon = UnityEngine.Object.Instantiate(prefab)
-        objIcon.name = "icon"
+        objIcon.name = tbParams.iconName or "icon"
         objIcon.gameObject:SetActive(true)
 
         if parent then
@@ -217,4 +217,54 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
     print("assetBundleName, fileName:", parent.name, tbGoodsInfo.assetBundle, tostring(dGoodsId))
 
     pkgAssetBundleMgr.LoadAssetBundle("ui", "GoodsIcon", onLoadComplete)
+end
+
+function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
+    
+    if not objIcon then
+        return
+    end
+
+    if not dGoodsId then
+        return
+    end
+    
+    local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(dGoodsId)
+    if not tbGoodsInfo then
+        return
+    end
+
+    tbParams = tbParams or  {}
+
+    -- to do:show goods info
+    local function onDefaultClick(go)
+        
+    end
+
+    objIcon.gameObject:SetActive(true)
+
+    local imgGoods = objIcon.transform:Find("Image")
+    if imgGoods then
+        pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.id), imgGoods)
+    end
+
+    if tbParams.count then
+        pkgUITool.SetActiveByName(objIcon, "Count", true)
+        pkgUITool.SetStringByName(objIcon, "Count", tbParams.count)
+    else
+        pkgUITool.SetActiveByName(objIcon, "Count", false)
+    end
+
+    if callback then
+        callback(objIcon)
+    end
+
+    -- pkgButtonMgr.RemoveGameObjectListeners(objIcon)
+
+    --[[if tbParams.onClick then
+        pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick)
+    else
+        pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick)
+    end--]]
+
 end

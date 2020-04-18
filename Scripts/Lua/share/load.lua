@@ -2,6 +2,7 @@ _cfg = {}
 require("share/config/afk")
 require("share/config/effect")
 require("share/config/equip")
+require("share/config/equipLevelUp")
 require("share/config/goods")
 require("share/config/goodsReward")
 require("share/config/language")

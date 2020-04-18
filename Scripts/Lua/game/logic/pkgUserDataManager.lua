@@ -2,7 +2,7 @@ doNameSpace("pkgUserDataManager")
 
 m_UserData = nil
 
-local function sortFromBestToNormal(a,b)
+local function sortByQualityDesc(a,b)
     local tbCfg1 = pkgEquipCfgMgr.GetEquipCfg(a.cfgId)
     local tbCfg2 = pkgEquipCfgMgr.GetEquipCfg(b.cfgId)
     if tbCfg1.quality ~= tbCfg2.quality then
@@ -11,6 +11,18 @@ local function sortFromBestToNormal(a,b)
         return tbCfg1.slot < tbCfg2.slot
     else
         return tbCfg1.id > tbCfg2.id
+    end
+end
+
+local function sortByQualityAsc(a,b)
+    local tbCfg1 = pkgEquipCfgMgr.GetEquipCfg(a.cfgId)
+    local tbCfg2 = pkgEquipCfgMgr.GetEquipCfg(b.cfgId)
+    if tbCfg1.quality ~= tbCfg2.quality then
+        return tbCfg1.quality < tbCfg2.quality
+    elseif tbCfg1.slot ~= tbCfg2.slot then
+        return tbCfg1.slot < tbCfg2.slot
+    else
+        return tbCfg1.id < tbCfg2.id
     end
 end
 
@@ -87,7 +99,7 @@ function GetEquipList()
         table.insert(tb, tbEquip)
     end
 
-    table.sort(tb, sortFromBestToNormal)
+    table.sort(tb, sortByQualityDesc)
 
     return tb
 end
@@ -120,6 +132,17 @@ function SetEquipSlot(i, strId)
     m_UserData.EquipInfo.tbSlot[i] = strId
 end
 
+function IsInSlot(strId)
+    local bIsIn = false
+    for _, strSlotStrId in ipairs(m_UserData.EquipInfo.tbSlot) do
+        if strSlotStrId == strId then
+            bIsIn = true
+            break
+        end
+    end
+    return bIsIn
+end
+
 function GetEquipListBySlot(i)
     local tb = {}
     local tbEquipList = GetEquipList()
@@ -144,7 +167,22 @@ function GetEquipListWithoutSlot(i)
         end
     end
 
-    table.sort(tb, sortFromBestToNormal)
+    table.sort(tb, sortByQualityDesc)
+	
+    return tb
+end
+
+function GetEquipListWithoutId(strId)
+    local tb = {}
+    local tbEquipList = GetEquipList()
+    for _, tbEquip in pairs(tbEquipList) do
+        local tbCfg = pkgEquipCfgMgr.GetEquipCfg(tbEquip.cfgId)
+        if tbCfg and tbEquip.id ~= strId and not IsInSlot(tbEquip.id) then
+            table.insert(tb, tbEquip)
+        end
+    end
+
+    table.sort(tb, sortByQualityAsc)
 	
     return tb
 end

@@ -64,7 +64,7 @@ function show(strId)
 
     local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dEquipCfgId)
     local function onClickLevelUp(btnGo)
-        pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipLevelUp", nil, tbCfg.slot)
+        pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipLevelUp", nil, strId)
         pkgUIBaseViewMgr.destroyUI(pkgUIEquipDetail)
     end
 

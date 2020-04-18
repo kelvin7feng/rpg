@@ -124,6 +124,11 @@ _cfg.language = {
    zh_hans = '戒指',
    en = 'ring',
   },
+  [20001] = {
+   id = 20001,
+   zh_hans = '强化等级:%d',
+   en = 'LV:%d',
+  },
   [1001] = {
    id = 1001,
    zh_hans = '生命: %g',
