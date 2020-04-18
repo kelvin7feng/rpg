@@ -28,6 +28,7 @@ GAME_DATA_TABLE_NAME =
 	BATTLE_INFO							= "BattleInfo",
 	BAG_INFO							= "BagInfo",
 	EQUIP_INFO							= "EquipInfo",
+	HOME_INFO							= "HomeInfo",
 }
 
 -- 数据字段表
@@ -126,4 +127,7 @@ DATABASE_TABLE_FIELD =
 		tbEquipList											     = {}, -- {id, cfgId, level}
 	},
 	
+	[GAME_DATA_TABLE_NAME.HOME_INFO]	= {
+		dLevel													 = 0,
+	}
 }

@@ -1,4 +1,5 @@
 local random = math.random
+local randomseed = math.randomseed
 
 -- 随机库
 -- eg:tbCfgLib = {"prob1" = 10,"prob2" = 10,"prob3" = 10,"prob4" = 10}, strProb = "prob"
@@ -29,9 +30,11 @@ function randomKey(tbCfgLib, strProb)
         print("randomKey warning -------------------------------------- dTotalProb is nil")
         return dKey
     end
-  
+
+    randomSeed()
     local dCurrntProb = 0
     local dRandomProb = math.random(1,dTotalProb)
+    
     for i=1, dKeyCount do
         local dTempProb = tbCfgLib[strProb..i]
         if dRandomProb > dCurrntProb and dRandomProb <= dCurrntProb + dTempProb then
@@ -49,8 +52,13 @@ function randomKey(tbCfgLib, strProb)
     return dKey
 end
 
+function randomSeed()
+    randomseed(tonumber(tostring(os.time()):reverse():sub(1,6)))
+end
+
 function uuid()
-    local template ='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    -- math.randomseed(tonumber(tostring(os.time()):reverse():sub(1,8)))
+    local template ='4xxxyxxxxxxxxxx'
     return string.gsub(template, '[xy]', function (c)
         local v = (c == 'x') and random(0, 0xf) or random(8, 0xb)
         return string.format('%x', v)

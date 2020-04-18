@@ -66,11 +66,3 @@ function CopyTab(st)
     end
     return tab
 end
-
-function IsStringEmpty(str)
-    if not str or type(str) ~= "string" or str == "" then
-        return true
-    end
-
-    return false
-end
