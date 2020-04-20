@@ -64,4 +64,20 @@ function ConvertType(value,sType)
 	end
 	
 	return returnValue
-end 
+end
+
+function IsStringEmpty(str)
+	if not str then
+		return true
+	end
+
+	if not IsString(str) then
+		return true
+	end
+
+	if #str <= 0 then
+		return true
+	end
+
+	return false
+end
