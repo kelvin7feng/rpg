@@ -1,5 +1,11 @@
 doNameSpace("pkgUITool")
 
+ICON_SIZE_TYPE = {
+    BIG             =   1,    
+    SMALL           =   2,
+    MINI            =   3,
+}
+
 local Text = UnityEngine.UI.Text
 
 function isNull(gameObject)
@@ -203,6 +209,8 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
             pkgUITool.SetActiveByName(objIcon, "Count", false)
         end
 
+        UpdateIconSize(objIcon, tbParams)
+
         if callback then
             callback(objIcon)
         end
@@ -267,4 +275,20 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
         pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick)
     end--]]
 
+end
+
+function UpdateIconSize(objIcon, tbParams)
+    objIcon.transform.anchorMin = UnityEngine.Vector2(0.5,0.5)
+    objIcon.transform.anchorMax = UnityEngine.Vector2(0.5,0.5)
+    objIcon.transform.localPosition = UnityEngine.Vector3(0,0,0)
+    local rect = objIcon.gameObject:GetComponent(UnityEngine.RectTransform)
+    if tbParams.size then
+        if tbParams.size == ICON_SIZE_TYPE.BIG then
+            objIcon.transform.sizeDelta = UnityEngine.Vector2(rect.rect.width * 1.1 ,rect.rect.height * 1.1)
+        elseif tbParams.size == ICON_SIZE_TYPE.SMALL then
+            objIcon.transform.sizeDelta = UnityEngine.Vector2(rect.rect.width * 0.65 ,rect.rect.height * 0.65)
+        elseif tbParams.size == ICON_SIZE_TYPE.MINI then 
+            objIcon.transform.sizeDelta = UnityEngine.Vector2(rect.rect.width * 0.4 ,rect.rect.height * 0.4)
+        end 
+    end
 end

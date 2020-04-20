@@ -7,6 +7,9 @@ EVENT_ID =  {
 	--[[
 	客户端事件定义规则：表名以CLIENT_开头,每个功能占位100个位置,必须紧接前一个功能分配
 	--]]
+	CMD = {
+		CMD_1					= 1,			-- 升级
+	},
 
 	SYSTEM = {
 		NOTIFY				    = 100,			-- Toast消息
@@ -16,6 +19,10 @@ EVENT_ID =  {
 	CLIENT_LOGIN = {
 		LOGIN					=   10001,		-- 直接登录
 		ENTER_GAME				=	10002		-- 进入游戏
+	},
+	
+	BASE_INFO = {
+		ON_LEVEL_CHANGE			=   10101,		-- 玩家等级
 	},
 	
 	CLIENT_BATTLE = {
@@ -45,6 +52,11 @@ EVENT_ID =  {
 	HOME = {
 		LEVEL_UP			    =   50001,
 	},
+	
+	ACHIEVEMENT = {
+		GET_REWARD			    =   60001,
+		ON_UPDATE_ACHIEVEMENT   =   60002,
+	},
 }
 
 CLIENT_EVENT = {
@@ -56,4 +68,6 @@ CLIENT_EVENT = {
 	UPDATE_WEAR_EQUIP   		= "update_wear_equip",
 	UPDATE_TAKE_OFF_EQUIP  		= "update_take_off_equip",
 	UPDATE_LEVEL_UP_EQUIP  		= "update_level_up_equip",
+	UPDATE_USER_LEVEL	  		= "update_user_level",
+	UPDATE_ACHIEVEMENT	  		= "update_achievement",
 }

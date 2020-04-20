@@ -55,7 +55,8 @@ function UpdatePlayerInput()
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.P) then
         -- pkgSysEffect.PlayEffect(1)
-        pkgFlyWordUI.PlayFlyWord(pkgActorManager.GetMainPlayer(), 1, 5)
+        -- pkgFlyWordUI.PlayFlyWord(pkgActorManager.GetMainPlayer(), 1, 5)
+        pkgUIBaseViewMgr.showByViewPath("game/cmd/pkgUICMD")
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.L) then

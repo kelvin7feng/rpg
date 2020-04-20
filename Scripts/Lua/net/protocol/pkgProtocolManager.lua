@@ -3,6 +3,7 @@ doNameSpace("pkgProtocolManager")
 function Init()
     -- 玩家基本信息
     pkgEventManager.Register(EVENT_ID.CLIENT_LOGIN.LOGIN, pkgSysUser.OnLogin)
+    pkgEventManager.Register(EVENT_ID.BASE_INFO.ON_LEVEL_CHANGE, pkgSysUser.OnLevelChange)
 
     -- 战斗
     pkgEventManager.Register(EVENT_ID.CLIENT_BATTLE.START, pkgSysBattle.OnStart)
@@ -18,4 +19,7 @@ function Init()
     pkgEventManager.Register(EVENT_ID.EQUIP.ON_WEAR_EQUIP, pkgEquipMgr.OnWearEquip)
     pkgEventManager.Register(EVENT_ID.EQUIP.ON_TAKE_OFF, pkgEquipMgr.OnTakeOff)
     pkgEventManager.Register(EVENT_ID.EQUIP.ON_LEVEL_UP, pkgEquipMgr.OnLevelUp)
+
+    -- 成就系统
+    pkgEventManager.Register(EVENT_ID.ACHIEVEMENT.ON_UPDATE_ACHIEVEMENT, pkgAchievementMgr.OnUpdateData)
 end

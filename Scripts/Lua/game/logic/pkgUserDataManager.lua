@@ -27,20 +27,28 @@ local function sortByQualityAsc(a,b)
 end
 
 local function sortGoodsByDefault(a,b)
-    return tbCfg1.id > tbCfg2.id
+    return a.id > b.id
 end
 
 function InitUserData(objUserData)
     m_UserData = objUserData
 end
 
-function GetLevel()
+function GetBattleLevel()
     LOG_TABLE(m_UserData)
     return m_UserData.BattleInfo.CurLevel
 end
 
 function GetName()
     return m_UserData.BaseInfo.Name
+end
+
+function GetLevel()
+    return m_UserData.BaseInfo.Level
+end
+
+function SetLevel(dLevel)
+    m_UserData.BaseInfo.Level = dLevel
 end
 
 function GetBag()
@@ -185,4 +193,21 @@ function GetEquipListWithoutId(strId)
     table.sort(tb, sortByQualityAsc)
 	
     return tb
+end
+
+function GetAllAchievement()
+    local tb = {}
+    local tbAchievementInfo = m_UserData.AchievementInfo
+    for _, tbAchievement in pairs(tbAchievementInfo) do
+        table.insert(tb, tbAchievement)
+    end
+
+    return tb
+end
+
+function SetAnAchievement(dAchievementType, tbAchievement)
+    local tbAchievementInfo = m_UserData.AchievementInfo
+    tbAchievementInfo[tostring(dAchievementType)] = tbAchievement
+
+    return true
 end

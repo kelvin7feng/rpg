@@ -113,3 +113,7 @@ require("game/goods/pkgGoodsMgr")
 require("game/equip/pkgEquipMgr")
 
 require("game/battle/pkgSysBattle")
+
+require("game/achievement/pkgAchievementMgr")
+
+require("game/redirect/pkgRedirectMgr")

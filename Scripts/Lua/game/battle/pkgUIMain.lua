@@ -7,6 +7,7 @@ event_listener = {
     {CLIENT_EVENT.PLAYER_HURT, "UpdatePlayerHp"},
     {CLIENT_EVENT.UPDATE_LEVEL, "UpdateLevelInfo"},
     {CLIENT_EVENT.UPDATE_GOODS, "UpdatePlayerInfo"},
+    {CLIENT_EVENT.UPDATE_USER_LEVEL, "UpdatePlayerInfo"},
     {CLIENT_EVENT.UPDATE_WEAR_EQUIP, "InitEquipList"},  
     {CLIENT_EVENT.UPDATE_TAKE_OFF_EQUIP, "InitEquipList"},  
 }
@@ -17,6 +18,7 @@ m_playerHpSlider = m_playerHpSlider or nil
 m_txtPlayerName = m_txtPlayerName or nil
 m_txtDiamond = m_txtDiamond or nil
 m_txtGold = m_txtGold or nil
+m_txtLevel = m_txtLevel or nil
 
 -- level info
 m_txtAfkExp = m_txtAfkExp or nil
@@ -60,6 +62,10 @@ end
 
 local function onClickBag()
     pkgUIBaseViewMgr.showByViewPath("game/goods/pkgUIGoodsMain")
+end
+
+local function onClickTask()
+    pkgUIBaseViewMgr.showByViewPath("game/achievement/pkgUIAchievement")
 end
 
 m_tbClickFunc = {
@@ -129,6 +135,7 @@ function init()
     m_txtPlayerName = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/PlayerName")
     m_txtDiamond = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ValuePanel/Diamond/Bg/Text")
     m_txtGold = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ValuePanel/Gold/Bg/Text")
+    m_txtLevel = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/Level")
 
     m_objHpSlider = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/HpProgress/Slider")
     m_playerHpSlider = m_objHpSlider:GetComponent(UnityEngine.UI.Slider)
@@ -141,6 +148,7 @@ function init()
     m_txtAfkGold = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Gold/Text")
     
     pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Bag", onClickBag)
+    pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Task", onClickTask)
 
     for i=1, m_dBtnCount do
         local objBtn = m_bottomPanel.transform:Find("Btn"..i)
@@ -165,7 +173,7 @@ end
 function UpdateLevelInfo(dLevelId)
     
     if not dLevelId then
-        dLevelId = pkgUserDataManager.GetLevel()
+        dLevelId = pkgUserDataManager.GetBattleLevel()
     end
 
     UpdateLevelName(dLevelId)
@@ -202,6 +210,9 @@ function UpdatePlayerInfo()
     local txtGoldComponent = m_txtGold.gameObject:GetComponent(UnityEngine.UI.Text)
     txtGoldComponent.text = pkgUserDataManager.GetGold()
 
+    local txtLevelComponent = m_txtLevel.gameObject:GetComponent(UnityEngine.UI.Text)
+    txtLevelComponent.text = pkgUserDataManager.GetLevel()
+    
     SetPlayerHpProgress(pkgSysStat.GetRadioHealth(mainPlayer))
 end
 
