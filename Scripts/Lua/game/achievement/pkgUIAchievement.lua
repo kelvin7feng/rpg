@@ -83,7 +83,7 @@ function updateAchievementPanel()
                 if dGoodsId > 0 and dCfgCount > 0 then
                     local strIconName = "goods".. i
                     local goIcon = panelReward.transform:Find(strIconName)
-                    local tbArgs = {iconName = strIconName, count = dCfgCount, size = pkgUITool.ICON_SIZE_TYPE.SMALL}
+                    local tbArgs = {iconName = strIconName, count = dCfgCount, size = pkgUITool.ICON_SIZE_TYPE.MINI}
                     if pkgUITool.isNull(goIcon) then
                         pkgUITool.CreateIcon(dGoodsId, panelReward, nil, tbArgs)
                     else

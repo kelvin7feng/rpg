@@ -2,6 +2,7 @@ doNameSpace("pkgUIMain")
 
 assetbundleTag = "ui"
 prefabFile = "Main"
+dSortOrder = 100
 
 event_listener = {
     {CLIENT_EVENT.PLAYER_HURT, "UpdatePlayerHp"},
@@ -250,7 +251,7 @@ function InitEquipList()
         local icon = btnSlot.transform:Find("icon")
         if tbEquip then
             if not icon then
-                pkgUITool.CreateIcon(tbEquip.cfgId, btnSlot, nil, {onClick = onClickDetail})
+                pkgUITool.CreateIcon(tbEquip.cfgId, btnSlot, nil, {onClick = onClickDetail, size = pkgUITool.ICON_SIZE_TYPE.SMALL})
             else
                 icon.gameObject:SetActive(true)
             end            

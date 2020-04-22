@@ -286,7 +286,7 @@ function UpdateIconSize(objIcon, tbParams)
         if tbParams.size == ICON_SIZE_TYPE.BIG then
             objIcon.transform.sizeDelta = UnityEngine.Vector2(rect.rect.width * 1.1 ,rect.rect.height * 1.1)
         elseif tbParams.size == ICON_SIZE_TYPE.SMALL then
-            objIcon.transform.sizeDelta = UnityEngine.Vector2(rect.rect.width * 0.65 ,rect.rect.height * 0.65)
+            objIcon.transform.sizeDelta = UnityEngine.Vector2(rect.rect.width * 0.6 ,rect.rect.height * 0.6)
         elseif tbParams.size == ICON_SIZE_TYPE.MINI then 
             objIcon.transform.sizeDelta = UnityEngine.Vector2(rect.rect.width * 0.4 ,rect.rect.height * 0.4)
         end 

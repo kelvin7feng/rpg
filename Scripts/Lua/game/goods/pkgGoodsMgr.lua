@@ -1,8 +1,7 @@
 doNameSpace("pkgGoodsMgr")
 
 function OnShowReward(tbReward)
-    print("show reward ================== ")
-    LOG_TABLE(tbReward)
+    pkgUIBaseViewMgr.showByViewPath("game/reward/pkgUIRewardList",nil,tbReward)
 end
 
 function OnUpdateData(tbGoods)
