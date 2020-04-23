@@ -18,7 +18,7 @@ LOG_HEADER = {
 DEBUG_SWITCH = true;
 
 -- Log level, DEBUG > WARN > ERROR > INFO = 0
-LOG_LEVEL = 3;
+LOG_LEVEL = 2;
 
 local print = print
 local tconcat = table.concat

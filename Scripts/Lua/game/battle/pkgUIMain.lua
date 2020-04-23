@@ -31,6 +31,11 @@ m_bottomPanel = m_bottomPanel or nil
 m_secondBottomPanel = secondBottomPanel or nil
 m_btnBag = m_btnBag or nil
 
+-- right panel
+m_rightPanel = m_rightPanel or nil
+m_rightPanelAnimator = m_rightPanelAnimator or nil
+m_bRightPanelStretch = false
+
 m_tbBtn = {}
 m_dBtnCount = 5
 m_dCurBtnIndex = 3
@@ -67,6 +72,15 @@ end
 
 local function onClickTask()
     pkgUIBaseViewMgr.showByViewPath("game/achievement/pkgUIAchievement")
+end
+
+local function onClickRightArrow()
+    if not m_rightPanelAnimator then
+        return
+    end
+
+    m_bRightPanelStretch = not m_bRightPanelStretch
+    pkgAnimatorMgr.SetBool(m_rightPanelAnimator, "Stretch", m_bRightPanelStretch)
 end
 
 m_tbClickFunc = {
@@ -148,9 +162,12 @@ function init()
     m_txtAfkExp = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Exp/Text")
     m_txtAfkGold = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Gold/Text")
     
-    pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Bag", onClickBag)
-    pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Task", onClickTask)
+    m_rightPanel = gameObject.transform:Find("Panel/RightPanel")
+    m_rightPanelAnimator = m_rightPanel:GetComponent(UnityEngine.Animator)
 
+    pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Arrow", onClickRightArrow)
+    pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Task", onClickTask)
+    pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/FoldablePanel/Bag", onClickBag)
     for i=1, m_dBtnCount do
         local objBtn = m_bottomPanel.transform:Find("Btn"..i)
         m_tbBtn[i] = objBtn

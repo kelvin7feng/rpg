@@ -65,7 +65,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: btnClose
+    path: BtnDefaultClose
   m_FloatCurves:
   - curve:
       serializedVersion: 2
@@ -111,7 +111,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3386358624
+      path: 461954033
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -255,7 +255,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: btnClose
+    path: BtnDefaultClose
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -283,7 +283,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: btnClose
+    path: BtnDefaultClose
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -302,7 +302,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: btnClose
+    path: BtnDefaultClose
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []
