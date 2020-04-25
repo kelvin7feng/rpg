@@ -6,6 +6,7 @@ AnimatorParamter = {
     ATTACK_ONCE              = "AttackOnce",
     SPEED                    = "Speed",
     DIE_ONCE                 = "DieOnce",
+    REBORN                   = "Reborn",
 }
 
 AnimationType = {

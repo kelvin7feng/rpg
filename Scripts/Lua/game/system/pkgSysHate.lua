@@ -186,6 +186,7 @@ end
 
 function ClearHateList(agent)
 	agent.aiData.tbHateList = {}
+	agent.aiData:SetTargetEnemy(nil)
 end
 
 function PrintHateList(agent)

@@ -10,7 +10,11 @@ function PlayerDieState:OnEnter()
 end
 
 function PlayerDieState:OnUpdate()
-    
+    if not self.fsm.owner.bDie then
+        LOG_DEBUG(self.fsm.owner:GetId() .. ", Die --------> stay")
+        self.fsm:Switch(pkgStateDefination.State.STAY)
+        return
+    end
 end
 
 function PlayerDieState:OnLeave()

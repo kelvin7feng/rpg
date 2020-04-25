@@ -5,7 +5,7 @@ prefabFile = "Main"
 dSortOrder = 100
 
 event_listener = {
-    {CLIENT_EVENT.PLAYER_HURT, "UpdatePlayerHp"},
+    {CLIENT_EVENT.PLAYER_HP_CHANGE, "UpdatePlayerHp"},
     {CLIENT_EVENT.UPDATE_LEVEL, "UpdateLevelInfo"},
     {CLIENT_EVENT.UPDATE_GOODS, "UpdatePlayerInfo"},
     {CLIENT_EVENT.UPDATE_USER_LEVEL, "UpdatePlayerInfo"},

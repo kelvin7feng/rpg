@@ -81,6 +81,7 @@ function DeadEnd(player)
 
     if pkgActorManager.IsMainPlayer(player) then
         -- 重生
+        pkgSysPlayer.Reborn(player)
     else
         pkgSysPlayer.Destory(player)
     end

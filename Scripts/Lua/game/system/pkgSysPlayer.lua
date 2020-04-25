@@ -55,6 +55,17 @@ function Stay(player)
     end    
 end
 
+function TriggerReborn(player)
+    local bIsOk = false
+    local animator = player.animator
+    if animator then
+        pkgAnimatorMgr.SetTrigger(animator, pkgAnimatorDefination.AnimatorParamter.REBORN)
+        bIsOk = true
+    end
+
+    return bIsOk
+end
+
 function MoveToDestination(player, pos)
     if pkgFSMManger.IsInState(player, pkgStateDefination.State.ATTACK) then
         return false
@@ -179,4 +190,33 @@ function Destory(player)
     pkgFSMManger.RemoveFSM(player.fsm)
     pkgSysHate.ClearHateList(player)
     UnityEngine.Object.Destroy(player.gameObject)
+end
+
+function Reborn(player)
+    if not player then
+        return
+    end
+
+    local tbMostHatedEnemy = pkgSysHate.GetMostHatedEnemy(player)
+    if tbMostHatedEnemy then
+        Destory(tbMostHatedEnemy)
+    end
+
+    pkgTimer.AddOnceTimer("Reborn", 1, 
+        function()
+            player.stat:FullHp()
+            player:SetDie(false)
+            player:SetNavMeshEnable(true)
+            pkgSysHate.ClearHateList(player)
+            pkgEventManager.PostEvent(CLIENT_EVENT.PLAYER_HP_CHANGE, player)
+
+            if not TriggerReborn(player) then
+                return
+            end
+
+            pkgSysMonster.StartBehaviour(player)
+
+            pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
+    end)
+
 end

@@ -10,6 +10,10 @@ function CharacterStat:GetHp()
     return self.dCurrentHealth
 end
 
+function CharacterStat:FullHp()
+    self.dCurrentHealth = self.maxHealth:GetValue()
+end
+
 function CharacterStat:TakeDamage(dDamage)
 
     if self.dCurrentHealth <= 0 then
