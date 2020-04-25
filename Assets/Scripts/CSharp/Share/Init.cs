@@ -7,8 +7,7 @@ using System.Threading;
 namespace KG
 {
     public class Init : MonoBehaviour
-    {
-        //IntPtr sharedAPI;
+    { 
         public static bool connectServer = false;
         public static int sendCount = 0;
 
@@ -28,29 +27,17 @@ namespace KG
 
         void Start()
         {
-            //KG.ShareAPI.Init();
-            //ShareAPI.CallCSharp(CppCallBack, 100);
-            //sharedAPI = ShareAPI.CreateSharedAPI(11);
-            //tcpClient = ShareAPI.CreateTcpClient();
-            //bool ret = ShareAPI.Connect(tcpClient,"127.0.0.1",7000);
-            //Debug.Log("GetMyIDPlusTen:" + ShareAPI.GetMyIDPlusTen(sharedAPI));
-            //string serverIp = JsonTool.Instance.GetServerIp();
-            //int serverPort = JsonTool.Instance.GetServerPort();
-            //connectServer = NetWorkMgr.Connect(serverIp, serverPort);
+
         }
 
         void Update()
         {
-            //ShareAPI.RunLoopOnce(tcpClient);
-            if (connectServer)
-            {
-                //NetWorkMgr.RunLoopOnce();
-            }
+            CustomZip.CheckUnzipCallback();
         }
 
         void OnDestory()
         {
-            //ShareAPI.DeleteSharedAPI(sharedAPI);
+            
         }
 
         private void CppCallBack(int value)
@@ -62,16 +49,12 @@ namespace KG
         {
             byte[] fileBytes = null;
             string filePath = null;
-            //Debug.Log("fileName:" + fileName);
             if (WhetherGetScriptFromPersistentDataPath(fileName))
             {
-                //Debug.Log("Get File From Persistent");
                 filePath = GetScriptPersistentDataPath(fileName);
-                //Debug.Log(filePath);
             }
             else
             {
-                //Debug.Log("Get File From Streaming File");
                 filePath = GetStreamingAssetPath(fileName);
             }
             if (filePath.Contains("://"))
@@ -103,10 +86,16 @@ namespace KG
             filePath = Application.streamingAssetsPath + "/Scripts/Lua/" + fileName;
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
             filePath = Application.dataPath + "/../Scripts/Lua/" + fileName;
+            bool bExist = System.IO.File.Exists(filePath);
+            if (!bExist)
+            {
+                //for share
+                filePath = Application.dataPath + "/../../" + fileName;
+            }
 #else
             filePath = string.Empty;
 #endif
-            return filePath;
+                return filePath;
         }
 
         public static string GetScriptPersistentDataPath(string fileName)
@@ -115,7 +104,14 @@ namespace KG
             {
                 fileName += ".lua";
             }
-            return Application.persistentDataPath + "/Script/Lua/" + fileName;
+            string filePath = Application.persistentDataPath + "/Scripts/Lua/" + fileName;
+            bool bExist = System.IO.File.Exists(filePath);
+            if (!bExist)
+            {
+                //for share
+                filePath = Application.persistentDataPath + "/" + fileName;
+            }
+            return filePath;
         }
 
         public static bool WhetherGetScriptFromPersistentDataPath(string fileName)
@@ -128,7 +124,6 @@ namespace KG
         void OnApplicationQuit()
         {
             Debug.Log("Application ending after " + Time.time + " seconds");
-            //KG.NetWorkMgr.Disconnect();
         }
     }
 }
