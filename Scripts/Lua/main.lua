@@ -1,4 +1,5 @@
 
+require("initPath")
 require("load")
 
 local function initDebug()

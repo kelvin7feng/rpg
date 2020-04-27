@@ -27,7 +27,8 @@ require("base/pkgVungleAdsMgr")
 require("base/pkgLanguageMgr")
 require("base/pkgPoolManager")
 require("base/pkgUIBaseViewMgr")
-
+require("base/pkgZipMgr")
+require("base/pkgExtractMgr")
 
 require("net/socket/pkgSocket")
 require("net/protocol/pkgProtocolManager")

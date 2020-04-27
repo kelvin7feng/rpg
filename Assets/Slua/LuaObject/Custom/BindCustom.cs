@@ -35,6 +35,8 @@ namespace SLua {
 				Lua_System_String.reg,
 				Lua_UnityEngine_AI_NavMesh.reg,
 				Lua_UnityEngine_AI_NavMeshAgent.reg,
+				Lua_KG_CustomFile.reg,
+				Lua_KG_CustomZip.reg,
 			};
 			return list;
 		}

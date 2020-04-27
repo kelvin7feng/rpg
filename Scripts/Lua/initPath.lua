@@ -1,0 +1,1 @@
+_G.__patchPath = string.format("%s/%s", UnityEngine.Application.persistentDataPath, "update")

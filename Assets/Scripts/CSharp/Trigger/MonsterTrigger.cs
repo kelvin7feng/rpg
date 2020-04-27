@@ -29,6 +29,7 @@ namespace KG
         }
 
 #if UNITY_EDITOR
+        [DoNotToLua]
         public void OnDrawGizmos()
         {
             foreach (MonsterObject monsterObject in monsters)
@@ -45,7 +46,7 @@ namespace KG
             }
         }
 
-
+        [DoNotToLua]
         public static void ForGizmo(Vector3 pos, Vector3 direction, Color color, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
         {
             if (direction.Equals(Vector3.zero))

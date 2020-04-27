@@ -35,7 +35,9 @@ end
 function UpdatePlayerInput()
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T) then
-        pkgSysSkill.SetAttackSkill(pkgActorManager.GetMainPlayer(), 0)
+        -- pkgSysSkill.SetAttackSkill(pkgActorManager.GetMainPlayer(), 0)
+        local strZipPath = pkgExtractMgr.getUpdateZipPath("update1.zip")
+        pkgExtractMgr.unzipFile(strZipPath)
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.I) then
@@ -56,7 +58,17 @@ function UpdatePlayerInput()
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.P) then
         -- pkgSysEffect.PlayEffect(1)
         -- pkgFlyWordUI.PlayFlyWord(pkgActorManager.GetMainPlayer(), 1, 5)
-        pkgUIBaseViewMgr.showByViewPath("game/cmd/pkgUICMD")
+        -- pkgUIBaseViewMgr.showByViewPath("game/cmd/pkgUICMD")
+        local function confirm()
+            pkgUIBaseViewMgr.destroyUI(pkgUIAlert)
+        end
+        local tbParam = {
+            strContent  = "网络断开了,点击确定重新连接...",   -- 显示文字
+            bConfirm    = true,                             -- 确定按钮
+            strConfirm  = "确定",                           -- 确定按钮文字
+            funcConfirm = confirm,                          -- 确定
+        }
+        pkgUIBaseViewMgr.showByViewPath("game/alert/pkgUIAlert", nil, tbParam)
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.L) then
