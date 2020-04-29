@@ -27,7 +27,7 @@ local function init()
 	pkgSysBattle.Init()
 
 	-- init ui
-	pkgStartUI.Init()
+	pkgUIBaseViewMgr.showByViewPath("game/ui/pkgStartUI")
 end
 
 local function start()

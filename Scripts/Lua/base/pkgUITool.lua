@@ -30,6 +30,18 @@ function SetStringByName(gameObject, name, strText)
     textCom.text = strText
 end
 
+function SetGameObjectString(go, strText)
+    if isNull(go) then
+        LOG_WARN("setStringByName gameObject is null, name is "..name)
+        return
+    end
+
+    go.gameObject:SetActive(true)
+    local textCom = go:GetComponent(Text)
+    if not textCom then return end
+    textCom.text = strText
+end
+
 function SetActiveByName(gameObject, strName, bActive)
     if isNull(gameObject) then
         LOG_WARN("setActiveByName gameObject is null")

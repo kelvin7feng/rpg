@@ -1,6 +1,6 @@
 doNameSpace("pkgSysEffect")
 
-local function Destory(effectNode)
+local function DestoryEffect(effectNode)
 
     if not effectNode or not effectNode.obj then
         return
@@ -41,7 +41,7 @@ function PlayEffect(dEffectId, parentTransform, position, dDuration)
     if bIsLoop and dDuration > 0 then
         pkgTimer.AddOnceTimer("PlayEffect", dDuration/1000, 
         function()
-            Destory(effectNode)
+            DestoryEffect(effectNode)
         end)
     end
 
@@ -49,7 +49,7 @@ function PlayEffect(dEffectId, parentTransform, position, dDuration)
 end
 
 function StopPlay(effectNode)
-    Destory(effectNode)
+    DestoryEffect(effectNode)
 end
 
 function PlayWeaponEffect(objWeapon)

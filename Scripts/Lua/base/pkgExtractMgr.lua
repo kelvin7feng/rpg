@@ -12,26 +12,34 @@ function getUpdateZipPath(strFileName)
     return string.format("%s/%s", __patchPath, strFileName)
 end
 
-function unzipFile(strZipPath)
+function unzipFile(strZipPath, unzipProgress, unzipComplete, errorCallback)
     
     if le_bUnziping then
         return
     end
 
-    local function unzipProgress( dCurrent, dTotal )
-        local str = string.format("progress:%0.2f%%", dCurrent/dTotal * 100)
-        print(str)
+    local tbStr = string.split(strZipPath, "/")
+    local strFileName = tbStr[#tbStr]
+
+    local function unzipDefaultProgress(dCurrent, dTotal)
+        pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_EXTRACT_PROCESS, strFileName or "", dCurrent/dTotal)
+        if unzipProgress then
+            unzipProgress()
+        end
     end
 
-    local function unzipComplete()
+    local function unzipDefaultComplete()
         le_bUnziping = false
+        if unzipComplete then
+            unzipComplete()
+        end
     end
     
-    local function errorCallback( strMsg )
+    local function errorCallback(strMsg)
         le_bUnziping = false
     end
 
     le_bUnziping = true
     local strDownloadPath = getExtractDirPath()
-    pkgZipMgr.unzip(strZipPath, strDownloadPath, unzipProgress, unzipComplete, errorCallback)
+    pkgZipMgr.unzip(strZipPath, strDownloadPath, unzipDefaultProgress, unzipDefaultComplete, errorCallback)
 end

@@ -29,6 +29,7 @@ require("base/pkgPoolManager")
 require("base/pkgUIBaseViewMgr")
 require("base/pkgZipMgr")
 require("base/pkgExtractMgr")
+require("base/pkgDownloadMgr")
 
 require("net/socket/pkgSocket")
 require("net/protocol/pkgProtocolManager")
@@ -71,6 +72,9 @@ require("game/logic/pkgActorManager")
 require("game/logic/pkgGameController")
 require("game/logic/pkgTriggerManager")
 require("game/logic/pkgUserDataManager")
+
+require("game/hotfixed/pkgHotFixedCfg")
+require("game/hotfixed/pkgHotfixedMgr")
 
 require("game/scene/pkgTerrianManager")
 
