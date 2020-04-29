@@ -148,5 +148,22 @@ namespace KG
             byte[] bodyRaw = Encoding.UTF8.GetBytes(bodyString);
             return bodyRaw;
         }
+
+        public static void SaveFile(string savePath, byte[] bytes)
+        {
+            if (IsFileExits(savePath))
+                DeleteFile(savePath);
+
+            File.WriteAllBytes(savePath, bytes);
+        }
+
+        public static string ReadAllText(string filePath)
+        {
+            if (!IsFileExits(filePath))
+                return "";
+
+            string txtString = File.ReadAllText(filePath);
+            return txtString;
+        }
     }
 }

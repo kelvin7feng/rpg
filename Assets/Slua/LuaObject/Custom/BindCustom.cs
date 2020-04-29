@@ -37,6 +37,7 @@ namespace SLua {
 				Lua_UnityEngine_AI_NavMeshAgent.reg,
 				Lua_KG_CustomFile.reg,
 				Lua_KG_CustomZip.reg,
+				Lua_UnityEngine_ParticleSystem.reg,
 			};
 			return list;
 		}

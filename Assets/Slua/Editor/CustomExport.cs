@@ -44,6 +44,7 @@ namespace SLua
             // .net 4.6 export class not match used class on runtime, so skip it
             //add(typeof(Dictionary<int, string>), "DictIntStr");
             add(typeof(string), "String");
+            add(typeof(UnityEngine.ParticleSystem), "UnityEngine.ParticleSystem");
             add(typeof(UnityEngine.AI.NavMesh), "UnityEngine.AI.NavMesh");
             add(typeof(UnityEngine.AI.NavMeshAgent), "UnityEngine.AI.NavMeshAgent");
             // add your custom class here
@@ -75,7 +76,7 @@ namespace SLua
             list = new List<string>
             {
                 // "UnityEngine.Font",
-                "UnityEngine",
+                // "UnityEngine",
             };
         }
 
@@ -110,7 +111,6 @@ namespace SLua
                 "TypeInferenceRules",
                 "FFTWindow",
                 "RPC",
-                "Network",
                 "MasterServer",
                 "BitStream",
                 "HostData",

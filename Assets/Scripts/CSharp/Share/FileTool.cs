@@ -118,7 +118,7 @@ namespace KG
 #elif UNITY_IPHONE //iPhone
             filePath = Application.streamingAssetsPath + "/" +fileName;
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-            filePath = Application.dataPath + "/" + fileName;
+            filePath = Application.streamingAssetsPath + "/" + fileName;
 #else
             filePath = Application.streamingAssetsPath + "/" + fileName;
 #endif
