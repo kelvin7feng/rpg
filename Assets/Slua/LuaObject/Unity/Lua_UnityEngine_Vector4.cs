@@ -721,20 +721,20 @@ public class Lua_UnityEngine_Vector4 : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(float),typeof(UnityEngine.Vector4))){
-				System.Single a1;
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector4),typeof(float))){
+				UnityEngine.Vector4 a1;
 				checkType(l,1,out a1);
-				UnityEngine.Vector4 a2;
+				System.Single a2;
 				checkType(l,2,out a2);
 				var ret=a1*a2;
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector4),typeof(float))){
-				UnityEngine.Vector4 a1;
+			else if(matchType(l,argc,1,typeof(float),typeof(UnityEngine.Vector4))){
+				System.Single a1;
 				checkType(l,1,out a1);
-				System.Single a2;
+				UnityEngine.Vector4 a2;
 				checkType(l,2,out a2);
 				var ret=a1*a2;
 				pushValue(l,true);

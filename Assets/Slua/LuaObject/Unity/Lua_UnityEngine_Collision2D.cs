@@ -83,19 +83,19 @@ public class Lua_UnityEngine_Collision2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(List<UnityEngine.ContactPoint2D>))){
+			if(matchType(l,argc,2,typeof(UnityEngine.ContactPoint2D[]))){
 				UnityEngine.Collision2D self=(UnityEngine.Collision2D)checkSelf(l);
-				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a1;
-				checkType(l,2,out a1);
+				UnityEngine.ContactPoint2D[] a1;
+				checkArray(l,2,out a1);
 				var ret=self.GetContacts(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.ContactPoint2D[]))){
+			else if(matchType(l,argc,2,typeof(List<UnityEngine.ContactPoint2D>))){
 				UnityEngine.Collision2D self=(UnityEngine.Collision2D)checkSelf(l);
-				UnityEngine.ContactPoint2D[] a1;
-				checkArray(l,2,out a1);
+				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a1;
+				checkType(l,2,out a1);
 				var ret=self.GetContacts(a1);
 				pushValue(l,true);
 				pushValue(l,ret);

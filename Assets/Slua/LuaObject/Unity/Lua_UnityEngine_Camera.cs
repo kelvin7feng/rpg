@@ -271,20 +271,20 @@ public class Lua_UnityEngine_Camera : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.RenderBuffer[]),typeof(UnityEngine.RenderBuffer))){
+			if(matchType(l,argc,2,typeof(UnityEngine.RenderBuffer),typeof(UnityEngine.RenderBuffer))){
 				UnityEngine.Camera self=(UnityEngine.Camera)checkSelf(l);
-				UnityEngine.RenderBuffer[] a1;
-				checkArray(l,2,out a1);
+				UnityEngine.RenderBuffer a1;
+				checkValueType(l,2,out a1);
 				UnityEngine.RenderBuffer a2;
 				checkValueType(l,3,out a2);
 				self.SetTargetBuffers(a1,a2);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.RenderBuffer),typeof(UnityEngine.RenderBuffer))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.RenderBuffer[]),typeof(UnityEngine.RenderBuffer))){
 				UnityEngine.Camera self=(UnityEngine.Camera)checkSelf(l);
-				UnityEngine.RenderBuffer a1;
-				checkValueType(l,2,out a1);
+				UnityEngine.RenderBuffer[] a1;
+				checkArray(l,2,out a1);
 				UnityEngine.RenderBuffer a2;
 				checkValueType(l,3,out a2);
 				self.SetTargetBuffers(a1,a2);
@@ -1116,9 +1116,9 @@ public class Lua_UnityEngine_Camera : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.RenderTexture),typeof(int))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Cubemap),typeof(int))){
 				UnityEngine.Camera self=(UnityEngine.Camera)checkSelf(l);
-				UnityEngine.RenderTexture a1;
+				UnityEngine.Cubemap a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
@@ -1127,9 +1127,9 @@ public class Lua_UnityEngine_Camera : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Cubemap),typeof(int))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.RenderTexture),typeof(int))){
 				UnityEngine.Camera self=(UnityEngine.Camera)checkSelf(l);
-				UnityEngine.Cubemap a1;
+				UnityEngine.RenderTexture a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);

@@ -1,6 +1,7 @@
 ﻿using System;
 using SLua;
 using System.Collections.Generic;
+using ParadoxNotion;
 [UnityEngine.Scripting.Preserve]
 public class Lua_UnityEngine_Rect : LuaObject {
 	[SLua.MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -126,20 +127,20 @@ public class Lua_UnityEngine_Rect : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.Vector3))){
+			if(matchType(l,argc,2,typeof(UnityEngine.Vector2))){
 				UnityEngine.Rect self;
 				checkValueType(l,1,out self);
-				UnityEngine.Vector3 a1;
+				UnityEngine.Vector2 a1;
 				checkType(l,2,out a1);
 				var ret=self.Contains(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Vector2))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Vector3))){
 				UnityEngine.Rect self;
 				checkValueType(l,1,out self);
-				UnityEngine.Vector2 a1;
+				UnityEngine.Vector3 a1;
 				checkType(l,2,out a1);
 				var ret=self.Contains(a1);
 				pushValue(l,true);
@@ -213,6 +214,147 @@ public class Lua_UnityEngine_Rect : LuaObject {
 			}
 			pushValue(l,false);
 			LuaDLL.lua_pushstring(l,"No matched override function Overlaps to call");
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+		#if DEBUG
+		finally {
+			#if UNITY_5_5_OR_NEWER
+			UnityEngine.Profiling.Profiler.EndSample();
+			#else
+			Profiler.EndSample();
+			#endif
+		}
+		#endif
+	}
+	[SLua.MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	[UnityEngine.Scripting.Preserve]
+	static public int Encapsulates(IntPtr l) {
+		try {
+			#if DEBUG
+			var method = System.Reflection.MethodBase.GetCurrentMethod();
+			string methodName = GetMethodName(method);
+			#if UNITY_5_5_OR_NEWER
+			UnityEngine.Profiling.Profiler.BeginSample(methodName);
+			#else
+			Profiler.BeginSample(methodName);
+			#endif
+			#endif
+			UnityEngine.Rect self;
+			checkValueType(l,1,out self);
+			UnityEngine.Rect a2;
+			checkValueType(l,2,out a2);
+			var ret=self.Encapsulates(a2);
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+		#if DEBUG
+		finally {
+			#if UNITY_5_5_OR_NEWER
+			UnityEngine.Profiling.Profiler.EndSample();
+			#else
+			Profiler.EndSample();
+			#endif
+		}
+		#endif
+	}
+	[SLua.MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	[UnityEngine.Scripting.Preserve]
+	static public int ExpandBy(IntPtr l) {
+		try {
+			#if DEBUG
+			var method = System.Reflection.MethodBase.GetCurrentMethod();
+			string methodName = GetMethodName(method);
+			#if UNITY_5_5_OR_NEWER
+			UnityEngine.Profiling.Profiler.BeginSample(methodName);
+			#else
+			Profiler.BeginSample(methodName);
+			#endif
+			#endif
+			int argc = LuaDLL.lua_gettop(l);
+			if(argc==2){
+				UnityEngine.Rect self;
+				checkValueType(l,1,out self);
+				System.Single a2;
+				checkType(l,2,out a2);
+				var ret=self.ExpandBy(a2);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(argc==3){
+				UnityEngine.Rect self;
+				checkValueType(l,1,out self);
+				System.Single a2;
+				checkType(l,2,out a2);
+				System.Single a3;
+				checkType(l,3,out a3);
+				var ret=self.ExpandBy(a2,a3);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(argc==5){
+				UnityEngine.Rect self;
+				checkValueType(l,1,out self);
+				System.Single a2;
+				checkType(l,2,out a2);
+				System.Single a3;
+				checkType(l,3,out a3);
+				System.Single a4;
+				checkType(l,4,out a4);
+				System.Single a5;
+				checkType(l,5,out a5);
+				var ret=self.ExpandBy(a2,a3,a4,a5);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			pushValue(l,false);
+			LuaDLL.lua_pushstring(l,"No matched override function ExpandBy to call");
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+		#if DEBUG
+		finally {
+			#if UNITY_5_5_OR_NEWER
+			UnityEngine.Profiling.Profiler.EndSample();
+			#else
+			Profiler.EndSample();
+			#endif
+		}
+		#endif
+	}
+	[SLua.MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	[UnityEngine.Scripting.Preserve]
+	static public int TransformSpace(IntPtr l) {
+		try {
+			#if DEBUG
+			var method = System.Reflection.MethodBase.GetCurrentMethod();
+			string methodName = GetMethodName(method);
+			#if UNITY_5_5_OR_NEWER
+			UnityEngine.Profiling.Profiler.BeginSample(methodName);
+			#else
+			Profiler.BeginSample(methodName);
+			#endif
+			#endif
+			UnityEngine.Rect self;
+			checkValueType(l,1,out self);
+			UnityEngine.Rect a2;
+			checkValueType(l,2,out a2);
+			UnityEngine.Rect a3;
+			checkValueType(l,3,out a3);
+			var ret=self.TransformSpace(a2,a3);
+			pushValue(l,true);
+			pushValue(l,ret);
 			return 2;
 		}
 		catch(Exception e) {
@@ -1314,6 +1456,9 @@ public class Lua_UnityEngine_Rect : LuaObject {
 		addMember(l,Set);
 		addMember(l,Contains);
 		addMember(l,Overlaps);
+		addMember(l,Encapsulates);
+		addMember(l,ExpandBy);
+		addMember(l,TransformSpace);
 		addMember(l,MinMaxRect_s);
 		addMember(l,NormalizedToPoint_s);
 		addMember(l,PointToNormalized_s);

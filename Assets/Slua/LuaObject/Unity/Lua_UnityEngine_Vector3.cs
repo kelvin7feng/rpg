@@ -1168,20 +1168,20 @@ public class Lua_UnityEngine_Vector3 : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(float),typeof(UnityEngine.Vector3))){
-				System.Single a1;
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(float))){
+				UnityEngine.Vector3 a1;
 				checkType(l,1,out a1);
-				UnityEngine.Vector3 a2;
+				System.Single a2;
 				checkType(l,2,out a2);
 				var ret=a1*a2;
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(float))){
-				UnityEngine.Vector3 a1;
+			else if(matchType(l,argc,1,typeof(float),typeof(UnityEngine.Vector3))){
+				System.Single a1;
 				checkType(l,1,out a1);
-				System.Single a2;
+				UnityEngine.Vector3 a2;
 				checkType(l,2,out a2);
 				var ret=a1*a2;
 				pushValue(l,true);

@@ -24,16 +24,16 @@ public class Lua_System_Collections_Generic_List_1_int : LuaObject {
 				pushValue(l,o);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(IEnumerable<System.Int32>))){
-				System.Collections.Generic.IEnumerable<System.Int32> a1;
+			else if(matchType(l,argc,2,typeof(int))){
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				o=new System.Collections.Generic.List<System.Int32>(a1);
 				pushValue(l,true);
 				pushValue(l,o);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(int))){
-				System.Int32 a1;
+			else if(matchType(l,argc,2,typeof(IEnumerable<System.Int32>))){
+				System.Collections.Generic.IEnumerable<System.Int32> a1;
 				checkType(l,2,out a1);
 				o=new System.Collections.Generic.List<System.Int32>(a1);
 				pushValue(l,true);
@@ -1018,18 +1018,18 @@ public class Lua_System_Collections_Generic_List_1_int : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(System.Comparison<System.Int32>))){
-				System.Collections.Generic.List<System.Int32> self=(System.Collections.Generic.List<System.Int32>)checkSelf(l);
-				System.Comparison<System.Int32> a1;
-				checkDelegate(l,2,out a1);
-				self.Sort(a1);
-				pushValue(l,true);
-				return 1;
-			}
 			else if(matchType(l,argc,2,typeof(IComparer<System.Int32>))){
 				System.Collections.Generic.List<System.Int32> self=(System.Collections.Generic.List<System.Int32>)checkSelf(l);
 				System.Collections.Generic.IComparer<System.Int32> a1;
 				checkType(l,2,out a1);
+				self.Sort(a1);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(System.Comparison<System.Int32>))){
+				System.Collections.Generic.List<System.Int32> self=(System.Collections.Generic.List<System.Int32>)checkSelf(l);
+				System.Comparison<System.Int32> a1;
+				checkDelegate(l,2,out a1);
 				self.Sort(a1);
 				pushValue(l,true);
 				return 1;

@@ -351,21 +351,21 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.Collider2D))){
 				UnityEngine.Collider2D a1;
 				checkType(l,1,out a1);
-				UnityEngine.ContactFilter2D a2;
-				checkValueType(l,2,out a2);
+				UnityEngine.Collider2D a2;
+				checkType(l,2,out a2);
 				var ret=UnityEngine.Physics2D.IsTouching(a1,a2);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.Collider2D))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D))){
 				UnityEngine.Collider2D a1;
 				checkType(l,1,out a1);
-				UnityEngine.Collider2D a2;
-				checkType(l,2,out a2);
+				UnityEngine.ContactFilter2D a2;
+				checkValueType(l,2,out a2);
 				var ret=UnityEngine.Physics2D.IsTouching(a1,a2);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -498,20 +498,20 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Rigidbody2D))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Collider2D))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
-				UnityEngine.Rigidbody2D a2;
+				UnityEngine.Collider2D a2;
 				checkType(l,2,out a2);
 				var ret=UnityEngine.Physics2D.ClosestPoint(a1,a2);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Collider2D))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Rigidbody2D))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
-				UnityEngine.Collider2D a2;
+				UnityEngine.Rigidbody2D a2;
 				checkType(l,2,out a2);
 				var ret=UnityEngine.Physics2D.ClosestPoint(a1,a2);
 				pushValue(l,true);
@@ -571,6 +571,20 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(int),typeof(float))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector2 a2;
+				checkType(l,2,out a2);
+				System.Int32 a3;
+				checkType(l,3,out a3);
+				System.Single a4;
+				checkType(l,4,out a4);
+				var ret=UnityEngine.Physics2D.Linecast(a1,a2,a3,a4);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.RaycastHit2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -593,20 +607,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a3;
 				checkValueType(l,3,out a3);
 				System.Collections.Generic.List<UnityEngine.RaycastHit2D> a4;
-				checkType(l,4,out a4);
-				var ret=UnityEngine.Physics2D.Linecast(a1,a2,a3,a4);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector2 a2;
-				checkType(l,2,out a2);
-				System.Int32 a3;
-				checkType(l,3,out a3);
-				System.Single a4;
 				checkType(l,4,out a4);
 				var ret=UnityEngine.Physics2D.Linecast(a1,a2,a3,a4);
 				pushValue(l,true);
@@ -856,6 +856,20 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(int))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector2 a2;
+				checkType(l,2,out a2);
+				System.Single a3;
+				checkType(l,3,out a3);
+				System.Int32 a4;
+				checkType(l,4,out a4);
+				var ret=UnityEngine.Physics2D.Raycast(a1,a2,a3,a4);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.RaycastHit2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -870,7 +884,7 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(int))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector2 a2;
@@ -879,7 +893,9 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				checkType(l,3,out a3);
 				System.Int32 a4;
 				checkType(l,4,out a4);
-				var ret=UnityEngine.Physics2D.Raycast(a1,a2,a3,a4);
+				System.Single a5;
+				checkType(l,5,out a5);
+				var ret=UnityEngine.Physics2D.Raycast(a1,a2,a3,a4,a5);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -908,22 +924,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a3;
 				checkValueType(l,3,out a3);
 				System.Collections.Generic.List<UnityEngine.RaycastHit2D> a4;
-				checkType(l,4,out a4);
-				System.Single a5;
-				checkType(l,5,out a5);
-				var ret=UnityEngine.Physics2D.Raycast(a1,a2,a3,a4,a5);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector2 a2;
-				checkType(l,2,out a2);
-				System.Single a3;
-				checkType(l,3,out a3);
-				System.Int32 a4;
 				checkType(l,4,out a4);
 				System.Single a5;
 				checkType(l,5,out a5);
@@ -1219,6 +1219,22 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				System.Single a2;
+				checkType(l,2,out a2);
+				UnityEngine.Vector2 a3;
+				checkType(l,3,out a3);
+				System.Single a4;
+				checkType(l,4,out a4);
+				System.Int32 a5;
+				checkType(l,5,out a5);
+				var ret=UnityEngine.Physics2D.CircleCast(a1,a2,a3,a4,a5);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.RaycastHit2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -1235,7 +1251,7 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
 				System.Single a2;
@@ -1246,7 +1262,9 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				checkType(l,4,out a4);
 				System.Int32 a5;
 				checkType(l,5,out a5);
-				var ret=UnityEngine.Physics2D.CircleCast(a1,a2,a3,a4,a5);
+				System.Single a6;
+				checkType(l,6,out a6);
+				var ret=UnityEngine.Physics2D.CircleCast(a1,a2,a3,a4,a5,a6);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -1279,24 +1297,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a4;
 				checkValueType(l,4,out a4);
 				System.Collections.Generic.List<UnityEngine.RaycastHit2D> a5;
-				checkType(l,5,out a5);
-				System.Single a6;
-				checkType(l,6,out a6);
-				var ret=UnityEngine.Physics2D.CircleCast(a1,a2,a3,a4,a5,a6);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				System.Single a2;
-				checkType(l,2,out a2);
-				UnityEngine.Vector2 a3;
-				checkType(l,3,out a3);
-				System.Single a4;
-				checkType(l,4,out a4);
-				System.Int32 a5;
 				checkType(l,5,out a5);
 				System.Single a6;
 				checkType(l,6,out a6);
@@ -1618,6 +1618,24 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector2 a2;
+				checkType(l,2,out a2);
+				System.Single a3;
+				checkType(l,3,out a3);
+				UnityEngine.Vector2 a4;
+				checkType(l,4,out a4);
+				System.Single a5;
+				checkType(l,5,out a5);
+				System.Int32 a6;
+				checkType(l,6,out a6);
+				var ret=UnityEngine.Physics2D.BoxCast(a1,a2,a3,a4,a5,a6);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.RaycastHit2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -1636,7 +1654,7 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector2 a2;
@@ -1649,7 +1667,9 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				checkType(l,5,out a5);
 				System.Int32 a6;
 				checkType(l,6,out a6);
-				var ret=UnityEngine.Physics2D.BoxCast(a1,a2,a3,a4,a5,a6);
+				System.Single a7;
+				checkType(l,7,out a7);
+				var ret=UnityEngine.Physics2D.BoxCast(a1,a2,a3,a4,a5,a6,a7);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -1686,26 +1706,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a5;
 				checkValueType(l,5,out a5);
 				System.Collections.Generic.List<UnityEngine.RaycastHit2D> a6;
-				checkType(l,6,out a6);
-				System.Single a7;
-				checkType(l,7,out a7);
-				var ret=UnityEngine.Physics2D.BoxCast(a1,a2,a3,a4,a5,a6,a7);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector2 a2;
-				checkType(l,2,out a2);
-				System.Single a3;
-				checkType(l,3,out a3);
-				UnityEngine.Vector2 a4;
-				checkType(l,4,out a4);
-				System.Single a5;
-				checkType(l,5,out a5);
-				System.Int32 a6;
 				checkType(l,6,out a6);
 				System.Single a7;
 				checkType(l,7,out a7);
@@ -2053,6 +2053,26 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.CapsuleDirection2D),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector2 a2;
+				checkType(l,2,out a2);
+				UnityEngine.CapsuleDirection2D a3;
+				a3 = (UnityEngine.CapsuleDirection2D)LuaDLL.luaL_checkinteger(l, 3);
+				System.Single a4;
+				checkType(l,4,out a4);
+				UnityEngine.Vector2 a5;
+				checkType(l,5,out a5);
+				System.Single a6;
+				checkType(l,6,out a6);
+				System.Int32 a7;
+				checkType(l,7,out a7);
+				var ret=UnityEngine.Physics2D.CapsuleCast(a1,a2,a3,a4,a5,a6,a7);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.CapsuleDirection2D),typeof(float),typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.RaycastHit2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -2073,7 +2093,7 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.CapsuleDirection2D),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.CapsuleDirection2D),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector2 a2;
@@ -2088,7 +2108,9 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				checkType(l,6,out a6);
 				System.Int32 a7;
 				checkType(l,7,out a7);
-				var ret=UnityEngine.Physics2D.CapsuleCast(a1,a2,a3,a4,a5,a6,a7);
+				System.Single a8;
+				checkType(l,8,out a8);
+				var ret=UnityEngine.Physics2D.CapsuleCast(a1,a2,a3,a4,a5,a6,a7,a8);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -2129,28 +2151,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a6;
 				checkValueType(l,6,out a6);
 				System.Collections.Generic.List<UnityEngine.RaycastHit2D> a7;
-				checkType(l,7,out a7);
-				System.Single a8;
-				checkType(l,8,out a8);
-				var ret=UnityEngine.Physics2D.CapsuleCast(a1,a2,a3,a4,a5,a6,a7,a8);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.CapsuleDirection2D),typeof(float),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector2 a2;
-				checkType(l,2,out a2);
-				UnityEngine.CapsuleDirection2D a3;
-				a3 = (UnityEngine.CapsuleDirection2D)LuaDLL.luaL_checkinteger(l, 3);
-				System.Single a4;
-				checkType(l,4,out a4);
-				UnityEngine.Vector2 a5;
-				checkType(l,5,out a5);
-				System.Single a6;
-				checkType(l,6,out a6);
-				System.Int32 a7;
 				checkType(l,7,out a7);
 				System.Single a8;
 				checkType(l,8,out a8);
@@ -2693,6 +2693,18 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(int),typeof(float))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				System.Int32 a2;
+				checkType(l,2,out a2);
+				System.Single a3;
+				checkType(l,3,out a3);
+				var ret=UnityEngine.Physics2D.OverlapPoint(a1,a2,a3);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -2711,18 +2723,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a2;
 				checkValueType(l,2,out a2);
 				System.Collections.Generic.List<UnityEngine.Collider2D> a3;
-				checkType(l,3,out a3);
-				var ret=UnityEngine.Physics2D.OverlapPoint(a1,a2,a3);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				System.Int32 a2;
-				checkType(l,2,out a2);
-				System.Single a3;
 				checkType(l,3,out a3);
 				var ret=UnityEngine.Physics2D.OverlapPoint(a1,a2,a3);
 				pushValue(l,true);
@@ -2954,6 +2954,20 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				System.Single a2;
+				checkType(l,2,out a2);
+				System.Int32 a3;
+				checkType(l,3,out a3);
+				System.Single a4;
+				checkType(l,4,out a4);
+				var ret=UnityEngine.Physics2D.OverlapCircle(a1,a2,a3,a4);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -2976,20 +2990,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a3;
 				checkValueType(l,3,out a3);
 				System.Collections.Generic.List<UnityEngine.Collider2D> a4;
-				checkType(l,4,out a4);
-				var ret=UnityEngine.Physics2D.OverlapCircle(a1,a2,a3,a4);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				System.Single a2;
-				checkType(l,2,out a2);
-				System.Int32 a3;
-				checkType(l,3,out a3);
-				System.Single a4;
 				checkType(l,4,out a4);
 				var ret=UnityEngine.Physics2D.OverlapCircle(a1,a2,a3,a4);
 				pushValue(l,true);
@@ -3243,6 +3243,22 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector2 a2;
+				checkType(l,2,out a2);
+				System.Single a3;
+				checkType(l,3,out a3);
+				System.Int32 a4;
+				checkType(l,4,out a4);
+				System.Single a5;
+				checkType(l,5,out a5);
+				var ret=UnityEngine.Physics2D.OverlapBox(a1,a2,a3,a4,a5);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -3269,22 +3285,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a4;
 				checkValueType(l,4,out a4);
 				System.Collections.Generic.List<UnityEngine.Collider2D> a5;
-				checkType(l,5,out a5);
-				var ret=UnityEngine.Physics2D.OverlapBox(a1,a2,a3,a4,a5);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(float),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector2 a2;
-				checkType(l,2,out a2);
-				System.Single a3;
-				checkType(l,3,out a3);
-				System.Int32 a4;
-				checkType(l,4,out a4);
-				System.Single a5;
 				checkType(l,5,out a5);
 				var ret=UnityEngine.Physics2D.OverlapBox(a1,a2,a3,a4,a5);
 				pushValue(l,true);
@@ -3552,6 +3552,20 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(int),typeof(float))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector2 a2;
+				checkType(l,2,out a2);
+				System.Int32 a3;
+				checkType(l,3,out a3);
+				System.Single a4;
+				checkType(l,4,out a4);
+				var ret=UnityEngine.Physics2D.OverlapArea(a1,a2,a3,a4);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -3574,20 +3588,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a3;
 				checkValueType(l,3,out a3);
 				System.Collections.Generic.List<UnityEngine.Collider2D> a4;
-				checkType(l,4,out a4);
-				var ret=UnityEngine.Physics2D.OverlapArea(a1,a2,a3,a4);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector2 a2;
-				checkType(l,2,out a2);
-				System.Int32 a3;
-				checkType(l,3,out a3);
-				System.Single a4;
 				checkType(l,4,out a4);
 				var ret=UnityEngine.Physics2D.OverlapArea(a1,a2,a3,a4);
 				pushValue(l,true);
@@ -3845,6 +3845,24 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.CapsuleDirection2D),typeof(float),typeof(int),typeof(float))){
+				UnityEngine.Vector2 a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector2 a2;
+				checkType(l,2,out a2);
+				UnityEngine.CapsuleDirection2D a3;
+				a3 = (UnityEngine.CapsuleDirection2D)LuaDLL.luaL_checkinteger(l, 3);
+				System.Single a4;
+				checkType(l,4,out a4);
+				System.Int32 a5;
+				checkType(l,5,out a5);
+				System.Single a6;
+				checkType(l,6,out a6);
+				var ret=UnityEngine.Physics2D.OverlapCapsule(a1,a2,a3,a4,a5,a6);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.CapsuleDirection2D),typeof(float),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
@@ -3875,24 +3893,6 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				UnityEngine.ContactFilter2D a5;
 				checkValueType(l,5,out a5);
 				System.Collections.Generic.List<UnityEngine.Collider2D> a6;
-				checkType(l,6,out a6);
-				var ret=UnityEngine.Physics2D.OverlapCapsule(a1,a2,a3,a4,a5,a6);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2),typeof(UnityEngine.CapsuleDirection2D),typeof(float),typeof(int),typeof(float))){
-				UnityEngine.Vector2 a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector2 a2;
-				checkType(l,2,out a2);
-				UnityEngine.CapsuleDirection2D a3;
-				a3 = (UnityEngine.CapsuleDirection2D)LuaDLL.luaL_checkinteger(l, 3);
-				System.Single a4;
-				checkType(l,4,out a4);
-				System.Int32 a5;
-				checkType(l,5,out a5);
-				System.Single a6;
 				checkType(l,6,out a6);
 				var ret=UnityEngine.Physics2D.OverlapCapsule(a1,a2,a3,a4,a5,a6);
 				pushValue(l,true);
@@ -4156,25 +4156,25 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.Collider2D>))){
-				UnityEngine.Collider2D a1;
-				checkType(l,1,out a1);
-				UnityEngine.ContactFilter2D a2;
-				checkValueType(l,2,out a2);
-				System.Collections.Generic.List<UnityEngine.Collider2D> a3;
-				checkType(l,3,out a3);
-				var ret=UnityEngine.Physics2D.OverlapCollider(a1,a2,a3);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
 				UnityEngine.Collider2D a1;
 				checkType(l,1,out a1);
 				UnityEngine.ContactFilter2D a2;
 				checkValueType(l,2,out a2);
 				UnityEngine.Collider2D[] a3;
 				checkArray(l,3,out a3);
+				var ret=UnityEngine.Physics2D.OverlapCollider(a1,a2,a3);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.Collider2D>))){
+				UnityEngine.Collider2D a1;
+				checkType(l,1,out a1);
+				UnityEngine.ContactFilter2D a2;
+				checkValueType(l,2,out a2);
+				System.Collections.Generic.List<UnityEngine.Collider2D> a3;
+				checkType(l,3,out a3);
 				var ret=UnityEngine.Physics2D.OverlapCollider(a1,a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -4211,7 +4211,27 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(List<UnityEngine.ContactPoint2D>))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactPoint2D[]))){
+				UnityEngine.Collider2D a1;
+				checkType(l,1,out a1);
+				UnityEngine.ContactPoint2D[] a2;
+				checkArray(l,2,out a2);
+				var ret=UnityEngine.Physics2D.GetContacts(a1,a2);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.Collider2D[]))){
+				UnityEngine.Collider2D a1;
+				checkType(l,1,out a1);
+				UnityEngine.Collider2D[] a2;
+				checkArray(l,2,out a2);
+				var ret=UnityEngine.Physics2D.GetContacts(a1,a2);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(List<UnityEngine.ContactPoint2D>))){
 				UnityEngine.Rigidbody2D a1;
 				checkType(l,1,out a1);
 				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a2;
@@ -4241,10 +4261,10 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(List<UnityEngine.ContactPoint2D>))){
-				UnityEngine.Collider2D a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(List<UnityEngine.Collider2D>))){
+				UnityEngine.Rigidbody2D a1;
 				checkType(l,1,out a1);
-				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a2;
+				System.Collections.Generic.List<UnityEngine.Collider2D> a2;
 				checkType(l,2,out a2);
 				var ret=UnityEngine.Physics2D.GetContacts(a1,a2);
 				pushValue(l,true);
@@ -4261,43 +4281,23 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(List<UnityEngine.Collider2D>))){
-				UnityEngine.Rigidbody2D a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(List<UnityEngine.ContactPoint2D>))){
+				UnityEngine.Collider2D a1;
 				checkType(l,1,out a1);
-				System.Collections.Generic.List<UnityEngine.Collider2D> a2;
+				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a2;
 				checkType(l,2,out a2);
 				var ret=UnityEngine.Physics2D.GetContacts(a1,a2);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactPoint2D[]))){
-				UnityEngine.Collider2D a1;
-				checkType(l,1,out a1);
-				UnityEngine.ContactPoint2D[] a2;
-				checkArray(l,2,out a2);
-				var ret=UnityEngine.Physics2D.GetContacts(a1,a2);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.Collider2D[]))){
-				UnityEngine.Collider2D a1;
-				checkType(l,1,out a1);
-				UnityEngine.Collider2D[] a2;
-				checkArray(l,2,out a2);
-				var ret=UnityEngine.Physics2D.GetContacts(a1,a2);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.Collider2D>))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
 				UnityEngine.Rigidbody2D a1;
 				checkType(l,1,out a1);
 				UnityEngine.ContactFilter2D a2;
 				checkValueType(l,2,out a2);
-				System.Collections.Generic.List<UnityEngine.Collider2D> a3;
-				checkType(l,3,out a3);
+				UnityEngine.Collider2D[] a3;
+				checkArray(l,3,out a3);
 				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -4327,13 +4327,25 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.ContactPoint2D>))){
-				UnityEngine.Collider2D a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.Collider2D>))){
+				UnityEngine.Rigidbody2D a1;
 				checkType(l,1,out a1);
 				UnityEngine.ContactFilter2D a2;
 				checkValueType(l,2,out a2);
-				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a3;
+				System.Collections.Generic.List<UnityEngine.Collider2D> a3;
 				checkType(l,3,out a3);
+				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.ContactPoint2D[]))){
+				UnityEngine.Rigidbody2D a1;
+				checkType(l,1,out a1);
+				UnityEngine.ContactFilter2D a2;
+				checkValueType(l,2,out a2);
+				UnityEngine.ContactPoint2D[] a3;
+				checkArray(l,3,out a3);
 				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -4363,40 +4375,14 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.ContactPoint2D[]))){
-				UnityEngine.Rigidbody2D a1;
-				checkType(l,1,out a1);
-				UnityEngine.ContactFilter2D a2;
-				checkValueType(l,2,out a2);
-				UnityEngine.ContactPoint2D[] a3;
-				checkArray(l,3,out a3);
-				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Rigidbody2D),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
-				UnityEngine.Rigidbody2D a1;
-				checkType(l,1,out a1);
-				UnityEngine.ContactFilter2D a2;
-				checkValueType(l,2,out a2);
-				UnityEngine.Collider2D[] a3;
-				checkArray(l,3,out a3);
-				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.ContactPoint2D[]))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.ContactPoint2D>))){
 				UnityEngine.Collider2D a1;
 				checkType(l,1,out a1);
-				UnityEngine.Collider2D a2;
-				checkType(l,2,out a2);
-				UnityEngine.ContactFilter2D a3;
-				checkValueType(l,3,out a3);
-				UnityEngine.ContactPoint2D[] a4;
-				checkArray(l,4,out a4);
-				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3,a4);
+				UnityEngine.ContactFilter2D a2;
+				checkValueType(l,2,out a2);
+				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a3;
+				checkType(l,3,out a3);
+				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -4410,6 +4396,20 @@ public class Lua_UnityEngine_Physics2D : LuaObject {
 				checkValueType(l,3,out a3);
 				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a4;
 				checkType(l,4,out a4);
+				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3,a4);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Collider2D),typeof(UnityEngine.Collider2D),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.ContactPoint2D[]))){
+				UnityEngine.Collider2D a1;
+				checkType(l,1,out a1);
+				UnityEngine.Collider2D a2;
+				checkType(l,2,out a2);
+				UnityEngine.ContactFilter2D a3;
+				checkValueType(l,3,out a3);
+				UnityEngine.ContactPoint2D[] a4;
+				checkArray(l,4,out a4);
 				var ret=UnityEngine.Physics2D.GetContacts(a1,a2,a3,a4);
 				pushValue(l,true);
 				pushValue(l,ret);

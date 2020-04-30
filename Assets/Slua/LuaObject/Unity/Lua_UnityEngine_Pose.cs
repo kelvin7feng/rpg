@@ -53,21 +53,21 @@ public class Lua_UnityEngine_Pose : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.Transform))){
+			if(matchType(l,argc,2,typeof(UnityEngine.Pose))){
 				UnityEngine.Pose self;
 				checkValueType(l,1,out self);
-				UnityEngine.Transform a1;
-				checkType(l,2,out a1);
+				UnityEngine.Pose a1;
+				checkValueType(l,2,out a1);
 				var ret=self.GetTransformedBy(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Pose))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Transform))){
 				UnityEngine.Pose self;
 				checkValueType(l,1,out self);
-				UnityEngine.Pose a1;
-				checkValueType(l,2,out a1);
+				UnityEngine.Transform a1;
+				checkType(l,2,out a1);
 				var ret=self.GetTransformedBy(a1);
 				pushValue(l,true);
 				pushValue(l,ret);

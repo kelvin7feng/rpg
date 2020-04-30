@@ -146,21 +146,21 @@ public class Lua_UnityEngine_CanvasRenderer : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.Material),typeof(UnityEngine.Texture))){
+			if(matchType(l,argc,2,typeof(UnityEngine.Material),typeof(int))){
 				UnityEngine.CanvasRenderer self=(UnityEngine.CanvasRenderer)checkSelf(l);
 				UnityEngine.Material a1;
 				checkType(l,2,out a1);
-				UnityEngine.Texture a2;
+				System.Int32 a2;
 				checkType(l,3,out a2);
 				self.SetMaterial(a1,a2);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Material),typeof(int))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Material),typeof(UnityEngine.Texture))){
 				UnityEngine.CanvasRenderer self=(UnityEngine.CanvasRenderer)checkSelf(l);
 				UnityEngine.Material a1;
 				checkType(l,2,out a1);
-				System.Int32 a2;
+				UnityEngine.Texture a2;
 				checkType(l,3,out a2);
 				self.SetMaterial(a1,a2);
 				pushValue(l,true);

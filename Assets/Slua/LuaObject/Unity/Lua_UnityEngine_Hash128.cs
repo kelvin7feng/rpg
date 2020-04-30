@@ -77,21 +77,21 @@ public class Lua_UnityEngine_Hash128 : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(System.Object))){
+			if(matchType(l,argc,2,typeof(UnityEngine.Hash128))){
 				UnityEngine.Hash128 self;
 				checkValueType(l,1,out self);
-				System.Object a1;
-				checkType(l,2,out a1);
+				UnityEngine.Hash128 a1;
+				checkValueType(l,2,out a1);
 				var ret=self.CompareTo(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Hash128))){
+			else if(matchType(l,argc,2,typeof(System.Object))){
 				UnityEngine.Hash128 self;
 				checkValueType(l,1,out self);
-				UnityEngine.Hash128 a1;
-				checkValueType(l,2,out a1);
+				System.Object a1;
+				checkType(l,2,out a1);
 				var ret=self.CompareTo(a1);
 				pushValue(l,true);
 				pushValue(l,ret);

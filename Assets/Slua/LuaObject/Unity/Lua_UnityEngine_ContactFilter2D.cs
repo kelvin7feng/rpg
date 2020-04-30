@@ -395,20 +395,20 @@ public class Lua_UnityEngine_ContactFilter2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(float))){
+			if(matchType(l,argc,2,typeof(UnityEngine.Vector2))){
 				UnityEngine.ContactFilter2D self;
 				checkValueType(l,1,out self);
-				System.Single a1;
+				UnityEngine.Vector2 a1;
 				checkType(l,2,out a1);
 				var ret=self.IsFilteringNormalAngle(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Vector2))){
+			else if(matchType(l,argc,2,typeof(float))){
 				UnityEngine.ContactFilter2D self;
 				checkValueType(l,1,out self);
-				UnityEngine.Vector2 a1;
+				System.Single a1;
 				checkType(l,2,out a1);
 				var ret=self.IsFilteringNormalAngle(a1);
 				pushValue(l,true);

@@ -697,17 +697,17 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(List<UnityEngine.Color32>))){
+			if(matchType(l,argc,2,typeof(List<UnityEngine.Color>))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
-				System.Collections.Generic.List<UnityEngine.Color32> a1;
+				System.Collections.Generic.List<UnityEngine.Color> a1;
 				checkType(l,2,out a1);
 				self.GetColors(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(List<UnityEngine.Color>))){
+			else if(matchType(l,argc,2,typeof(List<UnityEngine.Color32>))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
-				System.Collections.Generic.List<UnityEngine.Color> a1;
+				System.Collections.Generic.List<UnityEngine.Color32> a1;
 				checkType(l,2,out a1);
 				self.GetColors(a1);
 				pushValue(l,true);
@@ -744,17 +744,17 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(List<UnityEngine.Color32>))){
+			if(matchType(l,argc,2,typeof(List<UnityEngine.Color>))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
-				System.Collections.Generic.List<UnityEngine.Color32> a1;
+				System.Collections.Generic.List<UnityEngine.Color> a1;
 				checkType(l,2,out a1);
 				self.SetColors(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(List<UnityEngine.Color>))){
+			else if(matchType(l,argc,2,typeof(List<UnityEngine.Color32>))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
-				System.Collections.Generic.List<UnityEngine.Color> a1;
+				System.Collections.Generic.List<UnityEngine.Color32> a1;
 				checkType(l,2,out a1);
 				self.SetColors(a1);
 				pushValue(l,true);
@@ -791,11 +791,11 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector4>))){
+			if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector2>))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Int32 a1;
 				checkType(l,2,out a1);
-				System.Collections.Generic.List<UnityEngine.Vector4> a2;
+				System.Collections.Generic.List<UnityEngine.Vector2> a2;
 				checkType(l,3,out a2);
 				self.SetUVs(a1,a2);
 				pushValue(l,true);
@@ -811,11 +811,11 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector2>))){
+			else if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector4>))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Int32 a1;
 				checkType(l,2,out a1);
-				System.Collections.Generic.List<UnityEngine.Vector2> a2;
+				System.Collections.Generic.List<UnityEngine.Vector4> a2;
 				checkType(l,3,out a2);
 				self.SetUVs(a1,a2);
 				pushValue(l,true);
@@ -852,11 +852,11 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector4>))){
+			if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector2>))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Int32 a1;
 				checkType(l,2,out a1);
-				System.Collections.Generic.List<UnityEngine.Vector4> a2;
+				System.Collections.Generic.List<UnityEngine.Vector2> a2;
 				checkType(l,3,out a2);
 				self.GetUVs(a1,a2);
 				pushValue(l,true);
@@ -872,11 +872,11 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector2>))){
+			else if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector4>))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Int32 a1;
 				checkType(l,2,out a1);
-				System.Collections.Generic.List<UnityEngine.Vector2> a2;
+				System.Collections.Generic.List<UnityEngine.Vector4> a2;
 				checkType(l,3,out a2);
 				self.GetUVs(a1,a2);
 				pushValue(l,true);
@@ -922,16 +922,6 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int))){
-				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
-				System.Collections.Generic.List<System.Int32> a1;
-				checkType(l,2,out a1);
-				System.Int32 a2;
-				checkType(l,3,out a2);
-				self.GetTriangles(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
 			else if(matchType(l,argc,2,typeof(int),typeof(bool))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Int32 a1;
@@ -942,6 +932,16 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
+			}
+			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int))){
+				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
+				System.Collections.Generic.List<System.Int32> a1;
+				checkType(l,2,out a1);
+				System.Int32 a2;
+				checkType(l,3,out a2);
+				self.GetTriangles(a1,a2);
+				pushValue(l,true);
+				return 1;
 			}
 			else if(argc==4){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
@@ -995,16 +995,6 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int))){
-				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
-				System.Collections.Generic.List<System.Int32> a1;
-				checkType(l,2,out a1);
-				System.Int32 a2;
-				checkType(l,3,out a2);
-				self.GetIndices(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
 			else if(matchType(l,argc,2,typeof(int),typeof(bool))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Int32 a1;
@@ -1015,6 +1005,16 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
+			}
+			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int))){
+				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
+				System.Collections.Generic.List<System.Int32> a1;
+				checkType(l,2,out a1);
+				System.Int32 a2;
+				checkType(l,3,out a2);
+				self.GetIndices(a1,a2);
+				pushValue(l,true);
+				return 1;
 			}
 			else if(argc==4){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
@@ -1161,17 +1161,7 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int))){
-				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
-				System.Collections.Generic.List<System.Int32> a1;
-				checkType(l,2,out a1);
-				System.Int32 a2;
-				checkType(l,3,out a2);
-				self.SetTriangles(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,2,typeof(System.Int32[]),typeof(int))){
+			if(matchType(l,argc,2,typeof(System.Int32[]),typeof(int))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Int32[] a1;
 				checkArray(l,2,out a1);
@@ -1181,15 +1171,13 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int),typeof(bool))){
+			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Collections.Generic.List<System.Int32> a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
-				System.Boolean a3;
-				checkType(l,4,out a3);
-				self.SetTriangles(a1,a2,a3);
+				self.SetTriangles(a1,a2);
 				pushValue(l,true);
 				return 1;
 			}
@@ -1205,10 +1193,22 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int),typeof(bool),typeof(int))){
+			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int),typeof(bool))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
 				System.Collections.Generic.List<System.Int32> a1;
 				checkType(l,2,out a1);
+				System.Int32 a2;
+				checkType(l,3,out a2);
+				System.Boolean a3;
+				checkType(l,4,out a3);
+				self.SetTriangles(a1,a2,a3);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(System.Int32[]),typeof(int),typeof(bool),typeof(int))){
+				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
+				System.Int32[] a1;
+				checkArray(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
 				System.Boolean a3;
@@ -1219,10 +1219,10 @@ public class Lua_UnityEngine_Mesh : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(System.Int32[]),typeof(int),typeof(bool),typeof(int))){
+			else if(matchType(l,argc,2,typeof(List<System.Int32>),typeof(int),typeof(bool),typeof(int))){
 				UnityEngine.Mesh self=(UnityEngine.Mesh)checkSelf(l);
-				System.Int32[] a1;
-				checkArray(l,2,out a1);
+				System.Collections.Generic.List<System.Int32> a1;
+				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
 				System.Boolean a3;

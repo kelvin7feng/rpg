@@ -1,7 +1,9 @@
 doNameSpace("pkgGoodsMgr")
 
 function OnShowReward(tbReward)
-    pkgUIBaseViewMgr.showByViewPath("game/reward/pkgUIRewardList",nil,tbReward)
+    pkgTimer.AddOnceTimer("OnShowReward", 0.1, function()
+        pkgUIBaseViewMgr.showByViewPath("game/reward/pkgUIRewardList",nil,tbReward)
+    end)
 end
 
 function OnUpdateData(tbGoods)

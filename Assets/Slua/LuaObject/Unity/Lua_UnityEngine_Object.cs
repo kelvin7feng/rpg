@@ -117,30 +117,6 @@ public class Lua_UnityEngine_Object : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Object),typeof(UnityEngine.Transform),typeof(bool))){
-				UnityEngine.Object a1;
-				checkType(l,1,out a1);
-				UnityEngine.Transform a2;
-				checkType(l,2,out a2);
-				System.Boolean a3;
-				checkType(l,3,out a3);
-				var ret=UnityEngine.Object.Instantiate<UnityEngine.Object>(a1,a2,a3);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Object),typeof(UnityEngine.Vector3),typeof(UnityEngine.Quaternion))){
-				UnityEngine.Object a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector3 a2;
-				checkType(l,2,out a2);
-				UnityEngine.Quaternion a3;
-				checkType(l,3,out a3);
-				var ret=UnityEngine.Object.Instantiate<UnityEngine.Object>(a1,a2,a3);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
 			else if(matchType(l,argc,1,typeof(UnityEngine.Object),typeof(UnityEngine.Vector3),typeof(UnityEngine.Quaternion))){
 				UnityEngine.Object a1;
 				checkType(l,1,out a1);
@@ -161,6 +137,30 @@ public class Lua_UnityEngine_Object : LuaObject {
 				System.Boolean a3;
 				checkType(l,3,out a3);
 				var ret=UnityEngine.Object.Instantiate(a1,a2,a3);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Object),typeof(UnityEngine.Vector3),typeof(UnityEngine.Quaternion))){
+				UnityEngine.Object a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector3 a2;
+				checkType(l,2,out a2);
+				UnityEngine.Quaternion a3;
+				checkType(l,3,out a3);
+				var ret=UnityEngine.Object.Instantiate<UnityEngine.Object>(a1,a2,a3);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Object),typeof(UnityEngine.Transform),typeof(bool))){
+				UnityEngine.Object a1;
+				checkType(l,1,out a1);
+				UnityEngine.Transform a2;
+				checkType(l,2,out a2);
+				System.Boolean a3;
+				checkType(l,3,out a3);
+				var ret=UnityEngine.Object.Instantiate<UnityEngine.Object>(a1,a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;

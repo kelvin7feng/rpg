@@ -1,8 +1,8 @@
 doNameSpace("pkgSysBattle")
 
-m_dCurType = 0
-m_dCurLevel = 0
-m_dMonsterId = 0
+m_dCurType = m_dCurType or 0
+m_dCurLevel = m_dCurLevel or 0
+m_dMonsterId = m_dMonsterId or 0
 
 function Init()
     pkgEventManager.Register(CLIENT_EVENT.MONSTER_DEAD, pkgSysBattle.OnMonsterDead)

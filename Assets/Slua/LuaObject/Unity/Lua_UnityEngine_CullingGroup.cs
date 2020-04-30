@@ -179,9 +179,9 @@ public class Lua_UnityEngine_CullingGroup : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(System.Int32[]),typeof(int))){
+			if(matchType(l,argc,2,typeof(bool),typeof(System.Int32[]),typeof(int))){
 				UnityEngine.CullingGroup self=(UnityEngine.CullingGroup)checkSelf(l);
-				System.Int32 a1;
+				System.Boolean a1;
 				checkType(l,2,out a1);
 				System.Int32[] a2;
 				checkArray(l,3,out a2);
@@ -192,9 +192,9 @@ public class Lua_UnityEngine_CullingGroup : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(bool),typeof(System.Int32[]),typeof(int))){
+			else if(matchType(l,argc,2,typeof(int),typeof(System.Int32[]),typeof(int))){
 				UnityEngine.CullingGroup self=(UnityEngine.CullingGroup)checkSelf(l);
-				System.Boolean a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Int32[] a2;
 				checkArray(l,3,out a2);
@@ -352,17 +352,17 @@ public class Lua_UnityEngine_CullingGroup : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.Transform))){
+			if(matchType(l,argc,2,typeof(UnityEngine.Vector3))){
 				UnityEngine.CullingGroup self=(UnityEngine.CullingGroup)checkSelf(l);
-				UnityEngine.Transform a1;
+				UnityEngine.Vector3 a1;
 				checkType(l,2,out a1);
 				self.SetDistanceReferencePoint(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Vector3))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Transform))){
 				UnityEngine.CullingGroup self=(UnityEngine.CullingGroup)checkSelf(l);
-				UnityEngine.Vector3 a1;
+				UnityEngine.Transform a1;
 				checkType(l,2,out a1);
 				self.SetDistanceReferencePoint(a1);
 				pushValue(l,true);

@@ -122,16 +122,16 @@ public class Lua_UnityEngine_Application : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(string))){
-				System.String a1;
+			if(matchType(l,argc,1,typeof(int))){
+				System.Int32 a1;
 				checkType(l,1,out a1);
 				var ret=UnityEngine.Application.CanStreamedLevelBeLoaded(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(int))){
-				System.Int32 a1;
+			else if(matchType(l,argc,1,typeof(string))){
+				System.String a1;
 				checkType(l,1,out a1);
 				var ret=UnityEngine.Application.CanStreamedLevelBeLoaded(a1);
 				pushValue(l,true);

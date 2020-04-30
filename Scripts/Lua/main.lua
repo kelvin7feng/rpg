@@ -1,6 +1,11 @@
 
+import "UnityEngine"
+require "luapack"
+cjson = require "cjson"
+
 require("initPath")
-require("load")
+require("share/load")
+require("startHeader")
 
 local function initDebug()
 	local breakSocketHandle,debugXpCall = require("LuaDebugjit")("localhost",7003)

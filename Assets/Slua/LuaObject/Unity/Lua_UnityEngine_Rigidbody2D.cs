@@ -17,17 +17,17 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.Quaternion))){
+			if(matchType(l,argc,2,typeof(float))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.Quaternion a1;
+				System.Single a1;
 				checkType(l,2,out a1);
 				self.SetRotation(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(float))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Quaternion))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				System.Single a1;
+				UnityEngine.Quaternion a1;
 				checkType(l,2,out a1);
 				self.SetRotation(a1);
 				pushValue(l,true);
@@ -97,17 +97,17 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.Quaternion))){
+			if(matchType(l,argc,2,typeof(float))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.Quaternion a1;
+				System.Single a1;
 				checkType(l,2,out a1);
 				self.MoveRotation(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(float))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Quaternion))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				System.Single a1;
+				UnityEngine.Quaternion a1;
 				checkType(l,2,out a1);
 				self.MoveRotation(a1);
 				pushValue(l,true);
@@ -270,19 +270,19 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D))){
+			if(matchType(l,argc,2,typeof(UnityEngine.Collider2D))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.ContactFilter2D a1;
-				checkValueType(l,2,out a1);
+				UnityEngine.Collider2D a1;
+				checkType(l,2,out a1);
 				var ret=self.IsTouching(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Collider2D))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.Collider2D a1;
-				checkType(l,2,out a1);
+				UnityEngine.ContactFilter2D a1;
+				checkValueType(l,2,out a1);
 				var ret=self.IsTouching(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -883,23 +883,23 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.Collider2D>))){
-				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.ContactFilter2D a1;
-				checkValueType(l,2,out a1);
-				System.Collections.Generic.List<UnityEngine.Collider2D> a2;
-				checkType(l,3,out a2);
-				var ret=self.OverlapCollider(a1,a2);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D),typeof(LuaOut))){
+			if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D),typeof(LuaOut))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
 				UnityEngine.ContactFilter2D a1;
 				checkValueType(l,2,out a1);
 				UnityEngine.Collider2D[] a2;
 				checkArray(l,3,out a2);
+				var ret=self.OverlapCollider(a1,a2);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.Collider2D>))){
+				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
+				UnityEngine.ContactFilter2D a1;
+				checkValueType(l,2,out a1);
+				System.Collections.Generic.List<UnityEngine.Collider2D> a2;
+				checkType(l,3,out a2);
 				var ret=self.OverlapCollider(a1,a2);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -936,25 +936,7 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(List<UnityEngine.Collider2D>))){
-				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				System.Collections.Generic.List<UnityEngine.Collider2D> a1;
-				checkType(l,2,out a1);
-				var ret=self.GetContacts(a1);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Collider2D[]))){
-				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.Collider2D[] a1;
-				checkArray(l,2,out a1);
-				var ret=self.GetContacts(a1);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.ContactPoint2D[]))){
+			if(matchType(l,argc,2,typeof(UnityEngine.ContactPoint2D[]))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
 				UnityEngine.ContactPoint2D[] a1;
 				checkArray(l,2,out a1);
@@ -972,24 +954,20 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.Collider2D>))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Collider2D[]))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.ContactFilter2D a1;
-				checkValueType(l,2,out a1);
-				System.Collections.Generic.List<UnityEngine.Collider2D> a2;
-				checkType(l,3,out a2);
-				var ret=self.GetContacts(a1,a2);
+				UnityEngine.Collider2D[] a1;
+				checkArray(l,2,out a1);
+				var ret=self.GetContacts(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
+			else if(matchType(l,argc,2,typeof(List<UnityEngine.Collider2D>))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.ContactFilter2D a1;
-				checkValueType(l,2,out a1);
-				UnityEngine.Collider2D[] a2;
-				checkArray(l,3,out a2);
-				var ret=self.GetContacts(a1,a2);
+				System.Collections.Generic.List<UnityEngine.Collider2D> a1;
+				checkType(l,2,out a1);
+				var ret=self.GetContacts(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -1010,6 +988,28 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 				UnityEngine.ContactFilter2D a1;
 				checkValueType(l,2,out a1);
 				System.Collections.Generic.List<UnityEngine.ContactPoint2D> a2;
+				checkType(l,3,out a2);
+				var ret=self.GetContacts(a1,a2);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.Collider2D[]))){
+				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
+				UnityEngine.ContactFilter2D a1;
+				checkValueType(l,2,out a1);
+				UnityEngine.Collider2D[] a2;
+				checkArray(l,3,out a2);
+				var ret=self.GetContacts(a1,a2);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,2,typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.Collider2D>))){
+				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
+				UnityEngine.ContactFilter2D a1;
+				checkValueType(l,2,out a1);
+				System.Collections.Generic.List<UnityEngine.Collider2D> a2;
 				checkType(l,3,out a2);
 				var ret=self.GetContacts(a1,a2);
 				pushValue(l,true);
@@ -1047,19 +1047,19 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(List<UnityEngine.Collider2D>))){
+			if(matchType(l,argc,2,typeof(LuaOut))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				System.Collections.Generic.List<UnityEngine.Collider2D> a1;
-				checkType(l,2,out a1);
+				UnityEngine.Collider2D[] a1;
+				checkArray(l,2,out a1);
 				var ret=self.GetAttachedColliders(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(LuaOut))){
+			else if(matchType(l,argc,2,typeof(List<UnityEngine.Collider2D>))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.Collider2D[] a1;
-				checkArray(l,2,out a1);
+				System.Collections.Generic.List<UnityEngine.Collider2D> a1;
+				checkType(l,2,out a1);
 				var ret=self.GetAttachedColliders(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -1107,14 +1107,14 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.RaycastHit2D[]))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Vector2),typeof(UnityEngine.RaycastHit2D[]),typeof(float))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
 				UnityEngine.Vector2 a1;
 				checkType(l,2,out a1);
-				UnityEngine.ContactFilter2D a2;
-				checkValueType(l,3,out a2);
-				UnityEngine.RaycastHit2D[] a3;
-				checkArray(l,4,out a3);
+				UnityEngine.RaycastHit2D[] a2;
+				checkArray(l,3,out a2);
+				System.Single a3;
+				checkType(l,4,out a3);
 				var ret=self.Cast(a1,a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -1133,30 +1133,15 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Vector2),typeof(UnityEngine.RaycastHit2D[]),typeof(float))){
-				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
-				UnityEngine.Vector2 a1;
-				checkType(l,2,out a1);
-				UnityEngine.RaycastHit2D[] a2;
-				checkArray(l,3,out a2);
-				System.Single a3;
-				checkType(l,4,out a3);
-				var ret=self.Cast(a1,a2,a3);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.RaycastHit2D>),typeof(float))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(UnityEngine.RaycastHit2D[]))){
 				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
 				UnityEngine.Vector2 a1;
 				checkType(l,2,out a1);
 				UnityEngine.ContactFilter2D a2;
 				checkValueType(l,3,out a2);
-				System.Collections.Generic.List<UnityEngine.RaycastHit2D> a3;
-				checkType(l,4,out a3);
-				System.Single a4;
-				checkType(l,5,out a4);
-				var ret=self.Cast(a1,a2,a3,a4);
+				UnityEngine.RaycastHit2D[] a3;
+				checkArray(l,4,out a3);
+				var ret=self.Cast(a1,a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -1169,6 +1154,21 @@ public class Lua_UnityEngine_Rigidbody2D : LuaObject {
 				checkValueType(l,3,out a2);
 				UnityEngine.RaycastHit2D[] a3;
 				checkArray(l,4,out a3);
+				System.Single a4;
+				checkType(l,5,out a4);
+				var ret=self.Cast(a1,a2,a3,a4);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,2,typeof(UnityEngine.Vector2),typeof(UnityEngine.ContactFilter2D),typeof(List<UnityEngine.RaycastHit2D>),typeof(float))){
+				UnityEngine.Rigidbody2D self=(UnityEngine.Rigidbody2D)checkSelf(l);
+				UnityEngine.Vector2 a1;
+				checkType(l,2,out a1);
+				UnityEngine.ContactFilter2D a2;
+				checkValueType(l,3,out a2);
+				System.Collections.Generic.List<UnityEngine.RaycastHit2D> a3;
+				checkType(l,4,out a3);
 				System.Single a4;
 				checkType(l,5,out a4);
 				var ret=self.Cast(a1,a2,a3,a4);

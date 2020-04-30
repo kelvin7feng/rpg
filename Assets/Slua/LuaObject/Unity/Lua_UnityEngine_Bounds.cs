@@ -90,21 +90,21 @@ public class Lua_UnityEngine_Bounds : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.Bounds))){
+			if(matchType(l,argc,2,typeof(UnityEngine.Vector3))){
 				UnityEngine.Bounds self;
 				checkValueType(l,1,out self);
-				UnityEngine.Bounds a1;
-				checkValueType(l,2,out a1);
+				UnityEngine.Vector3 a1;
+				checkType(l,2,out a1);
 				self.Encapsulate(a1);
 				pushValue(l,true);
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.Vector3))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Bounds))){
 				UnityEngine.Bounds self;
 				checkValueType(l,1,out self);
-				UnityEngine.Vector3 a1;
-				checkType(l,2,out a1);
+				UnityEngine.Bounds a1;
+				checkValueType(l,2,out a1);
 				self.Encapsulate(a1);
 				pushValue(l,true);
 				setBack(l,self);
@@ -141,20 +141,20 @@ public class Lua_UnityEngine_Bounds : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(UnityEngine.Vector3))){
+			if(matchType(l,argc,2,typeof(float))){
 				UnityEngine.Bounds self;
 				checkValueType(l,1,out self);
-				UnityEngine.Vector3 a1;
+				System.Single a1;
 				checkType(l,2,out a1);
 				self.Expand(a1);
 				pushValue(l,true);
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(float))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.Vector3))){
 				UnityEngine.Bounds self;
 				checkValueType(l,1,out self);
-				System.Single a1;
+				UnityEngine.Vector3 a1;
 				checkType(l,2,out a1);
 				self.Expand(a1);
 				pushValue(l,true);

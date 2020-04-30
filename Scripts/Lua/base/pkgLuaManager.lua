@@ -14,6 +14,9 @@ function Start()
 end
 
 function Update()
+	if _G.__loading then
+		return
+	end
 	pkgTimer.Update(0.03)
 	pkgInputMgr.Update()
 	pkgFSMManger.UpdateFSM()

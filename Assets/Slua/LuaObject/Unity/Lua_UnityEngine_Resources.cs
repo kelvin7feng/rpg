@@ -97,7 +97,7 @@ public class Lua_UnityEngine_Resources : LuaObject {
 			if(matchType(l,argc,1,typeof(string))){
 				System.String a1;
 				checkType(l,1,out a1);
-				var ret=UnityEngine.Resources.Load<UnityEngine.Object>(a1);
+				var ret=UnityEngine.Resources.Load(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -105,7 +105,7 @@ public class Lua_UnityEngine_Resources : LuaObject {
 			else if(matchType(l,argc,1,typeof(string))){
 				System.String a1;
 				checkType(l,1,out a1);
-				var ret=UnityEngine.Resources.Load(a1);
+				var ret=UnityEngine.Resources.Load<UnityEngine.Object>(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -154,7 +154,7 @@ public class Lua_UnityEngine_Resources : LuaObject {
 			if(matchType(l,argc,1,typeof(string))){
 				System.String a1;
 				checkType(l,1,out a1);
-				var ret=UnityEngine.Resources.LoadAsync<UnityEngine.Object>(a1);
+				var ret=UnityEngine.Resources.LoadAsync(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -162,7 +162,7 @@ public class Lua_UnityEngine_Resources : LuaObject {
 			else if(matchType(l,argc,1,typeof(string))){
 				System.String a1;
 				checkType(l,1,out a1);
-				var ret=UnityEngine.Resources.LoadAsync(a1);
+				var ret=UnityEngine.Resources.LoadAsync<UnityEngine.Object>(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -211,7 +211,7 @@ public class Lua_UnityEngine_Resources : LuaObject {
 			if(matchType(l,argc,1,typeof(string))){
 				System.String a1;
 				checkType(l,1,out a1);
-				var ret=UnityEngine.Resources.LoadAll<UnityEngine.Object>(a1);
+				var ret=UnityEngine.Resources.LoadAll(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -219,7 +219,7 @@ public class Lua_UnityEngine_Resources : LuaObject {
 			else if(matchType(l,argc,1,typeof(string))){
 				System.String a1;
 				checkType(l,1,out a1);
-				var ret=UnityEngine.Resources.LoadAll(a1);
+				var ret=UnityEngine.Resources.LoadAll<UnityEngine.Object>(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;

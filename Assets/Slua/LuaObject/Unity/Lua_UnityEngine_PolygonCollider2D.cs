@@ -100,22 +100,22 @@ public class Lua_UnityEngine_PolygonCollider2D : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector2>))){
-				UnityEngine.PolygonCollider2D self=(UnityEngine.PolygonCollider2D)checkSelf(l);
-				System.Int32 a1;
-				checkType(l,2,out a1);
-				System.Collections.Generic.List<UnityEngine.Vector2> a2;
-				checkType(l,3,out a2);
-				self.SetPath(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,2,typeof(int),typeof(UnityEngine.Vector2[]))){
+			if(matchType(l,argc,2,typeof(int),typeof(UnityEngine.Vector2[]))){
 				UnityEngine.PolygonCollider2D self=(UnityEngine.PolygonCollider2D)checkSelf(l);
 				System.Int32 a1;
 				checkType(l,2,out a1);
 				UnityEngine.Vector2[] a2;
 				checkArray(l,3,out a2);
+				self.SetPath(a1,a2);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(int),typeof(List<UnityEngine.Vector2>))){
+				UnityEngine.PolygonCollider2D self=(UnityEngine.PolygonCollider2D)checkSelf(l);
+				System.Int32 a1;
+				checkType(l,2,out a1);
+				System.Collections.Generic.List<UnityEngine.Vector2> a2;
+				checkType(l,3,out a2);
 				self.SetPath(a1,a2);
 				pushValue(l,true);
 				return 1;

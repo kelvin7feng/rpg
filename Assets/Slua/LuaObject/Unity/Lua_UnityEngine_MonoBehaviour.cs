@@ -181,18 +181,18 @@ public class Lua_UnityEngine_MonoBehaviour : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(System.Collections.IEnumerator))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.MonoBehaviour self=(UnityEngine.MonoBehaviour)checkSelf(l);
-				System.Collections.IEnumerator a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				var ret=self.StartCoroutine(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(string))){
+			else if(matchType(l,argc,2,typeof(System.Collections.IEnumerator))){
 				UnityEngine.MonoBehaviour self=(UnityEngine.MonoBehaviour)checkSelf(l);
-				System.String a1;
+				System.Collections.IEnumerator a1;
 				checkType(l,2,out a1);
 				var ret=self.StartCoroutine(a1);
 				pushValue(l,true);
@@ -250,9 +250,9 @@ public class Lua_UnityEngine_MonoBehaviour : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(string))){
+			if(matchType(l,argc,2,typeof(System.Collections.IEnumerator))){
 				UnityEngine.MonoBehaviour self=(UnityEngine.MonoBehaviour)checkSelf(l);
-				System.String a1;
+				System.Collections.IEnumerator a1;
 				checkType(l,2,out a1);
 				self.StopCoroutine(a1);
 				pushValue(l,true);
@@ -266,9 +266,9 @@ public class Lua_UnityEngine_MonoBehaviour : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(System.Collections.IEnumerator))){
+			else if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.MonoBehaviour self=(UnityEngine.MonoBehaviour)checkSelf(l);
-				System.Collections.IEnumerator a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				self.StopCoroutine(a1);
 				pushValue(l,true);

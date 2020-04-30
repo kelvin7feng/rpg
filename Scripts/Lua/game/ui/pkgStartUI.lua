@@ -59,6 +59,7 @@ function startDownload(bUpdate)
         m_panelLogin.gameObject:SetActive(true)
         m_panelProcess.gameObject:SetActive(false)
 
+        require("share/configLoad")
         pkgSocket.ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
         return
     end
@@ -85,6 +86,7 @@ function extractComplete()
     m_panelProcess.gameObject:SetActive(false)
 
     pkgHotfixedMgr.RequireFile()
+    require("share/configLoad")
 end
 
 local function onClickEnter()

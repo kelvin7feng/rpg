@@ -6,10 +6,11 @@ State = {
 }
 
 assetVariant = ".unity3d"
-m_tbAssetBundleState = {}
-m_tbAssetBundleWaiting = {}
+m_tbAssetBundleState = m_tbAssetBundleState or {}
+m_tbAssetBundleWaiting = m_tbAssetBundleWaiting or {}
 
 function LoadAssetBundle(strAssetBundleName, strAssetName, funcCallBack)
+
     if not strAssetBundleName then
         print("LoadAssetBundle strAssetBundleName is nil")
         return

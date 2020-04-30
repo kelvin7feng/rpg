@@ -59,16 +59,6 @@ public class Lua_UnityEngine_ILogger : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(System.Object))){
-				UnityEngine.ILogger self=(UnityEngine.ILogger)checkSelf(l);
-				System.String a1;
-				checkType(l,2,out a1);
-				System.Object a2;
-				checkType(l,3,out a2);
-				self.Log(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
 			else if(matchType(l,argc,2,typeof(UnityEngine.LogType),typeof(System.Object))){
 				UnityEngine.ILogger self=(UnityEngine.ILogger)checkSelf(l);
 				UnityEngine.LogType a1;
@@ -79,15 +69,13 @@ public class Lua_UnityEngine_ILogger : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(System.Object),typeof(UnityEngine.Object))){
+			else if(matchType(l,argc,2,typeof(string),typeof(System.Object))){
 				UnityEngine.ILogger self=(UnityEngine.ILogger)checkSelf(l);
 				System.String a1;
 				checkType(l,2,out a1);
 				System.Object a2;
 				checkType(l,3,out a2);
-				UnityEngine.Object a3;
-				checkType(l,4,out a3);
-				self.Log(a1,a2,a3);
+				self.Log(a1,a2);
 				pushValue(l,true);
 				return 1;
 			}
@@ -110,6 +98,18 @@ public class Lua_UnityEngine_ILogger : LuaObject {
 				System.String a2;
 				checkType(l,3,out a2);
 				System.Object a3;
+				checkType(l,4,out a3);
+				self.Log(a1,a2,a3);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(string),typeof(System.Object),typeof(UnityEngine.Object))){
+				UnityEngine.ILogger self=(UnityEngine.ILogger)checkSelf(l);
+				System.String a1;
+				checkType(l,2,out a1);
+				System.Object a2;
+				checkType(l,3,out a2);
+				UnityEngine.Object a3;
 				checkType(l,4,out a3);
 				self.Log(a1,a2,a3);
 				pushValue(l,true);

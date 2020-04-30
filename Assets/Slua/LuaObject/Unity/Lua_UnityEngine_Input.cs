@@ -440,17 +440,17 @@ public class Lua_UnityEngine_Input : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(string))){
-				System.String a1;
-				checkType(l,1,out a1);
+			if(matchType(l,argc,1,typeof(UnityEngine.KeyCode))){
+				UnityEngine.KeyCode a1;
+				a1 = (UnityEngine.KeyCode)LuaDLL.luaL_checkinteger(l, 1);
 				var ret=UnityEngine.Input.GetKey(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.KeyCode))){
-				UnityEngine.KeyCode a1;
-				a1 = (UnityEngine.KeyCode)LuaDLL.luaL_checkinteger(l, 1);
+			else if(matchType(l,argc,1,typeof(string))){
+				System.String a1;
+				checkType(l,1,out a1);
 				var ret=UnityEngine.Input.GetKey(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -487,17 +487,17 @@ public class Lua_UnityEngine_Input : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(string))){
-				System.String a1;
-				checkType(l,1,out a1);
+			if(matchType(l,argc,1,typeof(UnityEngine.KeyCode))){
+				UnityEngine.KeyCode a1;
+				a1 = (UnityEngine.KeyCode)LuaDLL.luaL_checkinteger(l, 1);
 				var ret=UnityEngine.Input.GetKeyUp(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.KeyCode))){
-				UnityEngine.KeyCode a1;
-				a1 = (UnityEngine.KeyCode)LuaDLL.luaL_checkinteger(l, 1);
+			else if(matchType(l,argc,1,typeof(string))){
+				System.String a1;
+				checkType(l,1,out a1);
 				var ret=UnityEngine.Input.GetKeyUp(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -534,17 +534,17 @@ public class Lua_UnityEngine_Input : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(string))){
-				System.String a1;
-				checkType(l,1,out a1);
+			if(matchType(l,argc,1,typeof(UnityEngine.KeyCode))){
+				UnityEngine.KeyCode a1;
+				a1 = (UnityEngine.KeyCode)LuaDLL.luaL_checkinteger(l, 1);
 				var ret=UnityEngine.Input.GetKeyDown(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.KeyCode))){
-				UnityEngine.KeyCode a1;
-				a1 = (UnityEngine.KeyCode)LuaDLL.luaL_checkinteger(l, 1);
+			else if(matchType(l,argc,1,typeof(string))){
+				System.String a1;
+				checkType(l,1,out a1);
 				var ret=UnityEngine.Input.GetKeyDown(a1);
 				pushValue(l,true);
 				pushValue(l,ret);

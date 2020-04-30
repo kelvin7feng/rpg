@@ -660,10 +660,10 @@ public class Lua_UnityEngine_Debug : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(bool),typeof(string))){
+			else if(matchType(l,argc,1,typeof(bool),typeof(UnityEngine.Object))){
 				System.Boolean a1;
 				checkType(l,1,out a1);
-				System.String a2;
+				UnityEngine.Object a2;
 				checkType(l,2,out a2);
 				UnityEngine.Debug.Assert(a1,a2);
 				pushValue(l,true);
@@ -678,23 +678,12 @@ public class Lua_UnityEngine_Debug : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(bool),typeof(UnityEngine.Object))){
-				System.Boolean a1;
-				checkType(l,1,out a1);
-				UnityEngine.Object a2;
-				checkType(l,2,out a2);
-				UnityEngine.Debug.Assert(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(bool),typeof(string),typeof(UnityEngine.Object))){
+			else if(matchType(l,argc,1,typeof(bool),typeof(string))){
 				System.Boolean a1;
 				checkType(l,1,out a1);
 				System.String a2;
 				checkType(l,2,out a2);
-				UnityEngine.Object a3;
-				checkType(l,3,out a3);
-				UnityEngine.Debug.Assert(a1,a2,a3);
+				UnityEngine.Debug.Assert(a1,a2);
 				pushValue(l,true);
 				return 1;
 			}
@@ -702,6 +691,17 @@ public class Lua_UnityEngine_Debug : LuaObject {
 				System.Boolean a1;
 				checkType(l,1,out a1);
 				System.Object a2;
+				checkType(l,2,out a2);
+				UnityEngine.Object a3;
+				checkType(l,3,out a3);
+				UnityEngine.Debug.Assert(a1,a2,a3);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(bool),typeof(string),typeof(UnityEngine.Object))){
+				System.Boolean a1;
+				checkType(l,1,out a1);
+				System.String a2;
 				checkType(l,2,out a2);
 				UnityEngine.Object a3;
 				checkType(l,3,out a3);

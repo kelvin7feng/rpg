@@ -1971,16 +1971,16 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
-				UnityEngine.Vector3[] a1;
+			if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
+				UnityEngine.Transform[] a1;
 				checkArray(l,1,out a1);
 				var ret=iTween.PathLength(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
-				UnityEngine.Transform[] a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
+				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				var ret=iTween.PathLength(a1);
 				pushValue(l,true);
@@ -2018,29 +2018,7 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.GameObject),typeof(UnityEngine.Transform[]),typeof(float))){
-				UnityEngine.GameObject a1;
-				checkType(l,1,out a1);
-				UnityEngine.Transform[] a2;
-				checkArray(l,2,out a2);
-				System.Single a3;
-				checkType(l,3,out a3);
-				iTween.PutOnPath(a1,a2,a3);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform),typeof(UnityEngine.Transform[]),typeof(float))){
-				UnityEngine.Transform a1;
-				checkType(l,1,out a1);
-				UnityEngine.Transform[] a2;
-				checkArray(l,2,out a2);
-				System.Single a3;
-				checkType(l,3,out a3);
-				iTween.PutOnPath(a1,a2,a3);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject),typeof(UnityEngine.Vector3[]),typeof(float))){
+			if(matchType(l,argc,1,typeof(UnityEngine.GameObject),typeof(UnityEngine.Vector3[]),typeof(float))){
 				UnityEngine.GameObject a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector3[] a2;
@@ -2055,6 +2033,28 @@ public class Lua_iTween : LuaObject {
 				UnityEngine.Transform a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector3[] a2;
+				checkArray(l,2,out a2);
+				System.Single a3;
+				checkType(l,3,out a3);
+				iTween.PutOnPath(a1,a2,a3);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject),typeof(UnityEngine.Transform[]),typeof(float))){
+				UnityEngine.GameObject a1;
+				checkType(l,1,out a1);
+				UnityEngine.Transform[] a2;
+				checkArray(l,2,out a2);
+				System.Single a3;
+				checkType(l,3,out a3);
+				iTween.PutOnPath(a1,a2,a3);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform),typeof(UnityEngine.Transform[]),typeof(float))){
+				UnityEngine.Transform a1;
+				checkType(l,1,out a1);
+				UnityEngine.Transform[] a2;
 				checkArray(l,2,out a2);
 				System.Single a3;
 				checkType(l,3,out a3);
@@ -2093,8 +2093,8 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(float))){
-				UnityEngine.Vector3[] a1;
+			if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(float))){
+				UnityEngine.Transform[] a1;
 				checkArray(l,1,out a1);
 				System.Single a2;
 				checkType(l,2,out a2);
@@ -2103,8 +2103,8 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(float))){
-				UnityEngine.Transform[] a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(float))){
+				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				System.Single a2;
 				checkType(l,2,out a2);
@@ -2144,22 +2144,22 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
-				UnityEngine.Transform[] a1;
-				checkArray(l,1,out a1);
-				iTween.DrawLine(a1);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
 				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				iTween.DrawLine(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
 				UnityEngine.Transform[] a1;
+				checkArray(l,1,out a1);
+				iTween.DrawLine(a1);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
+				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2167,8 +2167,8 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
-				UnityEngine.Vector3[] a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+				UnityEngine.Transform[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2207,22 +2207,22 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
-				UnityEngine.Transform[] a1;
-				checkArray(l,1,out a1);
-				iTween.DrawLineGizmos(a1);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
 				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				iTween.DrawLineGizmos(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
 				UnityEngine.Transform[] a1;
+				checkArray(l,1,out a1);
+				iTween.DrawLineGizmos(a1);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
+				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2230,8 +2230,8 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
-				UnityEngine.Vector3[] a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+				UnityEngine.Transform[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2270,22 +2270,22 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
-				UnityEngine.Transform[] a1;
-				checkArray(l,1,out a1);
-				iTween.DrawLineHandles(a1);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
 				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				iTween.DrawLineHandles(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
 				UnityEngine.Transform[] a1;
+				checkArray(l,1,out a1);
+				iTween.DrawLineHandles(a1);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
+				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2293,8 +2293,8 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
-				UnityEngine.Vector3[] a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+				UnityEngine.Transform[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2333,22 +2333,22 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
-				UnityEngine.Transform[] a1;
-				checkArray(l,1,out a1);
-				iTween.DrawPath(a1);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
 				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				iTween.DrawPath(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
 				UnityEngine.Transform[] a1;
+				checkArray(l,1,out a1);
+				iTween.DrawPath(a1);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
+				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2356,8 +2356,8 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
-				UnityEngine.Vector3[] a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+				UnityEngine.Transform[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2396,22 +2396,22 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
-				UnityEngine.Transform[] a1;
-				checkArray(l,1,out a1);
-				iTween.DrawPathGizmos(a1);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
 				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				iTween.DrawPathGizmos(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
 				UnityEngine.Transform[] a1;
+				checkArray(l,1,out a1);
+				iTween.DrawPathGizmos(a1);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
+				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2419,8 +2419,8 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
-				UnityEngine.Vector3[] a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+				UnityEngine.Transform[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2459,22 +2459,22 @@ public class Lua_iTween : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
-				UnityEngine.Transform[] a1;
-				checkArray(l,1,out a1);
-				iTween.DrawPathHandles(a1);
-				pushValue(l,true);
-				return 1;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]))){
 				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				iTween.DrawPathHandles(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]))){
 				UnityEngine.Transform[] a1;
+				checkArray(l,1,out a1);
+				iTween.DrawPathHandles(a1);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
+				UnityEngine.Vector3[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2482,8 +2482,8 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3[]),typeof(UnityEngine.Color))){
-				UnityEngine.Vector3[] a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.Transform[]),typeof(UnityEngine.Color))){
+				UnityEngine.Transform[] a1;
 				checkArray(l,1,out a1);
 				UnityEngine.Color a2;
 				checkType(l,2,out a2);
@@ -2527,15 +2527,15 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(string))){
-				System.String a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject))){
+				UnityEngine.GameObject a1;
 				checkType(l,1,out a1);
 				iTween.Resume(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject))){
-				UnityEngine.GameObject a1;
+			else if(matchType(l,argc,1,typeof(string))){
+				System.String a1;
 				checkType(l,1,out a1);
 				iTween.Resume(a1);
 				pushValue(l,true);
@@ -2606,15 +2606,15 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(string))){
-				System.String a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject))){
+				UnityEngine.GameObject a1;
 				checkType(l,1,out a1);
 				iTween.Pause(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject))){
-				UnityEngine.GameObject a1;
+			else if(matchType(l,argc,1,typeof(string))){
+				System.String a1;
 				checkType(l,1,out a1);
 				iTween.Pause(a1);
 				pushValue(l,true);
@@ -2686,16 +2686,16 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject))){
-				UnityEngine.GameObject a1;
+			else if(matchType(l,argc,1,typeof(string))){
+				System.String a1;
 				checkType(l,1,out a1);
 				var ret=iTween.Count(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(string))){
-				System.String a1;
+			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject))){
+				UnityEngine.GameObject a1;
 				checkType(l,1,out a1);
 				var ret=iTween.Count(a1);
 				pushValue(l,true);
@@ -2748,13 +2748,6 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject))){
-				UnityEngine.GameObject a1;
-				checkType(l,1,out a1);
-				iTween.Stop(a1);
-				pushValue(l,true);
-				return 1;
-			}
 			else if(matchType(l,argc,1,typeof(string))){
 				System.String a1;
 				checkType(l,1,out a1);
@@ -2762,12 +2755,10 @@ public class Lua_iTween : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject),typeof(string))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject))){
 				UnityEngine.GameObject a1;
 				checkType(l,1,out a1);
-				System.String a2;
-				checkType(l,2,out a2);
-				iTween.Stop(a1,a2);
+				iTween.Stop(a1);
 				pushValue(l,true);
 				return 1;
 			}
@@ -2775,6 +2766,15 @@ public class Lua_iTween : LuaObject {
 				UnityEngine.GameObject a1;
 				checkType(l,1,out a1);
 				System.Boolean a2;
+				checkType(l,2,out a2);
+				iTween.Stop(a1,a2);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.GameObject),typeof(string))){
+				UnityEngine.GameObject a1;
+				checkType(l,1,out a1);
+				System.String a2;
 				checkType(l,2,out a2);
 				iTween.Stop(a1,a2);
 				pushValue(l,true);

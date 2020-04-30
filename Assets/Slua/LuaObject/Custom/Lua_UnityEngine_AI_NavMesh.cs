@@ -47,21 +47,7 @@ public class Lua_UnityEngine_AI_NavMesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(UnityEngine.AI.NavMeshQueryFilter))){
-				UnityEngine.Vector3 a1;
-				checkType(l,1,out a1);
-				UnityEngine.Vector3 a2;
-				checkType(l,2,out a2);
-				UnityEngine.AI.NavMeshHit a3;
-				UnityEngine.AI.NavMeshQueryFilter a4;
-				checkValueType(l,4,out a4);
-				var ret=UnityEngine.AI.NavMesh.Raycast(a1,a2,out a3,a4);
-				pushValue(l,true);
-				pushValue(l,ret);
-				pushValue(l,a3);
-				return 3;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(int))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(int))){
 				UnityEngine.Vector3 a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector3 a2;
@@ -69,6 +55,20 @@ public class Lua_UnityEngine_AI_NavMesh : LuaObject {
 				UnityEngine.AI.NavMeshHit a3;
 				System.Int32 a4;
 				checkType(l,4,out a4);
+				var ret=UnityEngine.AI.NavMesh.Raycast(a1,a2,out a3,a4);
+				pushValue(l,true);
+				pushValue(l,ret);
+				pushValue(l,a3);
+				return 3;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(UnityEngine.AI.NavMeshQueryFilter))){
+				UnityEngine.Vector3 a1;
+				checkType(l,1,out a1);
+				UnityEngine.Vector3 a2;
+				checkType(l,2,out a2);
+				UnityEngine.AI.NavMeshHit a3;
+				UnityEngine.AI.NavMeshQueryFilter a4;
+				checkValueType(l,4,out a4);
 				var ret=UnityEngine.AI.NavMesh.Raycast(a1,a2,out a3,a4);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -106,13 +106,13 @@ public class Lua_UnityEngine_AI_NavMesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(UnityEngine.Vector3),typeof(UnityEngine.AI.NavMeshQueryFilter),typeof(UnityEngine.AI.NavMeshPath))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(UnityEngine.Vector3),typeof(int),typeof(UnityEngine.AI.NavMeshPath))){
 				UnityEngine.Vector3 a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector3 a2;
 				checkType(l,2,out a2);
-				UnityEngine.AI.NavMeshQueryFilter a3;
-				checkValueType(l,3,out a3);
+				System.Int32 a3;
+				checkType(l,3,out a3);
 				UnityEngine.AI.NavMeshPath a4;
 				checkType(l,4,out a4);
 				var ret=UnityEngine.AI.NavMesh.CalculatePath(a1,a2,a3,a4);
@@ -120,13 +120,13 @@ public class Lua_UnityEngine_AI_NavMesh : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(UnityEngine.Vector3),typeof(int),typeof(UnityEngine.AI.NavMeshPath))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(UnityEngine.Vector3),typeof(UnityEngine.AI.NavMeshQueryFilter),typeof(UnityEngine.AI.NavMeshPath))){
 				UnityEngine.Vector3 a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector3 a2;
 				checkType(l,2,out a2);
-				System.Int32 a3;
-				checkType(l,3,out a3);
+				UnityEngine.AI.NavMeshQueryFilter a3;
+				checkValueType(l,3,out a3);
 				UnityEngine.AI.NavMeshPath a4;
 				checkType(l,4,out a4);
 				var ret=UnityEngine.AI.NavMesh.CalculatePath(a1,a2,a3,a4);
@@ -165,24 +165,24 @@ public class Lua_UnityEngine_AI_NavMesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(UnityEngine.AI.NavMeshQueryFilter))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(int))){
 				UnityEngine.Vector3 a1;
 				checkType(l,1,out a1);
 				UnityEngine.AI.NavMeshHit a2;
-				UnityEngine.AI.NavMeshQueryFilter a3;
-				checkValueType(l,3,out a3);
+				System.Int32 a3;
+				checkType(l,3,out a3);
 				var ret=UnityEngine.AI.NavMesh.FindClosestEdge(a1,out a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
 				pushValue(l,a2);
 				return 3;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(int))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(UnityEngine.AI.NavMeshQueryFilter))){
 				UnityEngine.Vector3 a1;
 				checkType(l,1,out a1);
 				UnityEngine.AI.NavMeshHit a2;
-				System.Int32 a3;
-				checkType(l,3,out a3);
+				UnityEngine.AI.NavMeshQueryFilter a3;
+				checkValueType(l,3,out a3);
 				var ret=UnityEngine.AI.NavMesh.FindClosestEdge(a1,out a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -220,21 +220,7 @@ public class Lua_UnityEngine_AI_NavMesh : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(float),typeof(UnityEngine.AI.NavMeshQueryFilter))){
-				UnityEngine.Vector3 a1;
-				checkType(l,1,out a1);
-				UnityEngine.AI.NavMeshHit a2;
-				System.Single a3;
-				checkType(l,3,out a3);
-				UnityEngine.AI.NavMeshQueryFilter a4;
-				checkValueType(l,4,out a4);
-				var ret=UnityEngine.AI.NavMesh.SamplePosition(a1,out a2,a3,a4);
-				pushValue(l,true);
-				pushValue(l,ret);
-				pushValue(l,a2);
-				return 3;
-			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(float),typeof(int))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(float),typeof(int))){
 				UnityEngine.Vector3 a1;
 				checkType(l,1,out a1);
 				UnityEngine.AI.NavMeshHit a2;
@@ -242,6 +228,20 @@ public class Lua_UnityEngine_AI_NavMesh : LuaObject {
 				checkType(l,3,out a3);
 				System.Int32 a4;
 				checkType(l,4,out a4);
+				var ret=UnityEngine.AI.NavMesh.SamplePosition(a1,out a2,a3,a4);
+				pushValue(l,true);
+				pushValue(l,ret);
+				pushValue(l,a2);
+				return 3;
+			}
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector3),typeof(LuaOut),typeof(float),typeof(UnityEngine.AI.NavMeshQueryFilter))){
+				UnityEngine.Vector3 a1;
+				checkType(l,1,out a1);
+				UnityEngine.AI.NavMeshHit a2;
+				System.Single a3;
+				checkType(l,3,out a3);
+				UnityEngine.AI.NavMeshQueryFilter a4;
+				checkValueType(l,4,out a4);
 				var ret=UnityEngine.AI.NavMesh.SamplePosition(a1,out a2,a3,a4);
 				pushValue(l,true);
 				pushValue(l,ret);

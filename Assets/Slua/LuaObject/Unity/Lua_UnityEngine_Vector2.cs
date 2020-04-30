@@ -1,6 +1,7 @@
 ﻿using System;
 using SLua;
 using System.Collections.Generic;
+using ParadoxNotion;
 [UnityEngine.Scripting.Preserve]
 public class Lua_UnityEngine_Vector2 : LuaObject {
 	[SLua.MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -160,6 +161,43 @@ public class Lua_UnityEngine_Vector2 : LuaObject {
 			UnityEngine.Vector2 self;
 			checkType(l,1,out self);
 			var ret=self.SqrMagnitude();
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+		#if DEBUG
+		finally {
+			#if UNITY_5_5_OR_NEWER
+			UnityEngine.Profiling.Profiler.EndSample();
+			#else
+			Profiler.EndSample();
+			#endif
+		}
+		#endif
+	}
+	[SLua.MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	[UnityEngine.Scripting.Preserve]
+	static public int TransformSpace(IntPtr l) {
+		try {
+			#if DEBUG
+			var method = System.Reflection.MethodBase.GetCurrentMethod();
+			string methodName = GetMethodName(method);
+			#if UNITY_5_5_OR_NEWER
+			UnityEngine.Profiling.Profiler.BeginSample(methodName);
+			#else
+			Profiler.BeginSample(methodName);
+			#endif
+			#endif
+			UnityEngine.Vector2 self;
+			checkType(l,1,out self);
+			UnityEngine.Rect a2;
+			checkValueType(l,2,out a2);
+			UnityEngine.Rect a3;
+			checkValueType(l,3,out a3);
+			var ret=self.TransformSpace(a2,a3);
 			pushValue(l,true);
 			pushValue(l,ret);
 			return 2;
@@ -835,8 +873,8 @@ public class Lua_UnityEngine_Vector2 : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(float),typeof(UnityEngine.Vector2))){
-				System.Single a1;
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2))){
+				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector2 a2;
 				checkType(l,2,out a2);
@@ -855,8 +893,8 @@ public class Lua_UnityEngine_Vector2 : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2))){
-				UnityEngine.Vector2 a1;
+			else if(matchType(l,argc,1,typeof(float),typeof(UnityEngine.Vector2))){
+				System.Single a1;
 				checkType(l,1,out a1);
 				UnityEngine.Vector2 a2;
 				checkType(l,2,out a2);
@@ -896,20 +934,20 @@ public class Lua_UnityEngine_Vector2 : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float))){
+			if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
-				System.Single a2;
+				UnityEngine.Vector2 a2;
 				checkType(l,2,out a2);
 				var ret=a1/a2;
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(UnityEngine.Vector2))){
+			else if(matchType(l,argc,1,typeof(UnityEngine.Vector2),typeof(float))){
 				UnityEngine.Vector2 a1;
 				checkType(l,1,out a1);
-				UnityEngine.Vector2 a2;
+				System.Single a2;
 				checkType(l,2,out a2);
 				var ret=a1/a2;
 				pushValue(l,true);
@@ -1644,6 +1682,7 @@ public class Lua_UnityEngine_Vector2 : LuaObject {
 		addMember(l,Scale);
 		addMember(l,Normalize);
 		addMember(l,SqrMagnitude);
+		addMember(l,TransformSpace);
 		addMember(l,Lerp_s);
 		addMember(l,LerpUnclamped_s);
 		addMember(l,MoveTowards_s);

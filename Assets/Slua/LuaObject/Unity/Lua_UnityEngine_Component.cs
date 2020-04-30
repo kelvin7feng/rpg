@@ -49,18 +49,18 @@ public class Lua_UnityEngine_Component : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(string))){
+			if(matchType(l,argc,2,typeof(System.Type))){
 				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
-				System.String a1;
+				System.Type a1;
 				checkType(l,2,out a1);
 				var ret=self.GetComponent(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(System.Type))){
+			else if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
-				System.Type a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				var ret=self.GetComponent(a1);
 				pushValue(l,true);
@@ -377,22 +377,22 @@ public class Lua_UnityEngine_Component : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(UnityEngine.SendMessageOptions))){
-				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
-				System.String a1;
-				checkType(l,2,out a1);
-				UnityEngine.SendMessageOptions a2;
-				a2 = (UnityEngine.SendMessageOptions)LuaDLL.luaL_checkinteger(l, 3);
-				self.SendMessageUpwards(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
 			else if(matchType(l,argc,2,typeof(string),typeof(System.Object))){
 				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
 				System.String a1;
 				checkType(l,2,out a1);
 				System.Object a2;
 				checkType(l,3,out a2);
+				self.SendMessageUpwards(a1,a2);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(string),typeof(UnityEngine.SendMessageOptions))){
+				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
+				System.String a1;
+				checkType(l,2,out a1);
+				UnityEngine.SendMessageOptions a2;
+				a2 = (UnityEngine.SendMessageOptions)LuaDLL.luaL_checkinteger(l, 3);
 				self.SendMessageUpwards(a1,a2);
 				pushValue(l,true);
 				return 1;
@@ -448,22 +448,22 @@ public class Lua_UnityEngine_Component : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(UnityEngine.SendMessageOptions))){
-				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
-				System.String a1;
-				checkType(l,2,out a1);
-				UnityEngine.SendMessageOptions a2;
-				a2 = (UnityEngine.SendMessageOptions)LuaDLL.luaL_checkinteger(l, 3);
-				self.SendMessage(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
 			else if(matchType(l,argc,2,typeof(string),typeof(System.Object))){
 				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
 				System.String a1;
 				checkType(l,2,out a1);
 				System.Object a2;
 				checkType(l,3,out a2);
+				self.SendMessage(a1,a2);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(string),typeof(UnityEngine.SendMessageOptions))){
+				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
+				System.String a1;
+				checkType(l,2,out a1);
+				UnityEngine.SendMessageOptions a2;
+				a2 = (UnityEngine.SendMessageOptions)LuaDLL.luaL_checkinteger(l, 3);
 				self.SendMessage(a1,a2);
 				pushValue(l,true);
 				return 1;
@@ -519,22 +519,22 @@ public class Lua_UnityEngine_Component : LuaObject {
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(UnityEngine.SendMessageOptions))){
-				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
-				System.String a1;
-				checkType(l,2,out a1);
-				UnityEngine.SendMessageOptions a2;
-				a2 = (UnityEngine.SendMessageOptions)LuaDLL.luaL_checkinteger(l, 3);
-				self.BroadcastMessage(a1,a2);
-				pushValue(l,true);
-				return 1;
-			}
 			else if(matchType(l,argc,2,typeof(string),typeof(System.Object))){
 				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
 				System.String a1;
 				checkType(l,2,out a1);
 				System.Object a2;
 				checkType(l,3,out a2);
+				self.BroadcastMessage(a1,a2);
+				pushValue(l,true);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(string),typeof(UnityEngine.SendMessageOptions))){
+				UnityEngine.Component self=(UnityEngine.Component)checkSelf(l);
+				System.String a1;
+				checkType(l,2,out a1);
+				UnityEngine.SendMessageOptions a2;
+				a2 = (UnityEngine.SendMessageOptions)LuaDLL.luaL_checkinteger(l, 3);
 				self.BroadcastMessage(a1,a2);
 				pushValue(l,true);
 				return 1;

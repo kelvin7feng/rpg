@@ -1,7 +1,7 @@
 doNameSpace("pkgPoolManager")
 
-m_bHaveInited = false
-m_tbPool = {}
+m_bHaveInited = m_bHaveInited or false
+m_tbPool = m_tbPool or {}
 
 function Init()
 

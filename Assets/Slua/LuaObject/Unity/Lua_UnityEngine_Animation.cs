@@ -179,19 +179,19 @@ public class Lua_UnityEngine_Animation : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(string))){
+			else if(matchType(l,argc,2,typeof(UnityEngine.PlayMode))){
 				UnityEngine.Animation self=(UnityEngine.Animation)checkSelf(l);
-				System.String a1;
-				checkType(l,2,out a1);
+				UnityEngine.PlayMode a1;
+				a1 = (UnityEngine.PlayMode)LuaDLL.luaL_checkinteger(l, 2);
 				var ret=self.Play(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.PlayMode))){
+			else if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animation self=(UnityEngine.Animation)checkSelf(l);
-				UnityEngine.PlayMode a1;
-				a1 = (UnityEngine.PlayMode)LuaDLL.luaL_checkinteger(l, 2);
+				System.String a1;
+				checkType(l,2,out a1);
 				var ret=self.Play(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
@@ -575,17 +575,17 @@ public class Lua_UnityEngine_Animation : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(string))){
+			if(matchType(l,argc,2,typeof(UnityEngine.AnimationClip))){
 				UnityEngine.Animation self=(UnityEngine.Animation)checkSelf(l);
-				System.String a1;
+				UnityEngine.AnimationClip a1;
 				checkType(l,2,out a1);
 				self.RemoveClip(a1);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(UnityEngine.AnimationClip))){
+			else if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animation self=(UnityEngine.Animation)checkSelf(l);
-				UnityEngine.AnimationClip a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				self.RemoveClip(a1);
 				pushValue(l,true);

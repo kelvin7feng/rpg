@@ -117,20 +117,20 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				var ret=self.GetFloat(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(string))){
+			else if(matchType(l,argc,2,typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				var ret=self.GetFloat(a1);
 				pushValue(l,true);
@@ -168,10 +168,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(float))){
+			if(matchType(l,argc,2,typeof(string),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				System.Single a2;
 				checkType(l,3,out a2);
@@ -180,10 +180,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Single a2;
 				checkType(l,3,out a2);
@@ -223,20 +223,20 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				var ret=self.GetBool(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(string))){
+			else if(matchType(l,argc,2,typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				var ret=self.GetBool(a1);
 				pushValue(l,true);
@@ -274,10 +274,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(bool))){
+			if(matchType(l,argc,2,typeof(string),typeof(bool))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				System.Boolean a2;
 				checkType(l,3,out a2);
@@ -286,10 +286,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(bool))){
+			else if(matchType(l,argc,2,typeof(int),typeof(bool))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Boolean a2;
 				checkType(l,3,out a2);
@@ -329,20 +329,20 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				var ret=self.GetInteger(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(string))){
+			else if(matchType(l,argc,2,typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				var ret=self.GetInteger(a1);
 				pushValue(l,true);
@@ -380,10 +380,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(int))){
+			if(matchType(l,argc,2,typeof(string),typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
@@ -392,10 +392,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(int))){
+			else if(matchType(l,argc,2,typeof(int),typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
@@ -435,20 +435,20 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				self.SetTrigger(a1);
 				pushValue(l,true);
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string))){
+			else if(matchType(l,argc,2,typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				self.SetTrigger(a1);
 				pushValue(l,true);
@@ -486,20 +486,20 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				self.ResetTrigger(a1);
 				pushValue(l,true);
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string))){
+			else if(matchType(l,argc,2,typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				self.ResetTrigger(a1);
 				pushValue(l,true);
@@ -537,20 +537,20 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.Int32 a1;
+				System.String a1;
 				checkType(l,2,out a1);
 				var ret=self.IsParameterControlledByCurve(a1);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,2,typeof(string))){
+			else if(matchType(l,argc,2,typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				var ret=self.IsParameterControlledByCurve(a1);
 				pushValue(l,true);
@@ -1147,19 +1147,7 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(float))){
-				UnityEngine.Animations.AnimatorControllerPlayable self;
-				checkValueType(l,1,out self);
-				System.Int32 a1;
-				checkType(l,2,out a1);
-				System.Single a2;
-				checkType(l,3,out a2);
-				self.CrossFadeInFixedTime(a1,a2);
-				pushValue(l,true);
-				setBack(l,self);
-				return 1;
-			}
-			else if(matchType(l,argc,2,typeof(string),typeof(float))){
+			if(matchType(l,argc,2,typeof(string),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.String a1;
@@ -1171,16 +1159,14 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(float),typeof(int))){
+			else if(matchType(l,argc,2,typeof(int),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Single a2;
 				checkType(l,3,out a2);
-				System.Int32 a3;
-				checkType(l,4,out a3);
-				self.CrossFadeInFixedTime(a1,a2,a3);
+				self.CrossFadeInFixedTime(a1,a2);
 				pushValue(l,true);
 				setBack(l,self);
 				return 1;
@@ -1199,10 +1185,24 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(float),typeof(int),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(float),typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.Int32 a1;
+				checkType(l,2,out a1);
+				System.Single a2;
+				checkType(l,3,out a2);
+				System.Int32 a3;
+				checkType(l,4,out a3);
+				self.CrossFadeInFixedTime(a1,a2,a3);
+				pushValue(l,true);
+				setBack(l,self);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(string),typeof(float),typeof(int),typeof(float))){
+				UnityEngine.Animations.AnimatorControllerPlayable self;
+				checkValueType(l,1,out self);
+				System.String a1;
 				checkType(l,2,out a1);
 				System.Single a2;
 				checkType(l,3,out a2);
@@ -1215,10 +1215,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(float),typeof(int),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(float),typeof(int),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Single a2;
 				checkType(l,3,out a2);
@@ -1262,19 +1262,7 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int),typeof(float))){
-				UnityEngine.Animations.AnimatorControllerPlayable self;
-				checkValueType(l,1,out self);
-				System.Int32 a1;
-				checkType(l,2,out a1);
-				System.Single a2;
-				checkType(l,3,out a2);
-				self.CrossFade(a1,a2);
-				pushValue(l,true);
-				setBack(l,self);
-				return 1;
-			}
-			else if(matchType(l,argc,2,typeof(string),typeof(float))){
+			if(matchType(l,argc,2,typeof(string),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.String a1;
@@ -1286,16 +1274,14 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(float),typeof(int))){
+			else if(matchType(l,argc,2,typeof(int),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Single a2;
 				checkType(l,3,out a2);
-				System.Int32 a3;
-				checkType(l,4,out a3);
-				self.CrossFade(a1,a2,a3);
+				self.CrossFade(a1,a2);
 				pushValue(l,true);
 				setBack(l,self);
 				return 1;
@@ -1314,10 +1300,24 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(float),typeof(int),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(float),typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.Int32 a1;
+				checkType(l,2,out a1);
+				System.Single a2;
+				checkType(l,3,out a2);
+				System.Int32 a3;
+				checkType(l,4,out a3);
+				self.CrossFade(a1,a2,a3);
+				pushValue(l,true);
+				setBack(l,self);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(string),typeof(float),typeof(int),typeof(float))){
+				UnityEngine.Animations.AnimatorControllerPlayable self;
+				checkValueType(l,1,out self);
+				System.String a1;
 				checkType(l,2,out a1);
 				System.Single a2;
 				checkType(l,3,out a2);
@@ -1330,10 +1330,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(float),typeof(int),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(float),typeof(int),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Single a2;
 				checkType(l,3,out a2);
@@ -1377,17 +1377,7 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int))){
-				UnityEngine.Animations.AnimatorControllerPlayable self;
-				checkValueType(l,1,out self);
-				System.Int32 a1;
-				checkType(l,2,out a1);
-				self.PlayInFixedTime(a1);
-				pushValue(l,true);
-				setBack(l,self);
-				return 1;
-			}
-			else if(matchType(l,argc,2,typeof(string))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.String a1;
@@ -1397,14 +1387,12 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(int))){
+			else if(matchType(l,argc,2,typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.Int32 a1;
 				checkType(l,2,out a1);
-				System.Int32 a2;
-				checkType(l,3,out a2);
-				self.PlayInFixedTime(a1,a2);
+				self.PlayInFixedTime(a1);
 				pushValue(l,true);
 				setBack(l,self);
 				return 1;
@@ -1421,10 +1409,22 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(int),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.Int32 a1;
+				checkType(l,2,out a1);
+				System.Int32 a2;
+				checkType(l,3,out a2);
+				self.PlayInFixedTime(a1,a2);
+				pushValue(l,true);
+				setBack(l,self);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(string),typeof(int),typeof(float))){
+				UnityEngine.Animations.AnimatorControllerPlayable self;
+				checkValueType(l,1,out self);
+				System.String a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
@@ -1435,10 +1435,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(int),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(int),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
@@ -1480,17 +1480,7 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(int))){
-				UnityEngine.Animations.AnimatorControllerPlayable self;
-				checkValueType(l,1,out self);
-				System.Int32 a1;
-				checkType(l,2,out a1);
-				self.Play(a1);
-				pushValue(l,true);
-				setBack(l,self);
-				return 1;
-			}
-			else if(matchType(l,argc,2,typeof(string))){
+			if(matchType(l,argc,2,typeof(string))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.String a1;
@@ -1500,14 +1490,12 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(int))){
+			else if(matchType(l,argc,2,typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.Int32 a1;
 				checkType(l,2,out a1);
-				System.Int32 a2;
-				checkType(l,3,out a2);
-				self.Play(a1,a2);
+				self.Play(a1);
 				pushValue(l,true);
 				setBack(l,self);
 				return 1;
@@ -1524,10 +1512,22 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(int),typeof(int),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(int))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
 				System.Int32 a1;
+				checkType(l,2,out a1);
+				System.Int32 a2;
+				checkType(l,3,out a2);
+				self.Play(a1,a2);
+				pushValue(l,true);
+				setBack(l,self);
+				return 1;
+			}
+			else if(matchType(l,argc,2,typeof(string),typeof(int),typeof(float))){
+				UnityEngine.Animations.AnimatorControllerPlayable self;
+				checkValueType(l,1,out self);
+				System.String a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);
@@ -1538,10 +1538,10 @@ public class Lua_UnityEngine_Animations_AnimatorControllerPlayable : LuaObject {
 				setBack(l,self);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(int),typeof(float))){
+			else if(matchType(l,argc,2,typeof(int),typeof(int),typeof(float))){
 				UnityEngine.Animations.AnimatorControllerPlayable self;
 				checkValueType(l,1,out self);
-				System.String a1;
+				System.Int32 a1;
 				checkType(l,2,out a1);
 				System.Int32 a2;
 				checkType(l,3,out a2);

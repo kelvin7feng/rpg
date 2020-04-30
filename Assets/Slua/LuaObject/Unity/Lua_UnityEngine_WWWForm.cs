@@ -49,21 +49,21 @@ public class Lua_UnityEngine_WWWForm : LuaObject {
 			#endif
 			#endif
 			int argc = LuaDLL.lua_gettop(l);
-			if(matchType(l,argc,2,typeof(string),typeof(int))){
+			if(matchType(l,argc,2,typeof(string),typeof(string))){
 				UnityEngine.WWWForm self=(UnityEngine.WWWForm)checkSelf(l);
 				System.String a1;
 				checkType(l,2,out a1);
-				System.Int32 a2;
+				System.String a2;
 				checkType(l,3,out a2);
 				self.AddField(a1,a2);
 				pushValue(l,true);
 				return 1;
 			}
-			else if(matchType(l,argc,2,typeof(string),typeof(string))){
+			else if(matchType(l,argc,2,typeof(string),typeof(int))){
 				UnityEngine.WWWForm self=(UnityEngine.WWWForm)checkSelf(l);
 				System.String a1;
 				checkType(l,2,out a1);
-				System.String a2;
+				System.Int32 a2;
 				checkType(l,3,out a2);
 				self.AddField(a1,a2);
 				pushValue(l,true);

@@ -605,22 +605,6 @@ public class Lua_UnityEngine_RenderTexture : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(int),typeof(int),typeof(int),typeof(UnityEngine.RenderTextureFormat),typeof(UnityEngine.RenderTextureReadWrite))){
-				System.Int32 a1;
-				checkType(l,1,out a1);
-				System.Int32 a2;
-				checkType(l,2,out a2);
-				System.Int32 a3;
-				checkType(l,3,out a3);
-				UnityEngine.RenderTextureFormat a4;
-				a4 = (UnityEngine.RenderTextureFormat)LuaDLL.luaL_checkinteger(l, 4);
-				UnityEngine.RenderTextureReadWrite a5;
-				a5 = (UnityEngine.RenderTextureReadWrite)LuaDLL.luaL_checkinteger(l, 5);
-				var ret=UnityEngine.RenderTexture.GetTemporary(a1,a2,a3,a4,a5);
-				pushValue(l,true);
-				pushValue(l,ret);
-				return 2;
-			}
 			else if(matchType(l,argc,1,typeof(int),typeof(int),typeof(int),typeof(UnityEngine.Experimental.Rendering.GraphicsFormat),typeof(int))){
 				System.Int32 a1;
 				checkType(l,1,out a1);
@@ -637,7 +621,7 @@ public class Lua_UnityEngine_RenderTexture : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
-			else if(matchType(l,argc,1,typeof(int),typeof(int),typeof(int),typeof(UnityEngine.RenderTextureFormat),typeof(UnityEngine.RenderTextureReadWrite),typeof(int))){
+			else if(matchType(l,argc,1,typeof(int),typeof(int),typeof(int),typeof(UnityEngine.RenderTextureFormat),typeof(UnityEngine.RenderTextureReadWrite))){
 				System.Int32 a1;
 				checkType(l,1,out a1);
 				System.Int32 a2;
@@ -648,9 +632,7 @@ public class Lua_UnityEngine_RenderTexture : LuaObject {
 				a4 = (UnityEngine.RenderTextureFormat)LuaDLL.luaL_checkinteger(l, 4);
 				UnityEngine.RenderTextureReadWrite a5;
 				a5 = (UnityEngine.RenderTextureReadWrite)LuaDLL.luaL_checkinteger(l, 5);
-				System.Int32 a6;
-				checkType(l,6,out a6);
-				var ret=UnityEngine.RenderTexture.GetTemporary(a1,a2,a3,a4,a5,a6);
+				var ret=UnityEngine.RenderTexture.GetTemporary(a1,a2,a3,a4,a5);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
@@ -668,6 +650,24 @@ public class Lua_UnityEngine_RenderTexture : LuaObject {
 				checkType(l,5,out a5);
 				UnityEngine.RenderTextureMemoryless a6;
 				a6 = (UnityEngine.RenderTextureMemoryless)LuaDLL.luaL_checkinteger(l, 6);
+				var ret=UnityEngine.RenderTexture.GetTemporary(a1,a2,a3,a4,a5,a6);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(matchType(l,argc,1,typeof(int),typeof(int),typeof(int),typeof(UnityEngine.RenderTextureFormat),typeof(UnityEngine.RenderTextureReadWrite),typeof(int))){
+				System.Int32 a1;
+				checkType(l,1,out a1);
+				System.Int32 a2;
+				checkType(l,2,out a2);
+				System.Int32 a3;
+				checkType(l,3,out a3);
+				UnityEngine.RenderTextureFormat a4;
+				a4 = (UnityEngine.RenderTextureFormat)LuaDLL.luaL_checkinteger(l, 4);
+				UnityEngine.RenderTextureReadWrite a5;
+				a5 = (UnityEngine.RenderTextureReadWrite)LuaDLL.luaL_checkinteger(l, 5);
+				System.Int32 a6;
+				checkType(l,6,out a6);
 				var ret=UnityEngine.RenderTexture.GetTemporary(a1,a2,a3,a4,a5,a6);
 				pushValue(l,true);
 				pushValue(l,ret);
