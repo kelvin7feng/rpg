@@ -157,6 +157,11 @@ namespace KG
             File.WriteAllBytes(savePath, bytes);
         }
 
+        public static void SaveFileByString(string path, string str)
+        {
+            File.WriteAllText(path, str);
+        }
+
         public static string ReadAllText(string filePath)
         {
             if (!IsFileExits(filePath))

@@ -13,6 +13,11 @@ function GetUpdateCfgURL()
     return strURL
 end
 
+function SaveLocalUpdateCfg(tbLocalCfg)
+    local strFilePath = GetUpdateCfgPath()
+    KG.CustomFile.SaveFileByString(strFilePath, cjson.encode(tbLocalCfg))
+end
+
 function GetLocalUpdateCfg()
     local strFilePath = GetUpdateCfgPath()
     local strLocalCfg = KG.CustomFile.ReadAllText(strFilePath)

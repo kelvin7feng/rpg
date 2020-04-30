@@ -92,11 +92,18 @@ function StartToUnzip()
         if #le_tbExtractFile > 0 then
             StartToUnzip()
         else
+            UpdateLocalCfg()
             pkgEventManager.PostEvent(CLIENT_EVENT.EXTRACT_COMPLETE)
         end
     end
     
     pkgExtractMgr.unzipFile(strFilePath, nil, unzipComplete)
+end
+
+function UpdateLocalCfg()
+    local tbLocalCfg = pkgHotFixedCfg.GetLocalUpdateCfg()
+    tbLocalCfg.version = le_tbLastestCfg.version
+    pkgHotFixedCfg.SaveLocalUpdateCfg(tbLocalCfg)
 end
 
 function RequireFile()
