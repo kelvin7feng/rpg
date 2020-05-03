@@ -14,7 +14,7 @@ function GetUpdateCfgURL()
 end
 
 function SaveLocalUpdateCfg(tbLocalCfg)
-    local strFilePath = GetUpdateCfgPath()
+    local strFilePath = strFilePath = string.format("%s/%s", __persistentDataPath, UPDATE_CFG_NAME)
     KG.CustomFile.SaveFileByString(strFilePath, cjson.encode(tbLocalCfg))
 end
 
@@ -26,9 +26,9 @@ function GetLocalUpdateCfg()
 end
 
 function GetUpdateCfgPath()
-    local strFilePath = string.format("%s/%s", __streamingAssetsPath, UPDATE_CFG_NAME)
+    local strFilePath = string.format("%s/%s", __persistentDataPath, UPDATE_CFG_NAME)
     if not KG.CustomFile.IsFileExits(strFilePath) then
-        strFilePath = string.format("%s/%s", __persistentDataPath, UPDATE_CFG_NAME)
+        strFilePath = string.format("%s/%s", __streamingAssetsPath, UPDATE_CFG_NAME)
     end
 
     return strFilePath
