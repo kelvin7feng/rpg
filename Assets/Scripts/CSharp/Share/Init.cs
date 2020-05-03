@@ -81,9 +81,21 @@ namespace KG
             }
             string filePath = null;
 #if UNITY_ANDROID  //android
-            filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "Scripts/Lua/" + fileName);
+            filePath = System.IO.Path.Combine( Application.streamingAssetsPath, "Scripts/Lua/" + fileName);
+            bool bExist = System.IO.File.Exists(filePath);
+            if (!bExist)
+            {
+                //for share
+                filePath = Application.streamingAssetsPath + "/" + fileName;
+            }
 #elif UNITY_IPHONE //iPhone
             filePath = Application.streamingAssetsPath + "/Scripts/Lua/" + fileName;
+            bool bExist = System.IO.File.Exists(filePath);
+            if (!bExist)
+            {
+                //for share
+                filePath = Application.streamingAssetsPath + "/" + fileName;
+            }
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
             filePath = Application.dataPath + "/../Scripts/Lua/" + fileName;
             bool bExist = System.IO.File.Exists(filePath);
@@ -95,7 +107,7 @@ namespace KG
 #else
             filePath = string.Empty;
 #endif
-                return filePath;
+            return filePath;
         }
 
         public static string GetScriptPersistentDataPath(string fileName)
