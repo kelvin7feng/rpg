@@ -1,4 +1,3 @@
-_G.__patchPath = string.format("%s/%s", UnityEngine.Application.persistentDataPath, "update")
 _G.__downloadPath = string.format("%s/%s", UnityEngine.Application.persistentDataPath, "download")
 _G.__persistentDataPath = string.format("%s", UnityEngine.Application.persistentDataPath)
 _G.__streamingAssetsPath = string.format("%s", UnityEngine.Application.streamingAssetsPath)
@@ -18,10 +17,6 @@ local function initSearchPath()
 		table.insert(tbPath, strAssetPath .. "/Scripts/Lua/?.lua")
 		table.insert(tbPath, strAssetPath .. "/share/?.lua")
 
-		local strAssetPath = UnityEngine.Application.dataPath
-		table.insert(tbPath, strAssetPath .. "/../luaScript/?.lua")
-		table.insert(tbPath, strAssetPath .. "/../../?.lua")
-
 	elseif UnityEngine.Application.platform == UnityEngine.RuntimePlatform.WindowsEditor or
 		UnityEngine.Application.platform == UnityEngine.RuntimePlatform.OSXEditor then
 
@@ -31,14 +26,15 @@ local function initSearchPath()
 
 	elseif UnityEngine.Application.platform == UnityEngine.RuntimePlatform.Android then
 
-		table.insert(tbPath, "luaScript/?.lua")
-		table.insert(tbPath, "?.lua")
+		local strAssetPath = UnityEngine.Application.streamingAssetsPath
+		table.insert(tbPath, strAssetPath .. "/Scripts/Lua/?.lua")
+		table.insert(tbPath, strAssetPath .. "/share/.lua")
 
 	elseif UnityEngine.Application.platform == UnityEngine.RuntimePlatform.IPhonePlayer then
 
 		local strAssetPath = UnityEngine.Application.streamingAssetsPath
-		table.insert(tbPath, strAssetPath .. "/luaScript/?.lua")
-		table.insert(tbPath, strAssetPath .. "/?.lua")
+		table.insert(tbPath, strAssetPath .. "/Scripts/Lua/?.lua")
+		table.insert(tbPath, strAssetPath .. "/share/?.lua")
 	end
 
 	package.path = table.concat(tbPath, ";")
