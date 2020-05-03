@@ -7,6 +7,12 @@ function Init()
     KG.CustomFile.CreateDir(SAVE_PATH)
 end
 
+function GetVersion()
+    local tbLocalCfg = GetLocalUpdateCfg()
+    local strVersion = string.format("v%d.%d", tbLocalCfg.version, tbLocalCfg.minVersion)
+    return strVersion
+end
+
 function GetUpdateCfgURL()
     local tbLocalCfg = GetLocalUpdateCfg()
     local strURL = string.format("%s/%s", tbLocalCfg.webURL, UPDATE_CFG_NAME)

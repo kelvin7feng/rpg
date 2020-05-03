@@ -20,6 +20,7 @@ m_txtFileName = m_txtFileName or nil
 m_sliderProcess = m_sliderProcess or nil
 m_sliderProcessCmpt = m_sliderProcessCmpt or nil
 m_txtState = m_txtState or nil
+m_txtVersion = m_txtVersion or nil
 
 function GetInputField()
     local inputFieldComponet = m_filedId:GetComponent(UnityEngine.UI.InputField)
@@ -52,6 +53,12 @@ function updateProcess(strFileName, dProcess)
     pkgUITool.SetGameObjectString(m_txtFileName, strFileName)
     pkgUITool.SetGameObjectString(m_txtProcess, string.format("%0.02f%%", dProcess * 100))
     m_sliderProcessCmpt.value = dProcess
+end
+
+function updateVersion()
+    local strVersion = pkgHotFixedCfg.GetVersion()
+    pkgUITool.SetGameObjectString(m_txtVersion, strVersion)
+    pkgUITool.SetActive(true)
 end
 
 function startDownload(bUpdate)
@@ -87,6 +94,7 @@ function extractComplete()
 
     pkgHotfixedMgr.RequireFile()
     require("share/configLoad")
+    updateVersion()
 end
 
 local function onClickEnter()
@@ -103,12 +111,15 @@ function init()
     m_txtFileName = gameObject.transform:Find("Panel/Process/Slider/TxtFileName")
     m_sliderProcess = gameObject.transform:Find("Panel/Process/Slider")
     m_sliderProcessCmpt = m_sliderProcess:GetComponent(UnityEngine.UI.Slider)
+    m_txtVersion = gameObject.transform:Find("Panel/TxtVersion")
 end
 
 function show()
 
     local inputFieldComponet = m_filedId:GetComponent(UnityEngine.UI.InputField)
     inputFieldComponet.text = GetLastEnterUserId() or ""
+
+    updateVersion()
 
     pkgHotfixedMgr.CheckUpdate()
 end
