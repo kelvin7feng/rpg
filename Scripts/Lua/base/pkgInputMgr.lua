@@ -35,9 +35,7 @@ end
 function UpdatePlayerInput()
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T) then
-        -- pkgSysSkill.SetAttackSkill(pkgActorManager.GetMainPlayer(), 0)
-        local strZipPath = pkgExtractMgr.getUpdateZipPath("update1.zip")
-        pkgExtractMgr.unzipFile(strZipPath)
+        pkgSysSkill.SetAttackSkill(pkgActorManager.GetMainPlayer(), 0)
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.I) then

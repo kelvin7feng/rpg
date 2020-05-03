@@ -25,6 +25,7 @@ function GetLocalUpdateCfg()
     return tbLocalCfg
 end
 
+-- to do:android check api
 function GetUpdateCfgPath()
     local strFilePath = string.format("%s/%s", __persistentDataPath, UPDATE_CFG_NAME)
     if not KG.CustomFile.IsFileExits(strFilePath) then

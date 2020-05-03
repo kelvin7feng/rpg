@@ -8,10 +8,6 @@ function getExtractDirPath()
     return EXTRACT_PATH
 end
 
-function getUpdateZipPath(strFileName)
-    return string.format("%s/%s", __patchPath, strFileName)
-end
-
 function unzipFile(strZipPath, unzipProgress, unzipComplete, errorCallback)
     
     if le_bUnziping then

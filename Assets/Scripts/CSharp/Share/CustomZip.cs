@@ -101,10 +101,8 @@ namespace KG
         //获取压缩包大小
         public static long GetTotalSize(string filePath)
         {
-            if (Application.platform == RuntimePlatform.WindowsPlayer)
-            {
-                ZipConstants.DefaultCodePage = Encoding.UTF8.CodePage;
-            }
+
+            ZipConstants.DefaultCodePage = Encoding.UTF8.CodePage;
 
             long totalSize = 0;
             try
@@ -134,10 +132,7 @@ namespace KG
                  return;
             }
 
-            if (Application.platform == RuntimePlatform.WindowsPlayer)
-            {
-                ZipConstants.DefaultCodePage = Encoding.UTF8.CodePage;
-            }
+            ZipConstants.DefaultCodePage = Encoding.UTF8.CodePage;
 
             _unzipActionList.Add(() => unzipThread(filePath, outputPath, endCallback, errorCallback, writeBufferSize));
             //https://www.cnblogs.com/OpenCoder/p/4587249.html

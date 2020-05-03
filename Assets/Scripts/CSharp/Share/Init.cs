@@ -8,12 +8,12 @@ namespace KG
 {
     public class Init : MonoBehaviour
     { 
-        public static bool connectServer = false;
-        public static int sendCount = 0;
+        public bool showLog = false;
 
         void Awake()
         {
-            //KG.Logger.Instance.Register();
+            if(showLog)
+                KG.Logger.Instance.Register();
 
             LuaSvr svr = new LuaSvr();
             LuaSvr.mainState.loaderDelegate += LuaReourcesFileLoader;
@@ -60,10 +60,8 @@ namespace KG
             if (filePath.Contains("://"))
             {
                 WWW www = new WWW(filePath);
-                while (!www.isDone)
-                {
-                    Thread.Sleep(30);
-                }
+                while (!www.isDone){}
+
                 fileBytes = www.bytes;
             }
             else
@@ -81,13 +79,7 @@ namespace KG
             }
             string filePath = null;
 #if UNITY_ANDROID  //android
-            filePath = System.IO.Path.Combine( Application.streamingAssetsPath, "Scripts/Lua/" + fileName);
-            bool bExist = System.IO.File.Exists(filePath);
-            if (!bExist)
-            {
-                //for share
-                filePath = Application.streamingAssetsPath + "/" + fileName;
-            }
+            filePath = Application.streamingAssetsPath + "/Scripts/Lua/" + fileName;
 #elif UNITY_IPHONE //iPhone
             filePath = Application.streamingAssetsPath + "/Scripts/Lua/" + fileName;
             bool bExist = System.IO.File.Exists(filePath);

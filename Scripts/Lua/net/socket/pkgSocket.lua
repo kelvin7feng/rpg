@@ -107,7 +107,7 @@ end
 function ConnectToServer(strIp, dPort)
     local session, err = connect(strIp, dPort)
     if not session then
-        print("connect error:", ERROR_TIPS[ERROR_CODE[err]])
+        print(string.format("connect to %s:%d error:%s", strIp, dPort, ERROR_TIPS[ERROR_CODE[err]]))
         return false
     end
 

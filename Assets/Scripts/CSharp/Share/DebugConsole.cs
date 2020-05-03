@@ -47,11 +47,11 @@ public class DebugConsole : MonoBehaviour
     public GameObject DebugGui = null;             // The GUI that will be duplicated
     public Vector2 canvasPosition = new Vector2(-Screen.width * 0.5f, Screen.height / 2);
     public Vector3 defaultGuiPosition = new Vector3(-(Screen.width * 0.5f), Screen.height / 2, 0F);
-    public Vector3 defaultGuiScale = new Vector3(0.5F, 0.5F, 1F);
+    public Vector3 defaultGuiScale = new Vector3(0.5F,0.5F, 1F);
     public Color normal = Color.white;
     public Color warning = Color.yellow;
     public Color error = Color.red;
-    public int maxMessages = 30;                   // The max number of messages displayed
+    public int maxMessages = 50;                   // The max number of messages displayed
     public float lineSpacing = 20F;              // The amount of space between lines
     public ArrayList messages = new ArrayList();
     public ArrayList guis = new ArrayList();
@@ -132,6 +132,10 @@ public class DebugConsole : MonoBehaviour
             canvasGO.name = "LogCanvas";
             Canvas canvas = canvasGO.AddComponent<Canvas>() as Canvas;
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            CanvasScaler scaler = canvasGO.AddComponent<CanvasScaler>() as CanvasScaler;
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1080, 1920);
+            canvas.sortingOrder = 999999;
         }
 
         float usedLineSpacing = lineSpacing;
@@ -149,10 +153,10 @@ public class DebugConsole : MonoBehaviour
                 text.font = font;
                 text.fontSize = 30;
                 DebugGui.name = "DebugGUI(0)";
-                DebugGui.transform.position = new Vector3(200f, Screen.height - 20, 0f);
+                DebugGui.transform.position = new Vector3(460f, Screen.height - 20, 0f);
                 DebugGui.transform.localScale = defaultGuiScale;
                 RectTransform rt = DebugGui.GetComponent<RectTransform>();
-                rt.sizeDelta = new Vector2(700, 40);
+                rt.sizeDelta = new Vector2(2000, 40);
                 DebugGui.transform.parent = canvasGO.transform;
                 //DebugGui.transform.SetParent(canvasGO.transform);
             }

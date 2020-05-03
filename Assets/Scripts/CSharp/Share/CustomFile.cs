@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace KG
 {
@@ -164,6 +165,14 @@ namespace KG
 
         public static string ReadAllText(string filePath)
         {
+            if (filePath.Contains("://"))
+            {
+                WWW www = new WWW(filePath);
+                while (!www.isDone){}
+
+                return www.text;
+            }
+
             if (!IsFileExits(filePath))
                 return "";
 
