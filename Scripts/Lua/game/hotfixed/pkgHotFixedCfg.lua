@@ -14,7 +14,7 @@ function GetUpdateCfgURL()
 end
 
 function SaveLocalUpdateCfg(tbLocalCfg)
-    local strFilePath = strFilePath = string.format("%s/%s", __persistentDataPath, UPDATE_CFG_NAME)
+    local strFilePath = string.format("%s/%s", __persistentDataPath, UPDATE_CFG_NAME)
     KG.CustomFile.SaveFileByString(strFilePath, cjson.encode(tbLocalCfg))
 end
 
