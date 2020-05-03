@@ -5,7 +5,7 @@ le_downLoad_timer_id = le_downLoad_timer_id or nil
 
 function getHttpType()
 	if UnityEngine.Application.platform == UnityEngine.RuntimePlatform.IPhonePlayer then
-		return "https"
+		--return "https"
 	end
 	return "http"
 end

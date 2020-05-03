@@ -57,6 +57,11 @@ NavMeshSurface = {
     DISTANCE_THRESHOLD    = 20,     --应该比VOLUME_X,VOLUME_Y,VOLUME_Z的一半要小
 }
 
-GATEWAT_IP = "122.51.240.92"
-GATEWAT_IP = "127.0.0.1"
+if UnityEngine.Application.platform == UnityEngine.RuntimePlatform.IPhonePlayer 
+    or UnityEngine.Application.platform == UnityEngine.RuntimePlatform.Android then
+    GATEWAT_IP = "122.51.240.92"
+else
+    GATEWAT_IP = "122.51.240.92"
+    --GATEWAT_IP = "127.0.0.1"
+end
 GATEWAY_PORT = 7000
