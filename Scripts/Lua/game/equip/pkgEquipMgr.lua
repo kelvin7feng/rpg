@@ -10,7 +10,7 @@ function OnUpdateData(tbEquipList)
         pkgUserDataManager.SetEquip(strId, tbEquip)
     end
 
-    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_EQUIP)
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_EQUIP)
 end
 
 function OnDeleteEquip(tbEquipList)
@@ -23,12 +23,12 @@ function OnDeleteEquip(tbEquipList)
         pkgUserDataManager.SetEquip(strId, nil)
     end
 
-    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_EQUIP)
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_EQUIP)
 end
 
 function OnWearEquip(dSlotId, strId)
     pkgUserDataManager.SetEquipSlot(dSlotId, strId)
-    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_WEAR_EQUIP, dSlotId)
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_WEAR_EQUIP, dSlotId)
 end
 
 function WearEquip(dSlotId, strId)
@@ -37,7 +37,7 @@ end
 
 function OnTakeOff(dSlotId)
     pkgUserDataManager.SetEquipSlot(dSlotId, 0)
-    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_TAKE_OFF_EQUIP, dSlotId)
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, dSlotId)
 end
 
 function TakeOff(dSlotId, strId)
@@ -52,5 +52,5 @@ function OnLevelUp(strId, dLevel, dLevelUpExp)
     local tbEquip = pkgUserDataManager.GetEquip(strId)
     tbEquip.dLevel = dLevel
     tbEquip.dLevelUpExp = dLevelUpExp
-    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_LEVEL_UP_EQUIP, strId)
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_LEVEL_UP_EQUIP, strId)
 end

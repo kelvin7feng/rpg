@@ -4,11 +4,11 @@ assetbundleTag = "ui"
 prefabFile = "StartUI"
 
 event_listener = {
-    {CLIENT_EVENT.UPDATE_DOWNLOAD, "startDownload"},
-    {CLIENT_EVENT.UPDATE_DOWNLOAD_PROCESS, "updateProcess"},
-    {CLIENT_EVENT.UPDATE_EXTRACT_PROCESS, "updateProcess"},
-    {CLIENT_EVENT.DOWNLOAD_COMPLETE, "downloadComplete"},
-    {CLIENT_EVENT.EXTRACT_COMPLETE, "extractComplete"},
+    {pkgClientEventDefination.UPDATE_DOWNLOAD, "startDownload"},
+    {pkgClientEventDefination.UPDATE_DOWNLOAD_PROCESS, "updateProcess"},
+    {pkgClientEventDefination.UPDATE_EXTRACT_PROCESS, "updateProcess"},
+    {pkgClientEventDefination.DOWNLOAD_COMPLETE, "downloadComplete"},
+    {pkgClientEventDefination.EXTRACT_COMPLETE, "extractComplete"},
 }
 
 m_panelLogin = m_panelLogin or nil

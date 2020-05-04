@@ -5,7 +5,7 @@ m_dCurLevel = m_dCurLevel or 0
 m_dMonsterId = m_dMonsterId or 0
 
 function Init()
-    pkgEventManager.Register(CLIENT_EVENT.MONSTER_DEAD, pkgSysBattle.OnMonsterDead)
+    pkgEventManager.Register(pkgClientEventDefination.MONSTER_DEAD, pkgSysBattle.OnMonsterDead)
 end
 
 function GetCurLevel()
@@ -33,7 +33,7 @@ function OnSpawnMonster(dCurLevel, dCurType, dMonsterId)
     end
     
     if m_dCurLevel ~= dCurLevel then
-        pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_LEVEL, dCurLevel)
+        pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_LEVEL, dCurLevel)
     end
 
     m_dCurLevel = dCurLevel

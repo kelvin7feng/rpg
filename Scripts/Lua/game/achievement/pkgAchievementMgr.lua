@@ -40,5 +40,5 @@ function OnUpdateData(dAchievementType, tbAchievement)
 
     pkgUserDataManager.SetAnAchievement(dAchievementType, tbAchievement)
 
-    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_ACHIEVEMENT)
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_ACHIEVEMENT)
 end

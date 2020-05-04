@@ -2,7 +2,7 @@ doNameSpace("pkgSysUser")
 
 function OnLevelChange(dLevel)
     pkgUserDataManager.SetLevel(dLevel)
-    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_USER_LEVEL, dLevel)
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_USER_LEVEL, dLevel)
 end
 
 function OnLogin(dErrorCode, tbUserInfo)

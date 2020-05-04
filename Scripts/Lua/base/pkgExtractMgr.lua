@@ -18,7 +18,7 @@ function unzipFile(strZipPath, unzipProgress, unzipComplete, errorCallback)
     local strFileName = tbStr[#tbStr]
 
     local function unzipDefaultProgress(dCurrent, dTotal)
-        pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_EXTRACT_PROCESS, strFileName or "", dCurrent/dTotal)
+        pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_EXTRACT_PROCESS, strFileName or "", dCurrent/dTotal)
         if unzipProgress then
             unzipProgress()
         end

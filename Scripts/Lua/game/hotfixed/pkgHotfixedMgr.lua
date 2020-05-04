@@ -11,9 +11,9 @@ function CheckUpdate()
         local dLocalVersion = tbLocalCfg.version
         local dLastestVersion = le_tbLastestCfg.version
         if dLastestVersion > dLocalVersion then
-            pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_DOWNLOAD, true)
+            pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_DOWNLOAD, true)
         else
-            pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_DOWNLOAD, false)
+            pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_DOWNLOAD, false)
         end
     end
 
@@ -59,12 +59,12 @@ function StartDownload()
             StartDownload()
         else
             www:Dispose()
-            pkgEventManager.PostEvent(CLIENT_EVENT.DOWNLOAD_COMPLETE)
+            pkgEventManager.PostEvent(pkgClientEventDefination.DOWNLOAD_COMPLETE)
         end
     end
 
     local function processCallback(dProcess)
-        pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_DOWNLOAD_PROCESS, strName, dProcess)
+        pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_DOWNLOAD_PROCESS, strName, dProcess)
     end
     
     local function errorCallback(www)
@@ -77,7 +77,7 @@ end
 
 function UnzipPatchFile()
     if not le_tbExtractFile or #le_tbExtractFile <= 0 then
-        pkgEventManager.PostEvent(CLIENT_EVENT.EXTRACT_COMPLETE)
+        pkgEventManager.PostEvent(pkgClientEventDefination.EXTRACT_COMPLETE)
         return
     end
     
@@ -93,7 +93,7 @@ function StartToUnzip()
             StartToUnzip()
         else
             UpdateLocalCfg()
-            pkgEventManager.PostEvent(CLIENT_EVENT.EXTRACT_COMPLETE)
+            pkgEventManager.PostEvent(pkgClientEventDefination.EXTRACT_COMPLETE)
         end
     end
     

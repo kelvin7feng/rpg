@@ -4,8 +4,8 @@ assetbundleTag = "ui"
 prefabFile = "EquipSelect"
 
 event_listener = {
-   {CLIENT_EVENT.UPDATE_WEAR_EQUIP, "onEquipChange"},
-   {CLIENT_EVENT.UPDATE_TAKE_OFF_EQUIP, "onEquipChange"},
+   {pkgClientEventDefination.UPDATE_WEAR_EQUIP, "onEquipChange"},
+   {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "onEquipChange"},
 }
 
 m_scrollView = m_scrollView or nil

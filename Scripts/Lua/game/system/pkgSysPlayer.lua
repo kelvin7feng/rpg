@@ -208,7 +208,7 @@ function Reborn(player)
             player:SetDie(false)
             player:SetNavMeshEnable(true)
             pkgSysHate.ClearHateList(player)
-            pkgEventManager.PostEvent(CLIENT_EVENT.PLAYER_HP_CHANGE, player)
+            pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_HP_CHANGE, player)
 
             if not TriggerReborn(player) then
                 return

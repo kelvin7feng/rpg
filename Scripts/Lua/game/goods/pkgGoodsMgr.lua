@@ -16,5 +16,5 @@ function OnUpdateData(tbGoods)
         pkgUserDataManager.SetBagVal(dId, dCount)
     end
 
-    pkgEventManager.PostEvent(CLIENT_EVENT.UPDATE_GOODS)
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_GOODS)
 end

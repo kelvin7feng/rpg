@@ -55,6 +55,7 @@ require("game/ai/condition/CIsRandomMovement")
 require("game/ai/condition/CIsGreatThanDistanceOfAttack")
 
 require("game/defination/pkgAnimatorDefination")
+require("game/defination/pkgClientEventDefination")
 require("game/defination/pkgConfigFieldDefination")
 require("game/defination/pkgEffectDefination")
 require("game/defination/pkgEventDefination")

@@ -5,12 +5,12 @@ prefabFile = "Main"
 dSortOrder = 100
 
 event_listener = {
-    {CLIENT_EVENT.PLAYER_HP_CHANGE, "UpdatePlayerHp"},
-    {CLIENT_EVENT.UPDATE_LEVEL, "UpdateLevelInfo"},
-    {CLIENT_EVENT.UPDATE_GOODS, "UpdatePlayerInfo"},
-    {CLIENT_EVENT.UPDATE_USER_LEVEL, "UpdatePlayerInfo"},
-    {CLIENT_EVENT.UPDATE_WEAR_EQUIP, "InitEquipList"},  
-    {CLIENT_EVENT.UPDATE_TAKE_OFF_EQUIP, "InitEquipList"},  
+    {pkgClientEventDefination.PLAYER_HP_CHANGE, "UpdatePlayerHp"},
+    {pkgClientEventDefination.UPDATE_LEVEL, "UpdateLevelInfo"},
+    {pkgClientEventDefination.UPDATE_GOODS, "UpdatePlayerInfo"},
+    {pkgClientEventDefination.UPDATE_USER_LEVEL, "UpdatePlayerInfo"},
+    {pkgClientEventDefination.UPDATE_WEAR_EQUIP, "InitEquipList"},  
+    {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "InitEquipList"},  
 }
 
 -- player info

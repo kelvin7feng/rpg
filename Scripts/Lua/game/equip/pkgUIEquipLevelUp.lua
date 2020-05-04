@@ -4,7 +4,7 @@ assetbundleTag = "ui"
 prefabFile = "EquipLevelUp"
 
 event_listener = {
-    {CLIENT_EVENT.UPDATE_LEVEL_UP_EQUIP,"onLevelUp"}
+    {pkgClientEventDefination.UPDATE_LEVEL_UP_EQUIP,"onLevelUp"}
 }
 
 m_txtName = m_txtName or nil

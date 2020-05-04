@@ -5,7 +5,7 @@ prefabFile = "Achievement"
 
 event_listener = 
 {
-    {CLIENT_EVENT.UPDATE_ACHIEVEMENT, "updateAchievementPanel"},
+    {pkgClientEventDefination.UPDATE_ACHIEVEMENT, "updateAchievementPanel"},
     --{pkgEventType.UPDATE_LEVEL, "updateAchievementPanel"},
 }
 

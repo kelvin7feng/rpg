@@ -33,7 +33,7 @@ function CharacterStat:TakeDamage(dDamage)
         self.owner:SetDie(true)
 
         if pkgActorManager.IsMonster(self.owner) then
-            pkgEventManager.PostEvent(CLIENT_EVENT.MONSTER_DEAD, self.owner)
+            pkgEventManager.PostEvent(pkgClientEventDefination.MONSTER_DEAD, self.owner)
         end
     end
 end
