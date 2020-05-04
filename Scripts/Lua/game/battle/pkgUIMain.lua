@@ -21,6 +21,9 @@ m_txtDiamond = m_txtDiamond or nil
 m_txtGold = m_txtGold or nil
 m_txtLevel = m_txtLevel or nil
 
+-- home panel
+m_btnHouse = m_btnHouse or nil
+
 -- level info
 m_txtAfkExp = m_txtAfkExp or nil
 m_txtAfkGold = m_txtAfkGold or nil
@@ -81,6 +84,10 @@ local function onClickRightArrow()
 
     m_bRightPanelStretch = not m_bRightPanelStretch
     pkgAnimatorMgr.SetBool(m_rightPanelAnimator, "Stretch", m_bRightPanelStretch)
+end
+
+local function onClickHouse()
+    pkgUIBaseViewMgr.showByViewPath("game/house/pkgUIHouse")
 end
 
 m_tbClickFunc = {
@@ -175,6 +182,8 @@ function init()
 
         m_tbClickFunc[i].panel = gameObject.transform:Find(m_tbClickFunc[i].panelName)
     end
+
+    pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnHouse", onClickHouse)
 
     InitEquipList()
     updateBtn()

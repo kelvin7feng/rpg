@@ -23,7 +23,7 @@ function PreInstantiate(key, tbPoolInfo)
         local objPoolManager = pkgGlobalGoMgr.GetPoolManager()
         local function onLoadComplete(prefab)
             local obj = UnityEngine.GameObject.Instantiate(prefab, UnityEngine.Vector3(0,0,0), UnityEngine.Quaternion.identity)
-            obj.transform.parent = objPoolManager.transform
+            obj.transform:SetParent(objPoolManager.transform, false)
             obj.name = string.format("%s_%d", tbPoolInfo.strAssetName, i)
             Push(key, obj)
         end
