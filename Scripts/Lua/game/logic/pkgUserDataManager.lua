@@ -211,3 +211,8 @@ function SetAnAchievement(dAchievementType, tbAchievement)
 
     return true
 end
+
+function GetHouseInfo()
+    local tbHomeInfo = m_UserData.HomeInfo
+    return tbHomeInfo
+end

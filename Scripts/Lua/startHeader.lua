@@ -116,3 +116,6 @@ require("game/battle/pkgSysBattle")
 require("game/achievement/pkgAchievementMgr")
 
 require("game/redirect/pkgRedirectMgr")
+
+require("game/house/pkgHouseDataMgr")
+require("game/house/pkgHouseMgr")

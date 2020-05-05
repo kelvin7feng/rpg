@@ -56,8 +56,8 @@ function UpdatePlayerInput()
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.P) then
         -- pkgSysEffect.PlayEffect(1)
         -- pkgFlyWordUI.PlayFlyWord(pkgActorManager.GetMainPlayer(), 1, 5)
-        -- pkgUIBaseViewMgr.showByViewPath("game/cmd/pkgUICMD")
-        local function confirm()
+        pkgUIBaseViewMgr.showByViewPath("game/cmd/pkgUICMD")
+        --[[local function confirm()
             pkgUIBaseViewMgr.destroyUI(pkgUIAlert)
         end
         local tbParam = {
@@ -66,7 +66,7 @@ function UpdatePlayerInput()
             strConfirm  = "确定",                           -- 确定按钮文字
             funcConfirm = confirm,                          -- 确定
         }
-        pkgUIBaseViewMgr.showByViewPath("game/alert/pkgUIAlert", nil, tbParam)
+        pkgUIBaseViewMgr.showByViewPath("game/alert/pkgUIAlert", nil, tbParam)--]]
     end
 
     if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.L) then
