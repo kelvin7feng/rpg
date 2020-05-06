@@ -2,6 +2,7 @@
 import "UnityEngine"
 require "luapack"
 cjson = require "cjson"
+bit = require "tool/bitop"
 
 require("initPath")
 require("share/load")

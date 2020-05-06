@@ -214,10 +214,19 @@ function show(view, callback, ...)
             return
         end
         print("prefab name:", prefab.name)
+
+        local noSetScalerMatch = false
+
+        if view.noAutoSetScalerMatch then
+            noSetScalerMatch = true
+        end
+        
         local gameObject = UnityEngine.Object.Instantiate(prefab)
         local dOrder = view.dSortOrder and view.dSortOrder or getOrder()
         local canvasObj = pkgCanvasMgr.CreateCanvasUI(gameObject, 'UI_'..view.prefabFile, dOrder)
         view.gameObject = canvasObj.gameObject
+
+        pkgCanvasMgr.InitCanvasDefaultAttr(gameObject, view.dSortingOrder, true, noSetScalerMatch)
 
         initCloseEvent(view)
 		initEventListener(view)

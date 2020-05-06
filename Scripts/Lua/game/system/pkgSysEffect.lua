@@ -58,5 +58,5 @@ function PlayWeaponEffect(objWeapon)
         return false
     end
 
-    local effectNode = PlayEffect(1, nil, objHitEffect.transform.position)
+    PlayEffect(1, nil, objHitEffect.transform.position)
 end

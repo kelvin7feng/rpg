@@ -3,7 +3,31 @@ doNameSpace("pkgCanvasMgr")
 le_tbCanvasObj = le_tbCanvasObj or {}
 le_objUICamera = le_objUICamera or nil
 
+local function initUICamera()
+    if not le_objUICamera then
+        le_objUICamera = UnityEngine.GameObject()
+        le_objUICamera.name = "UICamera"
+        le_objUICamera.transform.position = UnityEngine.Vector3(0, -10000, 0)
+        UnityEngine.GameObject.DontDestroyOnLoad(le_objUICamera)
+        local cameraComponent = le_objUICamera:AddComponent(UnityEngine.Camera)
+        cameraComponent.clearFlags = UnityEngine.CameraClearFlags.Nothing
+        local d = UnityEngine.LayerMask.NameToLayer("UI")
+        local b = (bit.lshift(1, d))
+        cameraComponent.cullingMask = b
+        cameraComponent.orthographic = true
+
+        local mainCamera = UnityEngine.Camera.main
+        if mainCamera then
+            cameraComponent.depth = mainCamera.depth + 10
+        end
+        
+    end
+end
+
 function Init()
+    
+    initUICamera()
+
     for dIndex, canvasCfg in ipairs(pkgCanvasDefination.DefaultCanvas) do
         local strCanvasName = canvasCfg.name
         local dontDestroyOnLoad = canvasCfg.dontDestroyOnLoad
@@ -169,4 +193,37 @@ function GetScalerComponent(strCanvasName)
         component = le_tbCanvasObj[strCanvasName].canvasScaler
     end
     return component
+end
+
+function InitCanvasDefaultAttr(go, dOrder, bSetOrderOutSide, noSetScalerMatch)
+	local canvasCpnt = go:GetComponent(UnityEngine.Canvas)
+	if not canvasCpnt then
+		canvasCpnt = go:AddComponent(UnityEngine.Canvas)
+	end
+
+    canvasCpnt.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera
+    canvasCpnt.worldCamera = le_objUICamera:GetComponent(UnityEngine.Camera)
+    canvasCpnt.planeDistance = 1
+
+	if dOrder and not bSetOrderOutSide then
+		canvasCpnt.overrideSorting = true
+    	canvasCpnt.sortingOrder = dOrder
+    end
+
+    --UnityEngine.UI.CanvasScaler
+	local canvasScalerCpnt = go:GetComponent(UnityEngine.UI.CanvasScaler)
+	if not canvasScalerCpnt then
+		canvasScalerCpnt = go:AddComponent(UnityEngine.UI.CanvasScaler)
+		canvasScalerCpnt.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize
+		canvasScalerCpnt.referenceResolution = UnityEngine.Vector2(pkgCanvasDefination.ReferenceResolutionWidth, pkgCanvasDefination.ReferenceResolutionHeight)
+	end
+
+    --UnityEngine.UI.GraphicRaycaster
+    local graphicRaycasterCpnt = go:GetComponent(UnityEngine.UI.GraphicRaycaster)
+    if not graphicRaycasterCpnt then
+    	graphicRaycasterCpnt = go:AddComponent(UnityEngine.UI.GraphicRaycaster)
+    end
+    graphicRaycasterCpnt.blockingObjects = UnityEngine.UI.GraphicRaycaster.BlockingObjects.None
+
+    return canvasCpnt, canvasScalerCpnt, graphicRaycasterCpnt
 end
