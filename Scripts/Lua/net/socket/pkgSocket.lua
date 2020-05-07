@@ -77,15 +77,15 @@ function ReceiveMsg()
             end
 
             if dReceiveLength >= dHeaderLength then
-                print("dReceiveLength >= dHeaderLength:", dReceiveLength , dHeaderLength)
+                --print("dReceiveLength >= dHeaderLength:", dReceiveLength , dHeaderLength)
                 local dStartSize, dTotolPacketSize = string.unpack(strReceiveData,"<I")
                 if dReceiveLength >= dTotolPacketSize then
                     -- 如果是一个完整包,就处理
-                    print("dReceiveLength >= dBodySize:", dReceiveLength, dTotolPacketSize)
+                    --print("dReceiveLength >= dBodySize:", dReceiveLength, dTotolPacketSize)
                     local strBody = string.sub(strReceiveData, dHeaderLength+1, dTotolPacketSize)
                     local tb = cjson.decode(strBody)
-                    LOG_INFO("receive:"..string.len(strBody).."|"..strBody.."|")
-                    LOG_TABLE(tb)
+                    --LOG_INFO("receive:"..string.len(strBody).."|"..strBody.."|")
+                    --LOG_TABLE(tb)
 
                     pkgEventManager.PostEvent(unpack(tb))
                     -- delete current pack
@@ -148,7 +148,7 @@ function Send(dServerType, strData)
 
     local sendResult = socket:send(strFixHeader .. strBody)
     if sendResult then
-        print("send to server:"..string.len(strData).."|"..strData.."|".."total:"..sendResult)
+        -- print("send to server:"..string.len(strData).."|"..strData.."|".."total:"..sendResult)
     end
 end
 

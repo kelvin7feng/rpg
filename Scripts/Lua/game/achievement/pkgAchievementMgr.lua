@@ -23,8 +23,29 @@ function getAchievement()
     return tb
 end
 
--- to do
-function canGetward()
+function getAchievementProcess(dAchievementType)
+    local dProcess = 0
+    local tbInfo = pkgUserDataManager.GetAnAchievement(dAchievementType)
+    if tbInfo and tbInfo.dProcess then
+        dProcess = tbInfo.dProcess
+    end
+    return dProcess
+end
+
+function canGetward(dId)
+    local tbCfg = pkgAchievementCfgMgr.getAchievementCfg(dId)
+    if not tbCfg then
+        print("unlockAchievement can't find config:", dId)
+        return false
+    end
+
+    local dAchievementType = tbCfg.achievementType    
+    local dProcess = getAchievementProcess(dAchievementType)
+    local dTarget = tbCfg.target
+    if dProcess < dTarget then
+        return false
+    end
+
     return true
 end
 
@@ -34,6 +55,21 @@ function getReward(dId)
     end
     
     pkgSocket.SendToLogic(EVENT_ID.ACHIEVEMENT.GET_REWARD, dId)
+end
+
+function canShowRedPoint()
+    local bShow = false
+    local tbAchievement = getAchievement()
+    if #tbAchievement > 0 then
+        for _, tbInfo in pairs(tbAchievement) do
+            if canGetward(tbInfo.dId) then
+                bShow = true
+                break
+            end
+        end
+    end
+
+    return bShow
 end
 
 function OnUpdateData(dAchievementType, tbAchievement)

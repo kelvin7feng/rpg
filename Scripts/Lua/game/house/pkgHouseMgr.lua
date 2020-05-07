@@ -1,13 +1,13 @@
 doNameSpace("pkgHouseMgr")
 
 function OnLevelUp(dLevel)
-    print("pkgHouseMgr ============= OnLevelUp")
+    --print("pkgHouseMgr ============= OnLevelUp")
     pkgHouseDataMgr.SetLevel(dLevel)
     pkgEventManager.PostEvent(pkgClientEventDefination.ON_HOUSE_LEVEL_UP)
 end
 
 function OnUpgrade(dStar, dLevel)
-    print("pkgHouseMgr ============= OnUpgrade")
+    --print("pkgHouseMgr ============= OnUpgrade")
     pkgHouseDataMgr.SetStar(dStar)
     pkgHouseDataMgr.SetLevel(dLevel)
     pkgEventManager.PostEvent(pkgClientEventDefination.ON_HOUSE_UPGRADE)

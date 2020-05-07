@@ -1,7 +1,7 @@
 doNameSpace("pkgButtonMgr")
 
 function AddListener(gameobject, strButtonName, fnCallback, paramters)
-    print("AddListener ", gameobject.name, strButtonName)
+    -- print("AddListener ", gameobject.name, strButtonName)
     if not gameobject then
         print("AddListener gameobject is nil")
         return
@@ -19,7 +19,7 @@ function AddListener(gameobject, strButtonName, fnCallback, paramters)
 
     local btnGo = gameobject.transform:Find(strButtonName)
     if not btnGo then
-        print("AddListener can not find ".. strButtonName)
+        -- print("AddListener can not find ".. strButtonName)
         return
     end
     

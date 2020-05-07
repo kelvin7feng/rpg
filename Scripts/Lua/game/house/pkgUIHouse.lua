@@ -42,10 +42,12 @@ end
 
 function onLevelUp()
     show()
+    pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.HOUSE_LEVEL_UP, m_txtCurLevel.transform)
 end
 
 function onUpgrade()
     show()
+    pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.HOUSE_UPGRAD, m_txtCurLevel.transform)
 end
 
 function show()
@@ -58,7 +60,7 @@ function show()
     local tbCostList = {}
     local dStar = pkgHouseDataMgr.GetStar()
     local bHaveNextLevel = pkgHomeCfgMgr.HaveNextLevel(dStar, dLevel)
-    print(dStar, dLevel)
+    
     if bHaveNextLevel then
         pkgUITool.SetActive(m_btnLevelUp, true)
         pkgUITool.SetActive(m_btnUpgrade, false)

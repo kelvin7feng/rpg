@@ -234,7 +234,7 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
         end
     end
 
-    print("assetBundleName, fileName:", parent.name, tbGoodsInfo.assetBundle, tostring(dGoodsId))
+    -- print("assetBundleName, fileName:", parent.name, tbGoodsInfo.assetBundle, tostring(dGoodsId))
 
     pkgAssetBundleMgr.LoadAssetBundle("ui", "GoodsIcon", onLoadComplete)
 end

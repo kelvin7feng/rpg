@@ -35,7 +35,7 @@ function InitUserData(objUserData)
 end
 
 function GetBattleLevel()
-    LOG_TABLE(m_UserData)
+    -- LOG_TABLE(m_UserData)
     return m_UserData.BattleInfo.CurLevel
 end
 
@@ -203,6 +203,11 @@ function GetAllAchievement()
     end
 
     return tb
+end
+
+function GetAnAchievement(dAchievementType)
+    local tbAchievementInfo = m_UserData.AchievementInfo
+    return tbAchievementInfo[tostring(dAchievementType)]
 end
 
 function SetAnAchievement(dAchievementType, tbAchievement)

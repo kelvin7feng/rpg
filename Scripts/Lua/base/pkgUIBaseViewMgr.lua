@@ -123,7 +123,7 @@ function showByViewPath( strViewPath, callback, ... )
         require(strViewPath)
         
         local tbPaths = string.split(strViewPath,'/')
-        LOG_TABLE(tbPaths)
+        -- LOG_TABLE(tbPaths)
         if #tbPaths <= 0 then
             for k,v in pairs(tbPaths) do
                 print(k,v)
@@ -213,7 +213,7 @@ function show(view, callback, ...)
         if prefab == nil then
             return
         end
-        print("prefab name:", prefab.name)
+        -- print("prefab name:", prefab.name)
 
         local noSetScalerMatch = false
 
@@ -262,7 +262,7 @@ function show(view, callback, ...)
 	
     pkgAssetBundleMgr.LoadAssetBundle(view.assetbundleTag, strPrefabName, loadingCompelte)
         
-    print('pkgUIBaseViewMgr.show Loading ' , view.assetbundleTag, strPrefabName)
+    -- print('pkgUIBaseViewMgr.show Loading ' , view.assetbundleTag, strPrefabName)
 end
 
 -- 设置界面的GameObject展示
