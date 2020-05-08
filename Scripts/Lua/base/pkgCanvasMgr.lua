@@ -24,6 +24,10 @@ local function initUICamera()
     end
 end
 
+function GetUICamera()
+    return le_objUICamera
+end
+
 function Init()
     
     initUICamera()

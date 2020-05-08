@@ -34,5 +34,5 @@ function DoDamage(player, attacker, dDamage)
     
     pkgSysAI.AddAttackerToHateList(player, attacker)
     pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_HP_CHANGE, player)
-    pkgFlyWordUI.PlayFlyWord(player, 1, dDamage)
+    -- pkgFlyWordUI.PlayFlyWord(player, 1, dDamage)
 end

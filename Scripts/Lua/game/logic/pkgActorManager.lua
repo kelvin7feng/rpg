@@ -19,6 +19,7 @@ function CreatePlayer(spawnPosition, spawnRotate)
         pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
 
         pkgUIBaseViewMgr.showByViewPath("game/battle/pkgUIMain")
+        pkgUIBaseViewMgr.showByViewPath("game/ui/pkgFlyWordUI")
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("model", "Hero", onLoadComplete)
