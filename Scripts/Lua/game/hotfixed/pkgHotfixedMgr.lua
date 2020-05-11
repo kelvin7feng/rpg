@@ -93,6 +93,7 @@ function StartToUnzip()
             StartToUnzip()
         else
             UpdateLocalCfg()
+            KG.CustomFile.DeleteFile(strFilePath)
             pkgEventManager.PostEvent(pkgClientEventDefination.EXTRACT_COMPLETE)
         end
     end
