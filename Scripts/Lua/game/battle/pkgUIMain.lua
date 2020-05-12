@@ -183,7 +183,16 @@ function init()
 
     pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnHouse", onClickHouse)
 
-    pkgUIBaseViewMgr.showByViewPath("game/ui/pkgPopupTextUI")
+    local function onLoadPopupTextUI()
+        pkgPopupTextUI.gameObject.transform:SetParent(gameObject.transform, false)
+        pkgPopupTextUI.gameObject.transform:SetAsFirstSibling()
+        local rectTransform = pkgPopupTextUI.gameObject:GetComponent(UnityEngine.RectTransform)
+        rectTransform.offsetMin = UnityEngine.Vector2(0, 0);
+        rectTransform.offsetMax = UnityEngine.Vector2(0, 0);
+        rectTransform.localScale = UnityEngine.Vector3(1,1,1)
+    end
+
+    pkgUIBaseViewMgr.showByViewPath("game/ui/pkgPopupTextUI", onLoadPopupTextUI)
     
     InitEquipList()
     updateBtn()
