@@ -7,7 +7,7 @@ local function initUICamera()
     if not le_objUICamera then
         le_objUICamera = UnityEngine.GameObject()
         le_objUICamera.name = "UICamera"
-        le_objUICamera.transform.position = UnityEngine.Vector3(0, -10000, 0)
+        le_objUICamera.transform.position = UnityEngine.Vector3(0, 0, 0)
         UnityEngine.GameObject.DontDestroyOnLoad(le_objUICamera)
         local cameraComponent = le_objUICamera:AddComponent(UnityEngine.Camera)
         cameraComponent.clearFlags = UnityEngine.CameraClearFlags.Nothing
@@ -25,7 +25,7 @@ local function initUICamera()
 end
 
 function GetUICamera()
-    return le_objUICamera
+    return le_objUICamera:GetComponent(UnityEngine.Camera)
 end
 
 function Init()

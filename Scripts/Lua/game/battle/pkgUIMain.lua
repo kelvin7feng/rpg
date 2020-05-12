@@ -183,6 +183,8 @@ function init()
 
     pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnHouse", onClickHouse)
 
+    pkgUIBaseViewMgr.showByViewPath("game/ui/pkgPopupTextUI")
+    
     InitEquipList()
     updateBtn()
     updatePanel()
