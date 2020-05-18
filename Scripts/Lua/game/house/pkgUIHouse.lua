@@ -13,6 +13,7 @@ m_txtCurLevel = m_txtCurLevel or nil
 m_panelConsume = m_panelConsume or nil
 m_btnLevelUp = m_btnLevelUp or nil
 m_btnUpgrade = m_btnUpgrade or nil
+m_panelHouse = m_panelHouse or nil
 
 function init()
     m_txtName = gameObject.transform:Find("Panel/BasePanel/HouseName")
@@ -20,6 +21,7 @@ function init()
     m_panelConsume = gameObject.transform:Find("Panel/LevelUpPanel/ConsumePanel")
     m_btnLevelUp = gameObject.transform:Find("Panel/LevelUpPanel/BtnLevelUp")
     m_btnUpgrade = gameObject.transform:Find("Panel/LevelUpPanel/BtnUpgrade")
+    m_panelHouse = gameObject.transform:Find("Panel/HouseModel/House/Node")
 
     local function onClickLevelUp(btnGo)
         pkgHouseMgr.LevelUp()
@@ -41,8 +43,35 @@ function resetScrollViewItem()
 end
 
 function onLevelUp()
-    show()
+    updateBaseInfo()
     pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.HOUSE_LEVEL_UP, m_txtCurLevel.transform)
+end
+
+function updateModel()
+
+    removeOldModel()
+    
+    local dLevel = pkgHouseDataMgr.GetLevel()
+    local dStar = pkgHouseDataMgr.GetStar()
+    local tbCfg = pkgHomeCfgMgr.GetLevelUpCfg(dStar, dLevel)
+
+    local function onLoadComplete(prefab)
+        local strKey = "houseModel"
+        goNow = UnityEngine.Object.Instantiate(prefab)
+        goNow.name = strKey
+        goNow.transform:SetParent(m_panelHouse.transform, false)
+        goNow.gameObject:SetActive(true)
+    end
+
+    -- 初始化或进阶时加载
+    pkgAssetBundleMgr.LoadAssetBundle(tbCfg.assetBundle, tbCfg.assetName, onLoadComplete)
+end
+
+function removeOldModel()
+    for i=0, m_panelHouse.transform.childCount - 1 do
+        local goChild = m_panelHouse.transform:GetChild(i).gameObject
+        goChild.gameObject:SetActive(false)
+    end
 end
 
 function onUpgrade()
@@ -50,8 +79,7 @@ function onUpgrade()
     pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.HOUSE_UPGRAD, m_txtCurLevel.transform)
 end
 
-function show()
-
+function updateBaseInfo()
     resetScrollViewItem()
     
     local dLevel = pkgHouseDataMgr.GetLevel()
@@ -93,7 +121,11 @@ function show()
             end
         end
     end
-    
+end
+
+function show()
+    updateBaseInfo()
+    updateModel()
 end
 
 function destroyUI()
