@@ -14,6 +14,7 @@ m_panelConsume = m_panelConsume or nil
 m_btnLevelUp = m_btnLevelUp or nil
 m_btnUpgrade = m_btnUpgrade or nil
 m_panelHouse = m_panelHouse or nil
+m_panelUpgradeEffect = m_panelUpgradeEffect or nil
 
 function init()
     m_txtName = gameObject.transform:Find("Panel/BasePanel/HouseName")
@@ -22,6 +23,7 @@ function init()
     m_btnLevelUp = gameObject.transform:Find("Panel/LevelUpPanel/BtnLevelUp")
     m_btnUpgrade = gameObject.transform:Find("Panel/LevelUpPanel/BtnUpgrade")
     m_panelHouse = gameObject.transform:Find("Panel/HouseModel/House/Node")
+    m_panelUpgradeEffect = gameObject.transform:Find("Panel/LevelUpPanel/UpgradeEffect")
 
     local function onClickLevelUp(btnGo)
         pkgHouseMgr.LevelUp()
@@ -76,7 +78,7 @@ end
 
 function onUpgrade()
     show()
-    pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.HOUSE_UPGRAD, m_txtCurLevel.transform)
+    pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.HOUSE_UPGRAD, m_panelUpgradeEffect.transform)
 end
 
 function updateBaseInfo()

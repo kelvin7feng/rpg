@@ -26,4 +26,5 @@ function Init()
     -- 房子
     pkgEventManager.Register(EVENT_ID.HOME.ON_LEVEL_UP, pkgHouseMgr.OnLevelUp)
     pkgEventManager.Register(EVENT_ID.HOME.ON_UPGRADE, pkgHouseMgr.OnUpgrade)
+    pkgEventManager.Register(EVENT_ID.HOME.ON_ERROR, pkgHouseMgr.OnError)
 end

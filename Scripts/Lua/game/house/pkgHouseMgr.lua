@@ -1,5 +1,13 @@
 doNameSpace("pkgHouseMgr")
 
+function OnError(dErrorCode)
+    --print("pkgHouseMgr ============= OnError")
+    local dLangId = pkgHomeCfgMgr.LangMap[dErrorCode]
+    if dLangId then
+        Toast(pkgLanguageMgr.GetStringById(dLangId))
+    end
+end
+
 function OnLevelUp(dLevel)
     --print("pkgHouseMgr ============= OnLevelUp")
     pkgHouseDataMgr.SetLevel(dLevel)

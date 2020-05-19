@@ -193,6 +193,7 @@ function init()
     end
 
     pkgUIBaseViewMgr.showByViewPath("game/ui/pkgPopupTextUI", onLoadPopupTextUI)
+    pkgUIToastMgr.Init()
     
     InitEquipList()
     updateBtn()

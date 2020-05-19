@@ -1,8 +1,11 @@
 doNameSpace("pkgGoodsMgr")
 
 function OnShowReward(tbReward)
-    pkgTimer.AddOnceTimer("OnShowReward", 0.1, function()
+    local dTimerId = nil
+    dTimerId = pkgTimerMgr.once(500, function()
         pkgUIBaseViewMgr.showByViewPath("game/reward/pkgUIRewardList",nil,tbReward)
+        pkgTimerMgr.delete(dTimerId)
+        dTimerId = nil
     end)
 end
 

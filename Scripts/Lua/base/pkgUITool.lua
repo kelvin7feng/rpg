@@ -304,3 +304,14 @@ function UpdateIconSize(objIcon, tbParams)
         end 
     end
 end
+
+--copy gameObject
+function CopyGameObject(oldGameObject)
+    local newGameObject = UnityEngine.Object.Instantiate(oldGameObject)
+    newGameObject.transform:SetParent(oldGameObject.transform.parent)
+    newGameObject.transform.rotation = oldGameObject.transform.rotation
+    newGameObject.transform.position = oldGameObject.transform.position
+    newGameObject.transform.name= oldGameObject.transform.name
+    newGameObject.transform.localScale= oldGameObject.transform.localScale
+    return newGameObject
+end

@@ -111,6 +111,7 @@ function RequireFile()
     
     _G.__loading = true
     pkgTimer.clear()
+    pkgTimerMgr.deleteAll()
 
     clearNameSpace()
     package.loaded["share/load"] = nil

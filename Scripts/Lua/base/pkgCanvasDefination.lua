@@ -3,6 +3,8 @@ doNameSpace("pkgCanvasDefination")
 ReferenceResolutionWidth = 1080
 ReferenceResolutionHeight = 1920
 
+TOAST_ORDER = 1000
+
 CanvasName = {
     FIXED_DEBUG         = "fixed_debug",
 }

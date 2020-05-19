@@ -30,6 +30,7 @@ end
 
 function show(strId)
     dUpdateTimerId = pkgTimer.AddRepeatTimer("setLoadingProgress", 0.2, setLoadingProgress)
+    UnityEngine.GameObject.DontDestroyOnLoad(gameObject)
 end
 
 function destroyUI()
