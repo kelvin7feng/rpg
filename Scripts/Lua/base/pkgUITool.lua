@@ -113,7 +113,7 @@ function UpdateText(gameObject, strChildName, dLanguageStringId, ...)
         return
     end
 
-    txtComponent.text = string.format(pkgLanguageMgr.GetStringById(dLanguageStringId),unpack({...}))
+    txtComponent.text = pkgLanguageMgr.GetStringById(dLanguageStringId, ...)
 end
 
 function UpdateGameObjectText(gameObject, dLanguageStringId, ...)
@@ -129,7 +129,7 @@ function UpdateGameObjectText(gameObject, dLanguageStringId, ...)
         return
     end
 
-    txtComponent.text = string.format(pkgLanguageMgr.GetStringById(dLanguageStringId),unpack({...}))
+    txtComponent.text = pkgLanguageMgr.GetStringById(dLanguageStringId, ...)
 end
 
 m_resetImageGo2Func = {}

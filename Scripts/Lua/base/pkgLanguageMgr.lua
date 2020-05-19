@@ -1,6 +1,13 @@
 doNameSpace("pkgLanguageMgr")
 
-function GetStringById(dLanguageStringId)
+function FormatStr(str, ...)
+    local args = {...}
+    return string.gsub(str, "{([%d]+)}", function(index)
+        return args[tonumber(index)]
+    end)
+end
+
+function GetStringById(dLanguageStringId, ...)
     if not dLanguageStringId then
         print("dLanguageStringId is nil")
         return ""
@@ -11,5 +18,6 @@ function GetStringById(dLanguageStringId)
         return dLanguageStringId
     end
     
-    return tbLanguageCfg[pkgGlobalConfig.DefaulutLanguage]
+    local str =  tbLanguageCfg[pkgGlobalConfig.DefaulutLanguage]
+    return FormatStr(str, ...)
 end

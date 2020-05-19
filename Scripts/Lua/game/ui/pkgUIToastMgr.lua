@@ -9,7 +9,7 @@ enStatus = {
 local dDistanceDelta = 5 --间距
 local dFlySpeed = 10 --飞行时间
 local dStartPercent = 0.6 --起始位置，屏幕百分比
-local dEndPercent = 1
+local dEndPercent = 0.8
 local dFadePercent = 0.8
 local dMaxFlyCount = 5
 
@@ -229,7 +229,7 @@ function toast(msg, fOpacity)
     local rect = toast.gameObject:GetComponent(UnityEngine.RectTransform)
     pkgUITool.SetStringByName(toast, "Text", msg)
     if fOpacity then
-        pkgUIImageMgr.setOpacity(toast, fOpacity)
+        -- pkgUIImageMgr.setOpacity(toast, fOpacity)
     end
 
     local posOld = rect.anchoredPosition
