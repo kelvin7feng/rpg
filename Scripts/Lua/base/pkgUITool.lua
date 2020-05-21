@@ -315,3 +315,63 @@ function CopyGameObject(oldGameObject)
     newGameObject.transform.localScale= oldGameObject.transform.localScale
     return newGameObject
 end
+
+function ChangeLayersRecursively(parent, name)
+    local trans = parent:GetComponentsInChildren(UnityEngine.Transform)
+    local dLayer = UnityEngine.LayerMask.NameToLayer(name)
+    for child in Slua.iter(trans) do
+        child.gameObject.layer = dLayer
+    end
+end
+
+function RemoveChild(gameObject, strChildName)
+    if isNull(gameObject) then
+        print(strChildName.."is null")
+        return
+    end
+    local child = gameObject.transform:Find(strChildName)
+    if isNull(child) then return end
+	UnityEngine.GameObject.Destroy(child.gameObject)
+end
+
+function CreateImg(assetBundleName, imageName, gameObject, callback, tbParams)
+    
+    gameObject = gameObject or UnityEngine.GameObject()
+    local tbParams = tbParams or {}
+
+    local function onLoadComplete(prefab)
+        
+        if not prefab then return end
+
+        if isNull(gameObject) then
+            return
+        end
+
+        local sprite = nil
+        if prefab:GetType().Name == "Texture2D" then
+            local rect = UnityEngine.Rect(0, 0, prefab.width, prefab.height)
+            sprite = UnityEngine.Sprite.Create(prefab, rect, UnityEngine.Vector2(0.5, 0.5))
+        else
+            sprite = UnityEngine.Object.Instantiate(prefab)
+        end
+
+        local newImage = gameObject:GetComponent(UnityEngine.UI.Image)
+        if not newImage then
+            newImage = gameObject:AddComponent(UnityEngine.UI.Image)
+        end
+        if not newImage then
+            print_w("newImage is null")
+            return
+        end
+        newImage.sprite = sprite
+        if tbParams.bSetNative then
+            newImage:SetNativeSize()
+        end
+
+        if callback then
+            callback(gameObject, tbParams)
+        end
+    end
+
+    pkgAssetBundleMgr.LoadAssetBundle(assetBundleName, imageName, onLoadComplete)
+end

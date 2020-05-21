@@ -16,6 +16,8 @@ m_btnUpgrade = m_btnUpgrade or nil
 m_panelHouse = m_panelHouse or nil
 m_panelUpgradeEffect = m_panelUpgradeEffect or nil
 
+m_houseModelName = "houseModel"
+
 function init()
     m_txtName = gameObject.transform:Find("Panel/BasePanel/HouseName")
     m_txtCurLevel = gameObject.transform:Find("Panel/LevelUpPanel/TxtLevel")
@@ -50,18 +52,18 @@ function onLevelUp()
 end
 
 function updateModel()
-
-    removeOldModel()
     
+    removeOldModel()
+
     local dLevel = pkgHouseDataMgr.GetLevel()
     local dStar = pkgHouseDataMgr.GetStar()
     local tbCfg = pkgHomeCfgMgr.GetLevelUpCfg(dStar, dLevel)
 
     local function onLoadComplete(prefab)
-        local strKey = "houseModel"
         goNow = UnityEngine.Object.Instantiate(prefab)
-        goNow.name = strKey
+        goNow.name = m_houseModelName
         goNow.transform:SetParent(m_panelHouse.transform, false)
+        pkgUITool.ChangeLayersRecursively(goNow, "HousePanel")
         goNow.gameObject:SetActive(true)
     end
 
@@ -70,10 +72,7 @@ function updateModel()
 end
 
 function removeOldModel()
-    for i=0, m_panelHouse.transform.childCount - 1 do
-        local goChild = m_panelHouse.transform:GetChild(i).gameObject
-        goChild.gameObject:SetActive(false)
-    end
+    pkgUITool.RemoveChild(m_panelHouse, m_houseModelName)
 end
 
 function onUpgrade()

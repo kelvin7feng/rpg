@@ -89,6 +89,7 @@ require("game/ui/pkgMinimap")
 require("game/ui/pkgStartUI")
 require("game/ui/pkgVirtualController")
 require("game/ui/pkgUIToastMgr")
+require("game/ui/pkgUIRedPointMgr")
 
 require("game/entity/pkgAIData")
 require("game/entity/pkgCharacter")

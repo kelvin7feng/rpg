@@ -11,6 +11,7 @@ event_listener = {
     {pkgClientEventDefination.UPDATE_USER_LEVEL, "UpdatePlayerInfo"},
     {pkgClientEventDefination.UPDATE_WEAR_EQUIP, "InitEquipList"},  
     {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "InitEquipList"},  
+    {pkgClientEventDefination.UPDATE_ACHIEVEMENT, "CheckRedPoint"},
 }
 
 -- player info
@@ -20,6 +21,7 @@ m_txtPlayerName = m_txtPlayerName or nil
 m_txtDiamond = m_txtDiamond or nil
 m_txtGold = m_txtGold or nil
 m_txtLevel = m_txtLevel or nil
+m_btnTask = m_btnTask or nil
 
 -- home panel
 m_btnHouse = m_btnHouse or nil
@@ -170,6 +172,7 @@ function init()
     m_rightPanel = gameObject.transform:Find("Panel/RightPanel")
     m_rightPanelAnimator = m_rightPanel:GetComponent(UnityEngine.Animator)
 
+    m_btnTask = gameObject.transform:Find("Panel/RightPanel/Task")
     pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Arrow", onClickRightArrow)
     pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/Task", onClickTask)
     pkgButtonMgr.AddListener(gameObject, "Panel/RightPanel/FoldablePanel/Bag", onClickBag)
@@ -198,6 +201,16 @@ function init()
     InitEquipList()
     updateBtn()
     updatePanel()
+
+    CheckRedPoint()
+end
+
+function CheckRedPoint()
+    if pkgAchievementMgr.canShowRedPoint() then
+        pkgUIRedPointMgr.AddRedPoint(m_btnTask.gameObject, "task_red_point")
+    else
+        pkgUIRedPointMgr.RemoveRedPoint("task_red_point")
+    end
 end
 
 function show()

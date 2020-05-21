@@ -23,6 +23,8 @@ function AddListener(gameobject, strButtonName, fnCallback, paramters)
         return
     end
     
+    RemoveGameObjectListeners(btnGo)
+
     local btnComponent = btnGo.gameObject:GetComponent(UnityEngine.UI.Button)
     btnComponent.onClick:AddListener(
         function()
@@ -43,6 +45,8 @@ function AddBtnListener(btnGo, fnCallback, paramters)
         return
     end
     
+    RemoveGameObjectListeners(btnGo)
+
     local btnComponent = btnGo.gameObject:GetComponent(UnityEngine.UI.Button)
     btnComponent.onClick:AddListener(
         function()
@@ -66,11 +70,11 @@ function RemoveListeners(gameObject, strBtnName)
 end
 
 function RemoveGameObjectListeners(gameObject)
-
-    if not pkgUITool.isNull(gameObject) then
+    
+    if pkgUITool.isNull(gameObject) then
         return
     end
-
+    
     local components = gameObject:GetComponentsInChildren(UnityEngine.UI.Button, true)
 
     if components then
