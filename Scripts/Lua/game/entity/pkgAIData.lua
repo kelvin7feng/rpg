@@ -55,6 +55,15 @@ function AIData:RemoveEnemyFromHatedList(dIndex)
     end
 end
 
+function AIData:GetConfig()
+    local tbConfig = _cfg.monster[self.dMonsterId]
+    if not tbConfig then
+        return nil
+    end
+
+    return tbConfig
+end
+
 function AIData:GetFieldConfig(strField)
     local tbConfig = _cfg.monster[self.dMonsterId]
     if not tbConfig then

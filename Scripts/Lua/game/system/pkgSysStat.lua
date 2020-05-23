@@ -19,13 +19,13 @@ function SetMaxHealth(player, dMaxHealth)
     -- print("player.stat.dCurrentHealth ========== ", player.stat.dCurrentHealth)
 end
 
-function DoDamage(player, attacker, dDamage)
+function DoDamage(player, attacker)
 
     if pkgGlobalConfig.GodMode and pkgActorManager.IsMainPlayer(player) then
         return
     end
     
-    player.stat:TakeDamage(dDamage)
+    local bHit, dDamage, bIsCritical, dCritical = pkgAttrLogic.CalcOneAttack(attacker.tbAttr, player.tbAttr)
 
     -- 优化: 连续受击的情况需要处理
     if not pkgFSMManger.IsInState(player, pkgStateDefination.State.HURT) then
@@ -33,6 +33,17 @@ function DoDamage(player, attacker, dDamage)
     end
     
     pkgSysAI.AddAttackerToHateList(player, attacker)
-    pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_HP_CHANGE, player)
-    pkgPopupTextUI.PlayPopupText(player, 1, dDamage)
+    if bHit then
+        player.stat:TakeDamage(dDamage)
+
+        pkgPopupTextUI.PlayPopupText(player, pkgPopupTextUI.PopupType.NORMAL, dDamage)
+
+        if bIsCritical then
+            pkgPopupTextUI.PlayPopupText(player, pkgPopupTextUI.PopupType.CRITICAL)
+        end
+
+        pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_HP_CHANGE, player)
+    else
+        pkgPopupTextUI.PlayPopupText(player, pkgPopupTextUI.PopupType.MISS)
+    end
 end

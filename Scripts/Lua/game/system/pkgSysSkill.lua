@@ -56,7 +56,7 @@ function AttackBegin(player)
             if math.cos(70) < UnityEngine.Vector3.Dot(dir, player.transform.forward) then
                 if UnityEngine.Vector3.Distance(targetPos, playerPos) < 3 then
                     LOG_DEBUG(player:GetId(),"I hit you now!")
-                    pkgSysStat.DoDamage(objEnemy, player, math.random(3,5))
+                    pkgSysStat.DoDamage(objEnemy, player)
                 else
                     LOG_DEBUG(player:GetId(),"Distance is more than 3:", UnityEngine.Vector3.Distance(targetPos, playerPos))
                 end

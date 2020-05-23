@@ -8,5 +8,6 @@ function Player:ctor(paramters)
     self.aiData.dMonsterId = 1
     pkgSysAI.SetPause(self, true)
     pkgFSMManger.InitPlayerFSM(self)
-    pkgSysStat.SetMaxHealth(self, 100)
+    pkgAttrLogic.CalcPlayerAttr(self)
+    pkgSysStat.SetMaxHealth(self, pkgAttrLogic.GetHpAttr(self.tbAttr))
 end

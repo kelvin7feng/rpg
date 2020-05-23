@@ -36,12 +36,18 @@ function OnSpawnMonster(dCurLevel, dCurType, dMonsterId)
         pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_LEVEL, dCurLevel)
     end
 
+    local dDefaultDistance = 5
+    if dCurType == BATTLE_CHALLENGE_TYPE.BOSS_TYPE then
+        Toast("Boss is coming")
+        dDefaultDistance = 15
+    end
+
     m_dCurLevel = dCurLevel
     m_dCurType = dCurType
     m_dMonsterId = dMonsterId
 
     local player = pkgActorManager.GetMainPlayer()
-    local spawnPos = pkgSysMonster.GetForwardPos(player, 5)
+    local spawnPos = pkgSysMonster.GetForwardPos(player, dDefaultDistance)
     local forwardDir = pkgSysPosition.GetForwardDir(player) * - 1
     pkgSysMonster.CreateMonster(dMonsterId, spawnPos, forwardDir)
     

@@ -29,6 +29,7 @@ end
 function OnWearEquip(dSlotId, strId)
     Toast(pkgLanguageMgr.GetStringById(20003))
     pkgUserDataManager.SetEquipSlot(dSlotId, strId)
+    pkgAttrLogic.CalcPlayerAttr(pkgActorManager.GetMainPlayer())
     pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_WEAR_EQUIP, dSlotId)
 end
 
@@ -39,6 +40,7 @@ end
 function OnTakeOff(dSlotId)
     Toast(pkgLanguageMgr.GetStringById(20004))
     pkgUserDataManager.SetEquipSlot(dSlotId, 0)
+    pkgAttrLogic.CalcPlayerAttr(pkgActorManager.GetMainPlayer())
     pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, dSlotId)
 end
 
@@ -55,5 +57,6 @@ function OnLevelUp(strId, dLevel, dLevelUpExp)
     local tbEquip = pkgUserDataManager.GetEquip(strId)
     tbEquip.dLevel = dLevel
     tbEquip.dLevelUpExp = dLevelUpExp
+    pkgAttrLogic.CalcPlayerAttr(pkgActorManager.GetMainPlayer())
     pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_LEVEL_UP_EQUIP, strId)
 end

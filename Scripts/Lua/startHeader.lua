@@ -111,9 +111,11 @@ require("game/stat/pkgStat")
 
 require("game/goods/pkgGoodsMgr")
 
+require("game/equip/pkgEquipDataMgr")
 require("game/equip/pkgEquipMgr")
 
 require("game/battle/pkgSysBattle")
+require("game/battle/pkgAttrLogic")
 
 require("game/achievement/pkgAchievementMgr")
 

@@ -19,6 +19,7 @@ function Character:ctor(paramters)
     self.bDie = false
     self.dAnimationMoveSpeed = 0
     self.bHurt = false
+    self.tbAttr = nil
 
     local prefab = paramters.prefab
     local spawnPosition = paramters.spawnPosition
@@ -29,7 +30,7 @@ function Character:ctor(paramters)
         spawnPosition = tbhit.position
     end
 
-    local player = UnityEngine.GameObject.Instantiate(prefab)
+    local player = UnityEngine.GameObject.Instantiate(prefab, spawnPosition, UnityEngine.Quaternion.identity)
     player.transform.position = spawnPosition
     
     local lookQuaternion = UnityEngine.Quaternion.LookRotation(spawnRotate)

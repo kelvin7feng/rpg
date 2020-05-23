@@ -7,5 +7,6 @@ function Monster:ctor(paramters)
     self.aiData = AIData:new()
     self.aiData.dMonsterId = paramters.dMonsterId
     pkgFSMManger.InitMonsterFSM(self)
-    pkgSysStat.SetMaxHealth(self, 10)
+    pkgAttrLogic.CalcMonsterAttr(self)
+    pkgSysStat.SetMaxHealth(self, pkgAttrLogic.GetHpAttr(self.tbAttr))
 end
