@@ -123,3 +123,6 @@ require("game/redirect/pkgRedirectMgr")
 
 require("game/house/pkgHouseDataMgr")
 require("game/house/pkgHouseMgr")
+
+require("game/cropland/pkgCroplandDataMgr")
+require("game/cropland/pkgCroplandMgr")

@@ -52,23 +52,23 @@ local function onClickChallengeBoss()
 end
 
 local function onClickHome()
-    print("onClickHome ================= ")
+    -- print("onClickHome ================= ")
 end
 
 local function onClickField()
-    print("onClickField ================= ")
+    -- print("onClickField ================= ")
 end
 
 local function onClickBattle()
-    print("onClickBattle ================= ")
+    -- print("onClickBattle ================= ")
 end
 
 local function onClickRole()
-    print("onClickRole ================= ")
+    -- print("onClickRole ================= ")
 end
 
 local function onClickPet()
-    print("onClickPet ================= ")
+    -- print("onClickPet ================= ")
 end
 
 local function onClickBag()
@@ -90,6 +90,10 @@ end
 
 local function onClickHouse()
     pkgUIBaseViewMgr.showByViewPath("game/house/pkgUIHouse")
+end
+
+local function onClickCropland()
+    pkgUIBaseViewMgr.showByViewPath("game/cropland/pkgUICropland")
 end
 
 m_tbClickFunc = {
@@ -185,6 +189,7 @@ function init()
     end
 
     pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnHouse", onClickHouse)
+    pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnCropland", onClickCropland)
 
     local function onLoadPopupTextUI()
         pkgPopupTextUI.gameObject.transform:SetParent(gameObject.transform, false)

@@ -51,13 +51,13 @@ function SetLevel(dLevel)
     m_UserData.BaseInfo.Level = dLevel
 end
 
-function GetBag()
+function GetBag(dGoodsType)
     local tbShowBag = {}
     local tbBagInfo = m_UserData.BagInfo
     local tbCfg = nil
     for strType, dCount in pairs(tbBagInfo) do
         tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(strType)
-        if tbCfg and tbCfg.isBag == 1 then
+        if tbCfg and tbCfg.isBag == 1 and (not dGoodsType or dGoodsType == tbCfg.goodsType) then
             table.insert(tbShowBag, {id = strType, count = dCount, assets = tbCfg.assetBundle})
         end
         table.sort(tbShowBag,sortGoodsByDefault)
@@ -67,7 +67,7 @@ function GetBag()
     if #tbEquipList > 0 then
         for _, tbEquip in ipairs(tbEquipList) do
             tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbEquip.cfgId)
-            if tbCfg and tbCfg.isBag == 1 then
+            if tbCfg and tbCfg.isBag == 1 and (not dGoodsType or dGoodsType == tbCfg.goodsType) then
                 table.insert(tbShowBag, {id = tbEquip.cfgId, count = 1, assets = tbCfg.assetBundle})
             end
         end
@@ -220,4 +220,9 @@ end
 function GetHouseInfo()
     local tbHomeInfo = m_UserData.HomeInfo
     return tbHomeInfo
+end
+
+function GetCropLandInfo()
+    local tbCroplandInfo = m_UserData.CroplandInfo
+    return tbCroplandInfo
 end

@@ -107,7 +107,7 @@ function updateFreeEquip(dSlotId)
                 pkgUITool.SetStringByName(goNow, "Name", tbGoodsInfo.name)
                 local imgGoods = goNow.transform:Find("EquipIcon/Image")
                 if imgGoods then
-                    pkgUITool.ResetImage("equip_icon", tostring(tbGoodsInfo.id), imgGoods)
+                    pkgUITool.ResetImage("equip_icon", tostring(tbGoodsInfo.assetName), imgGoods)
                 end
                 
                 pkgUITool.SetStringByName(goNow, "EquipIcon/Level", tbEquipInfo.dLevel)

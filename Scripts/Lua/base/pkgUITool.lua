@@ -211,7 +211,7 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
 
         local imgGoods = objIcon.transform:Find("Image")
         if imgGoods then
-            pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.id), imgGoods)
+            pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.assetName), imgGoods)
         end
 
         if tbParams.count then
@@ -234,7 +234,7 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
         end
     end
 
-    -- print("assetBundleName, fileName:", parent.name, tbGoodsInfo.assetBundle, tostring(dGoodsId))
+    -- print("assetBundleName, fileName:", parent.name, tbGoodsInfo.assetBundle, tbGoodsInfo.assetName)
 
     pkgAssetBundleMgr.LoadAssetBundle("ui", "GoodsIcon", onLoadComplete)
 end
@@ -265,7 +265,7 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
 
     local imgGoods = objIcon.transform:Find("Image")
     if imgGoods then
-        pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.id), imgGoods)
+        pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.assetName), imgGoods)
     end
 
     if tbParams.count then

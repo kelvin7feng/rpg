@@ -38,7 +38,7 @@ function OnSpawnMonster(dCurLevel, dCurType, dMonsterId)
 
     local dDefaultDistance = 5
     if dCurType == BATTLE_CHALLENGE_TYPE.BOSS_TYPE then
-        Toast("Boss is coming")
+        Toast(pkgLanguageMgr.GetStringById(1101))
         dDefaultDistance = 15
     end
 
