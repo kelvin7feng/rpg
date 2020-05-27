@@ -33,9 +33,17 @@ function Plant(dIndex, dId)
 end
 
 function OnPlant(tbLandInfo)
-    LOG_TABLE(tbLandInfo)
     pkgCroplandDataMgr.SetLandInfo(tbLandInfo)
     pkgEventManager.PostEvent(pkgClientEventDefination.ON_PLANT_CROP, tbLandInfo)
+end
+
+function Harvest(dIndex)
+    if not CanHarvest(dIndex) then
+        Toast(pkgLanguageMgr.GetStringById(30002))
+        return false
+    end
+
+    pkgSocket.SendToLogic(EVENT_ID.CROPLAND.HARVEST, dIndex)
 end
 
 function CanHarvest(dIndex)
@@ -49,22 +57,5 @@ function CanHarvest(dIndex)
         return
     end
     
-    local dState = tbLandInfo.dState
-    if dState ~= pkgCroplandCfgMgr.State.PLANTING then
-        return false
-    end
-
-    local tbCropCfg = pkgCroplandCfgMgr.GetCropCfg(tbLandInfo.dId)
-    if not tbCropCfg then
-        return false
-    end
-    
-    local dCfgGrowTime = tbCropCfg.growTime
-    local dPlantTime = tbLandInfo.dPlantTime
-    local dEndTime = dPlantTime + dCfgGrowTime
-    if os.time() < dEndTime then
-        return false
-    end
-
-    return true
+    return pkgCroplandCfgMgr.CanHarvest(tbLandInfo)
 end

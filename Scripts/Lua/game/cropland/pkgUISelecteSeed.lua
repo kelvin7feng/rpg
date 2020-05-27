@@ -36,7 +36,6 @@ function show(dIndex)
     local function onLoadComplete(prefab)
         for i, tbGoodsInfo in ipairs(tbBagInfo) do
             local function onClick(goBtn, tbData)
-                print("click ======================= ", m_dSelectLandId, tbGoodsInfo.id)
                 pkgCroplandMgr.Plant(m_dSelectLandId, tonumber(tbGoodsInfo.id))
                 destroyUI()
             end

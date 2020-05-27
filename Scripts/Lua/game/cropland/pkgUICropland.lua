@@ -8,6 +8,7 @@ event_listener = {
 }
 
 m_tbCropland = m_tbCropland or {}
+m_tbTimer = m_tbTimer or {}
 m_dCurBtnIndex = nil
 
 local function onClickCropland(btnGo, i)
@@ -18,39 +19,38 @@ local function onClickCropland(btnGo, i)
     elseif dState == pkgCroplandCfgMgr.State.PLANTING then
         local bCanHarvest = pkgCroplandMgr.CanHarvest(i)
         if bCanHarvest then
-            print("harvest ========================= ", i)
+            pkgCroplandMgr.Harvest(i)
         else
-
+            Toast(pkgLanguageMgr.GetStringById(30002))
         end
-    else
-
     end
 end
 
 function updateOneLand(tbLandInfo)
-
+    
     if not tbLandInfo then
         return
     end
-    
-    local objCropland = m_tbCropland[tbLandInfo.dLandId]
+
+    local dLandId = tbLandInfo.dLandId
+    local objCropland = m_tbCropland[dLandId]
     if not objCropland then
         return
     end
-    
+
     local tbCropCfg = pkgCroplandCfgMgr.GetCropCfg(tbLandInfo.dId)
-    if not tbCropCfg then
-        return
-    end
-    
+
     local dState = tbLandInfo.dState
     if dState == pkgCroplandCfgMgr.State.EMPTY then
-        
+        pkgUITool.SetActiveByName(objCropland, "ImgCrop", false)
+        pkgUITool.SetActiveByName(objCropland, "Process", false)
+        pkgUITool.SetActiveByName(objCropland, "ImgHand", false)
+        pkgUITool.SetActiveByName(objCropland, "ImgHarvest", false)
     elseif dState == pkgCroplandCfgMgr.State.PLANTING then
         local dCfgGrowTime = tbCropCfg.growTime
         local dPlantTime = tbLandInfo.dPlantTime
         local dEndTime = dPlantTime + dCfgGrowTime
-
+        
         local function setHarvest()
             local imgHarvest = objCropland.transform:Find("ImgHarvest")
             pkgUITool.ResetImage(tbCropCfg.harvestIconBundle, tbCropCfg.harvestIconName, imgHarvest)
@@ -66,28 +66,35 @@ function updateOneLand(tbLandInfo)
 
         if os.time() < dEndTime then
             local objSlider = objCropland.transform:Find("Process")
-            sliderCmpt = objSlider:GetComponent(UnityEngine.UI.Slider)
+            local sliderCmpt = objSlider:GetComponent(UnityEngine.UI.Slider)
             local dTimerId = nil
+            sliderCmpt.maxValue = dCfgGrowTime
             dTimerId = pkgTimerMgr.addWithoutDelay(1000, function()
                 if dEndTime - os.time() > 0 then
                     pkgUITool.SetStringByName(objCropland, "Process/Text", dEndTime - os.time())
-                    sliderCmpt.value = 1 - (dEndTime - os.time())/dCfgGrowTime
+                    sliderCmpt.value = dCfgGrowTime - (dEndTime - os.time())
                 else
                     pkgTimerMgr.delete(dTimerId)
                     pkgUITool.SetStringByName(objCropland, "Process/Text", "")
                     setPlantingState(false)
                     setHarvest()
-                    sliderCmpt.value = 1
+                    sliderCmpt.value = dCfgGrowTime
                 end
             end)
+
+            if m_tbTimer[dLandId] then
+                pkgTimerMgr.delete(m_tbTimer[dLandId])
+                m_tbTimer[dLandId] = nil
+            end
+
+            m_tbTimer[dLandId] = dTimerId
+
             local imgCrop = objCropland.transform:Find("ImgCrop")
             pkgUITool.ResetImage(tbCropCfg.plantIconBundle, tbCropCfg.plantIconName, imgCrop)
             setPlantingState(true)
         else
             setHarvest()
         end
-    else
-
     end
 end
 
@@ -114,8 +121,14 @@ end
 
 function destroyUI()
     pkgUIBaseViewMgr.destroyUI(pkgUICropland)
+
+    for dLandId, dTimerId in pairs(m_tbTimer) do
+        pkgTimerMgr.delete(dTimerId)
+    end
+
+    m_tbCropland = {}
 end
 
 function close()
-    
+
 end
