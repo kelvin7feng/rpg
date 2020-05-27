@@ -27,4 +27,7 @@ function Init()
     pkgEventManager.Register(EVENT_ID.HOME.ON_LEVEL_UP, pkgHouseMgr.OnLevelUp)
     pkgEventManager.Register(EVENT_ID.HOME.ON_UPGRADE, pkgHouseMgr.OnUpgrade)
     pkgEventManager.Register(EVENT_ID.HOME.ON_ERROR, pkgHouseMgr.OnError)
+
+    -- 花园
+    pkgEventManager.Register(EVENT_ID.CROPLAND.ON_PLANT, pkgCroplandMgr.OnPlant)
 end

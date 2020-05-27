@@ -9,6 +9,7 @@ event_listener = {
 
 m_scrollView = m_scrollView or nil
 m_defaultPanel = m_defaultPanel or nil
+m_dSelectLandId = m_dSelectLandId or 0
 
 function init()
     m_scrollView = gameObject.transform:Find("Panel/Scroll View/Viewport/Content")
@@ -23,17 +24,21 @@ function resetScrollViewItem()
     end
 end
 
-function show()
+function show(dIndex)
     local tbBagInfo = pkgUserDataManager.GetBag(GOODS_DEF.SEED)
     if #tbBagInfo <= 0 then
         m_defaultPanel.gameObject:SetActive(true)
         return
     end
 
+    m_dSelectLandId = dIndex
+
     local function onLoadComplete(prefab)
         for i, tbGoodsInfo in ipairs(tbBagInfo) do
             local function onClick(goBtn, tbData)
-                print("click ======================= ", tbGoodsInfo.id)
+                print("click ======================= ", m_dSelectLandId, tbGoodsInfo.id)
+                pkgCroplandMgr.Plant(m_dSelectLandId, tonumber(tbGoodsInfo.id))
+                destroyUI()
             end
     
             local function onComplete(goBtn)
@@ -56,7 +61,7 @@ function show()
 end
 
 function destroyUI()
-    
+    pkgUIBaseViewMgr.destroyUI(pkgUISelecteSeed)
 end
 
 function close()

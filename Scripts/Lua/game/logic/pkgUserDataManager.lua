@@ -222,7 +222,7 @@ function GetHouseInfo()
     return tbHomeInfo
 end
 
-function GetCropLandInfo()
+function GetCroplandInfo()
     local tbCroplandInfo = m_UserData.CroplandInfo
     return tbCroplandInfo
 end

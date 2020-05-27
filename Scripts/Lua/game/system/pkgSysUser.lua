@@ -3,7 +3,9 @@ doNameSpace("pkgSysUser")
 function OnLevelChange(dLevel)
     Toast(pkgLanguageMgr.GetStringById(2001, dLevel))
     pkgUserDataManager.SetLevel(dLevel)
-    pkgAttrLogic.CalcPlayerAttr(pkgActorManager.GetMainPlayer())
+    if pkgActorManager.GetMainPlayer() then
+        pkgAttrLogic.CalcPlayerAttr(pkgActorManager.GetMainPlayer())
+    end
     pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_USER_LEVEL, dLevel)
 end
 
