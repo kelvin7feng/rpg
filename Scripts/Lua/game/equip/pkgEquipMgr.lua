@@ -60,3 +60,19 @@ function OnLevelUp(strId, dLevel, dLevelUpExp)
     pkgAttrLogic.CalcPlayerAttr(pkgActorManager.GetMainPlayer())
     pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_LEVEL_UP_EQUIP, strId)
 end
+
+function IsSlotEmpty(dSlotId)
+    local strId = pkgUserDataManager.GetEquipSlot(dSlotId)
+    return IsStringEmpty(strId) and true or false
+end
+
+function CanShowRedPoint(dSlotId)
+    if IsSlotEmpty(dSlotId) then
+        local tbList = pkgUserDataManager.GetEquipListBySlot(dSlotId) 
+        if tbList and #tbList > 0 then
+            return true
+        end
+    end
+
+    return false
+end

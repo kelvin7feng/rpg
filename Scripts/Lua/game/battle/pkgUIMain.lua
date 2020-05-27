@@ -291,6 +291,7 @@ function InitEquipList()
         m_tbEquipSlot[i] = btnSlot
 
         local function onClickEquipSlotBtn(btnGo)
+            pkgUIRedPointMgr.RemoveRedPoint("equip_slot_red_point")
             pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUISelectEquip", nil, i) 
         end
 
@@ -312,6 +313,9 @@ function InitEquipList()
         else
             if icon then
                 icon.gameObject:SetActive(false)
+            end
+            if pkgEquipMgr.CanShowRedPoint(i) then
+                pkgUIRedPointMgr.AddRedPoint(btnSlot.gameObject, "equip_slot_red_point")
             end
             pkgButtonMgr.AddBtnListener(btnSlot, onClickEquipSlotBtn)
         end

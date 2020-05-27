@@ -35,7 +35,7 @@ end
 function updateWearingEquip(dSlotId)
 
     local strId = pkgUserDataManager.GetEquipSlot(dSlotId)
-    if IsStringEmpty(strId) then
+    if pkgEquipMgr.IsSlotEmpty(dSlotId) then
         m_panelNoSelectedEquip.gameObject:SetActive(true)
         m_panelEquipingPanel.gameObject:SetActive(false)
         return
