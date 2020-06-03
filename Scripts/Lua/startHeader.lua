@@ -90,6 +90,7 @@ require("game/ui/pkgStartUI")
 require("game/ui/pkgVirtualController")
 require("game/ui/pkgUIToastMgr")
 require("game/ui/pkgUIRedPointMgr")
+require("game/ui/pkgUIImageMgr")
 
 require("game/entity/pkgAIData")
 require("game/entity/pkgCharacter")
@@ -126,3 +127,6 @@ require("game/house/pkgHouseMgr")
 
 require("game/cropland/pkgCroplandDataMgr")
 require("game/cropland/pkgCroplandMgr")
+
+require("game/collection/pkgCollectionDataMgr")
+require("game/collection/pkgCollectionMgr")

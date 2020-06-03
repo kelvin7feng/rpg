@@ -226,3 +226,8 @@ function GetCroplandInfo()
     local tbCroplandInfo = m_UserData.CroplandInfo
     return tbCroplandInfo
 end
+
+function GetCollectionInfo()
+    local tbCollectionInfo = m_UserData.CollectionInfo
+    return tbCollectionInfo
+end

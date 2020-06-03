@@ -11,6 +11,10 @@ m_tbCropland = m_tbCropland or {}
 m_tbTimer = m_tbTimer or {}
 m_dCurBtnIndex = nil
 
+local function onClickCollection() 
+    pkgUIBaseViewMgr.showByViewPath("game/collection/pkgUICropCollection")
+end
+
 local function onClickCropland(btnGo, i)
     m_dCurBtnIndex = i
     local dState = pkgCroplandMgr.GetLandState(i)
@@ -106,6 +110,7 @@ function init()
         pkgButtonMgr.AddBtnListener(objCropland, onClickCropland, i)
     end
 
+    pkgButtonMgr.AddListener(gameObject, "Panel/BtnCollection", onClickCollection)
 end
 
 function show()

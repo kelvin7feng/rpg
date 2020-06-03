@@ -30,4 +30,7 @@ function Init()
 
     -- 花园
     pkgEventManager.Register(EVENT_ID.CROPLAND.ON_PLANT, pkgCroplandMgr.OnPlant)
+
+    -- 收藏
+    pkgEventManager.Register(EVENT_ID.COLLECTION.ON_COLLECT_NEW, pkgCollectionMgr.OnCollectNew)
 end
