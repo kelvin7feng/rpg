@@ -163,7 +163,7 @@ function init()
     m_txtGold = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ValuePanel/Gold/Bg/Text")
     m_txtLevel = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/Level")
 
-    m_objHpSlider = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/HpProgress/Slider")
+    m_objHpSlider = gameObject.transform:Find("Panel/HpProgress/Slider")
     m_playerHpSlider = m_objHpSlider:GetComponent(UnityEngine.UI.Slider)
     m_bottomPanel = gameObject.transform:Find("Panel/BottomPanel")
     m_secondBottomPanel = gameObject.transform:Find("Panel/SecondBottomPanel")
