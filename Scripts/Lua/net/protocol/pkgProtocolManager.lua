@@ -33,4 +33,9 @@ function Init()
 
     -- 收藏
     pkgEventManager.Register(EVENT_ID.COLLECTION.ON_COLLECT_NEW, pkgCollectionMgr.OnCollectNew)
+
+    -- 商店
+    pkgEventManager.Register(EVENT_ID.SHOP.ON_UPDATE_SHOP_INFO, pkgShopMgr.OnUpdateShopInfo)
+    pkgEventManager.Register(EVENT_ID.SHOP.ON_BUY_GOODS, pkgShopMgr.OnBuyGoods)
+    
 end

@@ -96,6 +96,10 @@ local function onClickCropland()
     pkgUIBaseViewMgr.showByViewPath("game/cropland/pkgUICropland")
 end
 
+local function onClickShop()
+    pkgUIBaseViewMgr.showByViewPath("game/shop/pkgUIShop")
+end
+
 m_tbClickFunc = {
     { 
         callBack = onClickHome,
@@ -190,6 +194,7 @@ function init()
 
     pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnHouse", onClickHouse)
     pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnCropland", onClickCropland)
+    pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnShop", onClickShop)
 
     local function onLoadPopupTextUI()
         pkgPopupTextUI.gameObject.transform:SetParent(gameObject.transform, false)
@@ -301,25 +306,27 @@ function InitEquipList()
 
         -- set icon
         local tbEquip = pkgUserDataManager.GetEquip(strEquipId)
-        pkgButtonMgr.RemoveGameObjectListeners(btnSlot)
 
-        local icon = btnSlot.transform:Find("icon")
+        local goIcon = btnSlot.transform:Find("icon")
         if tbEquip then
-            if not icon then
+            if pkgUITool.isNull(goIcon) then
                 pkgUITool.CreateIcon(tbEquip.cfgId, btnSlot, nil, {onClick = onClickDetail, size = pkgUITool.ICON_SIZE_TYPE.SMALL})
             else
-                icon.gameObject:SetActive(true)
-            end            
-        else
-            if icon then
-                icon.gameObject:SetActive(false)
+                pkgUITool.UpdateIcon(goIcon, tbEquip.cfgId, nil, {onClick = onClickDetail, size = pkgUITool.ICON_SIZE_TYPE.SMALL})
             end
-            if pkgEquipMgr.CanShowRedPoint(i) then
-                pkgUIRedPointMgr.AddRedPoint(btnSlot.gameObject, "equip_slot_red_point")
+        else
+            if not pkgUITool.isNull(goIcon) then
+                UnityEngine.Object.Destroy(goIcon.gameObject)
             end
             pkgButtonMgr.AddBtnListener(btnSlot, onClickEquipSlotBtn)
         end
         
+        if pkgEquipMgr.CanShowRedPoint(i) then
+            local objRedPoint = btnSlot.transform:Find("redPoint")
+            if pkgUITool.isNull(objRedPoint) then
+                pkgUIRedPointMgr.AddRedPoint(btnSlot.gameObject, "equip_slot_red_point")
+            end
+        end
     end
 end
 

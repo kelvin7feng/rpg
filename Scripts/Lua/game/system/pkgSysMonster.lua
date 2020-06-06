@@ -77,7 +77,8 @@ function GetForwardPos(monster, dDistance)
     local currentPosition = pkgSysPosition.GetCurrentPos(monster)
     local forwardPosition = currentPosition + spawnForward * dDistance
     forwardPosition = pkgPositionTool.GetPosOnGround(forwardPosition)
-    
+    forwardPosition.z = monster.spawnPosition.z
+
     return forwardPosition
 end
 

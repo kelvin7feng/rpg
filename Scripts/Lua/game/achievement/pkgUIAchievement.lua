@@ -44,7 +44,7 @@ function updateAchievementPanel()
             goNow.gameObject:SetActive(true)
 
             local tbCfg = pkgAchievementCfgMgr.getAchievementCfg(tbAchievementInfo.dId)
-            pkgUITool.SetStringByName(goNow, "desc", tbCfg.desc, tbCfg.target)
+            pkgUITool.SetStringByName(goNow, "desc", pkgAchievementCfgMgr.getDesc(tbAchievementInfo.dId))
             pkgUITool.SetStringByName(goNow, "processSlider/Text", string.format("%d/%d", tbAchievementInfo.dProcess, tbCfg.target))
 
             local slider = goNow.transform:Find("processSlider")

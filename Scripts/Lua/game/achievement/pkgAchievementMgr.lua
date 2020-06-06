@@ -10,6 +10,8 @@ local sortByDefault = function(a, b)
     local dProcess2 = b.dProcess/cfg2.target
     if dProcess1 ~= dProcess2 then
         return dProcess1 > dProcess2
+    elseif cfg1.order ~= cfg2.order then
+        return cfg1.order < cfg2.order
     else
         return cfg1.id > cfg2.id
     end

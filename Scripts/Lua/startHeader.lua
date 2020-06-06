@@ -130,3 +130,6 @@ require("game/cropland/pkgCroplandMgr")
 
 require("game/collection/pkgCollectionDataMgr")
 require("game/collection/pkgCollectionMgr")
+
+require("game/shop/pkgShopDataMgr")
+require("game/shop/pkgShopMgr")

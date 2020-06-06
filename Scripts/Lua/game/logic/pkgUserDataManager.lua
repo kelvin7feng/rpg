@@ -231,3 +231,8 @@ function GetCollectionInfo()
     local tbCollectionInfo = m_UserData.CollectionInfo
     return tbCollectionInfo
 end
+
+function GetShopInfo()
+    local tbShopInfo = m_UserData.ShopInfo
+    return tbShopInfo
+end

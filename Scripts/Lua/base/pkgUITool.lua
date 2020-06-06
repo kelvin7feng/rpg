@@ -179,6 +179,16 @@ function ResetImage(assetBundleName, imageName, gameObject, callback, tbParams)
     pkgAssetBundleMgr.LoadAssetBundle(assetBundleName, imageName, onLoadComplete)
 end
 
+IconType = {
+    NORMAL_GOODS        = 1,
+    SHOP_ITEM           = 2,
+}
+
+IconMap = {
+    [IconType.NORMAL_GOODS] = {assetBundle = "ui", assetName = "GoodsIcon"},
+    [IconType.SHOP_ITEM] = {assetBundle = "ui", assetName = "ShopItem"},
+}
+
 function CreateIcon(dGoodsId, parent, callback, tbParams)
     
     if not dGoodsId then
@@ -197,7 +207,7 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
         
     end
 
-	local function onLoadComplete( prefab )
+	local function onLoadComplete(prefab)
 
         if not prefab then return end
 
@@ -234,9 +244,61 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
         end
     end
 
-    -- print("assetBundleName, fileName:", parent.name, tbGoodsInfo.assetBundle, tbGoodsInfo.assetName)
+    local function onLoadShopItemComplete(prefab)
 
-    pkgAssetBundleMgr.LoadAssetBundle("ui", "GoodsIcon", onLoadComplete)
+        if not prefab then return end
+
+        local objIcon = UnityEngine.Object.Instantiate(prefab)
+        objIcon.name = tbParams.iconName or "icon"
+        objIcon.gameObject:SetActive(true)
+
+        if parent then
+            objIcon.transform:SetParent(parent.transform, false)
+        end
+
+        local imgGoods = objIcon.transform:Find("Image")
+        if imgGoods then
+            pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.assetName), imgGoods)
+            pkgUITool.SetActive(imgGoods, true)
+        end
+
+        local tbItem = tbParams.tbItem
+        if tbItem.count and tbItem.count > 1 then
+            pkgUITool.SetActiveByName(objIcon, "Count", true)
+            pkgUITool.SetStringByName(objIcon, "Count", tbItem.count)
+        else
+            pkgUITool.SetActiveByName(objIcon, "Count", false)
+        end
+
+        if not tbItem.remaining or tbItem.remaining <= 0 then
+            pkgUITool.SetActiveByName(objIcon, "SoldOut", true)
+            pkgUITool.SetActiveByName(objIcon, "Info", false)
+        else
+            pkgUITool.SetActiveByName(objIcon, "SoldOut", false)
+            pkgUITool.SetActiveByName(objIcon, "Info", true)
+        end
+
+        local imgCurrency = objIcon.transform:Find("Info/ImgCurrency")
+        pkgUITool.ResetImage("goods", tbItem.currency, imgCurrency)
+        pkgUITool.SetStringByName(objIcon, "Info/TxtPrice", tbItem.price)
+
+        if callback then
+            callback(objIcon)
+        end
+
+        if tbParams.onClick then
+            pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick, tbParams)
+        else
+            pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick, tbParams)
+        end
+    end
+
+    local dIconType = tbParams.iconType or IconType.NORMAL_GOODS
+    if dIconType == IconType.NORMAL_GOODS then
+        pkgAssetBundleMgr.LoadAssetBundle(IconMap[dIconType].assetBundle, IconMap[dIconType].assetName, onLoadComplete)
+    elseif dIconType == IconType.SHOP_ITEM then
+        pkgAssetBundleMgr.LoadAssetBundle(IconMap[dIconType].assetBundle, IconMap[dIconType].assetName, onLoadShopItemComplete)
+    end
 end
 
 function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
@@ -276,16 +338,16 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
     end
 
     if callback then
-        callback(objIcon)
+        callback(objIcon, tbParams)
     end
 
-    -- pkgButtonMgr.RemoveGameObjectListeners(objIcon)
+    pkgButtonMgr.RemoveGameObjectListeners(objIcon)
 
-    --[[if tbParams.onClick then
+    if tbParams.onClick then
         pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick)
     else
         pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick)
-    end--]]
+    end
 
 end
 
