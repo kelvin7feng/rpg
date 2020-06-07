@@ -12,8 +12,11 @@ function SetCropCollectionInfo(tbCollection)
 
     local tbCollectionInfo = pkgUserDataManager.GetCollectionInfo()
     local tbCropCollectionInfo = tbCollectionInfo[tostring(GOODS_DEF.CROP)]
+    if not tbCollectionInfo[tostring(GOODS_DEF.CROP)] then
+        tbCollectionInfo[tostring(GOODS_DEF.CROP)] = {}
+    end
     for strId, tbInfo in pairs(tbCollection) do
-        tbCropCollectionInfo[strId] = tbInfo
+        tbCollectionInfo[tostring(GOODS_DEF.CROP)][strId] = tbInfo
     end
     return true
 end

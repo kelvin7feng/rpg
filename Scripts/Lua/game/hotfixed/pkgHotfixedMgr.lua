@@ -20,10 +20,12 @@ function CheckUpdate()
     local function processCallback(dProcess)
         
     end
-
-    -- to do
+    
     local function errorCallback(www)
-        print("handler error")
+        local tbParam = {
+            strContent  = "检查更新失败,正常尝试重连",   -- 显示文字
+        }
+        pkgUIBaseViewMgr.showByViewPath("game/alert/pkgUIAlert", nil, tbParam)
     end
 
     pkgDownloadMgr.download(pkgHotFixedCfg.GetUpdateCfgURL(), completeCb, processCallback, errorCallback)
