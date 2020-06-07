@@ -24,6 +24,8 @@ function OnLogin(dErrorCode, tbUserInfo)
         pkgGameController.Init()
     end
     pkgSceneMgr.SwitchScene(pkgGlobalConfig.SceneName.GAME, UnityEngine.SceneManagement.LoadSceneMode.Single, onSwitch)
+    
+    pkgShopMgr.InitUpdateShopInfo()
 end
 
 function Login(dUserId)

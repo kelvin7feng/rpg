@@ -31,7 +31,7 @@ function SwitchScene(strSceneName, dLoadSceneMode, callback)
     local function onLoadComplete()
         callback()
         bIsLoading = false
-		-- ÑÓ³ÙÏú»Ù,·ÀÖ¹¿´µ½³¡¾°¼ÓÔØ»­Ãæ
+		-- å»¶è¿Ÿé”€æ¯,é˜²æ­¢çœ‹åˆ°åŠ è½½åœºæ™¯çš„ç”»é¢
         pkgTimerMgr.once(500, function()
             pkgUIBaseViewMgr.destroyUI(pkgUILoading)
         end)

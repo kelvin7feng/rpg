@@ -33,7 +33,7 @@ function OnSpawnMonster(dCurLevel, dCurType, dMonsterId)
     end
     
     if m_dCurLevel ~= dCurLevel then
-        pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_LEVEL, dCurLevel)
+        pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_BATTLE_LEVEL, dCurLevel)
     end
 
     local dDefaultDistance = 5
@@ -55,4 +55,11 @@ end
 
 function OnMonsterDead(objMonster)
     pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.KILL_MONSTER, m_dCurLevel, m_dCurType, m_dMonsterId)
+end
+
+function OnUpdateBattleLevel(dNextLevel)
+    if not dNextLevel then
+        return
+    end
+    pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_BATTLE_LEVEL, dNextLevel)
 end

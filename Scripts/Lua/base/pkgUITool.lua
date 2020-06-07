@@ -231,6 +231,13 @@ function CreateIcon(dGoodsId, parent, callback, tbParams)
             pkgUITool.SetActiveByName(objIcon, "Count", false)
         end
 
+        if tbParams.level then
+            pkgUITool.SetActiveByName(objIcon, "Level", true)
+            pkgUITool.SetStringByName(objIcon, "Level", tbParams.level)
+        else
+            pkgUITool.SetActiveByName(objIcon, "Level", false)
+        end
+
         UpdateIconSize(objIcon, tbParams)
 
         if callback then
@@ -328,13 +335,44 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
     local imgGoods = objIcon.transform:Find("Image")
     if imgGoods then
         pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.assetName), imgGoods)
+        pkgUITool.SetActive(imgGoods, true)
     end
 
-    if tbParams.count then
-        pkgUITool.SetActiveByName(objIcon, "Count", true)
-        pkgUITool.SetStringByName(objIcon, "Count", tbParams.count)
-    else
-        pkgUITool.SetActiveByName(objIcon, "Count", false)
+    local dIconType = tbParams.iconType or IconType.NORMAL_GOODS
+    if dIconType == IconType.NORMAL_GOODS then
+        if tbParams.count then
+            pkgUITool.SetActiveByName(objIcon, "Count", true)
+            pkgUITool.SetStringByName(objIcon, "Count", tbParams.count)
+        else
+            pkgUITool.SetActiveByName(objIcon, "Count", false)
+        end
+
+        if tbParams.level then
+            pkgUITool.SetActiveByName(objIcon, "Level", true)
+            pkgUITool.SetStringByName(objIcon, "Level", tbParams.level)
+        else
+            pkgUITool.SetActiveByName(objIcon, "Level", false)
+        end
+    elseif dIconType == IconType.SHOP_ITEM then
+        local tbItem = tbParams.tbItem
+        if tbItem.count and tbItem.count > 1 then
+            pkgUITool.SetActiveByName(objIcon, "Count", true)
+            pkgUITool.SetStringByName(objIcon, "Count", tbItem.count)
+        else
+            pkgUITool.SetActiveByName(objIcon, "Count", false)
+        end
+
+        if not tbItem.remaining or tbItem.remaining <= 0 then
+            pkgUITool.SetActiveByName(objIcon, "SoldOut", true)
+            pkgUITool.SetActiveByName(objIcon, "Info", false)
+        else
+            pkgUITool.SetActiveByName(objIcon, "SoldOut", false)
+            pkgUITool.SetActiveByName(objIcon, "Info", true)
+        end
+
+        local imgCurrency = objIcon.transform:Find("Info/ImgCurrency")
+        pkgUITool.ResetImage("goods", tbItem.currency, imgCurrency)
+        pkgUITool.SetStringByName(objIcon, "Info/TxtPrice", tbItem.price)
     end
 
     if callback then
@@ -344,9 +382,9 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
     pkgButtonMgr.RemoveGameObjectListeners(objIcon)
 
     if tbParams.onClick then
-        pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick)
+        pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick, tbParams)
     else
-        pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick)
+        pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick, tbParams)
     end
 
 end

@@ -15,24 +15,28 @@ function init()
     m_scrollView = gameObject.transform:Find("Panel/Scroll View/Viewport/Content")
 end
 
-function resetScrollViewItem()
-    for i=0, m_scrollView.transform.childCount - 1 do
-        local goChild = goParent.transform:GetChild(i).gameObject
-        goChild.gameObject:SetActive(false)
-    end
-end
-
 function updateShopInfo(dShopType, tbShopInfo)
     print("updateShopInfo =================== ", dShopType)
 end
 
-function updateGoodsInfo(dShopType, tbShopInfo)
-    print("updateGoodsInfo =================== ", dShopType)
+function updateGoodsInfo(dShopType, dId, tbGoodsInfo)
+    -- 商店已切换类型，不需要更新
+    if dShopType ~= m_dShopType then
+        return
+    end
+    
+    local strIconName = "item" .. dId
+    local objIcon = m_scrollView.transform:Find(strIconName)
+    if not tbGoodsInfo.remaining or tbGoodsInfo.remaining <= 0 then
+        pkgUITool.SetActiveByName(objIcon, "SoldOut", true)
+        pkgUITool.SetActiveByName(objIcon, "Info", false)
+    else
+        pkgUITool.SetActiveByName(objIcon, "SoldOut", false)
+        pkgUITool.SetActiveByName(objIcon, "Info", true)
+    end
 end
 
 function show()
-    
-    resetScrollViewItem()
 
     local tbShopInfo = pkgShopDataMgr.GetShopInfo(m_dShopType)
 
@@ -61,6 +65,8 @@ function show()
         local goNow = m_scrollView.transform:Find(strIconName)
         if pkgUITool.isNull(goNow) then
             pkgUITool.CreateIcon(tbGoodsInfo.id, m_scrollView, nil, {onClick = onClickIcon, iconName = strIconName, iconType = pkgUITool.IconType.SHOP_ITEM, tbItem = tbGoodsInfo, id = i})
+        else
+            pkgUITool.UpdateIcon(goNow, tbGoodsInfo.id, nil, {onClick = onClickIcon, iconName = strIconName, iconType = pkgUITool.IconType.SHOP_ITEM, tbItem = tbGoodsInfo, id = i})
         end
     end
 end

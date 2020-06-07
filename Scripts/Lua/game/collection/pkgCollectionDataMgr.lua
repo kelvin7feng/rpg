@@ -10,9 +10,10 @@ function SetCropCollectionInfo(tbCollection)
         return false
     end
 
-    local tbCollectionInfo = GetCropCollectionInfo()
+    local tbCollectionInfo = pkgUserDataManager.GetCollectionInfo()
+    local tbCropCollectionInfo = tbCollectionInfo[tostring(GOODS_DEF.CROP)]
     for strId, tbInfo in pairs(tbCollection) do
-        tbCollectionInfo[strId] = tbInfo
+        tbCropCollectionInfo[strId] = tbInfo
     end
     return true
 end

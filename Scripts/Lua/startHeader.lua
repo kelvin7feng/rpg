@@ -110,6 +110,7 @@ require("game/fsm/pkgPlayerStayState")
 require("game/stat/pkgCharacterStat")
 require("game/stat/pkgStat")
 
+require("game/goods/pkgGoodsDataMgr")
 require("game/goods/pkgGoodsMgr")
 
 require("game/equip/pkgEquipDataMgr")

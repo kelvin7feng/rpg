@@ -2,7 +2,7 @@ doNameSpace("pkgClientEventDefination")
 
 MONSTER_DEAD				= "monster_dead"
 PLAYER_HP_CHANGE    		= "player_hp_change"
-UPDATE_LEVEL				= "update_level"
+UPDATE_BATTLE_LEVEL			= "update_battle_level"
 UPDATE_GOODS				= "update_goods"
 UPDATE_EQUIP				= "update_equip"
 UPDATE_WEAR_EQUIP   		= "update_wear_equip"

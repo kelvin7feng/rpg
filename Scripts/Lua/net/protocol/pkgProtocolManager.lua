@@ -8,6 +8,7 @@ function Init()
     -- 战斗
     pkgEventManager.Register(EVENT_ID.CLIENT_BATTLE.START, pkgSysBattle.OnStart)
     pkgEventManager.Register(EVENT_ID.CLIENT_BATTLE.SPAWN_MONSTER, pkgSysBattle.OnSpawnMonster)
+    pkgEventManager.Register(EVENT_ID.CLIENT_BATTLE.UPDATE_CUR_LEVEL, pkgSysBattle.OnUpdateBattleLevel)
 
     -- 背包
     pkgEventManager.Register(EVENT_ID.GOODS.UPDATE_DATA, pkgGoodsMgr.OnUpdateData)

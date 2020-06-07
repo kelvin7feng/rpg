@@ -53,7 +53,7 @@ function show(strId)
     local strIconName = "icon"
     local icon = m_panelIcon.transform:Find(strIconName)
     if pkgUITool.isNull(icon) then
-        pkgUITool.CreateIcon(dEquipCfgId, m_panelIcon, nil, {onClick = onClickIcon})
+        pkgUITool.CreateIcon(dEquipCfgId, m_panelIcon, nil, {onClick = onClickIcon, size = pkgUITool.ICON_SIZE_TYPE.BIG})
     end
 
     local tbAttr = pkgEquipCfgMgr.GetAttrDescList(dEquipCfgId)
@@ -78,7 +78,7 @@ function show(strId)
 end
 
 function destroyUI()
-    
+    pkgUIBaseViewMgr.destroyUI(pkgUIEquipDetail)
 end
 
 function close()

@@ -6,17 +6,20 @@ dSortOrder = 100
 
 event_listener = {
     {pkgClientEventDefination.PLAYER_HP_CHANGE, "UpdatePlayerHp"},
-    {pkgClientEventDefination.UPDATE_LEVEL, "UpdateLevelInfo"},
+    {pkgClientEventDefination.UPDATE_BATTLE_LEVEL, "UpdateLevelInfo"},
     {pkgClientEventDefination.UPDATE_GOODS, "UpdatePlayerInfo"},
     {pkgClientEventDefination.UPDATE_USER_LEVEL, "UpdatePlayerInfo"},
     {pkgClientEventDefination.UPDATE_WEAR_EQUIP, "InitEquipList"},  
     {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "InitEquipList"},  
+    {pkgClientEventDefination.UPDATE_GOODS, "InitEquipList"},  
     {pkgClientEventDefination.UPDATE_ACHIEVEMENT, "CheckRedPoint"},
 }
 
 -- player info
 m_objHpSlider = m_objHpSlider or nil
 m_playerHpSlider = m_playerHpSlider or nil
+m_objExpSlider = m_objExpSlider or nil
+m_playerExpSlider = m_playerExpSlider or nil
 m_txtPlayerName = m_txtPlayerName or nil
 m_txtDiamond = m_txtDiamond or nil
 m_txtGold = m_txtGold or nil
@@ -169,6 +172,8 @@ function init()
 
     m_objHpSlider = gameObject.transform:Find("Panel/HpProgress/Slider")
     m_playerHpSlider = m_objHpSlider:GetComponent(UnityEngine.UI.Slider)
+    m_objExpSlider = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ExpProgress/Slider")
+    m_playerExpSlider = m_objExpSlider:GetComponent(UnityEngine.UI.Slider)
     m_bottomPanel = gameObject.transform:Find("Panel/BottomPanel")
     m_secondBottomPanel = gameObject.transform:Find("Panel/SecondBottomPanel")
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
@@ -274,6 +279,7 @@ function UpdatePlayerInfo()
     txtLevelComponent.text = pkgUserDataManager.GetLevel()
     
     SetPlayerHpProgress(pkgSysStat.GetRadioHealth(mainPlayer))
+    UpdatePlayerExp(mainPlayer)
 end
 
 function UpdatePlayerHp(player)
@@ -286,6 +292,25 @@ end
 function SetPlayerHpProgress(dRatio)
     if m_playerHpSlider then
         m_playerHpSlider.value = dRatio
+    end
+end
+
+function UpdatePlayerExp(player)
+    if not pkgActorManager.IsMainPlayer(player) then
+        return
+    end
+
+    local dCurExp = pkgGoodsDataMgr.GetExp()
+    local dLevel = pkgUserDataManager.GetLevel()
+    local dCfgExp = pkgPlayerLevelCfgMgr.GetLevelExp(dLevel)
+    if dCfgExp and dCfgExp > 0 then
+        SetPlayerExpProgress(dCurExp/dCfgExp)
+    end
+end
+
+function SetPlayerExpProgress(dRatio)
+    if m_playerExpSlider then
+        m_playerExpSlider.value = dRatio
     end
 end
 

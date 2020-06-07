@@ -1,8 +1,9 @@
 doNameSpace("pkgShopMgr")
 
 function OnUpdateShopInfo(dShopType, tbShopInfo)
+    
     if not dShopType or not tbShopInfo then
-        return
+        return false
     end
 
     pkgShopDataMgr.SetShopInfo(dShopType, tbShopInfo)
@@ -19,11 +20,20 @@ function BuyGoods(dShopType, dId)
 end
 
 function OnBuyGoods(dShopType, dId, tbItem)
-    print("OnBuyGoods ===================== ", dShopType, dId, tbItem)
+    
     if not dShopType or not dId or not tbItem then
         return
     end
-    LOG_TABLE(tbItem)
+    
     pkgShopDataMgr.SetGoodsInfo(dShopType, dId, tbItem)
     pkgEventManager.PostEvent(pkgClientEventDefination.ON_BUY_GOODS, dShopType, dId, tbItem)
+end
+
+function InitUpdateShopInfo()
+    -- 12点更新
+    local dCurTime = os.time()
+    local dNextUpdateTime = 86400 - (dCurTime - math.fmod(dCurTime, 86400))
+    pkgTimerMgr.once(dNextUpdateTime * 1000, function()
+        pkgSocket.SendToLogic(EVENT_ID.SHOP.UPDATE_SHOP_INFO, pkgShopCfgMgr.ShopType.NORMAL)
+    end)
 end

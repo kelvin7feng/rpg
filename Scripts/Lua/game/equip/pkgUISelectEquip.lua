@@ -57,14 +57,16 @@ function updateWearingEquip(dSlotId)
         local tbEquipInfo = pkgUserDataManager.GetEquip(strId)
         local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(tbEquipInfo.cfgId)
         pkgUITool.SetStringByName(goNow, "Name", tbGoodsInfo.name)
-        local imgGoods = goNow.transform:Find("EquipIcon/Image")
-        if imgGoods then
-            pkgUITool.ResetImage("equip_icon", tostring(tbGoodsInfo.id), imgGoods)
+        local objIconParent = goNow.transform:Find("EquipIcon/Icon")
+        local objIcon = goNow.transform:Find("EquipIcon/Icon/icon")
+        if pkgUITool.isNull(objIcon) then
+            pkgUITool.CreateIcon(tbEquipInfo.cfgId, objIconParent, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel})
+        else
+            pkgUITool.UpdateIcon(objIcon, tbEquipInfo.cfgId, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel})
         end
         
         pkgUITool.SetActiveByName(goNow, "Wear", false)
         pkgUITool.SetActiveByName(goNow, "TakeOff", true)
-        pkgUITool.SetStringByName(goNow, "EquipIcon/Level", tbEquipInfo.dLevel)
 
         pkgButtonMgr.RemoveListeners(goNow, "TakeOff")
         pkgButtonMgr.AddListener(goNow, "TakeOff", onClickTakeOff, tbEquipInfo.id)
@@ -105,12 +107,13 @@ function updateFreeEquip(dSlotId)
 
                 local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(tbEquipInfo.cfgId)
                 pkgUITool.SetStringByName(goNow, "Name", tbGoodsInfo.name)
-                local imgGoods = goNow.transform:Find("EquipIcon/Image")
-                if imgGoods then
-                    pkgUITool.ResetImage("equip_icon", tostring(tbGoodsInfo.assetName), imgGoods)
+                local objIconParent = goNow.transform:Find("EquipIcon/Icon")
+                local objIcon = goNow.transform:Find("EquipIcon/Icon/icon")
+                if pkgUITool.isNull(objIcon) then
+                    pkgUITool.CreateIcon(tbEquipInfo.cfgId, objIconParent, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel})
+                else
+                    pkgUITool.UpdateIcon(objIcon, tbEquipInfo.cfgId, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel})
                 end
-                
-                pkgUITool.SetStringByName(goNow, "EquipIcon/Level", tbEquipInfo.dLevel)
 
                 pkgUITool.SetActiveByName(goNow, "Wear", true)
                 pkgUITool.SetActiveByName(goNow, "TakeOff", false)
@@ -133,9 +136,13 @@ function show(dSlotId)
 end
 
 function destroyUI()
-    
+    pkgUIBaseViewMgr.destroyUI(pkgUISelectEquip)
 end
 
 function close()
-    
+    m_scrollView = nil
+    m_panelNoEquip = nil
+    m_panelNoSelectedEquip = nil
+    m_panelEquipingPanel = nil
+    m_dCurrentSlot = 0
 end
