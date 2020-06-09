@@ -35,8 +35,25 @@ function InitUserData(objUserData)
 end
 
 function GetBattleLevel()
-    -- LOG_TABLE(m_UserData)
     return m_UserData.BattleInfo.CurLevel
+end
+
+function SetBattleLevel(dLevel)
+    if not dLevel then
+        return
+    end
+    m_UserData.BattleInfo.CurLevel = dLevel
+end
+
+function GetLastRewardTime()
+    return m_UserData.BattleInfo.LastCollectTime
+end
+
+function SetLastRewardTime(dLastCollectTime)
+    if not dLastCollectTime then
+        return
+    end
+    m_UserData.BattleInfo.LastCollectTime = dLastCollectTime
 end
 
 function GetName()

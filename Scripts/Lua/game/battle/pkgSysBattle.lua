@@ -61,5 +61,8 @@ function OnUpdateBattleLevel(dNextLevel)
     if not dNextLevel then
         return
     end
+    
+    pkgUserDataManager.SetBattleLevel(dNextLevel)
+
     pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_BATTLE_LEVEL, dNextLevel)
 end

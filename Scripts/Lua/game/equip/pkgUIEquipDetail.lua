@@ -44,7 +44,7 @@ function show(strId)
     local tbEquipInfo = pkgUserDataManager.GetEquip(strId)
     local dEquipCfgId = tbEquipInfo.cfgId
     local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(dEquipCfgId)
-    pkgUITool.UpdateGameObjectText(m_txtName, tbGoodsInfo.languageId)
+    pkgUITool.SetGameObjectString(m_txtName, tbGoodsInfo.name)
     
     local function onClickIcon()
         

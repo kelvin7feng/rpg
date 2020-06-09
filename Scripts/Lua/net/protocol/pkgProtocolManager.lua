@@ -39,4 +39,6 @@ function Init()
     pkgEventManager.Register(EVENT_ID.SHOP.ON_UPDATE_SHOP_INFO, pkgShopMgr.OnUpdateShopInfo)
     pkgEventManager.Register(EVENT_ID.SHOP.ON_BUY_GOODS, pkgShopMgr.OnBuyGoods)
     
+    -- 挂机
+    pkgEventManager.Register(EVENT_ID.AFK.ON_GET_REWARD, pkgAFKMgr.OnGetReward)
 end

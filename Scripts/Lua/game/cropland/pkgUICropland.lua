@@ -75,7 +75,7 @@ function updateOneLand(tbLandInfo)
             sliderCmpt.maxValue = dCfgGrowTime
             dTimerId = pkgTimerMgr.addWithoutDelay(1000, function()
                 if dEndTime - os.time() > 0 then
-                    pkgUITool.SetStringByName(objCropland, "Process/Text", dEndTime - os.time())
+                    pkgUITool.SetStringByName(objCropland, "Process/Text", pkgTimeMgr.FormatTimestamp(dEndTime - os.time()))
                     sliderCmpt.value = dCfgGrowTime - (dEndTime - os.time())
                 else
                     pkgTimerMgr.delete(dTimerId)

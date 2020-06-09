@@ -134,3 +134,6 @@ require("game/collection/pkgCollectionMgr")
 
 require("game/shop/pkgShopDataMgr")
 require("game/shop/pkgShopMgr")
+
+require("game/afk/pkgAFKDataMgr")
+require("game/afk/pkgAFKMgr")

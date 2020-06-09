@@ -51,7 +51,12 @@ m_dCurBtnIndex = 3
 m_tbEquipSlot = {}
 
 local function onClickChallengeBoss()
+    Toast(pkgLanguageMgr.GetStringById(1102))
     pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.CHALLENGE_BOSS)
+end
+
+local function onClickGetAFKReward()
+    pkgUIBaseViewMgr.showByViewPath("game/afk/pkgUIAFKReward")
 end
 
 local function onClickHome()
@@ -177,6 +182,7 @@ function init()
     m_bottomPanel = gameObject.transform:Find("Panel/BottomPanel")
     m_secondBottomPanel = gameObject.transform:Find("Panel/SecondBottomPanel")
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
+	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnAFKReward", onClickGetAFKReward)
 
     m_txtLevelName = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/LevelName")
     m_txtAfkExp = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Exp/Text")
@@ -243,7 +249,7 @@ function UpdateLevelInfo(dLevelId)
 
     UpdateLevelName(dLevelId)
     
-    local tbCfg = pkgAFKCfgMgr.GetAFKCfg(dLevelId)
+    --[[local tbCfg = pkgAFKCfgMgr.GetAFKCfg(dLevelId)
     if not tbCfg then
         LOG_ERROR("GetAFKCfg can not find level id:", dLevelId)
         return
@@ -253,7 +259,7 @@ function UpdateLevelInfo(dLevelId)
     local dGold = tbCfg.gold
     
     pkgUITool.UpdateGameObjectText(m_txtAfkExp, 1, dExp)
-    pkgUITool.UpdateGameObjectText(m_txtAfkGold, 2, dGold)
+    pkgUITool.UpdateGameObjectText(m_txtAfkGold, 2, dGold)--]]
 
 end
 
@@ -326,6 +332,7 @@ function InitEquipList()
         end
 
         local function onClickDetail(btnGo)
+            print("strEquipId ================ ", strEquipId)
             pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, strEquipId)
         end
 
