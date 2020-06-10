@@ -332,7 +332,6 @@ function InitEquipList()
         end
 
         local function onClickDetail(btnGo)
-            print("strEquipId ================ ", strEquipId)
             pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, strEquipId)
         end
 
