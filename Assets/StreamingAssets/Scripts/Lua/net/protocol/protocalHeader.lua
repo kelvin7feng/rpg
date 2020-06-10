@@ -1,1 +1,0 @@
-require("net/protocol/pkgProtocolManager")
