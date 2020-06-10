@@ -30,27 +30,21 @@ function show()
         return
     end
 
-    local function onLoadCompelte(prefab)
-        for i, tbGoodsInfo in ipairs(tbBagInfo) do
-            local strKey = "goods" .. i
-            local goNow = m_scrollView.transform:Find(strKey)
-            if pkgUITool.isNull(goNow) then
-                goNow = UnityEngine.Object.Instantiate(prefab)
-                goNow.name = strKey
-                goNow.transform:SetParent(m_scrollView.transform, false)
-            end
-            goNow.gameObject:SetActive(true)
-
-            pkgUITool.SetStringByName(goNow, "Count", tbGoodsInfo.count)
-            local imgGoods = goNow.transform:Find("Image")
-            local tbGoodsCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbGoodsInfo.id)
-            if imgGoods then
-                pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tbGoodsCfg.assetName, imgGoods)
+    for i, tbGoodsInfo in ipairs(tbBagInfo) do
+        local dGoodsId = tonumber(tbGoodsInfo.id)
+        local dCfgCount = tonumber(tbGoodsInfo.count)
+        if dGoodsId > 0 and dCfgCount > 0 then
+            LOG_TABLE(tbGoodsInfo)
+            local strIconName = "goods".. dGoodsId
+            local goIcon = m_scrollView.transform.transform:Find(strIconName)
+            local tbArgs = {iconName = strIconName, count = dCfgCount, size = pkgUITool.ICON_SIZE_TYPE.SMALL, tbGoodsInfo = tbGoodsInfo, bIsBag = true}
+            if pkgUITool.isNull(goIcon) then
+                pkgUITool.CreateIcon(dGoodsId, m_scrollView.transform, nil, tbArgs)
+            else
+                pkgUITool.UpdateIcon(goIcon, dGoodsId, nil, tbArgs)
             end
         end
     end
-
-    pkgAssetBundleMgr.LoadAssetBundle("ui", "GoodsIcon", onLoadCompelte)
     
 end
 

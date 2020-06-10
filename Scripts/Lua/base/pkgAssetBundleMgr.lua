@@ -9,7 +9,7 @@ assetVariant = ".unity3d"
 m_tbAssetBundleState = m_tbAssetBundleState or {}
 m_tbAssetBundleWaiting = m_tbAssetBundleWaiting or {}
 
-function LoadAssetBundle(strAssetBundleName, strAssetName, funcCallBack)
+function LoadAssetBundle(strAssetBundleName, strAssetName, funcCallBack, ...)
 
     if not strAssetBundleName then
         print("LoadAssetBundle strAssetBundleName is nil")
@@ -26,6 +26,9 @@ function LoadAssetBundle(strAssetBundleName, strAssetName, funcCallBack)
         return
     end
 
+    local args = {...}
+    local argsCnt = select("#", ...)
+
     local strABNameWithVariant = string.format("%s%s",strAssetBundleName, assetVariant)
     if pkgApplicationTool.IsOnMobile() then
         local tbABState = m_tbAssetBundleState[strABNameWithVariant]
@@ -36,13 +39,13 @@ function LoadAssetBundle(strAssetBundleName, strAssetName, funcCallBack)
                 if not m_tbAssetBundleWaiting[strABNameWithVariant] then
                     m_tbAssetBundleWaiting[strABNameWithVariant] = {}
                 end
-                table.insert(m_tbAssetBundleWaiting[strABNameWithVariant], {strAssetBundleName, strAssetName, funcCallBack})
+                table.insert(m_tbAssetBundleWaiting[strABNameWithVariant], {strAssetBundleName, strAssetName, funcCallBack, unpack(args, 1, argsCnt)})
                 return
             end
         end
     
         local function onLoadedCallBack(go)
-            funcCallBack(go)
+            funcCallBack(go, unpack(args, 1, argsCnt))
             if m_tbAssetBundleState[strABNameWithVariant] ~= State.LOADED then
                 m_tbAssetBundleState[strABNameWithVariant] = State.LOADED
             end
@@ -60,7 +63,7 @@ function LoadAssetBundle(strAssetBundleName, strAssetName, funcCallBack)
             LuaTimer.Add(30, function(id)
                 LuaTimer.Delete(id)
                 if asset then
-                    funcCallBack(asset)
+                    funcCallBack(asset, unpack(args, 1, argsCnt))
                 end
         end)
     end

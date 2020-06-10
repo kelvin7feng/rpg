@@ -75,7 +75,7 @@ function GetBag(dGoodsType)
     for strType, dCount in pairs(tbBagInfo) do
         tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(strType)
         if tbCfg and tbCfg.isBag == 1 and (not dGoodsType or dGoodsType == tbCfg.goodsType) then
-            table.insert(tbShowBag, {id = strType, count = dCount, assets = tbCfg.assetBundle})
+            table.insert(tbShowBag, {id = strType, count = dCount})
         end
         table.sort(tbShowBag,sortGoodsByDefault)
     end
@@ -85,7 +85,7 @@ function GetBag(dGoodsType)
         for _, tbEquip in ipairs(tbEquipList) do
             tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbEquip.cfgId)
             if tbCfg and tbCfg.isBag == 1 and (not dGoodsType or dGoodsType == tbCfg.goodsType) then
-                table.insert(tbShowBag, {id = tbEquip.cfgId, count = 1, assets = tbCfg.assetBundle})
+                table.insert(tbShowBag, {id = tbEquip.cfgId, count = 1, strEquipId = tbEquip.id})
             end
         end
     end

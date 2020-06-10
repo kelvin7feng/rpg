@@ -332,7 +332,7 @@ function InitEquipList()
         end
 
         local function onClickDetail(btnGo)
-            pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, strEquipId)
+            pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, {strEquipId = strEquipId, bIsSlot = true})
         end
 
         -- set icon

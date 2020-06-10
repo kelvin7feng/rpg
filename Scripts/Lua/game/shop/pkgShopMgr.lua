@@ -30,10 +30,11 @@ function OnBuyGoods(dShopType, dId, tbItem)
 end
 
 function InitUpdateShopInfo()
-    -- 12点更新
-    local dCurTime = os.time()
-    local dNextUpdateTime = 86400 - (dCurTime - math.fmod(dCurTime, 86400))
-    pkgTimerMgr.once(dNextUpdateTime * 1000, function()
+    -- 次日6点更新
+    local tbShopInfo = pkgShopDataMgr.GetShopInfo(pkgShopCfgMgr.ShopType.NORMAL)
+    local dLastUpdateTime = tbShopInfo.dLastUpdateTime
+    local dRemainingTime = pkgTimeMgr.GetTomorrowStartTime(dLastUpdateTime) - os.time()
+    pkgTimerMgr.once(dRemainingTime * 1000, function()
         pkgSocket.SendToLogic(EVENT_ID.SHOP.UPDATE_SHOP_INFO, pkgShopCfgMgr.ShopType.NORMAL)
     end)
 end

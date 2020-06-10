@@ -28,6 +28,9 @@ function init()
     m_txtEquipDesc = goParent.transform:Find("TxtEqupDesc")
     m_btnLevelUp = goParent.transform:Find("BtnPanel/BtnLevelUp")
     m_btnReplace = goParent.transform:Find("BtnPanel/BtnReplace")
+
+    pkgUITool.SetActive(m_btnLevelUp, false)
+    pkgUITool.SetActive(m_btnReplace, false)
 end
 
 function resetAttrItem()
@@ -37,12 +40,23 @@ function resetAttrItem()
     end
 end
 
-function show(strId)
+function show(tbParams)
 
     resetAttrItem()
     
-    local tbEquipInfo = pkgUserDataManager.GetEquip(strId)
-    local dEquipCfgId = tbEquipInfo.cfgId
+    local strId = tbParams.strEquipId
+    local dCfgId = tbParams.dCfgId
+    local bIsShop = tbParams.bIsShop
+    local bIsBag = tbParams.bIsBag
+    local bIsSlot = tbParams.bIsSlot
+
+    local tbEquipInfo = nil
+    local dEquipCfgId = dCfgId
+    if strId then
+        tbEquipInfo = pkgUserDataManager.GetEquip(strId)
+        dEquipCfgId = tbEquipInfo.cfgId
+    end
+
     local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(dEquipCfgId)
     pkgUITool.SetGameObjectString(m_txtName, tbGoodsInfo.name)
     
@@ -73,8 +87,20 @@ function show(strId)
         pkgUIBaseViewMgr.destroyUI(pkgUIEquipDetail)
     end
 
-    pkgButtonMgr.AddBtnListener(m_btnLevelUp, onClickLevelUp)
-    pkgButtonMgr.AddBtnListener(m_btnReplace, onClickReplace)
+    if bIsSlot then
+        pkgButtonMgr.AddBtnListener(m_btnLevelUp, onClickLevelUp)
+        pkgButtonMgr.AddBtnListener(m_btnReplace, onClickReplace)
+        pkgUITool.SetActive(m_btnLevelUp, true)
+        pkgUITool.SetActive(m_btnReplace, true)
+    end
+
+    if bIsShop then
+
+    end
+
+    if bIsBag then
+
+    end
 end
 
 function destroyUI()
