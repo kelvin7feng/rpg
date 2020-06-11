@@ -25,7 +25,7 @@ function init()
     m_txtPower = goParent.transform:Find("TxtPower")
     m_txtType = goParent.transform:Find("TxtType")
     m_panelAttr = goParent.transform:Find("AttrPanel")
-    m_txtEquipDesc = goParent.transform:Find("TxtEqupDesc")
+    m_txtEquipDesc = goParent.transform:Find("TxtEquipDesc")
     m_btnLevelUp = goParent.transform:Find("BtnPanel/BtnLevelUp")
     m_btnReplace = goParent.transform:Find("BtnPanel/BtnReplace")
 

@@ -19,7 +19,6 @@ function setLoadingProgress(dRatio)
             else
                 m_sliderComponent.value = 1
             end
-            print("m_sliderComponent.value ======================== ", m_sliderComponent.value)
         end
     end
 end

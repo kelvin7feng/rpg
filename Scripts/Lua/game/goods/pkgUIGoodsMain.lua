@@ -34,10 +34,9 @@ function show()
         local dGoodsId = tonumber(tbGoodsInfo.id)
         local dCfgCount = tonumber(tbGoodsInfo.count)
         if dGoodsId > 0 and dCfgCount > 0 then
-            LOG_TABLE(tbGoodsInfo)
-            local strIconName = "goods".. dGoodsId
+            local strIconName = "goods".. i
             local goIcon = m_scrollView.transform.transform:Find(strIconName)
-            local tbArgs = {iconName = strIconName, count = dCfgCount, size = pkgUITool.ICON_SIZE_TYPE.SMALL, tbGoodsInfo = tbGoodsInfo, bIsBag = true}
+            local tbArgs = {iconName = strIconName, count = dCfgCount, tbGoodsInfo = tbGoodsInfo, bIsBag = true}
             if pkgUITool.isNull(goIcon) then
                 pkgUITool.CreateIcon(dGoodsId, m_scrollView.transform, nil, tbArgs)
             else

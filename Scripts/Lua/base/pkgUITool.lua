@@ -188,6 +188,8 @@ IconType = {
 local function onDefaultClick(go, tbParams)
     if tbParams.tbGoodsInfo and tbParams.tbGoodsInfo.strEquipId then
         pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, {strEquipId = tbParams.tbGoodsInfo.strEquipId, bIsBag = true})
+    else
+        pkgUIBaseViewMgr.showByViewPath("game/goods/pkgUIGoodsDetail", nil, {dCfgId = tonumber(tbParams.tbGoodsInfo.id), bIsBag = true})
     end
 end
 

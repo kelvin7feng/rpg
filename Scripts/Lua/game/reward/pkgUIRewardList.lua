@@ -5,11 +5,26 @@ prefabFile = "RewardList"
 
 m_scrollView = m_scrollView or nil
 
+local sortReward = function(a, b)
+	if a == nil or b == nil then 
+		return false 
+    end
+    local cfg1 = pkgGoodsCfgMgr.GetGoodsCfg(a[1])
+    local cfg2 = pkgGoodsCfgMgr.GetGoodsCfg(b[1])
+    return cfg1.id > cfg2.id
+end
+
 function init()
     m_scrollView = gameObject.transform:Find("Panel/imBg/Scroll View/Viewport/Content")
 end
 
 function show(tbRewardList)
+	if not tbRewardList or #tbRewardList <= 0 then
+        return
+    end
+
+    table.sort(tbRewardList, sortReward)
+
     local function onLoadCompelte(prefab)
         for i, tbGoodsInfo in ipairs(tbRewardList) do
             local strIconName = "goods"..i

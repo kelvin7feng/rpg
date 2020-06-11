@@ -62,7 +62,7 @@ function show()
     local dSpan = nil
     local dLastRewardTime = pkgUserDataManager.GetLastRewardTime()
     local function funcCallback()
-        dSpan = os.time() - dLastRewardTime
+        dSpan = math.min(os.time() - dLastRewardTime, pkgAFKCfgMgr.MAX_AFK_SECOND)
         pkgUITool.SetGameObjectString(m_txtAFKTime, pkgTimeMgr.FormatTimestamp(dSpan))
     end
     m_dTimerId = pkgTimerMgr.addWithoutDelay(1000, funcCallback)
