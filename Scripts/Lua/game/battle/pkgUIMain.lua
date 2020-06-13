@@ -18,6 +18,9 @@ event_listener = {
     {pkgClientEventDefination.ON_KILL_BOSS, "ResetChallengeText"},
     {pkgClientEventDefination.ON_PLAYER_REBORN, "ResetChallengeText"},
     {pkgClientEventDefination.ON_CREATE_MONSTER_CHANGED, "UpdateChallengeBossBtnEffect"},
+    {pkgClientEventDefination.UPDATE_WEAR_EQUIP, "UpdateRoleAtrr"},
+    {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "UpdateRoleAtrr"},
+    {pkgClientEventDefination.UPDATE_USER_LEVEL, "UpdateRoleAtrr"},
 }
 
 -- player info
@@ -31,6 +34,7 @@ m_txtDiamond = m_txtDiamond or nil
 m_txtGold = m_txtGold or nil
 m_txtLevel = m_txtLevel or nil
 m_btnTask = m_btnTask or nil
+m_panelRoleAttr = m_panelRoleAttr or nil
 
 -- home panel
 m_btnHouse = m_btnHouse or nil
@@ -238,6 +242,8 @@ function init()
     m_btnChallengeBoss = gameObject.transform:Find("Panel/SecondBottomPanel/BtnChallengeBoss")
     m_txtChallengeBoss = gameObject.transform:Find("Panel/SecondBottomPanel/BtnChallengeBoss/Text")
 
+    m_panelRoleAttr = gameObject.transform:Find("Panel/RolePanel/Panel/RoleAttr/AttrPanel")
+
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnAFKReward", onClickGetAFKReward)
 
@@ -283,10 +289,26 @@ function init()
     InitEquipList()
     updateBtn()
     updatePanel()
-
+    UpdateRoleAtrr()
     CheckRedPoint()
     ResetChallengeText()
     UpdatePlayHpPos(pkgActorManager.GetMainPlayer())
+end
+
+function resetAttrItem()
+    for i=0, m_panelRoleAttr.transform.childCount - 1 do
+        local goChild = m_panelRoleAttr.transform:GetChild(i).gameObject
+        goChild.gameObject:SetActive(false)
+    end
+end
+
+function UpdateRoleAtrr()
+    resetAttrItem()
+    local tbRoleAttr = pkgAttrMgr.GetRoleAttrDescList(pkgActorManager.GetMainPlayer().tbAttr)
+    for i, strAttr in ipairs(tbRoleAttr) do
+        pkgUITool.SetStringByName(m_panelRoleAttr, "TxtAttr"..i, strAttr)
+        pkgUITool.SetActiveByName(m_panelRoleAttr, "TxtAttr"..i, true)
+    end
 end
 
 function UpdatePlayHpPos(player)

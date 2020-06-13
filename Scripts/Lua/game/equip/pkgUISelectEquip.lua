@@ -60,9 +60,9 @@ function updateWearingEquip(dSlotId)
         local objIconParent = goNow.transform:Find("EquipIcon/Icon")
         local objIcon = goNow.transform:Find("EquipIcon/Icon/icon")
         if pkgUITool.isNull(objIcon) then
-            pkgUITool.CreateIcon(tbEquipInfo.cfgId, objIconParent, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel})
+            pkgUITool.CreateIcon(tbEquipInfo.cfgId, objIconParent, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel, tbGoodsInfo = tbGoodsInfo})
         else
-            pkgUITool.UpdateIcon(objIcon, tbEquipInfo.cfgId, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel})
+            pkgUITool.UpdateIcon(objIcon, tbEquipInfo.cfgId, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel, tbGoodsInfo = tbGoodsInfo})
         end
         
         pkgUITool.SetActiveByName(goNow, "Wear", false)
@@ -110,9 +110,9 @@ function updateFreeEquip(dSlotId)
                 local objIconParent = goNow.transform:Find("EquipIcon/Icon")
                 local objIcon = goNow.transform:Find("EquipIcon/Icon/icon")
                 if pkgUITool.isNull(objIcon) then
-                    pkgUITool.CreateIcon(tbEquipInfo.cfgId, objIconParent, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel})
+                    pkgUITool.CreateIcon(tbEquipInfo.cfgId, objIconParent, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel, tbGoodsInfo = tbGoodsInfo})
                 else
-                    pkgUITool.UpdateIcon(objIcon, tbEquipInfo.cfgId, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel})
+                    pkgUITool.UpdateIcon(objIcon, tbEquipInfo.cfgId, nil, {size = pkgUITool.ICON_SIZE_TYPE.SMALL, level = tbEquipInfo.dLevel, tbGoodsInfo = tbGoodsInfo})
                 end
 
                 pkgUITool.SetActiveByName(goNow, "Wear", true)
