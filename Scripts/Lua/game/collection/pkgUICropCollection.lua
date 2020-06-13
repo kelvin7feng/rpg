@@ -46,7 +46,7 @@ function show()
     
             local strIconName = tbGoodsInfo.id
             local goIcon = m_scrollView.transform:Find(strIconName)
-            local tbArgs = {onClick = onClick, iconName = strIconName, size = pkgUITool.ICON_SIZE_TYPE.BIG}
+            local tbArgs = {onClick = onClick, iconName = strIconName, size = pkgUITool.ICON_SIZE_TYPE.BIG, tbGoodsInfo = tbGoodsInfo, bIsBag = true}
             if pkgUITool.isNull(goIcon) then
                 pkgUITool.CreateIcon(tbGoodsInfo.id, m_scrollView, onComplete, tbArgs)
             else

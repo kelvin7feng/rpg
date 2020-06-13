@@ -208,7 +208,9 @@ function Reborn(player)
             player:SetDie(false)
             player:SetNavMeshEnable(true)
             pkgSysHate.ClearHateList(player)
+            pkgSysBattle.SetCreateMonsterCount(0)
             pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_HP_CHANGE, player)
+            pkgEventManager.PostEvent(pkgClientEventDefination.ON_PLAYER_REBORN)
 
             if not TriggerReborn(player) then
                 return

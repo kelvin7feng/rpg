@@ -15,12 +15,12 @@ function CharacterStat:FullHp()
 end
 
 function CharacterStat:TakeDamage(dDamage)
-
+    
     if self.dCurrentHealth <= 0 then
         LOG_DEBUG("I am died")
         return
     end
-
+    
     dDamage = math.max(0, dDamage)
     if dDamage > self.dCurrentHealth then
         dDamage = self.dCurrentHealth
@@ -31,7 +31,7 @@ function CharacterStat:TakeDamage(dDamage)
     if self.dCurrentHealth <= 0 then
         LOG_DEBUG("die")
         self.owner:SetDie(true)
-
+        
         if pkgActorManager.IsMonster(self.owner) then
             pkgEventManager.PostEvent(pkgClientEventDefination.MONSTER_DEAD, self.owner)
         end

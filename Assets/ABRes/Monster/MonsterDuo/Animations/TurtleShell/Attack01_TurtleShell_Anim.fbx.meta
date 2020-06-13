@@ -1,0 +1,412 @@
+fileFormatVersion: 2
+guid: 18d0edd1f2ba4444d9ba9bdf01f251d4
+ModelImporter:
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Body
+  - first:
+      1: 100004
+    second: BottomCover
+  - first:
+      1: 100006
+    second: Eyeball
+  - first:
+      1: 100008
+    second: Head
+  - first:
+      1: 100010
+    second: HornL01
+  - first:
+      1: 100012
+    second: HornL02
+  - first:
+      1: 100014
+    second: HornL03
+  - first:
+      1: 100016
+    second: HornL04
+  - first:
+      1: 100018
+    second: HornLTip01
+  - first:
+      1: 100020
+    second: HornLTip02
+  - first:
+      1: 100022
+    second: HornLTip03
+  - first:
+      1: 100024
+    second: HornLTip04
+  - first:
+      1: 100026
+    second: HornMid01
+  - first:
+      1: 100028
+    second: HornMid02
+  - first:
+      1: 100030
+    second: HornMid03
+  - first:
+      1: 100032
+    second: HornMidTip01
+  - first:
+      1: 100034
+    second: HornMidTip02
+  - first:
+      1: 100036
+    second: HornMidTip03
+  - first:
+      1: 100038
+    second: HornR01
+  - first:
+      1: 100040
+    second: HornR02
+  - first:
+      1: 100042
+    second: HornR03
+  - first:
+      1: 100044
+    second: HornR04
+  - first:
+      1: 100046
+    second: HornRTip01
+  - first:
+      1: 100048
+    second: HornRTip02
+  - first:
+      1: 100050
+    second: HornRTip03
+  - first:
+      1: 100052
+    second: HornRTip04
+  - first:
+      1: 100054
+    second: Shell
+  - first:
+      1: 100056
+    second: Spine01
+  - first:
+      1: 100058
+    second: Spine02
+  - first:
+      1: 100060
+    second: TurtleShell
+  - first:
+      1: 100062
+    second: UpperCover
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Body
+  - first:
+      4: 400004
+    second: BottomCover
+  - first:
+      4: 400006
+    second: Eyeball
+  - first:
+      4: 400008
+    second: Head
+  - first:
+      4: 400010
+    second: HornL01
+  - first:
+      4: 400012
+    second: HornL02
+  - first:
+      4: 400014
+    second: HornL03
+  - first:
+      4: 400016
+    second: HornL04
+  - first:
+      4: 400018
+    second: HornLTip01
+  - first:
+      4: 400020
+    second: HornLTip02
+  - first:
+      4: 400022
+    second: HornLTip03
+  - first:
+      4: 400024
+    second: HornLTip04
+  - first:
+      4: 400026
+    second: HornMid01
+  - first:
+      4: 400028
+    second: HornMid02
+  - first:
+      4: 400030
+    second: HornMid03
+  - first:
+      4: 400032
+    second: HornMidTip01
+  - first:
+      4: 400034
+    second: HornMidTip02
+  - first:
+      4: 400036
+    second: HornMidTip03
+  - first:
+      4: 400038
+    second: HornR01
+  - first:
+      4: 400040
+    second: HornR02
+  - first:
+      4: 400042
+    second: HornR03
+  - first:
+      4: 400044
+    second: HornR04
+  - first:
+      4: 400046
+    second: HornRTip01
+  - first:
+      4: 400048
+    second: HornRTip02
+  - first:
+      4: 400050
+    second: HornRTip03
+  - first:
+      4: 400052
+    second: HornRTip04
+  - first:
+      4: 400054
+    second: Shell
+  - first:
+      4: 400056
+    second: Spine01
+  - first:
+      4: 400058
+    second: Spine02
+  - first:
+      4: 400060
+    second: TurtleShell
+  - first:
+      4: 400062
+    second: UpperCover
+  - first:
+      43: 4300000
+    second: TurtleShell
+  - first:
+      74: 7400000
+    second: Attack01
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: TurtleShell
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack01
+      takeName: Take 001
+      internalID: 7400000
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.38846153
+        functionName: OnAnimationCallback
+        data: AttackBegin
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6712329
+        functionName: OnAnimationCallback
+        data: ComboCheck
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: OnAnimationCallback
+        data: AttackEnd
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/Spine01
+        weight: 1
+      - path: Body/Spine01/Shell
+        weight: 1
+      - path: Body/Spine01/Shell/HornL01
+        weight: 1
+      - path: Body/Spine01/Shell/HornL01/HornLTip01
+        weight: 1
+      - path: Body/Spine01/Shell/HornL02
+        weight: 1
+      - path: Body/Spine01/Shell/HornL02/HornLTip02
+        weight: 1
+      - path: Body/Spine01/Shell/HornL03
+        weight: 1
+      - path: Body/Spine01/Shell/HornL03/HornLTip03
+        weight: 1
+      - path: Body/Spine01/Shell/HornL04
+        weight: 1
+      - path: Body/Spine01/Shell/HornL04/HornLTip04
+        weight: 1
+      - path: Body/Spine01/Shell/HornMid01
+        weight: 1
+      - path: Body/Spine01/Shell/HornMid01/HornMidTip01
+        weight: 1
+      - path: Body/Spine01/Shell/HornMid02
+        weight: 1
+      - path: Body/Spine01/Shell/HornMid02/HornMidTip02
+        weight: 1
+      - path: Body/Spine01/Shell/HornMid03
+        weight: 1
+      - path: Body/Spine01/Shell/HornMid03/HornMidTip03
+        weight: 1
+      - path: Body/Spine01/Shell/HornR01
+        weight: 1
+      - path: Body/Spine01/Shell/HornR01/HornRTip01
+        weight: 1
+      - path: Body/Spine01/Shell/HornR02
+        weight: 1
+      - path: Body/Spine01/Shell/HornR02/HornRTip02
+        weight: 1
+      - path: Body/Spine01/Shell/HornR03
+        weight: 1
+      - path: Body/Spine01/Shell/HornR03/HornRTip03
+        weight: 1
+      - path: Body/Spine01/Shell/HornR04
+        weight: 1
+      - path: Body/Spine01/Shell/HornR04/HornRTip04
+        weight: 1
+      - path: Body/Spine01/Spine02
+        weight: 1
+      - path: Body/Spine01/Spine02/Head
+        weight: 1
+      - path: Body/Spine01/Spine02/Head/BottomCover
+        weight: 1
+      - path: Body/Spine01/Spine02/Head/Eyeball
+        weight: 1
+      - path: Body/Spine01/Spine02/Head/UpperCover
+        weight: 1
+      - path: TurtleShell
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

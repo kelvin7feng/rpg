@@ -13,6 +13,11 @@ event_listener = {
     {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "InitEquipList"},  
     {pkgClientEventDefination.UPDATE_GOODS, "InitEquipList"},  
     {pkgClientEventDefination.UPDATE_ACHIEVEMENT, "CheckRedPoint"},
+    {pkgClientEventDefination.ON_BOSS_IS_COMING, "OnSpawnBoss"},
+    {pkgClientEventDefination.ON_SPAWN_MONSTER, "OnSpawnMonster"},
+    {pkgClientEventDefination.ON_KILL_BOSS, "ResetChallengeText"},
+    {pkgClientEventDefination.ON_PLAYER_REBORN, "ResetChallengeText"},
+    {pkgClientEventDefination.ON_CREATE_MONSTER_CHANGED, "UpdateChallengeBossBtnEffect"},
 }
 
 -- player info
@@ -44,6 +49,16 @@ m_rightPanel = m_rightPanel or nil
 m_rightPanelAnimator = m_rightPanelAnimator or nil
 m_bRightPanelStretch = false
 
+-- bottom panel
+m_btnChallengeBoss = m_btnChallengeBoss or nil
+m_txtChallengeBoss = m_txtChallengeBoss or nil
+
+m_strChllengeBoss = nil
+m_strWaitingBoss = nil
+m_strBattleWithBoss = nil
+m_bIsWaitingBoss = false
+m_objChallengeEffectNode = nil
+
 m_tbBtn = {}
 m_dBtnCount = 5
 m_dCurBtnIndex = 3
@@ -51,7 +66,23 @@ m_dCurBtnIndex = 3
 m_tbEquipSlot = {}
 
 local function onClickChallengeBoss()
+    if not pkgBattleLogic.CanChallengeBoss() then
+        Toast(pkgLanguageMgr.GetStringById(1105))
+        return false
+    end
+
     Toast(pkgLanguageMgr.GetStringById(1102))
+
+    if not pkgBattleLogic.IsNormalState() then
+        return
+    end
+    
+    pkgUITool.SetGameObjectString(m_txtChallengeBoss, m_strWaitingBoss)
+    if m_objChallengeEffectNode then
+        pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, false)
+    end
+
+    pkgBattleLogic.SetBattleState(pkgBattleConstMgr.BattleState.WAITING_BOSS)
     pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.CHALLENGE_BOSS)
 end
 
@@ -142,7 +173,27 @@ local function onClickBottomBtn(btnGo, i)
     updateBtn()
     updatePanel()
 
+    if m_dCurBtnIndex == 3 then
+        UpdateChallengeBossBtnEffect()
+    else
+        pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, false)
+    end
     m_tbClickFunc[i].callBack()
+end
+
+function OnSpawnBoss()
+    if m_dCurBtnIndex == 3 then
+        Toast(pkgLanguageMgr.GetStringById(1101))
+    end
+
+    m_btnChallengeBoss.gameObject:GetComponent(UnityEngine.UI.Button).interactable = false
+    pkgUITool.SetGameObjectString(m_txtChallengeBoss, m_strBattleWithBoss)
+    pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, false)
+    pkgBattleLogic.SetBattleState(pkgBattleConstMgr.BattleState.BATTLE_WITH_BOSS)
+end
+
+function OnSpawnMonster()
+    UpdateChallengeBossBtnEffect()
 end
 
 function updatePanel()
@@ -181,8 +232,15 @@ function init()
     m_playerExpSlider = m_objExpSlider:GetComponent(UnityEngine.UI.Slider)
     m_bottomPanel = gameObject.transform:Find("Panel/BottomPanel")
     m_secondBottomPanel = gameObject.transform:Find("Panel/SecondBottomPanel")
+    m_btnChallengeBoss = gameObject.transform:Find("Panel/SecondBottomPanel/BtnChallengeBoss")
+    m_txtChallengeBoss = gameObject.transform:Find("Panel/SecondBottomPanel/BtnChallengeBoss/Text")
+
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnAFKReward", onClickGetAFKReward)
+
+    m_strChllengeBoss = pkgLanguageMgr.GetStringById(1103)
+    m_strWaitingBoss = pkgLanguageMgr.GetStringById(1104)
+    m_strBattleWithBoss = pkgLanguageMgr.GetStringById(1105)
 
     m_txtLevelName = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/LevelName")
     m_txtAfkExp = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Exp/Text")
@@ -224,6 +282,24 @@ function init()
     updatePanel()
 
     CheckRedPoint()
+    ResetChallengeText()
+end
+
+function ResetChallengeText()
+    pkgUITool.SetGameObjectString(m_txtChallengeBoss, m_strChllengeBoss)
+    m_btnChallengeBoss.gameObject:GetComponent(UnityEngine.UI.Button).interactable = true
+end
+
+function UpdateChallengeBossBtnEffect()
+    if pkgBattleLogic.CanPlayChallengeEffect() then
+        if m_objChallengeEffectNode then
+            pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, true)
+        else
+            m_objChallengeEffectNode = pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.CHALLENGE_BTN, m_txtChallengeBoss.transform)
+        end
+    else
+        pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, false)
+    end
 end
 
 function CheckRedPoint()

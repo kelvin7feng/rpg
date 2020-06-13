@@ -8,6 +8,8 @@ require("initPath")
 require("share/load")
 require("startHeader")
 
+randomSeed()
+
 local function initDebug()
 	local breakSocketHandle,debugXpCall = require("LuaDebugjit")("localhost",7003)
 	LuaTimer.Add(0,1000,function(id)

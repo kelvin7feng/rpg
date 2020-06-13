@@ -27,6 +27,7 @@ require("base/pkgDownloadMgr")
 require("base/pkgTimerMgr")
 
 require("net/socket/pkgSocket")
+require("net/socket/pkgNetMgr")
 require("net/protocol/pkgProtocolManager")
 
 -- base
@@ -118,6 +119,7 @@ require("game/equip/pkgEquipMgr")
 
 require("game/battle/pkgSysBattle")
 require("game/battle/pkgAttrLogic")
+require("game/battle/pkgBattleLogic")
 
 require("game/achievement/pkgAchievementMgr")
 

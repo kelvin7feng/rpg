@@ -50,6 +50,9 @@ function PlayEffect(dEffectId, parentTransform, position, dDuration)
         obj.transform.position = position
     else
         local rectTransform = obj:GetComponent(UnityEngine.RectTransform)
+        if not rectTransform then
+            rectTransform = obj:AddComponent(UnityEngine.RectTransform)
+        end
         rectTransform.offsetMin = UnityEngine.Vector2(0, 0);
         rectTransform.offsetMax = UnityEngine.Vector2(0, 0);
         rectTransform.localScale = UnityEngine.Vector3(1,1,1)
@@ -89,4 +92,10 @@ function PlayWeaponEffect(objWeapon)
     end
 
     PlayEffect(1, nil, objHitEffect.transform.position)
+end
+
+function SetEffectActive(effectNode, bActive)
+    if effectNode and effectNode.obj then
+        effectNode.obj:SetActive(bActive)
+    end
 end
