@@ -33,3 +33,18 @@ function ObstacleBetweenTwoPoints(startPos, endPos, layerMask)
 	local bIsOk, hitInfo = UnityEngine.Physics.Raycast(startPos, dirToTarget, Slua.out, dDstToTarget, layerMask)
 	return bIsOk, hitInfo
 end
+
+function GetPopupPos(player, parent)
+    local position = pkgSysPosition.GetTopHeaderPos(player)
+    local camera = UnityEngine.Camera.main
+    local positionOnScreen = camera:WorldToScreenPoint(position)
+    local _, localPosition = UnityEngine.RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            Slua.As(parent.transform, 
+            UnityEngine.RectTransform), 
+            positionOnScreen, 
+            pkgCanvasMgr.GetUICamera(), 
+            Slua.out)
+    localPosition.y = localPosition.y + 30
+
+    return localPosition
+end

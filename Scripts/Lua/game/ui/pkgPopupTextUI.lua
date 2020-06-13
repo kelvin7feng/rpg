@@ -27,21 +27,6 @@ function show()
 
 end
 
-function getPopupPos(player)
-    local position = pkgSysPosition.GetTopHeaderPos(player)
-    local camera = UnityEngine.Camera.main
-    local positionOnScreen = camera:WorldToScreenPoint(position)
-    local _, localPosition = UnityEngine.RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            Slua.As(gameObject.transform, 
-            UnityEngine.RectTransform), 
-            positionOnScreen, 
-            pkgCanvasMgr.GetUICamera(), 
-            Slua.out)
-    localPosition.y = localPosition.y + 30
-
-    return localPosition
-end
-
 local function setRotation(player, obj)
     local txtValueObj = obj.transform:Find("TxtNormal/Text").gameObject
     local txtCriticalObj = obj.transform:Find("TxtCritical/Text").gameObject
@@ -62,7 +47,7 @@ local function setRotation(player, obj)
 end
 
 local function setPosition(player, obj)
-    local localPosition = getPopupPos(player)
+    local localPosition = pkgPositionTool.GetPopupPos(player, gameObject)
     if localPosition then
         obj.transform.localPosition = localPosition
     end

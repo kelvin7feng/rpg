@@ -21,6 +21,7 @@ event_listener = {
 }
 
 -- player info
+m_objHpProgress = m_objHpProgress or nil
 m_objHpSlider = m_objHpSlider or nil
 m_playerHpSlider = m_playerHpSlider or nil
 m_objExpSlider = m_objExpSlider or nil
@@ -62,6 +63,7 @@ m_objChallengeEffectNode = nil
 m_tbBtn = {}
 m_dBtnCount = 5
 m_dCurBtnIndex = 3
+m_dCurBattlePage = 3
 
 m_tbEquipSlot = {}
 
@@ -173,7 +175,7 @@ local function onClickBottomBtn(btnGo, i)
     updateBtn()
     updatePanel()
 
-    if m_dCurBtnIndex == 3 then
+    if m_dCurBtnIndex == m_dCurBattlePage then
         UpdateChallengeBossBtnEffect()
     else
         pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, false)
@@ -182,7 +184,7 @@ local function onClickBottomBtn(btnGo, i)
 end
 
 function OnSpawnBoss()
-    if m_dCurBtnIndex == 3 then
+    if m_dCurBtnIndex == m_dCurBattlePage then
         Toast(pkgLanguageMgr.GetStringById(1101))
     end
 
@@ -226,6 +228,7 @@ function init()
     m_txtGold = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ValuePanel/Gold/Bg/Text")
     m_txtLevel = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/Level")
 
+    m_objHpProgress = gameObject.transform:Find("Panel/HpProgress")
     m_objHpSlider = gameObject.transform:Find("Panel/HpProgress/Slider")
     m_playerHpSlider = m_objHpSlider:GetComponent(UnityEngine.UI.Slider)
     m_objExpSlider = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ExpProgress/Slider")
@@ -283,6 +286,16 @@ function init()
 
     CheckRedPoint()
     ResetChallengeText()
+    UpdatePlayHpPos(pkgActorManager.GetMainPlayer())
+end
+
+function UpdatePlayHpPos(player)
+    local localPosition = pkgPositionTool.GetPopupPos(player, gameObject)
+    if localPosition then
+        localPosition.x = localPosition.x - 25
+        m_objHpProgress.transform.localPosition = localPosition
+        pkgUITool.SetActive(m_objHpProgress, true)
+    end
 end
 
 function ResetChallengeText()
@@ -291,7 +304,7 @@ function ResetChallengeText()
 end
 
 function UpdateChallengeBossBtnEffect()
-    if pkgBattleLogic.CanPlayChallengeEffect() then
+    if m_dCurBtnIndex == m_dCurBattlePage and pkgBattleLogic.CanPlayChallengeEffect() then
         if m_objChallengeEffectNode then
             pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, true)
         else

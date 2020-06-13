@@ -1,9 +1,11 @@
 doNameSpace("pkgBattleLogic")
 
+m_dShowEffectCount = 5
+
 function CanPlayChallengeEffect()
     if pkgBattleLogic.IsNormalState() then
         local dCount = pkgSysBattle.GetCreateMonsterCount()
-        if dCount >= 2 then
+        if dCount >= m_dShowEffectCount then
             return true
         end
     end
