@@ -86,7 +86,7 @@ end
 -- 2.命中闪避采用除法
 function CalcOneAttack(attackAttr, defenderAttr)
     
-    local dCritical = 1
+    local dCritical = 1.5
     local bIsCritical = false
     local dAttack = GetAttackAttr(attackAttr)
     local dDefend = GetDefendAttr(defenderAttr)
@@ -101,8 +101,10 @@ function CalcOneAttack(attackAttr, defenderAttr)
         local dCriticalRate = GetCriticalRateAttr(attackAttr)
         if dCriticalRate > 0 then
             bIsCritical = dCriticalRate >= math.random(1, 100) and true or false
-            dCritical = GetCriticalAttr(attackAttr)
-            dDamage = dDamage * dCritical
+            if bIsCritical then
+                dCritical = GetCriticalAttr(attackAttr)
+                dDamage = dDamage * dCritical
+            end
         end
     end
 
