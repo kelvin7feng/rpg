@@ -72,6 +72,9 @@ function PlayPopupText(player, dType, dVal)
 end
 
 function onPlayComplete(obj, param)
+    pkgUITool.SetActiveByName(obj, PopupType[1], false)
+    pkgUITool.SetActiveByName(obj, PopupType[2], false)
+    pkgUITool.SetActiveByName(obj, PopupType[3], false)
     pkgPoolManager.ReturnToPool(pkgPoolDefination.PoolType.POP_UP_TEXT, obj)
 end
 
