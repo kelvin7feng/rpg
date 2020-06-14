@@ -314,7 +314,7 @@ end
 function UpdatePlayHpPos(player)
     local localPosition = pkgPositionTool.GetPopupPos(player, gameObject)
     if localPosition then
-        localPosition.x = localPosition.x - 25
+        localPosition.x = localPosition.x - 50
         m_objHpProgress.transform.localPosition = localPosition
         pkgUITool.SetActive(m_objHpProgress, true)
     end

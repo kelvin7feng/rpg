@@ -86,6 +86,10 @@ function MoveToDestination(player, pos)
         pkgAnimatorMgr.SetInteger(animator, pkgAnimatorDefination.AnimatorParamter.ANIMATION_TYPE, pkgAnimatorDefination.AnimationType.MOVE)
         pkgAnimatorMgr.SetFloat(animator, pkgAnimatorDefination.AnimatorParamter.SPEED, GetAnimationMoveSpeed(player))
     end
+
+    if pkgActorManager.IsMainPlayer(player) then
+        pkgUIMain.UpdatePlayHpPos(player)
+    end
 end
 
 function SetDestination(player, pos)
