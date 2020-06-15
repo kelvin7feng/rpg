@@ -22,4 +22,5 @@ end
 
 function OnGetReward(dLastCollectTime)
     pkgAFKDataMgr.SetLastCollectTime(dLastCollectTime)
+    pkgEventManager.PostEvent(pkgClientEventDefination.ON_GET_AFK_REWARD)
 end

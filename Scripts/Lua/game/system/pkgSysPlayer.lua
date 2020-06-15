@@ -86,10 +86,6 @@ function MoveToDestination(player, pos)
         pkgAnimatorMgr.SetInteger(animator, pkgAnimatorDefination.AnimatorParamter.ANIMATION_TYPE, pkgAnimatorDefination.AnimationType.MOVE)
         pkgAnimatorMgr.SetFloat(animator, pkgAnimatorDefination.AnimatorParamter.SPEED, GetAnimationMoveSpeed(player))
     end
-
-    if pkgActorManager.IsMainPlayer(player) then
-        pkgUIMain.UpdatePlayHpPos(player)
-    end
 end
 
 function SetDestination(player, pos)
@@ -193,6 +189,7 @@ function Destory(player)
     pkgSysMonster.StopBehaviour(player)
     pkgFSMManger.RemoveFSM(player.fsm)
     pkgSysHate.ClearHateList(player)
+    pkgUIHpProgress.RemoveHpProgress(player)
     UnityEngine.Object.Destroy(player.gameObject)
 end
 
@@ -213,7 +210,7 @@ function Reborn(player)
             player:SetNavMeshEnable(true)
             pkgSysHate.ClearHateList(player)
             pkgSysBattle.SetCreateMonsterCount(0)
-            pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_HP_CHANGE, player)
+            pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_ADD_HP, player, pkgSysStat.GetMaxHealth(player))
             pkgEventManager.PostEvent(pkgClientEventDefination.ON_PLAYER_REBORN)
 
             if not TriggerReborn(player) then

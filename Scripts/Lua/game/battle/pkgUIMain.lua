@@ -5,7 +5,6 @@ prefabFile = "Main"
 dSortOrder = 100
 
 event_listener = {
-    {pkgClientEventDefination.PLAYER_HP_CHANGE, "UpdatePlayerHp"},
     {pkgClientEventDefination.UPDATE_BATTLE_LEVEL, "UpdateLevelInfo"},
     {pkgClientEventDefination.UPDATE_GOODS, "UpdatePlayerInfo"},
     {pkgClientEventDefination.UPDATE_USER_LEVEL, "UpdatePlayerInfo"},
@@ -21,12 +20,10 @@ event_listener = {
     {pkgClientEventDefination.UPDATE_WEAR_EQUIP, "UpdateRoleAtrr"},
     {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "UpdateRoleAtrr"},
     {pkgClientEventDefination.UPDATE_USER_LEVEL, "UpdateRoleAtrr"},
+    {pkgClientEventDefination.ON_GET_AFK_REWARD, "UpdateChestBtnEffect"},
 }
 
 -- player info
-m_objHpProgress = m_objHpProgress or nil
-m_objHpSlider = m_objHpSlider or nil
-m_playerHpSlider = m_playerHpSlider or nil
 m_objExpSlider = m_objExpSlider or nil
 m_playerExpSlider = m_playerExpSlider or nil
 m_txtPlayerName = m_txtPlayerName or nil
@@ -63,6 +60,11 @@ m_strWaitingBoss = nil
 m_strBattleWithBoss = nil
 m_bIsWaitingBoss = false
 m_objChallengeEffectNode = nil
+
+-- chest btn
+m_btnAFKReward = m_btnAFKReward or nil
+m_objChestEffectNode = nil
+m_dChestTimerId = m_dChestTimerId or nil
 
 m_tbBtn = {}
 m_dBtnCount = 5
@@ -181,8 +183,10 @@ local function onClickBottomBtn(btnGo, i)
 
     if m_dCurBtnIndex == m_dCurBattlePage then
         UpdateChallengeBossBtnEffect()
+        UpdateChestBtnEffect()
     else
         pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, false)
+        pkgSysEffect.SetEffectActive(m_objChestEffectNode, false)
     end
     m_tbClickFunc[i].callBack()
 end
@@ -232,9 +236,6 @@ function init()
     m_txtGold = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ValuePanel/Gold/Bg/Text")
     m_txtLevel = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/Level")
 
-    m_objHpProgress = gameObject.transform:Find("Panel/HpProgress")
-    m_objHpSlider = gameObject.transform:Find("Panel/HpProgress/Slider")
-    m_playerHpSlider = m_objHpSlider:GetComponent(UnityEngine.UI.Slider)
     m_objExpSlider = gameObject.transform:Find("Panel/FloatPanel/PlayerInfo/ExpProgress/Slider")
     m_playerExpSlider = m_objExpSlider:GetComponent(UnityEngine.UI.Slider)
     m_bottomPanel = gameObject.transform:Find("Panel/BottomPanel")
@@ -243,6 +244,7 @@ function init()
     m_txtChallengeBoss = gameObject.transform:Find("Panel/SecondBottomPanel/BtnChallengeBoss/Text")
 
     m_panelRoleAttr = gameObject.transform:Find("Panel/RolePanel/Panel/RoleAttr/AttrPanel")
+    m_btnAFKReward = gameObject.transform:Find("Panel/SecondBottomPanel/BtnAFKReward")
 
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnAFKReward", onClickGetAFKReward)
@@ -283,7 +285,23 @@ function init()
         rectTransform.localScale = UnityEngine.Vector3(1,1,1)
     end
 
+    local function onLoadHpProgressUI()
+        pkgUIHpProgress.gameObject.transform:SetParent(gameObject.transform, false)
+        pkgUIHpProgress.gameObject.transform:SetAsFirstSibling()
+        local rectTransform = pkgUIHpProgress.gameObject:GetComponent(UnityEngine.RectTransform)
+        rectTransform.offsetMin = UnityEngine.Vector2(0, 0);
+        rectTransform.offsetMax = UnityEngine.Vector2(0, 0);
+        rectTransform.localScale = UnityEngine.Vector3(1,1,1)
+
+        local mainPlayer = pkgActorManager.GetMainPlayer()
+        if mainPlayer then
+            pkgUIHpProgress.AddHpProgress(mainPlayer, pkgSysStat.GetMaxHealth(mainPlayer))
+        end
+    end
+    
     pkgUIBaseViewMgr.showByViewPath("game/ui/pkgPopupTextUI", onLoadPopupTextUI)
+    pkgUIBaseViewMgr.showByViewPath("game/ui/pkgUIHpProgress", onLoadHpProgressUI)
+
     pkgUIToastMgr.Init()
     
     InitEquipList()
@@ -292,7 +310,18 @@ function init()
     UpdateRoleAtrr()
     CheckRedPoint()
     ResetChallengeText()
-    UpdatePlayHpPos(pkgActorManager.GetMainPlayer())
+
+    DeleteTimer()
+    m_dChestTimerId = pkgTimerMgr.addWithoutDelay(1000, function()
+        UpdateChestBtnEffect()
+    end)
+end
+
+function DeleteTimer()
+    if m_dChestTimerId then
+        pkgTimerMgr.delete(m_dChestTimerId)
+        m_dChestTimerId = nil
+    end
 end
 
 function resetAttrItem()
@@ -308,15 +337,6 @@ function UpdateRoleAtrr()
     for i, strAttr in ipairs(tbRoleAttr) do
         pkgUITool.SetStringByName(m_panelRoleAttr, "TxtAttr"..i, strAttr)
         pkgUITool.SetActiveByName(m_panelRoleAttr, "TxtAttr"..i, true)
-    end
-end
-
-function UpdatePlayHpPos(player)
-    local localPosition = pkgPositionTool.GetPopupPos(player, gameObject)
-    if localPosition then
-        localPosition.x = localPosition.x - 50
-        m_objHpProgress.transform.localPosition = localPosition
-        pkgUITool.SetActive(m_objHpProgress, true)
     end
 end
 
@@ -359,19 +379,6 @@ function UpdateLevelInfo(dLevelId)
     end
 
     UpdateLevelName(dLevelId)
-    
-    --[[local tbCfg = pkgAFKCfgMgr.GetAFKCfg(dLevelId)
-    if not tbCfg then
-        LOG_ERROR("GetAFKCfg can not find level id:", dLevelId)
-        return
-    end
-
-    local dExp = tbCfg.exp
-    local dGold = tbCfg.gold
-    
-    pkgUITool.UpdateGameObjectText(m_txtAfkExp, 1, dExp)
-    pkgUITool.UpdateGameObjectText(m_txtAfkGold, 2, dGold)--]]
-
 end
 
 function UpdateLevelName(dLevelId)
@@ -395,21 +402,7 @@ function UpdatePlayerInfo()
     local txtLevelComponent = m_txtLevel.gameObject:GetComponent(UnityEngine.UI.Text)
     txtLevelComponent.text = pkgUserDataManager.GetLevel()
     
-    SetPlayerHpProgress(pkgSysStat.GetRadioHealth(mainPlayer))
     UpdatePlayerExp(mainPlayer)
-end
-
-function UpdatePlayerHp(player)
-    if not pkgActorManager.IsMainPlayer(player) then
-        return
-    end
-    SetPlayerHpProgress(pkgSysStat.GetRadioHealth(pkgActorManager.GetMainPlayer()))
-end
-
-function SetPlayerHpProgress(dRatio)
-    if m_playerHpSlider then
-        m_playerHpSlider.value = dRatio
-    end
 end
 
 function UpdatePlayerExp(player)
@@ -472,6 +465,18 @@ function InitEquipList()
     end
 end
 
-function destroyUI()
+function UpdateChestBtnEffect()
+    if m_dCurBtnIndex == m_dCurBattlePage and pkgAFKMgr.CanGetward() then
+        if m_objChestEffectNode then
+            pkgSysEffect.SetEffectActive(m_objChestEffectNode, true)
+        else
+            m_objChestEffectNode = pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.CIRCLE_EFFECT, m_btnAFKReward.transform)
+        end
+    else
+        pkgSysEffect.SetEffectActive(m_objChestEffectNode, false)
+    end
+end
 
+function destroyUI()
+    DeleteTimer()
 end

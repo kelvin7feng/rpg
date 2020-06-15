@@ -1,7 +1,8 @@
 doNameSpace("pkgClientEventDefination")
 
 MONSTER_DEAD				= "monster_dead"
-PLAYER_HP_CHANGE    		= "player_hp_change"
+PLAYER_HP_CHANGE    		= "player_minus_hp"
+PLAYER_ADD_HP    		    = "player_add_hp"
 UPDATE_BATTLE_LEVEL			= "update_battle_level"
 UPDATE_GOODS				= "update_goods"
 UPDATE_EQUIP				= "update_equip"
@@ -26,3 +27,4 @@ ON_SPAWN_MONSTER	        = "on_spawn_monster"
 ON_KILL_BOSS	            = "on_kill_boss"
 ON_PLAYER_REBORN            = "on_player_reborn"
 ON_CREATE_MONSTER_CHANGED   = "on_create_monster_changed"
+ON_GET_AFK_REWARD           = "on_get_afk_reward"

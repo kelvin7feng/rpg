@@ -58,6 +58,7 @@ function CreateMonster(dMonsterId, spawnPosition, spawnRotate)
         pkgActorManager.AddActor(monster)
 
         -- InitBehaviourTree(monster)
+        pkgUIHpProgress.AddHpProgress(monster, pkgSysStat.GetMaxHealth(monster))
     end
     
     local tbConfig = _cfg.monster[dMonsterId]

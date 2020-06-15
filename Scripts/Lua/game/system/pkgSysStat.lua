@@ -42,7 +42,7 @@ function DoDamage(player, attacker)
             pkgPopupTextUI.PlayPopupText(player, pkgPopupTextUI.PopupType.CRITICAL)
         end
 
-        pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_HP_CHANGE, player)
+        pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_HP_CHANGE, player, dDamage)
     else
         pkgPopupTextUI.PlayPopupText(player, pkgPopupTextUI.PopupType.MISS)
     end

@@ -23,6 +23,9 @@ function Update()
 	pkgAIManager.UpdateAction()
 	pkgSysAI.UpdateCheckFOV()
 	pkgSocket.ReceiveMsg()
+	if pkgUIHpProgress then
+		pkgUIHpProgress.UpdateHpPos()
+	end
 end
 
 --[[function FixedUpdate()

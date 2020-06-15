@@ -2,7 +2,7 @@ doNameSpace("pkgPopupTextUI")
 
 assetbundleTag = "ui"
 prefabFile = "PopupTextUI"
-dSortOrder = 101
+dSortOrder = 102
 
 PopupType = {
     [1]             = "TxtNormal",

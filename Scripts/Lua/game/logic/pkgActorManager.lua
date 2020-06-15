@@ -19,6 +19,9 @@ function CreatePlayer(spawnPosition, spawnRotate)
         pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
 
         pkgUIBaseViewMgr.showByViewPath("game/battle/pkgUIMain")
+
+        local objFootEffect = pkgSysEffect.PlayEffect(pkgPoolDefination.PoolType.FOOT_CIRCLE, mainPlayer.gameObject.transform)
+        mainPlayer.objFootEffect = objFootEffect
     end
     
     pkgAssetBundleMgr.LoadAssetBundle("model", "Hero", onLoadComplete)

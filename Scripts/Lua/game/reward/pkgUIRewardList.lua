@@ -34,6 +34,11 @@ function show(tbRewardList)
                 pkgUITool.CreateIcon(dGoodsId, m_scrollView, nil, {onClick = onClickIcon, count = dCount, iconName = strIconName})
             end
         end
+
+        local contentRect = m_scrollView.gameObject:GetComponent(UnityEngine.RectTransform)
+        pkgTimerMgr.once(50,function()
+            UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect)
+        end)
     end
 
     pkgAssetBundleMgr.LoadAssetBundle("ui", "GoodsIcon", onLoadCompelte)
