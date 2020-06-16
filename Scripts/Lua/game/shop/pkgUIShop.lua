@@ -42,10 +42,10 @@ end
 
 function updateValPanel()
     local txtDiamondComponent = m_txtDiamond.gameObject:GetComponent(UnityEngine.UI.Text)
-    txtDiamondComponent.text = pkgUserDataManager.GetDiamond()
+    txtDiamondComponent.text = pkgStringMgr.ConvertNumber2Short(pkgUserDataManager.GetDiamond())
     
     local txtGoldComponent = m_txtGold.gameObject:GetComponent(UnityEngine.UI.Text)
-    txtGoldComponent.text = pkgUserDataManager.GetGold()
+    txtGoldComponent.text = pkgStringMgr.ConvertNumber2Short(pkgUserDataManager.GetGold())
 end
 
 function updateRemainingTime(dLastUpdateTime)

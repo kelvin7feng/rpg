@@ -23,6 +23,7 @@ function Init()
 
     -- 成就系统
     pkgEventManager.Register(EVENT_ID.ACHIEVEMENT.ON_UPDATE_ACHIEVEMENT, pkgAchievementMgr.OnUpdateData)
+    pkgEventManager.Register(EVENT_ID.ACHIEVEMENT.UPDATE_ONE_ACHIEVEMENT, pkgAchievementMgr.OnUpdateOneAchievement)
 
     -- 房子
     pkgEventManager.Register(EVENT_ID.HOME.ON_LEVEL_UP, pkgHouseMgr.OnLevelUp)

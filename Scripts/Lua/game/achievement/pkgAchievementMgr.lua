@@ -34,6 +34,11 @@ function getAchievementProcess(dAchievementType)
     return dProcess
 end
 
+function getAchievementByType(dAchievementType)
+    local tbInfo = pkgUserDataManager.GetAnAchievement(dAchievementType)
+    return tbInfo
+end
+
 function canGetward(dId)
     local tbCfg = pkgAchievementCfgMgr.getAchievementCfg(dId)
     if not tbCfg then
@@ -79,4 +84,12 @@ function OnUpdateData(dAchievementType, tbAchievement)
     pkgUserDataManager.SetAnAchievement(dAchievementType, tbAchievement)
 
     pkgEventManager.PostEvent(pkgClientEventDefination.UPDATE_ACHIEVEMENT)
+end
+
+
+function OnUpdateOneAchievement(dAchievementType, tbAchievement)
+
+    pkgUserDataManager.SetAnAchievement(dAchievementType, tbAchievement)
+
+    pkgEventManager.PostEvent(pkgClientEventDefination.ONE_ACHIEVEMENT_CHANGED, dAchievementType)
 end

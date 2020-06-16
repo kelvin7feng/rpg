@@ -136,6 +136,17 @@ namespace KG
             return File.Exists(path);
         }
 
+        public static bool IsAndroidAssetExist(string fileName)
+        {
+#if UNITY_ANDROID && !UNITY_EDITOR
+             if (Utils.AndroidFilePlugin.IsAssetExists(fileName))
+                return true;
+            return false;
+#else
+            return false;
+#endif
+        }
+
         public static void CreateDir(string directoryName)
         {
             if (!Directory.Exists(directoryName))

@@ -34,7 +34,11 @@ end
 -- to do:android check api
 function GetUpdateCfgPath()
     local strFilePath = string.format("%s/%s", __persistentDataPath, UPDATE_CFG_NAME)
-    if not KG.CustomFile.IsFileExits(strFilePath) then
+    if not pkgApplicationTool.IsEditor() and pkgApplicationTool.IsAndroid() then
+		if not KG.CustomFile.IsAndroidAssetExist(strFilePath) then
+			strFilePath = string.format("%s/%s", __streamingAssetsPath, UPDATE_CFG_NAME)
+		end
+	elseif not KG.CustomFile.IsFileExits(strFilePath) then
         strFilePath = string.format("%s/%s", __streamingAssetsPath, UPDATE_CFG_NAME)
     end
 
