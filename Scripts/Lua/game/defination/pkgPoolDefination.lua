@@ -18,7 +18,7 @@ CachePool = {
     [PoolType.SWORD_HIT_EFFECT] = {strAssetBundleName = "particle", strAssetName = "HitEffect", dCount = 10},
     [PoolType.HOUSE_LEVEL_UP] = {strAssetBundleName = "particle", strAssetName = "HouseLevelUp", dCount = 10},
     [PoolType.HOUSE_UPGRAD] = {strAssetBundleName = "particle", strAssetName = "FireballExplode", dCount = 10},
-    [PoolType.CHALLENGE_BTN] = {strAssetBundleName = "particle", strAssetName = "CircleBtnEffect", dCount = 5},
+    [PoolType.CHALLENGE_BTN] = {strAssetBundleName = "particle", strAssetName = "Challenge", dCount = 5},
     [PoolType.FOOT_CIRCLE] = {strAssetBundleName = "particle", strAssetName = "FootCircle", dCount = 5},
     [PoolType.CIRCLE_EFFECT] = {strAssetBundleName = "particle", strAssetName = "CircleBtnEffect", dCount = 5},
     [PoolType.POP_UP_TEXT] = {strAssetBundleName = "ui", strAssetName = "PopupText", dCount = 20},

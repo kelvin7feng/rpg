@@ -32,6 +32,8 @@ m_txtGold = m_txtGold or nil
 m_txtLevel = m_txtLevel or nil
 m_btnTask = m_btnTask or nil
 m_panelRoleAttr = m_panelRoleAttr or nil
+m_panelRoleModel = m_panelRoleModel or nil
+m_tbRoleModel = m_tbRoleModel or nil
 
 -- home panel
 m_btnHouse = m_btnHouse or nil
@@ -66,6 +68,10 @@ m_btnAFKReward = m_btnAFKReward or nil
 m_objChestEffectNode = nil
 m_dChestTimerId = m_dChestTimerId or nil
 
+-- pet
+m_panelPetModel = m_panelPetModel or nil
+m_tbPetModel = m_tbPetModel or nil
+
 m_tbBtn = {}
 m_dBtnCount = 5
 m_dCurBtnIndex = 3
@@ -99,7 +105,7 @@ local function onClickGetAFKReward()
 end
 
 local function onClickHome()
-    -- print("onClickHome ================= ")
+
 end
 
 local function onClickField()
@@ -110,12 +116,17 @@ local function onClickBattle()
     -- print("onClickBattle ================= ")
 end
 
-local function onClickRole()
-    -- print("onClickRole ================= ")
+local function onClickRole(panel)
+    local rtParams = {width = 1080, height = 1080}
+    local panelRoleModel = panel.transform:Find("Panel/PanelModel")
+    if panelRoleModel then
+        m_tbRoleModel = pkgUI3DModel.showModelOnUI(panelRoleModel.gameObject, nil, false, rtParams)
+        pkgUI3DModel.changeCharacterModel(m_tbRoleModel, "model", "Melee")
+    end
 end
 
-local function onClickPet()
-    -- print("onClickPet ================= ")
+local function onClickPet(panel)
+    pkgUIPetMainMgr.Init(panel)
 end
 
 local function onClickBag()
@@ -188,7 +199,7 @@ local function onClickBottomBtn(btnGo, i)
         pkgSysEffect.SetEffectActive(m_objChallengeEffectNode, false)
         pkgSysEffect.SetEffectActive(m_objChestEffectNode, false)
     end
-    m_tbClickFunc[i].callBack()
+    m_tbClickFunc[i].callBack(m_tbClickFunc[i].panel)
 end
 
 function OnSpawnBoss()
@@ -244,6 +255,7 @@ function init()
     m_txtChallengeBoss = gameObject.transform:Find("Panel/SecondBottomPanel/BtnChallengeBoss/Text")
 
     m_panelRoleAttr = gameObject.transform:Find("Panel/RolePanel/Panel/RoleAttr/AttrPanel")
+    m_panelRoleModel = gameObject.transform:Find("Panel/RolePanel/Panel/PanelModel")
     m_btnAFKReward = gameObject.transform:Find("Panel/SecondBottomPanel/BtnAFKReward")
 
 	pkgButtonMgr.AddListener(m_secondBottomPanel, "BtnChallengeBoss", onClickChallengeBoss)
@@ -256,6 +268,8 @@ function init()
     m_txtLevelName = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/LevelName")
     m_txtAfkExp = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Exp/Text")
     m_txtAfkGold = gameObject.transform:Find("Panel/BattlePanel/LevelInfo/AfkPanel/Gold/Text")
+
+    m_panelPetModel = gameObject.transform:Find("Panel/PetPanel/Panel/PanelModel")
     
     m_rightPanel = gameObject.transform:Find("Panel/RightPanel")
     m_rightPanelAnimator = m_rightPanel:GetComponent(UnityEngine.Animator)

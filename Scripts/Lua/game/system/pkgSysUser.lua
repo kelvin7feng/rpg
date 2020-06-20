@@ -26,6 +26,9 @@ function OnLogin(dErrorCode, tbUserInfo)
     pkgSceneMgr.SwitchScene(pkgGlobalConfig.SceneName.GAME, UnityEngine.SceneManagement.LoadSceneMode.Single, onSwitch)
     
     pkgShopMgr.InitUpdateShopInfo()
+
+    pkgHeartbeatMgr.StartToSend()
+
 end
 
 function Login(dUserId)
@@ -38,4 +41,22 @@ function Login(dUserId)
     end
 
     pkgSocket.SendToLogic(EVENT_ID.CLIENT_LOGIN.LOGIN, dUserId)
+end
+
+function OnReconnect()
+    local dUserId = pkgUserDataManager.GetUserId()
+    pkgSocket.SendToLogic(EVENT_ID.CLIENT_LOGIN.RELOGIN, dUserId)
+end
+
+function OnRelogin(dErrorCode, tbUserInfo)
+    if ERROR_CODE.SYSTEM.OK ~= dErrorCode then
+        LOG_INFO("OnRelogin dErrorCode ================ ", dErrorCode)
+        return
+    end
+
+    -- 初始化玩家数据
+    pkgUserDataManager.InitUserData(tbUserInfo)
+    LOG_TABLE(tbUserInfo)
+
+    pkgHeartbeatMgr.StartToSend()
 end

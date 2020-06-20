@@ -8,6 +8,10 @@ function AIData:ctor(paramters)
     self.tbHateList = {}
     self.targetEnemy = nil
     self.bInterruptByHate = false
+    self.objFollowTarget = nil
+    self.dKeepDistance = 100
+    self.bMoving = false
+    self.dPosId = 0
 end
 
 function AIData:SetPause(bIsPause)
@@ -71,4 +75,12 @@ function AIData:GetFieldConfig(strField)
     end
 
     return tbConfig[strField]
+end
+
+function AIData:GetFollowTarget()
+    return self.objFollowTarget
+end
+
+function AIData:SetFollowTarget(objFollowTarget)
+    self.objFollowTarget = objFollowTarget
 end

@@ -60,6 +60,10 @@ function GetName()
     return m_UserData.BaseInfo.Name
 end
 
+function GetUserId()
+    return m_UserData.BaseInfo.UserId
+end
+
 function GetLevel()
     return m_UserData.BaseInfo.Level
 end
@@ -252,4 +256,9 @@ end
 function GetShopInfo()
     local tbShopInfo = m_UserData.ShopInfo
     return tbShopInfo
+end
+
+function GetPetInfo()
+    local tbPetInfo = m_UserData.PetInfo
+    return tbPetInfo
 end

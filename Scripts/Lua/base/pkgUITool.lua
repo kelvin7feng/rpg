@@ -182,6 +182,7 @@ end
 IconType = {
     NORMAL_GOODS        = 1,
     SHOP_ITEM           = 2,
+    CHARACTER_ICON      = 3,
 }
 
 -- to do:show goods info
@@ -208,7 +209,7 @@ local function onLoadShopItemComplete(prefab, tbParams)
         objIcon.transform:SetParent(parent.transform, false)
     end
     
-    local tbGoodsCfg = tbParams.tbGoodsCfg
+    local tbGoodsCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbParams.id)
     local imgGoods = objIcon.transform:Find("Image")
     if imgGoods then
         pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tostring(tbGoodsCfg.assetName), imgGoods)
@@ -263,7 +264,7 @@ local function onLoadNormalComplete(prefab, tbParams)
         objIcon.transform:SetParent(parent.transform, false)
     end
 
-    local tbGoodsCfg = tbParams.tbGoodsCfg
+    local tbGoodsCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbParams.id)
     local imgGoods = objIcon.transform:Find("Image")
     if imgGoods then
         pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tostring(tbGoodsCfg.assetName), imgGoods)
@@ -297,21 +298,52 @@ local function onLoadNormalComplete(prefab, tbParams)
     end
 end
 
+local function onLoadCharacterComplete(prefab, tbParams)
+
+    if not prefab then 
+        return 
+    end
+
+    local parent = tbParams.parent
+    
+    local objIcon = UnityEngine.Object.Instantiate(prefab)
+    objIcon.name = tbParams.iconName or "icon"
+    objIcon.gameObject:SetActive(true)
+
+    if parent then
+        objIcon.transform:SetParent(parent.transform, false)
+    end
+
+    local tbCharaterCfg = pkgMonsterCfgMgr.GetMonsterCfg(tbParams.id)
+    local imgIcon = objIcon.transform:Find("Image")
+    if imgIcon then
+        pkgUITool.ResetImage(tbCharaterCfg.assetBundle, tostring(tbCharaterCfg.assetName), imgIcon)
+    end
+
+    UpdateIconSize(objIcon, tbParams)
+
+    local callback = tbParams.callback
+    if callback then
+        callback(objIcon)
+    end
+
+    if tbParams.onClick then
+        pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick, tbParams)
+    else
+        pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick, tbParams)
+    end
+end
+
 function CreateIcon(dGoodsId, parent, callback, tbParams)
     
     if not dGoodsId then
         return
     end
     
-    local tbGoodsCfg = pkgGoodsCfgMgr.GetGoodsCfg(dGoodsId)
-    if not tbGoodsCfg then
-        return
-    end
-
     tbParams = tbParams or {}
+    tbParams.id = dGoodsId
     tbParams.parent = parent
     tbParams.callback = callback
-    tbParams.tbGoodsCfg = tbGoodsCfg
 
     local dIconType = tbParams.iconType or IconType.NORMAL_GOODS
     pkgAssetBundleMgr.LoadAssetBundle(IconMap[dIconType].assetBundle, IconMap[dIconType].assetName, IconMap[dIconType].callback, tbParams)
@@ -328,8 +360,14 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
         return
     end
     
-    local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(dGoodsId)
-    if not tbGoodsInfo then
+    local tbCfg = nil
+    if dIconType == IconType.CHARACTER_ICON then
+        tbCfg = pkgMonsterCfgMgr.GetMonsterCfg(dGoodsId)
+    else
+        tbCfg = pkgGoodsCfgMgr.GetGoodsCfg(dGoodsId)
+    end
+    
+    if not tbCfg then
         return
     end
 
@@ -339,7 +377,7 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
 
     local imgGoods = objIcon.transform:Find("Image")
     if imgGoods then
-        pkgUITool.ResetImage(tbGoodsInfo.assetBundle, tostring(tbGoodsInfo.assetName), imgGoods)
+        pkgUITool.ResetImage(tbCfg.assetBundle, tostring(tbCfg.assetName), imgGoods)
         pkgUITool.SetActive(imgGoods, true)
     end
 
@@ -484,4 +522,21 @@ end
 IconMap = {
     [IconType.NORMAL_GOODS] = {assetBundle = "ui", assetName = "GoodsIcon", callback = onLoadNormalComplete},
     [IconType.SHOP_ITEM] = {assetBundle = "ui", assetName = "ShopItem", callback = onLoadShopItemComplete},
+    [IconType.CHARACTER_ICON] = {assetBundle = "ui", assetName = "CharacterIcon", callback = onLoadCharacterComplete},
 }
+
+function DelCullingMask(dOldCullingMask, cullingMask)
+    if type(cullingMask) == "string" then
+        cullingMask = UnityEngine.LayerMask.NameToLayer(cullingMask)
+    end
+    if type(cullingMask) ~= "number" then
+        return
+    end
+    local b = (bit.lshift(1, cullingMask))
+    local bb = bit.band(dOldCullingMask, b)
+    if bb ~= 0 then
+        return dOldCullingMask - b
+    else --已经排除了
+        return dOldCullingMask
+    end
+end

@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 5463746559449449395}
   - component: {fileID: 4771859875786752509}
   m_Layer: 0
-  m_Name: Smile
+  m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   boundGraphObjectReferences: []
   enableAction: 0
   disableAction: 0
-  _graph: {fileID: 11400000, guid: 284f7c8e16fd3484092bdf15aeba3b47, type: 2}
+  _graph: {fileID: 0}
   _blackboard: {fileID: 0}
 --- !u!114 &4771859875786752509
 MonoBehaviour:

@@ -57,7 +57,7 @@ function CreateMonster(dMonsterId, spawnPosition, spawnRotate)
         local monster = Monster:new({dMonsterId = dMonsterId, prefab = prefab, spawnPosition = spawnPosition, spawnRotate = spawnRotate})
         pkgActorManager.AddActor(monster)
 
-        -- InitBehaviourTree(monster)
+        InitBehaviourTree(monster)
         pkgUIHpProgress.AddHpProgress(monster, pkgSysStat.GetMaxHealth(monster))
     end
     

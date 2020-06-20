@@ -6,6 +6,16 @@ dPort = 0
 socket = nil
 dReceiveTimer = nil
 dHeaderLength = 20
+bConnected = false
+
+-- 重连
+SOCKET_RECONNECT_COUNT = 10
+SOCKET_RECONNECT_SPAN  = 3000
+dReconnect_count = SOCKET_RECONNECT_COUNT
+dReconnectTimerId = nil
+
+-- 断线时发送队列
+tbSendQueue = {}
 
 -- 接收内容缓冲区
 strReceiveData = ""
@@ -46,6 +56,7 @@ local function connect(address, port)
     sock:settimeout(0)
     sock:setoption("keepalive", true)
     sock:setoption("tcp-nodelay", true)
+
     return sock
 end
 
@@ -101,31 +112,64 @@ function ReceiveMsg()
 end
 
 function IsConnected()
-    return pkgSocket.socket
+    return bConnected and pkgSocket.socket
 end
 
 function ConnectToServer(strIp, dPort)
     local session, err = connect(strIp, dPort)
     if not session then
         print(string.format("connect to %s:%d error:%s", strIp, dPort, ERROR_TIPS[ERROR_CODE[err]]))
-        pkgNetMgr.ShowServerStopTip(ERROR_TIPS[ERROR_CODE[err]])
+        -- pkgNetMgr.ShowServerStopTip(ERROR_TIPS[ERROR_CODE[err]])
         return false
     end
 
     socket = session
     strIp = strIp
     dPort = dPort
-
+    bConnected = true
     print(string.format("connect to %s:%d succeefully.", strIp, dPort))
 
     return true
 end
 
+function DeleteTimer()
+    if dReconnectTimerId then
+        pkgTimerMgr.delete(dReconnectTimerId)
+        dReconnectTimerId = nil
+    end
+end
+
 function Reconnect()
+    
     if socket then
         Disconnect()
     end
-    return ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
+
+    DeleteTimer()
+
+    dReconnectTimerId = pkgTimerMgr.addWithoutDelay(SOCKET_RECONNECT_SPAN, function()
+        if IsConnected() then
+            dReconnect_count = SOCKET_RECONNECT_COUNT
+            DeleteTimer()
+            return
+        end
+        
+        if dReconnect_count <= 0 then
+            pkgEventManager.PostEvent(EVENT_ID.NET.RECONNECTED_FAILED)
+            DeleteTimer()
+            return
+        end
+
+        if dReconnect_count > 0 then
+            local bRet = ConnectToServer(pkgGlobalConfig.GATEWAT_IP, pkgGlobalConfig.GATEWAY_PORT)
+            -- 重连流程,重新获取数据
+            if bRet then
+                pkgEventManager.PostEvent(EVENT_ID.NET.RECONNECTED_SUCCEED)
+            end
+        end
+
+        dReconnect_count = dReconnect_count - 1
+    end)
 end
 
 function SendToLogic(dProtocolId, ...)
@@ -137,11 +181,9 @@ end
 
 function Send(dServerType, strData)
     if not IsConnected() then
-        local bRet = Reconnect()
-        if not Reconnect() then
-            print("reconnect failed")
-            return false
-        end
+        table.insert(tbSendQueue, {dServerType, strData})
+        Reconnect()
+        return false
     end
     
     local strBody = string.pack("<P", strData)
@@ -151,12 +193,21 @@ function Send(dServerType, strData)
     if sendResult then
         -- print("send to server:"..string.len(strData).."|"..strData.."|".."total:"..sendResult)
     end
+
+    return true
 end
 
 function Disconnect()
     if IsConnected() and socket then
-        print("Disconnect() ==================== ")
         socket:shutdown()
         socket = nil
+        bConnected = false
+    end
+end
+
+function ReSend()
+    for i=#tbSendQueue, 1, -1 do
+        LOG_TABLE(tbSendQueue)
+        Send(unpack(table.remove(tbSendQueue, i)))
     end
 end

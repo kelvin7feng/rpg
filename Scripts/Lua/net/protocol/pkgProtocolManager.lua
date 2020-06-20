@@ -1,9 +1,16 @@
 doNameSpace("pkgProtocolManager")
 
 function Init()
+
+    -- 网络
+    pkgEventManager.Register(EVENT_ID.NET.RECONNECTED_FAILED, pkgNetMgr.OnReconnectFailed)
+    pkgEventManager.Register(EVENT_ID.NET.HEART_BEAT_2, pkgHeartbeatMgr.OnHeartbeat)
+    
     -- 玩家基本信息
     pkgEventManager.Register(EVENT_ID.CLIENT_LOGIN.LOGIN, pkgSysUser.OnLogin)
     pkgEventManager.Register(EVENT_ID.BASE_INFO.ON_LEVEL_CHANGE, pkgSysUser.OnLevelChange)
+    pkgEventManager.Register(EVENT_ID.NET.RECONNECTED_SUCCEED, pkgSysUser.OnReconnect)
+    pkgEventManager.Register(EVENT_ID.CLIENT_LOGIN.ON_RELOGIN, pkgSysUser.OnRelogin)
 
     -- 战斗
     pkgEventManager.Register(EVENT_ID.CLIENT_BATTLE.START, pkgSysBattle.OnStart)

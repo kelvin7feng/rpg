@@ -25,6 +25,10 @@ function DoDamage(player, attacker)
         return
     end
     
+    if pkgActorManager.IsPet(player) then
+        return
+    end
+
     local bHit, dDamage, bIsCritical, dCritical = pkgAttrLogic.CalcOneAttack(attacker.tbAttr, player.tbAttr)
 
     -- 优化: 连续受击的情况需要处理

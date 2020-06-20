@@ -16,6 +16,8 @@ function CreatePlayer(spawnPosition, spawnRotate)
         areaBaker:SetDistanceThreshold(pkgGlobalConfig.NavMeshSurface.DISTANCE_THRESHOLD)
         areaBaker:SetVolumn(pkgGlobalConfig.NavMeshSurface.VOLUME_X,pkgGlobalConfig.NavMeshSurface.VOLUME_Y,pkgGlobalConfig.NavMeshSurface.VOLUME_Z)
 
+        pkgPetTeam.CreatePlayerTeam(mainPlayer)
+
         pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
 
         pkgUIBaseViewMgr.showByViewPath("game/battle/pkgUIMain")
@@ -59,6 +61,13 @@ function IsMonster(player)
         return true
     end
 
+    return false
+end
+
+function IsPet(player)
+    if IsMonster(player) and player.aiData.objFollowTarget then
+        return true
+    end
     return false
 end
 

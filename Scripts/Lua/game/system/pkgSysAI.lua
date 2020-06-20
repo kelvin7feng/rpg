@@ -4,7 +4,8 @@ function UpdateCheckFOV()
     local tbAIPlayer = pkgActorManager.GetAllAIPlayer()
     for _, player in ipairs(tbAIPlayer) do
         local bHateCount = player.aiData:GetHateListCount()
-        local bIsOk, tbEnemy = PlayerInCone(player, 3, 120)
+        local dDistanceOfFOV = player.aiData:GetFieldConfig(pkgConfigFieldDefination.Monster.DISTANCE_OF_FOV)
+        local bIsOk, tbEnemy = PlayerInCone(player, dDistanceOfFOV, 120)
         if bIsOk then
             for _, enemy in ipairs(tbEnemy) do
                 pkgSysHate.AddHate(player, enemy:GetId(), 1)

@@ -65,20 +65,21 @@ function show()
 
     local tbShopInfo = pkgShopDataMgr.GetShopInfo(m_dShopType)
 
-    local function onClickIcon(objIcon, tbParams)
-        local function confirm()
-            pkgShopMgr.BuyGoods(m_dShopType, tbParams.id)
-        end
-        local tbItem = tbParams.tbItem
-        if not tbItem.remaining or tbItem.remaining <= 0 then
-            return
-        end
-        tbParams.bIsShop = true
-        tbParams.funcBuy = confirm
-        pkgUIBaseViewMgr.showByViewPath("game/goods/pkgUIGoodsDetail", nil, tbParams)
-    end
-
     for i, tbGoodsInfo in ipairs(tbShopInfo.tbGoodsList) do
+
+        local function onClickIcon(objIcon, tbParams)
+            local function confirm()
+                pkgShopMgr.BuyGoods(m_dShopType, i)
+            end
+            local tbItem = tbParams.tbItem
+            if not tbItem.remaining or tbItem.remaining <= 0 then
+                return
+            end
+            tbParams.bIsShop = true
+            tbParams.funcBuy = confirm
+            pkgUIBaseViewMgr.showByViewPath("game/goods/pkgUIGoodsDetail", nil, tbParams)
+        end
+
         local strIconName = "item" .. i
         local goNow = m_scrollView.transform:Find(strIconName)
         if pkgUITool.isNull(goNow) then

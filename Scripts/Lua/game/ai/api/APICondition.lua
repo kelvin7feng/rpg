@@ -57,6 +57,15 @@ function IsGreatThanDistanceOfAttack(agent)
     return false
 end
 
+function CanFollowMove(agent)
+    local followTarget = agent.aiData:GetFollowTarget()
+    if not followTarget then
+        return false
+    end
+
+    return followTarget.aiData.bMoving
+end
+
 function IsSkillEnd(agent)
     return pkgFSMManger.IsInState(agent, pkgStateDefination.State.ATTACK)
 end

@@ -15,7 +15,7 @@ m_btnLevelUp = m_btnLevelUp or nil
 m_btnUpgrade = m_btnUpgrade or nil
 m_panelHouse = m_panelHouse or nil
 m_panelUpgradeEffect = m_panelUpgradeEffect or nil
-
+m_tbHouseModel = m_tbHouseModel or nil
 m_houseModelName = "houseModel"
 
 function init()
@@ -24,7 +24,7 @@ function init()
     m_panelConsume = gameObject.transform:Find("Panel/LevelUpPanel/ConsumePanel")
     m_btnLevelUp = gameObject.transform:Find("Panel/LevelUpPanel/BtnLevelUp")
     m_btnUpgrade = gameObject.transform:Find("Panel/LevelUpPanel/BtnUpgrade")
-    m_panelHouse = gameObject.transform:Find("Panel/HouseModel/House/Node")
+    m_panelHouse = gameObject.transform:Find("Panel/HouseModel")
     m_panelUpgradeEffect = gameObject.transform:Find("Panel/LevelUpPanel/UpgradeEffect")
 
     local function onClickLevelUp(btnGo)
@@ -53,13 +53,13 @@ end
 
 function updateModel()
     
-    removeOldModel()
+    -- removeOldModel()
 
     local dLevel = pkgHouseDataMgr.GetLevel()
     local dStar = pkgHouseDataMgr.GetStar()
     local tbCfg = pkgHomeCfgMgr.GetLevelUpCfg(dStar, dLevel)
 
-    local function onLoadComplete(prefab)
+    --[[local function onLoadComplete(prefab)
         goNow = UnityEngine.Object.Instantiate(prefab)
         goNow.name = m_houseModelName
         goNow.transform:SetParent(m_panelHouse.transform, false)
@@ -68,7 +68,11 @@ function updateModel()
     end
 
     -- 初始化或进阶时加载
-    pkgAssetBundleMgr.LoadAssetBundle(tbCfg.assetBundle, tbCfg.assetName, onLoadComplete)
+    pkgAssetBundleMgr.LoadAssetBundle(tbCfg.assetBundle, tbCfg.assetName, onLoadComplete)--]]
+
+    local rtParams = {width = 1080, height = 1080, cameraModelOffsetZ = -3000}
+    m_tbHouseModel = pkgUI3DModel.showModelOnUI(m_panelHouse.gameObject, nil, false, rtParams)
+    pkgUI3DModel.changeCharacterModel(m_tbHouseModel, tbCfg.assetBundle, "HolidayHouse")
 end
 
 function removeOldModel()

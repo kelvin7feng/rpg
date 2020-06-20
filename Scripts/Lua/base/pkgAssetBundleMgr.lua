@@ -69,11 +69,24 @@ function LoadAssetBundle(strAssetBundleName, strAssetName, funcCallBack, ...)
     end
 end
 
-function LoadAssetBundleSync(strAssetBundleName, funcCallBack)
+function LoadAssetBundleSync(strAssetBundleName, strAssetName)
     if not strAssetBundleName then
         print("LoadAssetBundle strAssetBundleName is nil")
         return
     end
 
-    KG.AssetBundleUtils.Instance:LoadAssetSync(string.format("%s%s",strAssetBundleName, assetVariant), funcCallBack)
+    if not strAssetName then
+        print("LoadAssetBundle strAssetName is nil")
+        return
+    end
+
+    local asset = nil
+    local strABNameWithVariant = string.format("%s%s",strAssetBundleName, assetVariant)
+    if pkgApplicationTool.IsOnMobile() then
+
+    else
+        asset = KG.AssetLoader.LoadAssetAsync(strABNameWithVariant, strAssetName)
+    end
+    
+    return asset
 end

@@ -25,9 +25,11 @@ require("base/pkgZipMgr")
 require("base/pkgExtractMgr")
 require("base/pkgDownloadMgr")
 require("base/pkgTimerMgr")
+require("base/pkgUtilMgr")
 
 require("net/socket/pkgSocket")
 require("net/socket/pkgNetMgr")
+require("net/socket/pkgHeartbeatMgr")
 require("net/protocol/pkgProtocolManager")
 
 -- base
@@ -45,6 +47,7 @@ require("game/ai/action/AChaseTarget")
 require("game/ai/action/AMoveForward")
 require("game/ai/action/AMoveRandomly")
 require("game/ai/action/AGetHit")
+require("game/ai/action/AFollowMove")
 
 -- condition
 require("game/ai/condition/CIsDead")
@@ -55,6 +58,7 @@ require("game/ai/condition/CIsInterrupted")
 require("game/ai/condition/CIsPause")
 require("game/ai/condition/CIsRandomMovement")
 require("game/ai/condition/CIsGreatThanDistanceOfAttack")
+require("game/ai/condition/CCanFollowMove")
 
 require("game/defination/pkgAnimatorDefination")
 require("game/defination/pkgClientEventDefination")
@@ -92,12 +96,14 @@ require("game/ui/pkgVirtualController")
 require("game/ui/pkgUIToastMgr")
 require("game/ui/pkgUIRedPointMgr")
 require("game/ui/pkgUIImageMgr")
+require("game/ui/pkgUI3DModel")
 
 require("game/entity/pkgAIData")
 require("game/entity/pkgCharacter")
 require("game/entity/pkgEffectNode")
 require("game/entity/pkgMonster")
 require("game/entity/pkgPlayer")
+require("game/entity/pkgPet")
 
 require("game/fsm/pkgFSM")
 require("game/fsm/pkgFSMManger")
@@ -139,3 +145,9 @@ require("game/shop/pkgShopMgr")
 
 require("game/afk/pkgAFKDataMgr")
 require("game/afk/pkgAFKMgr")
+
+require("game/pet/pkgPetDataMgr")
+require("game/pet/pkgPetLogic")
+require("game/pet/pkgPetProtocol")
+require("game/pet/pkgPetTeam")
+require("game/pet/pkgUIPetMainMgr")

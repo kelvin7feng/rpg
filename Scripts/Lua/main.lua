@@ -1,5 +1,7 @@
 
 import "UnityEngine"
+_G.ue = UnityEngine
+
 require "luapack"
 cjson = require "cjson"
 bit = require "tool/bitop"

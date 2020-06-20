@@ -9,3 +9,10 @@ function ShowServerStopTip(strTip)
     }
     pkgUIBaseViewMgr.showByViewPath("game/alert/pkgUIAlert", nil, tbParam)
 end
+
+function OnReconnectFailed()
+    local tbParam = {
+        strContent  = "重连失败,请联系客服"   -- 显示文字
+    }
+    pkgUIBaseViewMgr.showByViewPath("game/alert/pkgUIAlert", nil, tbParam)
+end

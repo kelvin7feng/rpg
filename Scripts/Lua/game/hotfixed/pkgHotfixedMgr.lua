@@ -23,7 +23,7 @@ function CheckUpdate()
     
     local function errorCallback(www)
         local tbParam = {
-            strContent  = "检查更新失败,正常尝试重连",   -- 显示文字
+            strContent  = "检查更新失败,请检查网络",   -- 显示文字
         }
         pkgUIBaseViewMgr.showByViewPath("game/alert/pkgUIAlert", nil, tbParam)
     end

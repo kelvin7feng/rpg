@@ -13,7 +13,22 @@ function ResetHurt(agent)
 end
 
 function MoveForward(agent)
-    local pos = pkgSysMonster.GetForwardPos(agent, 5)
+    local pos = pkgSysMonster.GetForwardPos(agent, 10)
+    pkgSysPlayer.SetMoveSpeed(agent, agent.aiData:GetFieldConfig(pkgConfigFieldDefination.Monster.SPEED_OF_RUN))
+    pkgSysPlayer.SetDestination(agent, pos)
+
+    pkgSysPlayer.SetAnimationMoveSpeed(agent, 0.8)
+
+    return true
+end
+
+function FollowMove(agent)
+    local pos = pkgPetTeam.GetTeamPos(agent.aiData:GetFollowTarget(), agent.aiData.dPosId)
+    if not pos then
+        print("FollowMove can not find pos")
+        return false
+    end
+    
     pkgSysPlayer.SetMoveSpeed(agent, agent.aiData:GetFieldConfig(pkgConfigFieldDefination.Monster.SPEED_OF_RUN))
     pkgSysPlayer.SetDestination(agent, pos)
 
@@ -62,7 +77,7 @@ function UpdateMoveDestination(agent)
     if not targetEnemy then
         return false
     end
-
+    
     pkgSysPlayer.SetDestination(agent, pkgSysPosition.GetCurrentPos(targetEnemy))
 end
 
