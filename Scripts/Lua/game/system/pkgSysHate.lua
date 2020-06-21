@@ -152,18 +152,22 @@ function NeedToChangeTarget(agent)
 
 	if agent.aiData:GetHateListCount() > 1 then
 		local tbMostHatedEnemy = GetMostHatedEnemy(agent)
-		local dMostHatedEnemyId = tbMostHatedEnemy:GetId()
-		if dTargetId ~= dMostHatedEnemyId then		
-			local mostHatedEnemy = GetHatedEnemyInfoById(agent, dMostHatedEnemyId)
-			if mostHatedEnemy then
-				local targetHatedEnemy = GetHatedEnemyInfoById(agent, dTargetId)
-				if mostHatedEnemy.hate / targetHatedEnemy.hate > 1.2 then
+		if tbMostHatedEnemy then
+			local dMostHatedEnemyId = tbMostHatedEnemy:GetId()
+			if dTargetId ~= dMostHatedEnemyId then		
+				local mostHatedEnemy = GetHatedEnemyInfoById(agent, dMostHatedEnemyId)
+				if mostHatedEnemy then
+					local targetHatedEnemy = GetHatedEnemyInfoById(agent, dTargetId)
+					if mostHatedEnemy.hate / targetHatedEnemy.hate > 1.2 then
+						bNeed = true
+					end
+				else
+					RemoveEnemy(agent, dMostHatedEnemyId)
 					bNeed = true
 				end
-			else
-				RemoveEnemy(agent, dMostHatedEnemyId)
-				bNeed = true
 			end
+		else
+			print("can not find most hate enemy:", agent:GetId())
 		end
 	end
 

@@ -21,6 +21,8 @@ event_listener = {
     {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "UpdateRoleAtrr"},
     {pkgClientEventDefination.UPDATE_USER_LEVEL, "UpdateRoleAtrr"},
     {pkgClientEventDefination.ON_GET_AFK_REWARD, "UpdateChestBtnEffect"},
+    {pkgClientEventDefination.ON_PET_REST, "OnPetChange"},
+    {pkgClientEventDefination.ON_PET_PLAY, "OnPetChange"},
 }
 
 -- player info
@@ -200,6 +202,16 @@ local function onClickBottomBtn(btnGo, i)
         pkgSysEffect.SetEffectActive(m_objChestEffectNode, false)
     end
     m_tbClickFunc[i].callBack(m_tbClickFunc[i].panel)
+end
+
+function OnPetChange(dSlot)
+    local panel = m_tbClickFunc[5].panel
+    local strPetId = pkgPetDataMgr.GetPetSlot(dSlot)
+    if strPetId == 0 then
+        strPetId = nil
+    end
+    
+    pkgUIPetMainMgr.Init(panel, strPetId)
 end
 
 function OnSpawnBoss()

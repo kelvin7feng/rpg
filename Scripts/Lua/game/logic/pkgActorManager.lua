@@ -68,6 +68,7 @@ function IsPet(player)
     if IsMonster(player) and player.aiData.objFollowTarget then
         return true
     end
+    
     return false
 end
 
@@ -86,7 +87,7 @@ end
 function GetAllAIPlayer()
     local tb = {}
     for _, actor in pairs(m_tbActor) do
-        if IsAIPlayer(actor) then
+        if IsAIPlayer(actor) and not IsPet(actor) then
             table.insert(tb, actor)
         end
     end

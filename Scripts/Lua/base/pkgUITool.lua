@@ -355,12 +355,13 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
     if not objIcon then
         return
     end
-
+    
     if not dGoodsId then
         return
     end
     
     local tbCfg = nil
+    local dIconType = tbParams.iconType or IconType.NORMAL_GOODS
     if dIconType == IconType.CHARACTER_ICON then
         tbCfg = pkgMonsterCfgMgr.GetMonsterCfg(dGoodsId)
     else
@@ -370,7 +371,7 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
     if not tbCfg then
         return
     end
-
+    
     tbParams = tbParams or  {}
 
     objIcon.gameObject:SetActive(true)
@@ -381,7 +382,6 @@ function UpdateIcon(objIcon, dGoodsId, callback, tbParams)
         pkgUITool.SetActive(imgGoods, true)
     end
 
-    local dIconType = tbParams.iconType or IconType.NORMAL_GOODS
     if dIconType == IconType.NORMAL_GOODS then
         if tbParams.count then
             pkgUITool.SetActiveByName(objIcon, "Count", true)

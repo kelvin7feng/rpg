@@ -32,13 +32,6 @@ function init()
     pkgUITool.SetActive(m_btnBuy, false)
 end
 
-function resetAttrItem()
-    for i=0, m_panelAttr.transform.childCount - 1 do
-        local goChild = m_panelAttr.transform:GetChild(i).gameObject
-        goChild.gameObject:SetActive(false)
-    end
-end
-
 function show(tbParams)
     
     local dCfgId = tbParams.dCfgId
@@ -79,14 +72,11 @@ function show(tbParams)
     end
 
     if pkgGoodsCfgMgr.IsEquip(dCfgId) then
-        resetAttrItem()
         pkgUITool.SetActive(m_panelEquip, true)
 
-        local tbAttr = pkgEquipCfgMgr.GetAttrDescList(dCfgId)
-        for i, strAttr in ipairs(tbAttr) do
-            pkgUITool.SetStringByName(m_panelAttr, "TxtAttr"..i, strAttr)
-            pkgUITool.SetActiveByName(m_panelAttr, "TxtAttr"..i, true)
-        end
+        local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dCfgId)
+        local tbAttr = pkgAttrCfgMgr.GetAttrDescList(tbCfg.attrId)
+        pkgUIAttrMgr.UpdateAttrPanel(m_panelAttr, tbAttr)
     end
 end
 

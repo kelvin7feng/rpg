@@ -223,7 +223,8 @@ function getAddExp(dEquipCfgId)
 end
 
 function updateLevelAttrPanel(panel, dEquipCfgId, dLevel)
-    local tbAttr = pkgEquipCfgMgr.GetLevelUpAttrDescList(dEquipCfgId, dLevel)
+    local tbCfg = pkgEquipCfgMgr.GetLevelUpCfg(dEquipId, dLevel)
+    local tbAttr = pkgAttrCfgMgr.GetLevelUpAttrDescList(tbCfg.attrId)
     for i, strAttr in ipairs(tbAttr) do
         pkgUITool.SetStringByName(panel, "TextAttr"..i, strAttr)
         pkgUITool.SetActiveByName(panel, "TextAttr"..i, true)

@@ -50,7 +50,6 @@ end
 
 function CreatePlayerTeam(player)
     local tbTeam = pkgPetDataMgr.GetPetTeam()
-    tbTeam[1] = "10001"
     for i, strPetId in ipairs(tbTeam) do
         local dPetId = tonumber(strPetId)
         if dPetId > 0 then

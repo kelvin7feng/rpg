@@ -51,18 +51,28 @@ function CalcPlayerAttr(player)
     -- 装备属性
     local tbEquipingList = pkgEquipDataMgr.GetEquipingBaseCfg()
     
-    local tbEquipList = {}
+    local tbAttrList = {}
     if #tbEquipingList > 0 then
         for _, dCfgId in ipairs(tbEquipingList) do
             local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dCfgId)
             if tbCfg then
-                table.insert(tbEquipList, tbCfg)
+                table.insert(tbAttrList, pkgAttrCfgMgr.GetAttrCfg(tbCfg.attrId))
             end
         end
     end
 
+    -- 计算宠物属性
+    local tbUsingPetAttrList = pkgPetDataMgr.GetUsingPetAttrList()
+    if #tbUsingPetAttrList > 0 then
+        for _, dAttrId in ipairs(tbUsingPetAttrList) do
+            if dAttrId then
+                table.insert(tbAttrList, pkgAttrCfgMgr.GetAttrCfg(dAttrId))
+            end
+        end
+    end
+    
     -- 计算最终属性
-    tbAttr = pkgAttrMgr.CalcTotalAttr(tbAttr, tbEquipList)
+    tbAttr = pkgAttrMgr.CalcTotalAttr(tbAttr, tbAttrList)
 
     player.tbAttr = tbAttr
 end
@@ -70,7 +80,8 @@ end
 function CalcMonsterAttr(player)
     local tbAttr = pkgAttrMgr.GetDefaultAttr()
 
-    local tbAttrList = player.aiData:GetConfig()
+    local tbCfg = player.aiData:GetConfig()
+    local tbAttrList = pkgAttrCfgMgr.GetAttrCfg(tbCfg.attrId)
 
     -- 计算基础属性
     tbAttr = pkgAttrMgr.CalcBaseAttr(tbAttr, {tbAttrList})

@@ -49,4 +49,8 @@ function Init()
     
     -- 挂机
     pkgEventManager.Register(EVENT_ID.AFK.ON_GET_REWARD, pkgAFKMgr.OnGetReward)
+
+    -- 宠物
+    pkgEventManager.Register(EVENT_ID.PET.ON_BATTLE, pkgPetLogic.OnPetBattle)
+    pkgEventManager.Register(EVENT_ID.PET.ON_REST, pkgPetLogic.OnPetRest)
 end

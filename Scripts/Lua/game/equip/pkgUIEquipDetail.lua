@@ -24,7 +24,7 @@ function init()
     m_panelIcon = goParent.transform:Find("Icon")
     m_txtPower = goParent.transform:Find("TxtPower")
     m_txtType = goParent.transform:Find("TxtType")
-    m_panelAttr = goParent.transform:Find("AttrPanel")
+    m_panelAttr = goParent.transform:Find("PanelAttr/AttrPanel")
     m_txtEquipDesc = goParent.transform:Find("TxtEquipDesc")
     m_btnLevelUp = goParent.transform:Find("BtnPanel/BtnLevelUp")
     m_btnReplace = goParent.transform:Find("BtnPanel/BtnReplace")
@@ -33,16 +33,7 @@ function init()
     pkgUITool.SetActive(m_btnReplace, false)
 end
 
-function resetAttrItem()
-    for i=0, m_panelAttr.transform.childCount - 1 do
-        local goChild = m_panelAttr.transform:GetChild(i).gameObject
-        goChild.gameObject:SetActive(false)
-    end
-end
-
 function show(tbParams)
-
-    resetAttrItem()
     
     local strId = tbParams.strEquipId
     local dCfgId = tbParams.dCfgId
@@ -67,16 +58,13 @@ function show(tbParams)
     local strIconName = "icon"
     local icon = m_panelIcon.transform:Find(strIconName)
     if pkgUITool.isNull(icon) then
-        pkgUITool.CreateIcon(dEquipCfgId, m_panelIcon, nil, {onClick = onClickIcon, size = pkgUITool.ICON_SIZE_TYPE.BIG})
-    end
-
-    local tbAttr = pkgEquipCfgMgr.GetAttrDescList(dEquipCfgId)
-    for i, strAttr in ipairs(tbAttr) do
-        pkgUITool.SetStringByName(m_panelAttr, "TxtAttr"..i, strAttr)
-        pkgUITool.SetActiveByName(m_panelAttr, "TxtAttr"..i, true)
+        pkgUITool.CreateIcon(dEquipCfgId, m_panelIcon, nil, {onClick = onClickIcon, size = pkgUITool.ICON_SIZE_TYPE.SMALL})
     end
 
     local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dEquipCfgId)
+    local tbAttr = pkgAttrCfgMgr.GetAttrDescList(tbCfg.attrId)
+    pkgUIAttrMgr.UpdateAttrPanel(m_panelAttr, tbAttr)
+
     local function onClickLevelUp(btnGo)
         pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipLevelUp", nil, strId)
         pkgUIBaseViewMgr.destroyUI(pkgUIEquipDetail)

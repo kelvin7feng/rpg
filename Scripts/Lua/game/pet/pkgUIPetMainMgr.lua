@@ -12,12 +12,15 @@ function InitPetList()
         m_tbEquipSlot[i] = btnSlot
 
         local function onClickPetSlotBtn(btnGo)
-            --pkgUIRedPointMgr.RemoveRedPoint("equip_slot_red_point")
-            --pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUISelectEquip", nil, i) 
+            pkgUIRedPointMgr.RemoveRedPoint("pet_slot_red_point")
+            pkgUIBaseViewMgr.showByViewPath("game/pet/pkgUISelectPet", nil, i) 
         end
 
         local function onClickDetail(btnGo)
-            --pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, {strEquipId = strEquipId, bIsSlot = true})
+            m_dShowPetId = strPetId
+            InitModel()
+            pkgUIRedPointMgr.RemoveRedPoint("pet_slot_red_point")
+            pkgUIBaseViewMgr.showByViewPath("game/pet/pkgUISelectPet", nil, i)
         end
 
         -- set icon
@@ -54,19 +57,33 @@ end
 function InitModel()
     local rtParams = {width = 1080, height = 1080}
     local panelPetModel = m_panelPet.transform:Find("Panel/PanelModel")
+    local panelAttrPanent = m_panelPet.transform:Find("Panel/PanelAttr")
     if panelPetModel then
-        m_tbPetModel = pkgUI3DModel.showModelOnUI(panelPetModel.gameObject, nil, false, rtParams)
-        local tbPetCfg = pkgPetCfgMgr.GetPetCfg(m_dShowPetId)
-        pkgUI3DModel.changeCharacterModel(m_tbPetModel, tbPetCfg.modelBundleName, tbPetCfg.modelName)
+        if m_dShowPetId then
+            m_tbPetModel = pkgUI3DModel.showModelOnUI(panelPetModel.gameObject, nil, false, rtParams)
+            local tbPetCfg = pkgPetCfgMgr.GetPetCfg(m_dShowPetId)
+            pkgUI3DModel.changeCharacterModel(m_tbPetModel, tbPetCfg.modelBundleName, tbPetCfg.modelName)
+
+            local tbAttr = pkgAttrCfgMgr.GetAttrDescList(tbPetCfg.attrId)
+            local panelAttr = m_panelPet.transform:Find("Panel/PanelAttr/AttrPanel")
+            pkgUIAttrMgr.UpdateAttrPanel(panelAttr, tbAttr)
+
+            pkgUITool.SetActive(panelPetModel, true)
+            pkgUITool.SetActive(panelAttrPanent, true)
+        else
+            pkgUITool.SetActive(panelPetModel, false)
+            pkgUITool.SetActive(panelAttrPanent, false)
+        end
     end
 end
 
-function Init(panelPet)
+function Init(panelPet, dShowPetId)
 
     if not panelPet then
         return
     end
 
+    m_dShowPetId = strPetId
     m_panelPet = panelPet
 
     InitPetList()
