@@ -22,14 +22,25 @@ function PetBattle(dCurrentSlot, strPetId)
 end
 
 function OnPetBattle(dCurrentSlot, strPetId)
+    local player = pkgActorManager.GetMainPlayer()
     if not IsSlotEmpty(dCurrentSlot) then
         local strId = pkgPetDataMgr.GetPetSlot(dCurrentSlot)
+        local pet = pkgPetTeam.GetPlayPet(player, dCurrentSlot)
+        if pet then
+            pkgSysPlayer.Destory(pet)
+        end
         pkgPetDataMgr.SetPetRest(dCurrentSlot, strId)
     end
-    pkgPetDataMgr.SetPetSlot(strPetId, dCurrentSlot)
-    pkgPetDataMgr.SetTeamPos(dCurrentSlot, strPetId)
-    pkgAttrLogic.CalcPlayerAttr(pkgActorManager.GetMainPlayer())
-    pkgEventManager.PostEvent(pkgClientEventDefination.ON_PET_PLAY, dCurrentSlot)
+    
+    local function funcCallback()
+        pkgPetDataMgr.SetPetSlot(strPetId, dCurrentSlot)
+        pkgPetDataMgr.SetTeamPos(dCurrentSlot, strPetId)
+        pkgAttrLogic.CalcPlayerAttr(player)
+        pkgEventManager.PostEvent(pkgClientEventDefination.ON_PET_PLAY, dCurrentSlot)
+    end
+
+    local dPetId = tonumber(strPetId)
+    pkgPetTeam.CreateOnePet(player, dCurrentSlot, dPetId, funcCallback)
 end
 
 function PetRest(dCurrentSlot)
@@ -37,8 +48,13 @@ function PetRest(dCurrentSlot)
 end
 
 function OnPetRest(dCurrentSlot)
+    local player = pkgActorManager.GetMainPlayer()
     local strPetId = pkgPetDataMgr.GetPetSlot(dCurrentSlot)
+    local pet = pkgPetTeam.GetPlayPet(player, dCurrentSlot)
+    if pet then
+        pkgSysPlayer.Destory(pet)
+    end
     pkgPetDataMgr.SetPetRest(dCurrentSlot, strPetId)
-    pkgAttrLogic.CalcPlayerAttr(pkgActorManager.GetMainPlayer())
+    pkgAttrLogic.CalcPlayerAttr(player)
     pkgEventManager.PostEvent(pkgClientEventDefination.ON_PET_REST, dCurrentSlot)
 end

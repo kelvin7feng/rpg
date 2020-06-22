@@ -900,7 +900,6 @@ GameObject:
   - component: {fileID: 3987406290409212134}
   - component: {fileID: 8291178610535891822}
   - component: {fileID: 1007003076284237399}
-  - component: {fileID: 1963477527005075474}
   - component: {fileID: 2927046121334118602}
   m_Layer: 0
   m_Name: TurtleShell
@@ -1026,24 +1025,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc568557a49e4d44a79355f077a098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1963477527005075474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7423495004027095590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 0}
-  _blackboard: {fileID: 0}
 --- !u!114 &2927046121334118602
 MonoBehaviour:
   m_ObjectHideFlags: 0

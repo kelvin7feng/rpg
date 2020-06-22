@@ -1,12 +1,77 @@
 doNameSpace("pkgSysMonster")
 
-function StartBehaviour(monster)
-    local behaviourTreeOwner = nil
-    if monster.aiData.behaviourTreeOwner then
-        behaviourTreeOwner = monster.aiData.behaviourTreeOwner
-    else
-        behaviourTreeOwner = monster.gameObject:GetComponent(NodeCanvas.BehaviourTrees.BehaviourTreeOwner)
+m_tbGraphPool = m_tbGraphPool or {}
+m_dPoolWarningCount = 5
+m_tbCache = {
+    {strAssetBundleName = "ai", strAssetName = "MeleeFighter", count = 50}
+}
+
+function Init()
+    for _, tbInfo in ipairs(m_tbCache) do
+
+        local strAssetBundleName = tbInfo.strAssetBundleName
+        local strAssetName = tbInfo.strAssetName
+        local dCount = tbInfo.count
+
+        local function onLoadComplete(prefab)
+            
+            if not prefab then
+                LOG_ERROR("graph prefab is nil..." .. strAssetBundleName .. ", " .. strAssetName)
+                return
+            end
+
+            for i = 1, dCount do
+                local graph = UnityEngine.GameObject.Instantiate(prefab)
+                if not m_tbGraphPool[strAssetBundleName] then
+                    m_tbGraphPool[strAssetBundleName] = {}
+                end
+
+                if not m_tbGraphPool[strAssetBundleName][strAssetName] then
+                    m_tbGraphPool[strAssetBundleName][strAssetName] = {}
+                end
+
+                table.insert(m_tbGraphPool[strAssetBundleName][strAssetName], graph)
+            end
+        end
+
+        pkgAssetBundleMgr.LoadAssetBundle(strAssetBundleName, strAssetName, onLoadComplete)
     end
+end
+
+function CheckCachePool(strAssetBundleName, strAssetName)
+    local dCount = table.count(m_tbGraphPool[strAssetBundleName][strAssetName])
+    if dCount <= m_dPoolWarningCount then
+        for i=1, m_dPoolWarningCount do
+            pkgTimerMgr.once(i * 1000, function()
+                local function onLoadComplete(prefab)
+                    local graph = UnityEngine.GameObject.Instantiate(prefab)
+                    if not prefab then
+                        return
+                    end
+                    table.insert(m_tbGraphPool[strAssetBundleName][strAssetName], graph)
+                end
+                pkgAssetBundleMgr.LoadAssetBundle(strAssetBundleName, strAssetName, onLoadComplete)
+            end)
+        end
+    end
+end
+
+function GetCacheGraph(strAssetBundleName, strAssetName)
+    if not m_tbGraphPool[strAssetBundleName] or not m_tbGraphPool[strAssetBundleName][strAssetName] then
+        return nil
+    end
+
+    if table.count(m_tbGraphPool[strAssetBundleName][strAssetName]) <= 0 then
+        return nil
+    end
+    
+    CheckCachePool(strAssetBundleName, strAssetName)
+
+    return table.remove(m_tbGraphPool[strAssetBundleName][strAssetName], 1)
+end
+
+function StartBehaviour(monster)
+    local behaviourTreeOwner = monster.aiData.behaviourTreeOwner
 
     if behaviourTreeOwner then
         behaviourTreeOwner:StartBehaviour()
@@ -14,19 +79,14 @@ function StartBehaviour(monster)
 end
 
 function StopBehaviour(monster)
-    local behaviourTreeOwner = nil
-    if monster.aiData.behaviourTreeOwner then
-        behaviourTreeOwner = monster.aiData.behaviourTreeOwner
-    else
-        behaviourTreeOwner = monster.gameObject:GetComponent(NodeCanvas.BehaviourTrees.BehaviourTreeOwner)
-    end
+    local behaviourTreeOwner = monster.aiData.behaviourTreeOwner
 
     if behaviourTreeOwner then
         behaviourTreeOwner:StopBehaviour(true)
     end
 end
 
-function InitBehaviourTree(monster)
+function InitBehaviourTree(monster, bStart)
     local tbConfig = _cfg.monster[monster.aiData.dMonsterId]
     local strAssetBundleName = tbConfig[pkgConfigFieldDefination.Monster.AI_ASSET_BUNDLE_NAME]
     local strAssetName = tbConfig[pkgConfigFieldDefination.Monster.AI_ASSET_NAME]
@@ -45,10 +105,20 @@ function InitBehaviourTree(monster)
         end
         local graph = UnityEngine.GameObject.Instantiate(prefab)
         monster.aiData.behaviourTreeOwner.graph = graph
-        StartBehaviour(monster)
+        if bStart then
+            StartBehaviour(monster)
+        end
     end
 
-    pkgAssetBundleMgr.LoadAssetBundle(strAssetBundleName, strAssetName, onLoadComplete)
+    local graph = GetCacheGraph(strAssetBundleName, strAssetName)
+    if graph then
+        monster.aiData.behaviourTreeOwner.graph = graph
+        if bStart then
+            StartBehaviour(monster)
+        end
+    else
+        pkgAssetBundleMgr.LoadAssetBundle(strAssetBundleName, strAssetName, onLoadComplete)
+    end
 end
 
 function CreateMonster(dMonsterId, spawnPosition, spawnRotate)
@@ -57,7 +127,7 @@ function CreateMonster(dMonsterId, spawnPosition, spawnRotate)
         local monster = Monster:new({dMonsterId = dMonsterId, prefab = prefab, spawnPosition = spawnPosition, spawnRotate = spawnRotate})
         pkgActorManager.AddActor(monster)
 
-        InitBehaviourTree(monster)
+        InitBehaviourTree(monster, true)
         pkgUIHpProgress.AddHpProgress(monster, pkgSysStat.GetMaxHealth(monster))
     end
     

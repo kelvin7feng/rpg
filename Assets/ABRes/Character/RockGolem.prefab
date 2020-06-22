@@ -734,7 +734,6 @@ GameObject:
   - component: {fileID: 5664709927100815032}
   - component: {fileID: 6202584855052133983}
   - component: {fileID: 1052728721012841869}
-  - component: {fileID: 8368537848233701969}
   - component: {fileID: 9063820941836644383}
   m_Layer: 0
   m_Name: RockGolem
@@ -860,24 +859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc568557a49e4d44a79355f077a098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8368537848233701969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7664712833338260385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: 284f7c8e16fd3484092bdf15aeba3b47, type: 2}
-  _blackboard: {fileID: 0}
 --- !u!114 &9063820941836644383
 MonoBehaviour:
   m_ObjectHideFlags: 0

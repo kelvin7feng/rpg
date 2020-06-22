@@ -97,6 +97,7 @@ require("game/ui/pkgUIToastMgr")
 require("game/ui/pkgUIRedPointMgr")
 require("game/ui/pkgUIImageMgr")
 require("game/ui/pkgUI3DModel")
+require("game/ui/pkgUITableViewMgr")
 
 require("game/entity/pkgAIData")
 require("game/entity/pkgCharacter")

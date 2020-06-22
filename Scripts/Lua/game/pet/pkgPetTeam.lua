@@ -1,15 +1,26 @@
 doNameSpace("pkgPetTeam")
 
-function CreatePet(player, dMonsterId, spawnPosition, spawnRotate, dPosId)
+function CreatePet(callback, tbParams)
 
+    local dMonsterId = tbParams.dMonsterId
     local function onLoadComplete(prefab)
-        local pet = Pet:new({dMonsterId = dMonsterId, dSide = player.dSide, prefab = prefab, spawnPosition = spawnPosition, spawnRotate = spawnRotate})
+
+        tbParams.prefab = prefab
+
+        local player = tbParams.owner
+        local pet = Pet:new(tbParams)
+
         pet.aiData:SetFollowTarget(player)
-        pet.aiData.dPosId = dPosId
+        pet.aiData.dPosId = tbParams.dPosId
+        pet.gameObject:SetActive(false)
 
-        pkgSysMonster.InitBehaviourTree(pet)
-
+        pkgSysMonster.InitBehaviourTree(pet, true)
+        
         pkgActorManager.AddActor(pet)
+
+        if callback then
+            callback(pet, tbParams)
+        end
     end
     
     local tbConfig = _cfg.monster[dMonsterId]
@@ -17,7 +28,7 @@ function CreatePet(player, dMonsterId, spawnPosition, spawnRotate, dPosId)
         LOG_ERROR("Can not find monster id:" .. dMonsterId)
         return
     end
-
+    
     local strBundldName = tbConfig[pkgConfigFieldDefination.Monster.MODEL_BUNDLE_NAME]
     local strPrefabName = tbConfig[pkgConfigFieldDefination.Monster.MODEL_NAME]
     pkgAssetBundleMgr.LoadAssetBundle(strBundldName, strPrefabName, onLoadComplete)
@@ -48,14 +59,43 @@ function GetTeamPos(player, dIndex)
     return teamPosition
 end
 
+function GetPlayPet(player, dPosId)
+    if not player or not dPosId then
+        return
+    end
+    return player.tbPet[dPosId]
+end
+
+function SetPlayPet(player, pet, dPosId)
+    if not player or not pet or not dPosId then
+        return
+    end
+    player.tbPet[dPosId] = pet
+end
+
+function CreateOnePet(player, dPosId, dPetId, funcCallback)
+    
+    local function callback(pet, tbParams)
+        pet.gameObject:SetActive(true)
+        SetPlayPet(player, pet, dPosId)
+        if funcCallback then
+            funcCallback()
+        end
+    end
+
+    local spawnPosition = GetTeamPos(player, dPosId)
+    local forwardDir = pkgSysPosition.GetForwardDir(player)
+    local tbParams = {owner = player, dMonsterId = dPetId, dSide = player.dSide, dPosId = dPosId,
+                      spawnPosition = spawnPosition, spawnRotate = forwardDir}
+    CreatePet(callback, tbParams)
+end
+
 function CreatePlayerTeam(player)
     local tbTeam = pkgPetDataMgr.GetPetTeam()
-    for i, strPetId in ipairs(tbTeam) do
+    for dPosId, strPetId in ipairs(tbTeam) do
         local dPetId = tonumber(strPetId)
         if dPetId > 0 then
-            local spawnPosition = GetTeamPos(player, i)
-            local forwardDir = pkgSysPosition.GetForwardDir(player)
-            CreatePet(player, dPetId, spawnPosition, forwardDir, i)
+            CreateOnePet(player, dPosId, dPetId)
         end
     end
 end

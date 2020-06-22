@@ -8,6 +8,7 @@ function CreatePlayer(spawnPosition, spawnRotate)
     local function onLoadComplete(prefab)
         local mainPlayer = Player:new({prefab = prefab, spawnPosition = spawnPosition, spawnRotate = spawnRotate})
         pkgCamera.SetFollowTarget(mainPlayer)
+        pkgSysMonster.InitBehaviourTree(mainPlayer, true)
         AddActor(mainPlayer)
         m_mainPlayer = mainPlayer
 

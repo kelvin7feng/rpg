@@ -83,7 +83,17 @@ function LoadAssetBundleSync(strAssetBundleName, strAssetName)
     local asset = nil
     local strABNameWithVariant = string.format("%s%s",strAssetBundleName, assetVariant)
     if pkgApplicationTool.IsOnMobile() then
+        local strFilePath = pkgFileMgr.GetAssetPath(strAssetName)
+        if not strFilePath then
+            return asset
+        end
 
+        local assetBundle = UnityEngine.AssetBundle.LoadFromFile(strFilePath)
+        if not assetBundle then
+            return asset
+        end
+
+        asset = assetBundle.LoadAsset(strAssetName)
     else
         asset = KG.AssetLoader.LoadAssetAsync(strABNameWithVariant, strAssetName)
     end

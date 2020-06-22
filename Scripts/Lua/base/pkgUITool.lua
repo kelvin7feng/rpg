@@ -187,10 +187,14 @@ IconType = {
 
 -- to do:show goods info
 local function onDefaultClick(go, tbParams)
-    if tbParams.tbGoodsInfo and tbParams.tbGoodsInfo.strEquipId then
-        pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, {strEquipId = tbParams.tbGoodsInfo.strEquipId, bIsBag = true})
+
+    tbParams.bIsBag = true
+
+    local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(tbParams.id)
+    if tbGoodsInfo and tbParams.strEquipId then
+        pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUIEquipDetail", nil, tbParams)
     else
-        pkgUIBaseViewMgr.showByViewPath("game/goods/pkgUIGoodsDetail", nil, {dCfgId = tonumber(tbParams.tbGoodsInfo.id), bIsBag = true})
+        pkgUIBaseViewMgr.showByViewPath("game/goods/pkgUIGoodsDetail", nil, tbParams)
     end
 end
 
@@ -239,6 +243,34 @@ local function onLoadShopItemComplete(prefab, tbParams)
     local callback = tbParams.callback
     if callback then
         callback(objIcon)
+    end
+
+    if tbParams.onClick then
+        pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick, tbParams)
+    else
+        pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick, tbParams)
+    end
+end
+
+function fillGoodsIcon(objIcon, tbParams)
+    local tbGoodsCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbParams.id)
+    local imgGoods = objIcon.transform:Find("Image")
+    if imgGoods then
+        pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tostring(tbGoodsCfg.assetName), imgGoods)
+    end
+
+    if tbParams.count then
+        pkgUITool.SetActiveByName(objIcon, "Count", true)
+        pkgUITool.SetStringByName(objIcon, "Count", tbParams.count)
+    else
+        pkgUITool.SetActiveByName(objIcon, "Count", false)
+    end
+
+    if tbParams.level then
+        pkgUITool.SetActiveByName(objIcon, "Level", true)
+        pkgUITool.SetStringByName(objIcon, "Level", tbParams.level)
+    else
+        pkgUITool.SetActiveByName(objIcon, "Level", false)
     end
 
     if tbParams.onClick then

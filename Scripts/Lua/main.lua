@@ -35,7 +35,7 @@ local function init()
 	pkgTriggerManager.Init()
 	pkgProtocolManager.Init()
 	pkgSysBattle.Init()
-
+	pkgSysMonster.Init()
 	-- init ui
 	pkgUIBaseViewMgr.showByViewPath("game/ui/pkgStartUI")
 end

@@ -20,7 +20,8 @@ function Character:ctor(paramters)
     self.dAnimationMoveSpeed = 0
     self.bHurt = false
     self.tbAttr = nil
-
+    self.tbPet = {}
+    
     local prefab = paramters.prefab
     local spawnPosition = paramters.spawnPosition
     local spawnRotate = paramters.spawnRotate

@@ -505,7 +505,6 @@ GameObject:
   - component: {fileID: 1397678293443600695}
   - component: {fileID: 859229556775211472}
   - component: {fileID: 6009087899508779522}
-  - component: {fileID: 3016178645831140830}
   - component: {fileID: 2319832873167259536}
   m_Layer: 0
   m_Name: FootmanBlue
@@ -631,24 +630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc568557a49e4d44a79355f077a098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3016178645831140830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4009924527369931822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: 284f7c8e16fd3484092bdf15aeba3b47, type: 2}
-  _blackboard: {fileID: 0}
 --- !u!114 &2319832873167259536
 MonoBehaviour:
   m_ObjectHideFlags: 0

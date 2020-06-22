@@ -36,7 +36,7 @@ end
 function show(tbParams)
     
     local strId = tbParams.strEquipId
-    local dCfgId = tbParams.dCfgId
+    local dCfgId = tbParams.id
     local bIsShop = tbParams.bIsShop
     local bIsBag = tbParams.bIsBag
     local bIsSlot = tbParams.bIsSlot
@@ -47,7 +47,7 @@ function show(tbParams)
         tbEquipInfo = pkgUserDataManager.GetEquip(strId)
         dEquipCfgId = tbEquipInfo.cfgId
     end
-
+    
     local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(dEquipCfgId)
     pkgUITool.SetGameObjectString(m_txtName, tbGoodsInfo.name)
     

@@ -2099,7 +2099,6 @@ GameObject:
   - component: {fileID: 5529537349909174427}
   - component: {fileID: 6067977444818151548}
   - component: {fileID: 918101518756615086}
-  - component: {fileID: 8503587279322741874}
   - component: {fileID: 9216865513052126780}
   m_Layer: 0
   m_Name: RatAssassin
@@ -2226,24 +2225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc568557a49e4d44a79355f077a098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8503587279322741874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7529821697028879746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: 284f7c8e16fd3484092bdf15aeba3b47, type: 2}
-  _blackboard: {fileID: 0}
 --- !u!114 &9216865513052126780
 MonoBehaviour:
   m_ObjectHideFlags: 0

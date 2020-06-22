@@ -2038,7 +2038,6 @@ GameObject:
   - component: {fileID: 5593129542765552655}
   - component: {fileID: 5788293303506865692}
   - component: {fileID: 4081664701060243372}
-  - component: {fileID: 7162227225553979521}
   - component: {fileID: 7253643898266932096}
   m_Layer: 0
   m_Name: Hero
@@ -2165,24 +2164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc568557a49e4d44a79355f077a098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7162227225553979521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2810037434266659520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: e28a28487427a7f4685060f3c2702c07, type: 2}
-  _blackboard: {fileID: 7253643898266932096}
 --- !u!114 &7253643898266932096
 MonoBehaviour:
   m_ObjectHideFlags: 0

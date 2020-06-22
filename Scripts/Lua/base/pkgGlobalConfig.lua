@@ -62,6 +62,6 @@ if UnityEngine.Application.platform == UnityEngine.RuntimePlatform.IPhonePlayer
     GATEWAT_IP = "122.51.240.92"
 else
     GATEWAT_IP = "122.51.240.92"
-    --GATEWAT_IP = "127.0.0.1"
+    GATEWAT_IP = "127.0.0.1"
 end
 GATEWAY_PORT = 7000

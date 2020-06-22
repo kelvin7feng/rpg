@@ -479,7 +479,6 @@ GameObject:
   - component: {fileID: 360306462971812678}
   - component: {fileID: 2128238259272608673}
   - component: {fileID: 4972268977357918323}
-  - component: {fileID: 4593112717881966511}
   - component: {fileID: 3914804983226449377}
   m_Layer: 0
   m_Name: FootmanYellow
@@ -605,24 +604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc568557a49e4d44a79355f077a098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4593112717881966511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2432929844742223455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: 284f7c8e16fd3484092bdf15aeba3b47, type: 2}
-  _blackboard: {fileID: 0}
 --- !u!114 &3914804983226449377
 MonoBehaviour:
   m_ObjectHideFlags: 0

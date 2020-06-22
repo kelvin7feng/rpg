@@ -1226,7 +1226,6 @@ GameObject:
   - component: {fileID: 4065773329632957967}
   - component: {fileID: 2370462369054140136}
   - component: {fileID: 8677763402831813946}
-  - component: {fileID: 203387878323991270}
   - component: {fileID: 808600611734286504}
   m_Layer: 0
   m_Name: Dog
@@ -1352,24 +1351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc568557a49e4d44a79355f077a098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &203387878323991270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066896392038628118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 0}
-  _blackboard: {fileID: 808600611734286504}
 --- !u!114 &808600611734286504
 MonoBehaviour:
   m_ObjectHideFlags: 0

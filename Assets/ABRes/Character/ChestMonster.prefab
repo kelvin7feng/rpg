@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2808256939528546729}
   - component: {fileID: 4499653981181532494}
   - component: {fileID: 7420228307992748700}
-  - component: {fileID: 2037594818410401088}
   - component: {fileID: 1561852399353433870}
   m_Layer: 0
   m_Name: ChestMonster
@@ -141,24 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc568557a49e4d44a79355f077a098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2037594818410401088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160861655841359024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: 284f7c8e16fd3484092bdf15aeba3b47, type: 2}
-  _blackboard: {fileID: 0}
 --- !u!114 &1561852399353433870
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -128,7 +128,8 @@ function RequireFile()
 	pkgTriggerManager.Init()
 	pkgProtocolManager.Init()
     pkgSysBattle.Init()
-    
+    pkgSysMonster.Init()
+
     _G.__loading = false
 end
 
