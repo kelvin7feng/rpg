@@ -198,6 +198,42 @@ local function onDefaultClick(go, tbParams)
     end
 end
 
+function FillShopItem(objIcon, tbParams)
+    
+    local tbGoodsCfg = pkgGoodsCfgMgr.GetGoodsCfg(tbParams.id)
+    local imgGoods = objIcon.transform:Find("Image")
+    if imgGoods then
+        pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tostring(tbGoodsCfg.assetName), imgGoods)
+        pkgUITool.SetActive(imgGoods, true)
+    end
+
+    local tbItem = tbParams.tbItem
+    if tbItem.count and tbItem.count > 1 then
+        pkgUITool.SetActiveByName(objIcon, "Count", true)
+        pkgUITool.SetStringByName(objIcon, "Count", tbItem.count)
+    else
+        pkgUITool.SetActiveByName(objIcon, "Count", false)
+    end
+
+    if not tbItem.remaining or tbItem.remaining <= 0 then
+        pkgUITool.SetActiveByName(objIcon, "SoldOut", true)
+        pkgUITool.SetActiveByName(objIcon, "Info", false)
+    else
+        pkgUITool.SetActiveByName(objIcon, "SoldOut", false)
+        pkgUITool.SetActiveByName(objIcon, "Info", true)
+    end
+
+    local imgCurrency = objIcon.transform:Find("Info/ImgCurrency")
+    pkgUITool.ResetImage("goods", tbItem.currency, imgCurrency)
+    pkgUITool.SetStringByName(objIcon, "Info/TxtPrice", tbItem.price)
+
+    --[[if tbParams.onClick then
+        pkgButtonMgr.AddBtnListener(objIcon, tbParams.onClick, tbParams)
+    else
+        pkgButtonMgr.AddBtnListener(objIcon, onDefaultClick, tbParams)
+    end--]]
+
+end
 local function onLoadShopItemComplete(prefab, tbParams)
 
     if not prefab then 

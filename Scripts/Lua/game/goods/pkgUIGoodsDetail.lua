@@ -34,7 +34,7 @@ end
 
 function show(tbParams)
     
-    local dCfgId = tbParams.dCfgId
+    local dCfgId = tbParams.id
     local bIsShop = tbParams.bIsShop
     local bIsBag = tbParams.bIsBag
 

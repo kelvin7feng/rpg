@@ -534,7 +534,6 @@ function onClickItem( tbTableView, dIndex )
     tbTableView.delegateSource.onItemClicked(cell, dIndex, tbTableView._tbData, true)
 end
 
-
 function clickItemByIndex(tbTableView, dIndex)
     if #tbTableView._tbData == 0 then
         return
@@ -556,6 +555,17 @@ function clickItemByIndex(tbTableView, dIndex)
         tbTableView.delegateSource.setSelected(cell)
     end
     tbTableView.delegateSource.onItemClicked(cell, dIndex, tbTableView._tbData, true)
+end
+
+function getItem(tbTableView, dIndex)
+    if #tbTableView._tbData == 0 then
+        return
+    end
+    if not tbTableView.tbCellsWithIndex[dIndex] then
+        return
+    end
+    local cell = tbTableView.tbCellsWithIndex[dIndex].gameObject
+    return cell
 end
 
 --[[

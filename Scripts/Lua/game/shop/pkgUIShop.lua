@@ -14,9 +14,10 @@ m_dShopType = pkgShopCfgMgr.ShopType.NORMAL
 m_txtDiamond = m_txtDiamond or nil
 m_txtRemainingTime = m_txtRemainingTime or nil
 m_dUpdateTimerId = m_dUpdateTimerId or nil
+m_tbTableView = m_tbTableView or nil
 
 function init()
-    m_scrollView = gameObject.transform:Find("Panel/Scroll View/Viewport/Content")
+    m_scrollView = gameObject.transform:Find("Panel/Scroll View")
     m_txtDiamond = gameObject.transform:Find("Panel/ValuePanel/Diamond/Bg/Text")
     m_txtGold = gameObject.transform:Find("Panel/ValuePanel/Gold/Bg/Text")
     m_txtRemainingTime = gameObject.transform:Find("Panel/ValuePanel/Remaing/TxtRemaingTime")
@@ -28,15 +29,16 @@ function updateGoodsInfo(dShopType, dId, tbGoodsInfo)
         return
     end
     
-    local strIconName = "item" .. dId
-    local objIcon = m_scrollView.transform:Find(strIconName)
-    if not tbGoodsInfo.remaining or tbGoodsInfo.remaining <= 0 then
-        pkgUITool.SetActiveByName(objIcon, "SoldOut", true)
-        pkgUITool.SetActiveByName(objIcon, "Info", false)
-        pkgButtonMgr.RemoveGameObjectListeners(objIcon)
-    else
-        pkgUITool.SetActiveByName(objIcon, "SoldOut", false)
-        pkgUITool.SetActiveByName(objIcon, "Info", true)
+    local objIcon = pkgUITableViewMgr.getItem(m_tbTableView, dId)
+    if objIcon then
+        if not tbGoodsInfo.remaining or tbGoodsInfo.remaining <= 0 then
+            pkgUITool.SetActiveByName(objIcon, "SoldOut", true)
+            pkgUITool.SetActiveByName(objIcon, "Info", false)
+            pkgButtonMgr.RemoveGameObjectListeners(objIcon)
+        else
+            pkgUITool.SetActiveByName(objIcon, "SoldOut", false)
+            pkgUITool.SetActiveByName(objIcon, "Info", true)
+        end
     end
 end
 
@@ -61,36 +63,82 @@ function updateRemainingTime(dLastUpdateTime)
     m_dUpdateTimerId = pkgTimerMgr.addWithoutDelay(1000, onUpdateTime)
 end
 
-function show()
 
-    local tbShopInfo = pkgShopDataMgr.GetShopInfo(m_dShopType)
+function getTableViewData()
+    return pkgShopDataMgr.GetShopInfo(m_dShopType).tbGoodsList
+end
 
-    for i, tbGoodsInfo in ipairs(tbShopInfo.tbGoodsList) do
+function createTableViewCard()
+    local function onComplete(prefab)
+        if not prefab then return end
 
-        local function onClickIcon(objIcon, tbParams)
+        local delegateSource = {
+            dOffsetStart = 25,  --开头的偏移
+            dOffsetCell = 10,   --每个cell的间隔
+            dCellInterval = 10, --每行的间距
+        }
+
+        local dataSource = {}
+
+        local tbData = getTableViewData()
+
+        function dataSource.column()
+            return 4
+        end
+
+        function dataSource.total()
+            return #tbData
+        end
+        function dataSource.tbData()
+            return tbData
+        end
+
+        function delegateSource.scrollView()
+            return m_scrollView
+        end
+
+        function delegateSource.onItemClicked(cell, dIndexInData)
             local function confirm()
-                pkgShopMgr.BuyGoods(m_dShopType, i)
+                pkgShopMgr.BuyGoods(m_dShopType, dIndexInData)
             end
-            local tbItem = tbParams.tbItem
+            local tbItem = tbData[dIndexInData]
             if not tbItem.remaining or tbItem.remaining <= 0 then
                 return
             end
-            tbParams.bIsShop = true
-            tbParams.funcBuy = confirm
+            local tbParams = 
+            {
+                id = tbItem.id,
+                tbItem = tbItem,
+                bIsShop = true,
+                funcBuy = confirm,
+            }
             pkgUIBaseViewMgr.showByViewPath("game/goods/pkgUIGoodsDetail", nil, tbParams)
         end
 
-        local strIconName = "item" .. i
-        local goNow = m_scrollView.transform:Find(strIconName)
-        if pkgUITool.isNull(goNow) then
-            pkgUITool.CreateIcon(tbGoodsInfo.id, m_scrollView, nil, {onClick = onClickIcon, iconName = strIconName, iconType = pkgUITool.IconType.SHOP_ITEM, tbItem = tbGoodsInfo, id = i, dCfgId = tbGoodsInfo.id})
-        else
-            pkgUITool.UpdateIcon(goNow, tbGoodsInfo.id, nil, {onClick = onClickIcon, iconName = strIconName, iconType = pkgUITool.IconType.SHOP_ITEM, tbItem = tbGoodsInfo, id = i, dCfgId = tbGoodsInfo.id})
+        function delegateSource.setDataAtCell(cell, dIndexInData, _tbData)
+            local tbGoodsInfo = _tbData[dIndexInData]
+            local tbParams = {
+                id = tbGoodsInfo.id,
+                tbItem = tbGoodsInfo,
+            }
+            pkgUITool.FillShopItem(cell, tbParams)
         end
-    end
 
+        function delegateSource.cellByPrefab()
+            return prefab
+        end
+        
+        m_tbTableView = pkgUITableViewMgr.createTableView(delegateSource, dataSource)
+    end
+    
+    pkgAssetBundleMgr.LoadAssetBundle("ui", "ShopItem", onComplete)
+end
+
+function show()
+    local tbShopInfo = pkgShopDataMgr.GetShopInfo(m_dShopType)
     updateRemainingTime(tbShopInfo.dLastUpdateTime)
     updateValPanel()
+    createTableViewCard()
 end
 
 function deleteTimer()
@@ -102,6 +150,7 @@ end
 
 function destroyUI()
     deleteTimer()
+    m_tbTableView = nil
     pkgUIBaseViewMgr.destroyUI(pkgUIShop)
 end
 
