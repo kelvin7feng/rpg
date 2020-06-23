@@ -119,9 +119,11 @@ function show()
     local inputFieldComponet = m_filedId:GetComponent(UnityEngine.UI.InputField)
     inputFieldComponet.text = GetLastEnterUserId() or ""
 
-    updateVersion()
 
+    updateVersion()
     pkgHotfixedMgr.CheckUpdate()
+
+    --pkgEventManager.PostEvent(pkgClientEventDefination.EXTRACT_COMPLETE)
 end
 
 function destroyUI()

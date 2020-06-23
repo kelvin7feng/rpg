@@ -160,6 +160,10 @@ local function onClickShop()
     pkgUIBaseViewMgr.showByViewPath("game/shop/pkgUIShop")
 end
 
+local function onClickPetShop()
+    pkgUIBaseViewMgr.showByViewPath("game/shop/pkgUIPetShop")
+end
+
 m_tbClickFunc = {
     { 
         callBack = onClickHome,
@@ -301,6 +305,7 @@ function init()
     pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnHouse", onClickHouse)
     pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnCropland", onClickCropland)
     pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnShop", onClickShop)
+    pkgButtonMgr.AddListener(gameObject, "Panel/HomePanel/Panel/BtnPetShop", onClickPetShop)
 
     local function onLoadPopupTextUI()
         pkgPopupTextUI.gameObject.transform:SetParent(gameObject.transform, false)

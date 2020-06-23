@@ -58,3 +58,14 @@ function OnPetRest(dCurrentSlot)
     pkgAttrLogic.CalcPlayerAttr(player)
     pkgEventManager.PostEvent(pkgClientEventDefination.ON_PET_REST, dCurrentSlot)
 end
+
+function AddPet(tbPetInfo)
+    
+    if not tbPetInfo then
+        return
+    end
+    
+    pkgPetDataMgr.SetPetInfo(tbPetInfo.cfgId, tbPetInfo)
+
+    pkgEventManager.PostEvent(pkgClientEventDefination.ON_PET_ADD, strId)
+end

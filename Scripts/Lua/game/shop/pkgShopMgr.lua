@@ -38,3 +38,24 @@ function InitUpdateShopInfo()
         pkgSocket.SendToLogic(EVENT_ID.SHOP.UPDATE_SHOP_INFO, pkgShopCfgMgr.ShopType.NORMAL)
     end)
 end
+
+function BuyPet(dShopType, dId)
+    
+    if not dShopType or not dId then
+        return
+    end
+    
+    pkgSocket.SendToLogic(EVENT_ID.SHOP.BUY_PET, dShopType, dId)
+end
+
+function OnBuyPet(dShopType, dId, tbPetInfo, tbItem)
+    
+    if not dShopType or not dId or not tbPetInfo then
+        return
+    end
+    
+    pkgPetLogic.AddPet(tbPetInfo)
+    pkgShopDataMgr.SetGoodsInfo(dShopType, dId, tbItem)
+
+    pkgEventManager.PostEvent(pkgClientEventDefination.ON_BUY_PET, dId)
+end

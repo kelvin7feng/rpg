@@ -82,3 +82,17 @@ function SetPetRest(dSlotId, strPetId)
     tbPetInfo.tbTeam[dSlotId] = 0
     tbPetInfo.tbPetList[strPetId].slot = 0
 end
+
+function SetPetInfo(strId, tbInfo)
+    
+    if not strId or not tbInfo then
+        return false
+    end
+
+    strId = tostring(strId)
+
+    local tbPetInfo = pkgUserDataManager.GetPetInfo()
+    tbPetInfo.tbPetList[strId] = tbInfo
+
+    return true
+end

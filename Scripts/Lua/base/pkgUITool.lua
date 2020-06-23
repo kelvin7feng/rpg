@@ -32,7 +32,7 @@ end
 
 function SetGameObjectString(go, strText)
     if isNull(go) then
-        LOG_WARN("setStringByName gameObject is null, name is "..name)
+        LOG_WARN("setStringByName gameObject is null")
         return
     end
 
