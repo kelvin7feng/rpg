@@ -54,4 +54,8 @@ function Init()
     -- 宠物
     pkgEventManager.Register(EVENT_ID.PET.ON_BATTLE, pkgPetLogic.OnPetBattle)
     pkgEventManager.Register(EVENT_ID.PET.ON_REST, pkgPetLogic.OnPetRest)
+
+    -- 引导
+    pkgEventManager.Register(EVENT_ID.GUIDE.ON_FINISH, pkgGuideMgr.OnFinish)
+
 end

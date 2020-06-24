@@ -262,3 +262,8 @@ function GetPetInfo()
     local tbPetInfo = m_UserData.PetInfo
     return tbPetInfo
 end
+
+function GetGuideInfo()
+    local tbGuideInfo = m_UserData.GuideInfo
+    return tbGuideInfo
+end

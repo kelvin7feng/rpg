@@ -154,3 +154,6 @@ require("game/pet/pkgPetTeam")
 require("game/pet/pkgUIPetMainMgr")
 
 require("game/attr/pkgUIAttrMgr")
+
+require("game/guide/pkgGuideDataMgr")
+require("game/guide/pkgGuideMgr")

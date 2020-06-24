@@ -13,7 +13,6 @@ local function sortByQualityDesc(a,b)
     return tbCfg1.id > tbCfg2.id
 end
 
-
 function GetPetTeam()
     local tbPetInfo = pkgUserDataManager.GetPetInfo()
     return tbPetInfo.tbTeam
@@ -95,4 +94,21 @@ function SetPetInfo(strId, tbInfo)
     tbPetInfo.tbPetList[strId] = tbInfo
 
     return true
+end
+
+function HavePet(strId)
+
+    local bHave = false
+    if not strId then
+        return bHave
+    end
+
+    strId = tostring(strId)
+    
+    local tbPetInfo = pkgPetDataMgr.GetPet(strId)
+    if tbPetInfo then
+        bHave = true
+    end
+
+    return bHave
 end

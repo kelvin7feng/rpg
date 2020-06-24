@@ -22,18 +22,18 @@ m_txtOriginPrice = m_txtOriginPrice or nil
 m_imgOriginCurrency = m_imgOriginCurrency or nil
 m_txtPrice = m_txtPrice or nil
 m_imgCurrency = m_imgCurrency or nil
-m_tbPetShopInfo = m_tbPetShopInfo or nil
-m_tbPetShopInfo = m_tbPetShopInfo or nil
+m_panelGot = m_panelGot or nil
 
 function init()
     m_txtRemainingTime = gameObject.transform:Find("Panel/BasePanel/TxtCountDown")
     m_btnBuy = gameObject.transform:Find("Panel/BuyPanel/BtnBuy")
     m_txtPetName = gameObject.transform:Find("Panel/BuyPanel/TxtPetName")
     m_txtPetDesc = gameObject.transform:Find("Panel/BuyPanel/TxtPetDesc")
+    m_imgOriginCurrency = gameObject.transform:Find("Panel/BuyPanel/BtnBuy/ImgOriginCurrency")
+    m_txtOriginPrice = gameObject.transform:Find("Panel/BuyPanel/BtnBuy/TxtOriginPrice")
     m_imgCurrency = gameObject.transform:Find("Panel/BuyPanel/BtnBuy/ImgCurrency")
     m_txtPrice = gameObject.transform:Find("Panel/BuyPanel/BtnBuy/TxtPrice")
-    m_imgOriginCurrency = gameObject.transform:Find("Panel/BuyPanel/ImgCurrency")
-    m_txtOriginPrice = gameObject.transform:Find("Panel/BuyPanel/TxtOriginPrice")
+    m_panelGot = gameObject.transform:Find("Panel/BuyPanel/PanelGot")
     m_panelPetModel = gameObject.transform:Find("Panel/PetModel")
 
     local function onClickBuy(btnGo)
@@ -56,7 +56,7 @@ function init()
 end
 
 function onBuyPet(strId)
-    print("onBuyPet ==================== ", strId)
+    updateShop()
 end
 
 function updateShop()
@@ -67,7 +67,7 @@ function updateShop()
     local tbCfg = pkgPetCfgMgr.GetPetCfg(dPetId)
     local tbGoodsCfg = pkgGoodsCfgMgr.GetGoodsCfg(dCurrency)
     
-    if tbCfg then
+    if tbCfg and not m_tbPetModel then
         local rtParams = {width = 1080, height = 1080}
         m_tbPetModel = pkgUI3DModel.showModelOnUI(m_panelPetModel.gameObject, nil, false, rtParams)
         pkgUI3DModel.changeCharacterModel(m_tbPetModel, tbCfg.modelBundleName, tbCfg.modelName)
@@ -76,11 +76,16 @@ function updateShop()
     pkgUITool.SetGameObjectString(m_txtPetName, tbCfg.name)
     pkgUITool.SetGameObjectString(m_txtPetDesc, tbCfg.name)
 
-    pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tostring(tbGoodsCfg.assetName), m_imgOriginCurrency)
-    pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tostring(tbGoodsCfg.assetName), m_imgCurrency)
-    pkgUITool.SetGameObjectString(m_txtPrice, dPrice)
-    pkgUITool.SetGameObjectString(m_txtOriginPrice, dPrice * 2)
-
+    local bHave = pkgPetDataMgr.HavePet(dPetId)
+    if not bHave then
+        pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tostring(tbGoodsCfg.assetName), m_imgOriginCurrency)
+        pkgUITool.ResetImage(tbGoodsCfg.assetBundle, tostring(tbGoodsCfg.assetName), m_imgCurrency)
+        pkgUITool.SetGameObjectString(m_txtPrice, dPrice)
+        pkgUITool.SetGameObjectString(m_txtOriginPrice, dPrice * 2)
+    end
+    pkgUITool.SetActive(m_btnBuy, not bHave)
+    pkgUITool.SetActive(m_panelGot, bHave)
+    
     updateRemainingTime(m_tbPetShopInfo.dLastUpdateTime)
 end
 
@@ -90,7 +95,7 @@ function updateRemainingTime(dLastUpdateTime)
         if dRemainingTime < 0 then
             return
         end
-        pkgUITool.SetGameObjectString(m_txtRemainingTime, pkgTimeMgr.FormatTimestamp(dRemainingTime))
+        pkgUITool.SetGameObjectString(m_txtRemainingTime, pkgTimeMgr.FormatTimestamp(dRemainingTime, true))
     end
 
     deleteTimer()
@@ -118,6 +123,8 @@ end
 
 function destroyUI()
     deleteTimer()
+    m_tbPetModel = nil
+    m_tbPetShopInfo = nil
     pkgUIBaseViewMgr.destroyUI(pkgUIPetShop)
 end
 

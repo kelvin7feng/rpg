@@ -7,5 +7,15 @@ function Init()
     end
 
     -- pkgVirtualController.Init()
-    pkgActorManager.CreatePlayer(pkgSysPlayer.GetSpawnPosition(), pkgSysPlayer.GetSpawnRotate())
+
+    local function callback()
+        pkgActorManager.CreatePlayer(pkgSysPlayer.GetSpawnPosition(), pkgSysPlayer.GetSpawnRotate())
+    end
+
+    if pkgGuideMgr.CanShowWelcome() then
+        pkgUIBaseViewMgr.showByViewPath("game/guide/pkgUIWelcomeGuide", nil, callback)
+    else
+        callback()
+    end
+    
 end
