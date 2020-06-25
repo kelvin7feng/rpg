@@ -52,19 +52,22 @@ namespace KG
             
         }
 
-        public void LoadAssetSync(string assetBundleName, LuaFunction funcCallback)
+        public UnityEngine.Object LoadAssetSync(string strFilePath, string assetName)
         {
-
-            if (!IsLoaded(assetBundleName))
-            {
-                AssetBundle ab = AssetBundle.LoadFromFile(STREAMING_ASSET_PATH + "/" + assetBundleName);
-                SetAssetBundleLoad(assetBundleName, ab);
+            if(strFilePath == null || assetName == null){
+                return null;
             }
 
-            if (funcCallback != null)
-            {
-                funcCallback.call();
+            AssetBundle ab = AssetBundle.LoadFromFile(strFilePath);
+            if (ab == null) {
+                Debug.Log("Failed to load AssetBundle!");
+                return null;
             }
+            var prefab = ab.LoadAsset<UnityEngine.Object>(assetName);
+
+            ab.Unload(false);
+
+            return prefab;
         }
 
         public void LoadAssetAsync(string assetBundleName, string assetName, LuaFunction funcCallback)

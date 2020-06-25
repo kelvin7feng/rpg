@@ -72,7 +72,7 @@ function updateModel()
 
     local rtParams = {width = 1080, height = 1080, cameraModelOffsetZ = -3000}
     m_tbHouseModel = pkgUI3DModel.showModelOnUI(m_panelHouse.gameObject, nil, false, rtParams)
-    pkgUI3DModel.changeCharacterModel(m_tbHouseModel, tbCfg.assetBundle, "HolidayHouse")
+    pkgUI3DModel.changeCharacterModel(m_tbHouseModel, tbCfg.assetBundle, tbCfg.assetName)
 end
 
 function removeOldModel()

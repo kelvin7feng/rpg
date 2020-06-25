@@ -15,7 +15,6 @@ function CanShowWelcome()
 end
 
 function Finish()
-    print("pkgGuideMgr ====================== Finish")
     pkgSocket.SendToLogic(EVENT_ID.GUIDE.FINISH)
 end
 
@@ -23,6 +22,6 @@ function OnFinish(dGuideId)
     if not dGuideId then
         return false
     end
-    print("OnFinish ============= ", dGuideId)
+    
     pkgGuideDataMgr.SetGuideInfo(dGuideId)
 end

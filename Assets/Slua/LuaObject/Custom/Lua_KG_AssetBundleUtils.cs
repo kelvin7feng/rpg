@@ -19,11 +19,12 @@ public class Lua_KG_AssetBundleUtils : LuaObject {
 			KG.AssetBundleUtils self=(KG.AssetBundleUtils)checkSelf(l);
 			System.String a1;
 			checkType(l,2,out a1);
-			SLua.LuaFunction a2;
+			System.String a2;
 			checkType(l,3,out a2);
-			self.LoadAssetSync(a1,a2);
+			var ret=self.LoadAssetSync(a1,a2);
 			pushValue(l,true);
-			return 1;
+			pushValue(l,ret);
+			return 2;
 		}
 		catch(Exception e) {
 			return error(l,e);

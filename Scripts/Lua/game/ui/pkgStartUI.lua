@@ -123,7 +123,7 @@ function show()
     updateVersion()
     pkgHotfixedMgr.CheckUpdate()
 
-    --pkgEventManager.PostEvent(pkgClientEventDefination.EXTRACT_COMPLETE)
+    -- startDownload(false)
 end
 
 function destroyUI()
