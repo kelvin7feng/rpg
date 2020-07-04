@@ -157,3 +157,6 @@ require("game/attr/pkgUIAttrMgr")
 
 require("game/guide/pkgGuideDataMgr")
 require("game/guide/pkgGuideMgr")
+
+require("game/task/pkgTaskDataMgr")
+require("game/task/pkgTaskMgr")

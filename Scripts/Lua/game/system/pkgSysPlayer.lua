@@ -213,12 +213,13 @@ function Reborn(player)
 
     pkgTimer.AddOnceTimer("Reborn", 1, 
         function()
-            player.stat:FullHp()
+
             player:SetDie(false)
             player:SetNavMeshEnable(true)
             pkgSysHate.ClearHateList(player)
             pkgSysBattle.SetCreateMonsterCount(0)
-            pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_ADD_HP, player, pkgSysStat.GetMaxHealth(player))
+
+            FullHp(player)
             pkgEventManager.PostEvent(pkgClientEventDefination.ON_PLAYER_REBORN)
 
             if not TriggerReborn(player) then
@@ -230,4 +231,13 @@ function Reborn(player)
             pkgSocket.SendToLogic(EVENT_ID.CLIENT_BATTLE.READY)
     end)
 
+end
+
+function FullHp(player)
+    if not player then
+        return
+    end
+
+    player.stat:FullHp()
+    pkgEventManager.PostEvent(pkgClientEventDefination.PLAYER_ADD_HP, player, pkgSysStat.GetMaxHealth(player))
 end

@@ -58,4 +58,10 @@ function Init()
     -- 引导
     pkgEventManager.Register(EVENT_ID.GUIDE.ON_FINISH, pkgGuideMgr.OnFinish)
 
+    -- 任务
+    pkgEventManager.Register(EVENT_ID.TASK.ON_UPDATE_TASK_INFO, pkgTaskMgr.OnUpdateTaskInfo)
+    pkgEventManager.Register(EVENT_ID.TASK.ON_ONE_TASK_INFO, pkgTaskMgr.OnUpdateOneTask)
+    pkgEventManager.Register(EVENT_ID.TASK.ON_UPDATE_PROGRESS, pkgTaskMgr.OnUpdateProgress)
+    pkgEventManager.Register(EVENT_ID.TASK.ON_UPDATE_LIVENESS, pkgTaskMgr.OnUpdateLiveness)
+    
 end

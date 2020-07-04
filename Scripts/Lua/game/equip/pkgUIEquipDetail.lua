@@ -42,10 +42,16 @@ function show(tbParams)
     local bIsSlot = tbParams.bIsSlot
 
     local tbEquipInfo = nil
+    local tbBaseCfg = nil
     local dEquipCfgId = dCfgId
     if strId then
         tbEquipInfo = pkgUserDataManager.GetEquip(strId)
         dEquipCfgId = tbEquipInfo.cfgId
+        local tbCfg = pkgEquipCfgMgr.GetLevelUpCfg(dEquipCfgId, tbEquipInfo.dLevel)
+        tbBaseCfg = pkgEquipCfgMgr.GetEquipCfg(tbCfg.equipId)
+        dAttrId = tbCfg.attrId
+    else
+        tbBaseCfg = pkgEquipCfgMgr.GetEquipCfg(dCfgId)
     end
     
     local tbGoodsInfo = pkgGoodsCfgMgr.GetGoodsCfg(dEquipCfgId)
@@ -60,9 +66,8 @@ function show(tbParams)
     if pkgUITool.isNull(icon) then
         pkgUITool.CreateIcon(dEquipCfgId, m_panelIcon, nil, {onClick = onClickIcon, size = pkgUITool.ICON_SIZE_TYPE.SMALL})
     end
-
-    local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dEquipCfgId)
-    local tbAttr = pkgAttrCfgMgr.GetAttrDescList(tbCfg.attrId)
+    
+    local tbAttr = pkgAttrCfgMgr.GetAttrDescList(dAttrId)
     pkgUIAttrMgr.UpdateAttrPanel(m_panelAttr, tbAttr)
 
     local function onClickLevelUp(btnGo)
@@ -71,7 +76,7 @@ function show(tbParams)
     end
 
     local function onClickReplace(btnGo)
-        pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUISelectEquip", nil, tbCfg.slot)
+        pkgUIBaseViewMgr.showByViewPath("game/equip/pkgUISelectEquip", nil, tbBaseCfg.slot)
         pkgUIBaseViewMgr.destroyUI(pkgUIEquipDetail)
     end
 

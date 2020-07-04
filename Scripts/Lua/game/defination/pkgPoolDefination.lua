@@ -8,6 +8,7 @@ PoolType = {
     CHALLENGE_BTN                 = 4,
     FOOT_CIRCLE                   = 5,
     CIRCLE_EFFECT                 = 6,
+    BOX_EFFECT                    = 7,
 
     -- for ui
     POP_UP_TEXT                      = 10001,

@@ -78,8 +78,8 @@ end
 function updateExp(dEquipCfgId)
     local dCurLevel, dTestExp = getAddExp(dEquipCfgId)
     local dCfgMaxLevel = pkgEquipCfgMgr.GetMaxLevel(dEquipCfgId)
-    print("dCurLevel, dTestExp:", dCurLevel, dTestExp)
-    print("dCfgMaxLevel:", dCfgMaxLevel)
+    --print("dCurLevel, dTestExp:", dCurLevel, dTestExp)
+    --print("dCfgMaxLevel:", dCfgMaxLevel)
     -- 还没满级
     if dCurLevel < dCfgMaxLevel then
         local dNextLevel = dCurLevel + 1
@@ -96,8 +96,7 @@ function updateExp(dEquipCfgId)
         -- 满级了
         pkgUITool.UpdateGameObjectText(m_txtCurLevel, 20001, dCfgMaxLevel - 1)
         pkgUITool.UpdateGameObjectText(m_txtNextLevel, 20001, dCfgMaxLevel)
-        updateLevelAttrPanel(m_panelBaseAttrs, dEquipCfgId, dCfgMaxLevel - 1)
-        updateLevelAttrPanel(m_panelChangeAttrs, dEquipCfgId, dCfgMaxLevel)
+        updateLevelAttrPanel(m_panelBaseAttrs, dEquipCfgId, dCfgMaxLevel)
 
         local tbLevelUpCfg = pkgEquipCfgMgr.GetLevelUpCfg(dEquipCfgId, dCfgMaxLevel - 1)
         local cmptTxt = m_txtProcess:GetComponent(UnityEngine.UI.Text)
@@ -134,7 +133,7 @@ function show(strId)
     if pkgUITool.isNull(icon) then
         pkgUITool.CreateIcon(dEquipCfgId, m_panelIcon, nil, {})
     end
-
+    
     m_dCurLevel = tbEquipInfo.dLevel
     m_dCurExp = tbEquipInfo.dLevelUpExp
 
@@ -217,13 +216,17 @@ function getAddExp(dEquipCfgId)
             dAddExp = dAddExp + tbCfg.value
         end
     end
-    print("dEquipCfgId, m_dCurLevel, m_dCurExp, dAddExp", dEquipCfgId, m_dCurLevel, m_dCurExp, dAddExp)
+    -- print("dEquipCfgId, m_dCurLevel, m_dCurExp, dAddExp", dEquipCfgId, m_dCurLevel, m_dCurExp, dAddExp)
     local dMaxLevel, dTestExp = pkgEquipCfgMgr.CalcMaxLevel(dEquipCfgId, m_dCurLevel, m_dCurExp, dAddExp)
     return dMaxLevel, dTestExp
 end
 
 function updateLevelAttrPanel(panel, dEquipCfgId, dLevel)
-    local tbCfg = pkgEquipCfgMgr.GetLevelUpCfg(dEquipId, dLevel)
+
+    local tbCfg = pkgEquipCfgMgr.GetLevelUpCfg(dEquipCfgId, dLevel)
+    if not tbCfg then
+        return
+    end
     local tbAttr = pkgAttrCfgMgr.GetLevelUpAttrDescList(tbCfg.attrId)
     for i, strAttr in ipairs(tbAttr) do
         pkgUITool.SetStringByName(panel, "TextAttr"..i, strAttr)

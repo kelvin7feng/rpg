@@ -98,11 +98,11 @@ function extractComplete()
 end
 
 local function onClickEnter()
+    m_btnEnter:GetComponent(UnityEngine.UI.Button).interactable = false
     pkgSysUser.Login(GetInputField())
 end
 
 function init()
-    pkgButtonMgr.AddListener(gameObject, "Panel/Login/BtnEnter", onClickEnter)
     m_filedId = gameObject.transform:Find("Panel/Login/FieldId")
     m_panelLogin = gameObject.transform:Find("Panel/Login")
     m_panelProcess = gameObject.transform:Find("Panel/Process")
@@ -112,6 +112,9 @@ function init()
     m_sliderProcess = gameObject.transform:Find("Panel/Process/Slider")
     m_sliderProcessCmpt = m_sliderProcess:GetComponent(UnityEngine.UI.Slider)
     m_txtVersion = gameObject.transform:Find("Panel/TxtVersion")
+    m_btnEnter = gameObject.transform:Find("Panel/Login/BtnEnter")
+
+    pkgButtonMgr.AddListener(gameObject, "Panel/Login/BtnEnter", onClickEnter)
 end
 
 function show()

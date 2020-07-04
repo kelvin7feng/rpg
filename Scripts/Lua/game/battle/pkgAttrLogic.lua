@@ -49,15 +49,12 @@ function CalcPlayerAttr(player)
     tbAttr = pkgAttrMgr.CalcBaseAttr(tbAttr, {tbAttrList})
     
     -- 装备属性
-    local tbEquipingList = pkgEquipDataMgr.GetEquipingBaseCfg()
-    
+    local tbEquipAttrList = pkgEquipDataMgr.GetEquipAttrList()
+    LOG_TABLE(tbEquipAttrList)
     local tbAttrList = {}
-    if #tbEquipingList > 0 then
-        for _, dCfgId in ipairs(tbEquipingList) do
-            local tbCfg = pkgEquipCfgMgr.GetEquipCfg(dCfgId)
-            if tbCfg then
-                table.insert(tbAttrList, pkgAttrCfgMgr.GetAttrCfg(tbCfg.attrId))
-            end
+    if #tbEquipAttrList > 0 then
+        for _, dAttrId in ipairs(tbEquipAttrList) do
+            table.insert(tbAttrList, pkgAttrCfgMgr.GetAttrCfg(dAttrId))
         end
     end
 

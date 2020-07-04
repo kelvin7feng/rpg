@@ -38,8 +38,12 @@ function PlayEffect(dEffectId, parentTransform, position, dDuration)
     
     local obj = pkgPoolManager.GetFromPool(dEffectId)
     if not obj then
-        LOG_ERROR("pool is not water.")
-        return nil
+        print("pool is not water.")
+        local prefab = pkgAssetBundleMgr.LoadAssetBundleSync(effectCfg.bundleName, effectCfg.assetName)
+        if not prefab then
+            return nil
+        end
+        obj = UnityEngine.GameObject.Instantiate(prefab, UnityEngine.Vector3(0,0,0), UnityEngine.Quaternion.identity)
     end
 
     if parentTransform then

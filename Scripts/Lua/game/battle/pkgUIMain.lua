@@ -12,6 +12,8 @@ event_listener = {
     {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "InitEquipList"},  
     {pkgClientEventDefination.UPDATE_GOODS, "InitEquipList"},  
     {pkgClientEventDefination.UPDATE_ACHIEVEMENT, "CheckRedPoint"},
+    {pkgClientEventDefination.ON_UPDATE_ONE_TASK, "CheckRedPoint"},
+    {pkgClientEventDefination.ON_UPDATE_LIVENESS, "CheckRedPoint"},
     {pkgClientEventDefination.ON_BOSS_IS_COMING, "OnSpawnBoss"},
     {pkgClientEventDefination.ON_SPAWN_MONSTER, "OnSpawnMonster"},
     {pkgClientEventDefination.ON_KILL_BOSS, "ResetChallengeText"},
@@ -20,6 +22,7 @@ event_listener = {
     {pkgClientEventDefination.UPDATE_WEAR_EQUIP, "UpdateRoleAtrr"},
     {pkgClientEventDefination.UPDATE_TAKE_OFF_EQUIP, "UpdateRoleAtrr"},
     {pkgClientEventDefination.UPDATE_USER_LEVEL, "UpdateRoleAtrr"},
+    {pkgClientEventDefination.UPDATE_LEVEL_UP_EQUIP, "UpdateRoleAtrr"},
     {pkgClientEventDefination.ON_GET_AFK_REWARD, "UpdateChestBtnEffect"},
     {pkgClientEventDefination.ON_PET_REST, "OnPetChange"},
     {pkgClientEventDefination.ON_PET_PLAY, "OnPetChange"},
@@ -136,7 +139,7 @@ local function onClickBag()
 end
 
 local function onClickTask()
-    pkgUIBaseViewMgr.showByViewPath("game/achievement/pkgUIAchievement")
+    pkgUIBaseViewMgr.showByViewPath("game/achievement/pkgUITask")
 end
 
 local function onClickRightArrow()
@@ -389,7 +392,9 @@ function UpdateChallengeBossBtnEffect()
 end
 
 function CheckRedPoint()
-    if pkgAchievementMgr.canShowRedPoint() then
+    if pkgAchievementMgr.canShowRedPoint()
+        or pkgTaskMgr.CanShowDailyTaskRedPoint()
+        or pkgTaskMgr.CanShowWeeklyTaskRedPoint() then
         pkgUIRedPointMgr.AddRedPoint(m_btnTask.gameObject, "task_red_point")
     else
         pkgUIRedPointMgr.RemoveRedPoint("task_red_point")

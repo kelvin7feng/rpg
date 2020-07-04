@@ -157,7 +157,7 @@ function createTableViewCard(dSlotId)
 end
 
 function show(dSlotId)
-
+    
     m_dCurrentSlot = dSlotId
     updateWearingEquip(dSlotId)
     -- updateFreeEquip(dSlotId)

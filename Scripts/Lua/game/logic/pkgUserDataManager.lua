@@ -238,6 +238,14 @@ function SetAnAchievement(dAchievementType, tbAchievement)
     return true
 end
 
+function GetGameTable(strTable)
+    local tbGameTable = nil
+    if strTable and IsString(strTable) then
+        tbGameTable = m_UserData[strTable]
+    end
+    return tbGameTable
+end
+
 function GetHouseInfo()
     local tbHomeInfo = m_UserData.HomeInfo
     return tbHomeInfo

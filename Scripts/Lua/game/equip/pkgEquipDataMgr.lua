@@ -12,3 +12,17 @@ function GetEquipingBaseCfg()
 
     return tbEquiping
 end
+
+function GetEquipAttrList()
+    local tbEquiping = {}
+    local tbSlots = pkgUserDataManager.GetEquipSlots()
+    for i, strEquipId in ipairs(tbSlots) do
+        local tbEquip = pkgUserDataManager.GetEquip(strEquipId)
+        if tbEquip then
+            local tbCfg = pkgEquipCfgMgr.GetLevelUpCfg(tbEquip.cfgId, tbEquip.dLevel)
+            table.insert(tbEquiping, tbCfg.attrId)
+        end        
+    end
+
+    return tbEquiping
+end

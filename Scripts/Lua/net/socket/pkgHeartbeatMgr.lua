@@ -37,6 +37,7 @@ function OnHeartbeat()
 end
 
 function StartToSend()
+    do return end
     if m_dHeartbeatTimer then
         return
     end

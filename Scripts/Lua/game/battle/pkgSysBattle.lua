@@ -70,6 +70,7 @@ function OnSpawnMonster(dCurLevel, dCurType, dMonsterId)
     local player = pkgActorManager.GetMainPlayer()
     local spawnPos = pkgSysMonster.GetForwardPos(player, dDefaultDistance)
     local forwardDir = pkgSysPosition.GetForwardDir(player) * - 1
+    pkgSysPlayer.FullHp(player)
 
     -- 小怪增加位置偏移
     if dCurType ~= BATTLE_CHALLENGE_TYPE.BOSS_TYPE then

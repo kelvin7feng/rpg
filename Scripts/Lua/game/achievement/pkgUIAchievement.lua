@@ -10,11 +10,11 @@ event_listener =
     {pkgClientEventDefination.UPDATE_LEVEL, "updateAchievementPanel"},
 }
 
-le_panelScrollView = le_panelScrollView or nil
+le_panelAchievementScrollView = le_panelAchievementScrollView or nil
 
 function init()
-    local goParent  = gameObject.transform:Find("Panel")
-    le_panelScrollView = goParent.transform:Find("ScrollView/Viewport/Content")
+    local goParent = gameObject.transform:Find("Panel")
+    le_panelAchievementScrollView = goParent.transform:Find("AchievementPanel/ScrollView/Viewport/Content")
 end
 
 function show()
@@ -33,11 +33,11 @@ end
 
 function updateAchievement(tbAchievementInfo)
     local name = "achievementCell"..tbAchievementInfo.dType
-    local goNow = le_panelScrollView.transform:Find(name)
+    local goNow = le_panelAchievementScrollView.transform:Find(name)
     if pkgUITool.isNull(goNow) then
         goNow = UnityEngine.Object.Instantiate(prefab)
         goNow.name = name
-        goNow.transform:SetParent(le_panelScrollView.transform, false)
+        goNow.transform:SetParent(le_panelAchievementScrollView.transform, false)
         goNow.transform.localScale = UnityEngine.Vector3.one
     end
     local dId = tbAchievementInfo.dId
@@ -111,11 +111,11 @@ function updateAchievementPanel()
         local dId = nil
         for i, tbAchievementInfo in ipairs(tbAchievement) do
             local name = "achievementCell"..tbAchievementInfo.dType
-            local goNow = le_panelScrollView.transform:Find(name)
+            local goNow = le_panelAchievementScrollView.transform:Find(name)
             if pkgUITool.isNull(goNow) then
                 goNow = UnityEngine.Object.Instantiate(prefab)
                 goNow.name = name
-                goNow.transform:SetParent(le_panelScrollView.transform, false)
+                goNow.transform:SetParent(le_panelAchievementScrollView.transform, false)
                 goNow.transform.localScale = UnityEngine.Vector3.one
             end
             goNow.gameObject:SetActive(true)
@@ -128,8 +128,8 @@ function updateAchievementPanel()
 end
 
 function resetScrollViewItems()
-    for i=0, le_panelScrollView.transform.childCount-1 do
-        local goChild = le_panelScrollView.transform:GetChild(i)
+    for i=0, le_panelAchievementScrollView.transform.childCount-1 do
+        local goChild = le_panelAchievementScrollView.transform:GetChild(i)
         if goChild then
             goChild.gameObject:SetActive(false)
         end
